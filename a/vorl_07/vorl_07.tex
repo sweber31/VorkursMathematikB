@@ -1,0 +1,790 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem18}{Vollst\"andigkeitsaxiom:}
+\newtheorem*{mytheorem19}{Konvergenzkriterium von Cauchy:} 
+\newtheorem*{mytheorem20}{Konvergenzkriterium von Leibniz f\"ur alternierende Reihen:} 
+\newtheorem*{mytheorem21}{Majorantenkriterium:} 
+\newtheorem*{mytheorem22}{Quotientenkriterium:} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Folgen und Reihen}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Folgen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Folgen}
+
+\begin{definition}
+Unter einer Folge $(a_n)$ reeller Zahlen versteht man eine Abbildung ${\mathbb N} \rightarrow {\mathbb R}$.
+
+\vspace*{2mm}
+
+Jedem $n \in \mathbb N$ wird also ein $a_n \in \mathbb R$ zugeordnet.
+\end{definition}
+
+\begin{example}
+\bq
+ a_n & = & \frac{1}{n^2}
+\eq
+definiert eine Folge.
+
+\vspace*{2mm}
+Explizit: $a_1=1$, $a_2=\frac{1}{4}$, $a_3=\frac{1}{9}$, $a_4=\frac{1}{16}$, $a_5=\frac{1}{25}$, ...
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Konvergente Folgen}
+
+\begin{definition}
+Eine Folge $(a_n)$ hei{\ss}t {\bf konvergent} gegen $a\in \mathbb R$, falls es zu jedem
+$\eps > 0$ eine nat\"urliche Zahl $N$ gibt, so da{\ss}
+\bq
+ \left| a_n - a \right | & < & \eps,
+ \;\;\;
+ \forall n \ge N.
+\eq
+In diesem Fall schreibt man
+\bq
+ \lim\limits_{n\rightarrow \infty} a_n & = & a.
+\eq
+\end{definition}
+
+In anderen Worten liegen f\"ur eine konvergente Folge ab einem bestimmten $N$ alle Folgenglieder
+im Intervall $]a-\eps,a+\eps[$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Divergente Folgen}
+
+\begin{definition}
+Eine Folge nennt man {\bf divergent}, wenn sie gegen keine reelle Zahl konvergiert.
+\end{definition}
+
+\begin{example}
+Beispiele f\"ur divergente Folgen sind
+\bq
+ a_n & = & n,
+ \nonumber \\
+ b_n & = & \left\{\begin{array}{rl}
+                   1 & \mbox{$n$ gerade} \\
+                  -1 & \mbox{$n$ ungerade} \\
+                  \end{array}\right.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beschr\"ankte Folgen}
+
+\begin{definition}
+Eine Folge hei{\ss}t nach oben (bzw. unten) beschr\"ankt, falls es ein $c\in \mathbb R$ gibt, so da{\ss}
+$a_n \le c$ (bzw. $a_n \ge c$) f\"ur alle $n \in \mathbb N$.
+Die Folge hei{\ss}t beschr\"ankt, wenn sie nach oben und unten beschr\"ankt ist.
+\end{definition}
+
+\begin{itemize}
+\item Jede konvergente Folge beschr\"ankt.
+
+\item Die Umkehrung gilt nicht, eine beschr\"ankte Folge ist nicht notwendiger Weise konvergent,
+siehe obiges Beispiel mit der Folge $(b_n)$.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rechenregeln f\"ur konvergente Folgen}
+
+Seien $(a_n)$ und $(b_n)$ zwei konvergente Folgen mit den Grenzwerten
+\bq
+ \lim\limits_{n \rightarrow \infty} a_n = a,
+ & &
+ \lim\limits_{n \rightarrow \infty} b_n = b.
+\eq
+Dann sind auch die Folgen $(a_n+b_n)$, $(a_n-b_n)$, $(\lambda a_n)$, $(a_n b_n)$ konvergent
+($\lambda \in \mathbb R$)
+und es gilt
+\begin{myemptytheorem}
+\bq
+ \lim\limits_{n \rightarrow \infty} \left(a_n+b_n\right) & = & a + b,
+\nonumber \\
+ \lim\limits_{n \rightarrow \infty} \left(a_n-b_n\right) & = & a - b,
+\nonumber \\
+ \lim\limits_{n \rightarrow \infty} \left(\lambda a_n\right) & = & \lambda a,
+\nonumber \\
+ \lim\limits_{n \rightarrow \infty} \left(a_n\cdot b_n\right) & = & a \cdot b.
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rechenregeln f\"ur konvergente Folgen}
+
+Ist weiter $b \neq 0$, so gibt es ein $N \in \mathbb N$, so da{\ss} $b_n\neq 0$ f\"ur alle
+$n\ge N$ und wir k\"onnen die Folge
+\bq
+ \left( \frac{a_n}{b_n} \right)_{n\ge N}
+\eq
+betrachten. Es gilt
+\begin{myemptytheorem}
+\bq
+ \lim\limits_{n \rightarrow \infty} \left( \frac{a_n}{b_n} \right) & = & \frac{a}{b}.
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rechenregeln f\"ur konvergente Folgen}
+
+\begin{theorem}
+Seien $(a_n)$ und $(b_n)$ zwei konvergente Folgen mit $a_n \le b_n$ f\"ur alle $n$.
+Dann gilt auch
+\bq
+\lim\limits_{n \rightarrow \infty} a_n & \le & \lim\limits_{n \rightarrow \infty} b_n.
+\eq
+\end{theorem}
+
+\vspace*{6mm}
+\alert{Bemerkung}: Aus $a_n < b_n$ \superalert{folgt nicht} 
+\bq
+\lim\limits_{n \rightarrow \infty} a_n & < & \lim\limits_{n \rightarrow \infty} b_n,
+\eq
+wie das Beispiel
+$a_n=0$ und $b_n=1/n$ zeigt.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Cauchy-Folgen}
+
+Wir hatten bereits bei der axiomatischen Charakterisierung der reellen Zahlen
+den Begriff einer Cauchy-Folge eingef\"uhrt, den wir uns nochmal in Erinnerung rufen:
+\begin{definition}
+Eine Folge $(a_n)$ reeller Zahlen nennt man {\bf Cauchy-Folge}, falls es zu jedem $\eps > 0$ 
+ein $N \in {\mathbb N}$ gibt, so da{\ss}
+\bq
+ \left| a_n - a_m \right| & < & \eps,
+ \;\;\;\;\;\;
+ \forall n,m \ge N.
+\eq
+\end{definition}
+\begin{theorem}
+Ist eine Folge $(a_n)$ reeller Zahlen konvergent, so ist sie auch eine Cauchy-Folge.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Vollst\"andigkeitsaxiom}
+
+Die Umkehrung dieses Satzes postuliert nennt man als Axiom:
+\begin{mytheorem18}
+In ${\mathbb R}$ ist jede Cauchy-Folge konvergent.
+\end{mytheorem18}
+
+Wir hatten dies bei der axiomatischen Charakterisierung der reellen Zahlen bereits erw\"ahnt.
+
+Somit gilt in ${\mathbb R}$, da{\ss} eine Folge $(a_n)$ reeller Zahlen genau dann konvergent ist,
+falls sie eine Cauchy-Folge ist.
+
+\vspace*{3mm}
+
+Der Vorteil der Definition einer Cauchy-Folge gegen\"uber der Definition des Begriffes Konvergenz
+besteht darin, da{\ss} sich erstere nur auf einzelne Folgenglieder bezieht und keinen
+Bezug auf einen (eventuellen) Grenzwert nimmt.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Folge
+\bq
+ a_n & = & \cos\left(\frac{1}{n^2}\right)
+\eq
+ist
+\begin{description}
+\item{(A)} divergent
+\item{(B)} konvergent mit Grenzwert $0$
+\item{(C)} konvergent mit Grenzwert $\frac{1}{2} \sqrt{2}$
+\item{(D)} konvergent mit Grenzwert $1$
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Reihen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Reihen}
+
+Sei $(a_n)$ eine Folge reeller Zahlen. Man betrachtet nun die Folge $(s_n)$ der Partialsummen
+\bq
+ s_n & = & \sum\limits_{j=1}^n a_j.
+\eq
+Als unendliche Reihe bezeichnet man nun die Folge dieser Partialsummen.
+Man schreibt
+\bq
+ \sum\limits_{j=1}^\infty a_j & = & \lim\limits_{n \rightarrow \infty} s_n \; = \; \lim\limits_{n \rightarrow \infty} \sum\limits_{j=1}^n a_j.
+\eq
+Eine unendliche Reihe hei{\ss}t konvergent, wenn die Folge der Partialsummen konvergiert.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Absolute Konvergenz}
+
+\begin{definition}
+Eine unendliche Reihe hei{\ss}t {\bf absolut konvergent}, falls die Reihe
+\bq
+ \sum\limits_{j=1}^\infty \left| a_j \right|
+\eq
+konvergent ist.
+\end{definition}
+
+\begin{theorem}
+Eine absolut konvergente Reihe konvergiert auch im gew\"ohnlichen Sinne.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Konvergenzkriterien}
+
+\begin{theorem}
+Eine notwendige (aber nicht hinreichende) Bedingung f\"ur die Konvergenz einer 
+Reihe ist, da{\ss}
+\bq
+ \lim\limits_{n \rightarrow \infty} a_n & = & 0.
+\eq
+\end{theorem}
+
+\begin{mytheorem19}
+Die Reihe $\sum\limits_{j=1}^\infty a_j$ konvergiert genau dann,
+wenn zu jedem $\eps > 0$ ein $N \in \mathbb N$ existiert, so da{\ss}
+\bq
+ \left|  \sum\limits_{j=m}^n a_j \right| & < & \eps,
+ \;\;\; \forall n \ge m \ge N.
+\eq
+\end{mytheorem19}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Konvergenzkriterien}
+
+\begin{theorem}
+Eine Reihe $\sum\limits_{j=1}^\infty a_j$ mit \superalert{$a_j \ge 0$} konvergiert genau dann,
+wenn die Folge der Partialsummen beschr\"ankt ist.
+\end{theorem}
+
+\begin{mytheorem20}
+Sei $(a_n)$ eine \superalert{monoton fallende Folge nicht-negativer Zahlen mit $\lim\limits_{n\rightarrow \infty} a_n=0$}.
+Dann konvergiert die Reihe
+\bq
+ \sum\limits_{j=1}^\infty (-1)^j a_j.
+\eq
+\end{mytheorem20}
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Konvergenzkriterien}
+
+\begin{mytheorem21}
+Sei $\sum\limits_{j=1}^\infty c_j$ eine konvergente Reihe mit
+lauter nicht-negativen Gliedern und $(a_n)$ eine Folge mit
+\superalert{$|a_n|\le c_n$}. Dann konvergiert die Reihe
+\bq
+ \sum\limits_{j=1}^\infty a_j
+\eq
+absolut.
+Man nennt $\sum\limits_{j=1}^\infty c_j$ eine Majorante von $\sum\limits_{j=1}^\infty a_j$.
+\end{mytheorem21}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Konvergenzkriterien}
+
+\begin{mytheorem22}
+Sei $\sum\limits_{j=1}^\infty a_j$ eine Reihe mit $a_n \neq 0$
+f\"ur alle $n$ und $x$ eine reelle Zahl \superalert{$0<x<1$}, so da{\ss}
+\bq
+ \left| \frac{a_{n+1}}{a_n} \right| & \le & x,
+\;\;\;\; \forall n\ge N.
+\eq
+Dann konvergiert die Reihe absolut.
+\end{mytheorem22}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Reihen}
+
+\begin{example}
+\bq
+ \sum\limits_{j=1}^\infty \frac{x^j}{j!}
+\eq
+Es ist
+\bq
+ \left| \frac{a_{n+1}}{a_n} \right|
+ & = & 
+ \left| \frac{\frac{x^{n+1}}{(n+1)!}}{\frac{x^n}{n!}} \right|
+ \; = \;
+ \frac{\left|x\right|}{n+1} 
+ \; < \; 1
+ \;\;\;\;\;\; \mbox{f\"ur} \; n > |x|
+\eq
+Die Reihe ist nach dem Quotientenkriterium konvergent.
+\bq
+ \sum\limits_{j=1}^\infty \frac{x^j}{j!}
+ \; = \; \exp\left(x\right) - 1,
+ & \mbox{bzw.} &
+ \sum\limits_{j=0}^\infty \frac{x^j}{j!}
+ \; = \;\exp\left(x\right).
+\eq
+
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Reihen}
+
+\begin{example}
+Es sei $|x|<1$.
+\bq
+ \sum\limits_{j=1}^\infty \frac{x^j}{j}
+\eq
+Es ist
+\bq
+ \left| \frac{a_{n+1}}{a_n} \right|
+ & = & 
+ \left| \frac{\frac{x^{n+1}}{(n+1)}}{\frac{x^n}{n}} \right|
+ \; = \;
+ \frac{n}{n+1} \left|x\right|
+ \; \le \;  \left|x\right|
+ \; < \; 1
+\eq
+Die Reihe ist nach dem Quotientenkriterium konvergent.
+\bq
+ \sum\limits_{j=1}^\infty \frac{x^j}{j}
+ \; = \; -\ln\left(1-x\right).
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Reihen}
+
+\begin{example}
+\bq
+ \sum\limits_{j=1}^\infty \frac{\left(-1\right)^j}{j}
+\eq
+Die Reihe ist alternierend und $a_n=1/n$ ist eine monoton fallende Folge nicht-negativer Zahlen.
+
+Die Reihe ist nach dem Leibnizkriterium f\"ur alternierende Reihen konvergent.
+\bq
+ \sum\limits_{j=1}^\infty \frac{\left(-1\right)^j}{j}
+ \; = \; -\ln\left(2\right).
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Reihen}
+
+\begin{example}
+\bq
+ \sum\limits_{j=1}^\infty \frac{1}{j}
+\eq
+Diese Reihe wird als harmonische Reihe bezeichnet.
+Diese Reihe ist divergent.
+F\"ur die Partialsummen gilt
+\begin{alignat*}{10}
+ & S_n 
+ & 
+ = & 1 
+ & 
+ & \hspace*{2mm} &
+ + & \frac{1}{2} 
+ & 
+ & \hspace*{4mm} &
+ + & \frac{1}{3} + \frac{1}{4} 
+ & 
+ & \hspace*{4mm} &
+ + & \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} 
+ & 
+ & \hspace*{4mm} &
+ + & \cdots + \frac{1}{n} 
+ \nonumber \\ 
+ & 
+ & 
+ \ge & 1 
+ & 
+ & &
+ + & \frac{1}{2} 
+ & 
+ & &
+ + & \frac{1}{4} + \frac{1}{4} 
+ & 
+ & &
+ + & \frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8} 
+ & 
+ & &
+ + & \cdots + \frac{1}{n} 
+ \nonumber \\ 
+ & 
+ & 
+ = & 1 
+ & 
+ & &
+ + & \frac{1}{2} 
+ & 
+ & &
+ + & \frac{1}{2}
+ & 
+ & &
+ + & \frac{1}{2} 
+ & 
+ & &
+ + & \cdots + \frac{1}{n} 
+\end{alignat*}
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Cauchy-Produkt von Reihen}
+
+Seien $\sum\limits_{j=1}^\infty a_j$ und $\sum\limits_{j=1}^\infty b_j$ zwei 
+\superalert{absolut konvergente} Reihen. F\"ur $n\in \mathbb N$ setzen wir
+{\footnotesize
+\bq
+ c_n & = & \sum\limits_{j=1}^{n-1} a_j b_{n-j}.
+\eq
+}
+
+Dann ist auch die Reihe $\sum\limits_{j=1}^\infty c_j$ absolut konvergent und es gilt
+{\footnotesize
+\bq
+ \sum\limits_{j=1}^\infty c_j & = & 
+ \left( \sum\limits_{j=1}^\infty a_j \right)
+ \left( \sum\limits_{j=1}^\infty b_j \right).
+\eq
+}
+
+Bemerkung: Die absolute Konvergenz ist wesentlich f\"ur die G\"ultigkeit des Satzes!
+\superalert{Im Allgemeinen gilt, da{\ss} Umordnungen innerhalb einer Reihe nur erlaubt sind, falls die Reihe
+absolut konvergiert}.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Beispiele und Anwendungen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Wichtige Reihen}
+
+{\small
+\bq
+\exp x & = & \sum\limits_{j=0}^\infty \frac{x^j}{j!},
+\nonumber \\
+ -\ln\left(1-x\right) & = & \sum\limits_{j=1}^\infty \frac{x^j}{j}, \;\;\;\;\;\;\;\;\;\;\;\;\;\;\; \superalert{|x|<1},
+ \nonumber \\
+\sin x & = & \sum\limits_{j=0}^\infty (-1)^{j} \frac{x^{2j+1}}{(2j+1)!},
+\nonumber \\
+\cos x & = & \sum\limits_{j=0}^\infty (-1)^{j} \frac{x^{2j}}{(2j)!},
+\nonumber \\
+\sinh x & = & \sum\limits_{j=0}^\infty \frac{x^{2j+1}}{(2j+1)!},
+\nonumber \\
+\cosh x & = & \sum\limits_{j=0}^\infty \frac{x^{2j}}{(2j)!}.
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Sinus und Kosinus}
+
+{\small
+\bq
+\sin x & = & \sum\limits_{j=0}^\infty (-1)^{j} \frac{x^{2j+1}}{(2j+1)!}
+\nonumber \\
+ & = & 
+ \frac{x}{1!} -\frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots
+\nonumber \\
+ & = & 
+ x -\frac{x^3}{6} + \frac{x^5}{120} - \frac{x^7}{5040} + \dots
+ \nonumber \\
+\cos x & = & \sum\limits_{j=0}^\infty (-1)^{j} \frac{x^{2j}}{(2j)!}
+\nonumber \\
+ & = & 
+ \frac{x^0}{0!} - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots
+\nonumber \\
+ & = & 
+ 1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720} + \dots
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Bemerkungen}
+
+\begin{itemize}
+
+\item $\sinh$ und $\cosh$ bezeichnet man als Sinus Hyperbolicus bzw. Kosinus Hyperbolicus.
+
+\item Mit Ausnahme der Reihe f\"ur $\ln(1-x)$ konvergieren alle Reihen absolut f\"ur alle Werte von $x$.
+Man sagt die Reihen haben einen unendlichen {\bf Konvergenzradius}.
+
+\item Die Reihe f\"ur $\ln(1-x)$ konvergiert absolut f\"ur $|x|<1$. Somit hat diese Reihe den Konvergenzradius
+$1$.
+
+\item Man spricht von einem Konvergenzradius, da die obigen Reihen auch definiert sind, wenn man die reelle
+Variable $x$ durch eine komplexe Variable $z$ ersetzt.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \sum\limits_{j=0}^\infty \left(-\frac{1}{2}\right)^{j} \frac{x^{2j}}{(2j)!} & = & ?
+\eq
+\begin{description}
+\item{(A)} $\frac{1}{2}\cos\left(x\right)$
+\item{(B)} $\cos\left(\frac{x}{2}\right)$
+\item{(C)} $\cosh\left(\frac{x}{2}\right)$
+\item{(D)} $\cos\left(\frac{1}{2}\sqrt{2} x\right)$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Formel von Euler}
+
+Wir betrachten $\exp(i x)$:
+{\footnotesize
+\bq
+ \exp\left(i x\right) & = & \sum\limits_{j=0}^\infty \frac{i^j x^j}{j!}
+ = 
+ \sum\limits_{j=0}^\infty i^{2j} \frac{x^{2j}}{(2j)!}
+ + \sum\limits_{j=0}^\infty i^{2j+1} \frac{x^{2j+1}}{(2j+1)!}
+ \nonumber \\
+ & = & 
+ \sum\limits_{j=0}^\infty (-1)^{j} \frac{x^{2j}}{(2j)!}
+ + i \sum\limits_{j=0}^\infty (-1)^{j} \frac{x^{2j+1}}{(2j+1)!}
+ = \cos x + i \sin x.
+\eq
+}
+
+Die Reihendarstellung liefert also einen einfachen Beweis der Formel:
+\bq
+ \exp(i x) & = & \cos x + i \sin x.
+\eq
+Ebenso findet man
+\bq
+ \exp x & = & \cosh x + \sinh x.
+\eq
+Man beachte, da{\ss} f\"ur die Umordnung der Reihen die absolute Konvergenz notwendig ist.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Trigometrische und hyperbolische Funktionen}
+
+Man kann die trigometrischen und die hyperbolischen Funktionen auch durch die Exponentialfunktion ausdr\"ucken:
+\begin{myemptytheorem}
+\bq
+ \cos x = \frac{1}{2} \left( e^{ix} + e^{-ix} \right),
+ & &
+ \sin x = \frac{1}{2i} \left( e^{ix} - e^{-ix} \right),
+ \nonumber \\
+ \cosh x = \frac{1}{2} \left( e^{x} + e^{-x} \right),
+ & &
+ \sinh x = \frac{1}{2} \left( e^{x} - e^{-x} \right).
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Additionstheoreme}
+
+\begin{myemptytheorem}
+\bq
+ \sin\left(\alpha+\beta\right) 
+ & = &
+ \sin\left(\alpha\right) \cos\left(\beta\right) + \cos\left(\alpha\right) \sin\left(\beta\right)
+ \nonumber \\
+ \cos\left(\alpha+\beta\right) 
+ & = &
+ \cos\left(\alpha\right) \cos\left(\beta\right) - \sin\left(\alpha\right) \sin\left(\beta\right)
+\eq
+\end{myemptytheorem}
+Leichter zu merken:
+\begin{myemptytheorem}
+\bq
+ e^{i \left(\alpha+\beta\right)} 
+ & = &
+ e^{i \alpha} 
+ e^{i \beta} 
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Additionstheoreme}
+
+Es ist
+{\small
+\bq
+ e^{i \left(\alpha+\beta\right)} 
+ & = &
+ \cos\left(\alpha+\beta\right) + i \sin\left(\alpha+\beta\right)
+ \nonumber \\
+ e^{i \alpha} 
+ & = &
+ \cos\left(\alpha\right) + i \sin\left(\alpha\right)
+ \nonumber \\
+ e^{i \beta} 
+ & = &
+ \cos\left(\beta\right) + i \sin\left(\beta\right)
+\eq
+}
+
+\vspace*{1mm} und
+{\small
+\bq
+ e^{i \alpha} 
+ e^{i \beta} 
+ & = & 
+ \left[ \cos\left(\alpha\right) + i \sin\left(\alpha\right) \right]
+ \left[ \cos\left(\beta\right) + i \sin\left(\beta\right) \right]
+ \nonumber \\
+ & = &
+ \cos\left(\alpha\right) \cos\left(\beta\right)
+ + i \cos\left(\alpha\right) \sin\left(\beta\right)
+ + i \sin\left(\alpha\right) \cos\left(\beta\right)
+ + i^2 \sin\left(\alpha\right) \sin\left(\beta\right)
+ \nonumber \\
+ & = &
+ \left[ \cos\left(\alpha\right) \cos\left(\beta\right)
+ - \sin\left(\alpha\right) \sin\left(\beta\right) \right]
+ + i \left[ \cos\left(\alpha\right) \sin\left(\beta\right)
+ + \sin\left(\alpha\right) \cos\left(\beta\right) \right]
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Additionstheoreme}
+
+Somit folgt aus $e^{i \left(\alpha+\beta\right)} = e^{i \alpha} e^{i \beta}$
+\begin{myemptytheorem}
+\bq
+\lefteqn{
+ \alert{\cos\left(\alpha+\beta\right)} + i \superalert{\sin\left(\alpha+\beta\right)}
+ = } & &
+ \nonumber \\
+ & &
+ \left[ \alert{\cos\left(\alpha\right) \cos\left(\beta\right) - \sin\left(\alpha\right) \sin\left(\beta\right)} \right]
+ + i \left[ \superalert{\cos\left(\alpha\right) \sin\left(\beta\right) + \sin\left(\alpha\right) \cos\left(\beta\right)} \right]
+\eq
+\end{myemptytheorem}
+Nimmt man nun den Real- bzw. Imagin\"arteil dieser Gleichung, so erh\"alt man die Additionstheoreme f\"ur Kosinus und Sinus.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+
+

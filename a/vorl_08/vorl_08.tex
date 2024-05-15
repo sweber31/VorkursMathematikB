@@ -1,0 +1,728 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+\usepackage{tikz}
+\usetikzlibrary{hobby}
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Funktionen}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Grundlagen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Funktionen}
+
+\begin{definition}
+Seien $D$ und $W$ Teilmengen von ${\mathbb R}$. Unter einer reellwertigen Funktion auf $D$
+versteht man eine Abbildung
+\bq
+ f & : & D \rightarrow W, \nonumber \\
+   & & x \rightarrow y = f(x).
+\eq
+Man nennt $D$ den \alert{Definitionsbereich} und $W$ den \alert{Wertebereich} der Funktion.
+
+Eine Funktion $f$ ordnet jedem $x\in D$  ein $y\in W$ zu.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umkehrfunktion}
+
+\begin{definition}
+Gibt es zu jedem $y\in W$ genau ein $x\in D$ mit $y=f(x)$,
+so ist die Funktion $f$ umkehrbar. In diesem Fall bezeichnet
+man mit $f^{-1}$ die Umkehrfunktion:
+\bq
+ f^{-1} & : & W \rightarrow D,
+ \nonumber \\
+ & & y \rightarrow x=f^{-1}(y).
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umkehrfunktion}
+
+\begin{example}
+Es sei $D=\mathbb{R}_0^+$ und $W=\mathbb{R}_0^+$ sowie
+\bq
+ f & : & D \rightarrow W,
+ \nonumber \\
+ & & x \rightarrow x^2.
+\eq
+Dann lautet die Umkehrfunktion
+\bq
+ f^{-1} & : & W \rightarrow D,
+ \nonumber \\
+ & & y \rightarrow \sqrt{y}.
+\eq
+\end{example}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stetigkeit}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Grenzwerte von Funktionen}
+
+\begin{definition}
+Man sagt eine Funktion hat im Punkte $a$ den Grenzwert $c$,
+falls es mindestens eine Folge $(x_n)\in D$ mit $\lim\limits_{n \rightarrow \infty} x_n=a$ gibt.
+Gilt dann f\"ur jede Folge $(x_n)\in D$ mit $\lim\limits_{n \rightarrow \infty} x_n=a$, da{\ss}
+\bq
+ \lim\limits_{n \rightarrow \infty} f\left(x_n\right) & = & c,
+\eq
+so bezeichnet man $c$ als den Grenzwert der Funktion $f(x)$ im Punkte $a$.
+\end{definition}
+In diesem Fall schreibt man
+\bq
+ \lim\limits_{x\rightarrow a} f(x) & = & c.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Grenzwerte von Funktionen}
+
+\begin{theorem}
+Die obige Bedingung ist \"aquivalent zu der Forderung, da{\ss} 
+es zu jedem $\eps>0$ ein $\delta>0$ gibt, so da{\ss}
+\bq
+ \left| f(x) - c \right| & < & \eps, \;\;\; \forall \left|x-a\right|<\delta
+ \;\;\;\mbox{und} \;\;\;x\in D.
+\eq
+\end{theorem}
+
+Bemerkung: Es wird nicht vorausgesetzt, da{\ss} $a\in D$ liegt. Die Definition macht auch Sinn,
+falls $D$ ein offenes Intervall ist und der Grenzwert an den Intervallgrenzen betrachtet wird.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stetigkeit}
+
+\begin{definition}
+Sei nun $a\in D$. Man bezeichnet eine Funktion als {\bf stetig} im Punkte $a$,
+falls
+\bq
+ \lim\limits_{x \rightarrow a} f(x) & = & f(a)
+\eq
+gilt.
+\end{definition}
+
+\begin{definition}
+Man bezeichnet eine Funktion als in einem Intervall stetig, falls sie in jedem Punkt des
+Intervalls stetig ist.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Heaviside-Funktion}
+
+\begin{example}
+Wir betrachten die Heaviside-Funktion, definiert durch
+\bq
+ \Theta(x) & = & \left\{
+ \begin{array}{ll}
+ 1, & x>0, \\
+ 0, & x \le 0.
+ \end{array} \right.
+\eq
+F\"ur diese Funktion gilt $\Theta(0)=0$, aber
+\bq 
+\lim\limits_{x\rightarrow 0+} \Theta(x) & = & 1.
+\eq
+Die Heaviside-Funktion ist im Punkte $0$ nicht stetig.
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stetige Funktionen}
+
+\begin{example}
+Beispiele von Funktionen, die auf ganz $\mathbb R$ stetig sind, sind
+Polynomfunktionen, $\exp x$, $\sin x$, $\cos x$, $\sinh x$, $\cosh x$.
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber stetige Funktionen}
+
+\begin{theorem}
+Seien $f,g: D \rightarrow {\mathbb R}$ Funktionen, die in $a$ stetig sind 
+und sei $\lambda \in {\mathbb R}$.
+Dann sind auch die Funktionen
+\bq
+ f+g & : & D \rightarrow {\mathbb R},
+ \nonumber \\
+ \lambda \cdot f & : & D \rightarrow {\mathbb R},
+ \nonumber \\
+ f \cdot g & : & D \rightarrow {\mathbb R}
+\eq
+im Punkte $a$ stetig. Ist ferner $g(a)\neq0$, so ist auch die Funktion
+\bq
+ \frac{f}{g} & : & D' \rightarrow {\mathbb R}
+\eq
+in $a$ stetig, wobei $D'=\{x\in D: g(x) \neq 0 \}$.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gleichm\"a{\ss}ige Stetigkeit}
+
+\begin{definition}
+Eine Funktion $f:D\rightarrow \mathbb R$ hei{\ss}t in $D$ gleichm\"a{\ss}ig stetig,
+falls es zu jedem $\eps>0$ ein $\delta>0$ gibt, so da{\ss}
+\bq
+ \left| f(x) - f(y) \right| < \eps
+ & & \forall \; \left| x-y \right| < \delta.
+\eq
+\end{definition}
+
+\begin{itemize}
+\item Jede Funktion, die auf $D$ gleichm\"assig stetig ist, ist auch in jedem Punkte aus $D$ stetig im
+herk\"ommlichen Sinne. Die Umkehrung gilt jedoch nicht.
+
+\item Ist eine Funktion in jedem Punkte $x \in D$ stetig im herk\"ommlichen Sinne, 
+so gen\"ugt es f\"ur ein vorgegebenes $\eps$
+f\"ur jeden Punkt ein $\delta_x$ zu finden. Dieses $\delta_x$ darf mit $x$ variieren.
+F\"ur die gleichm\"a{\ss}ige Stetigkeit wird dagegen gefordert, da{\ss} $\delta$ von $x$ 
+unabh\"angig ist.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Funktion
+\bq
+ f(x) & = & \left\{\begin{array}{ll} 0 & x \le 0 \\ \sin(x) & x>0 \end{array} \right.
+\eq
+ist im Punkte $x=0$
+\begin{description}
+\item{(A)} stetig
+\item{(B)} nicht stetig
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Funktion
+\bq
+ f(x) & = & \left\{\begin{array}{ll} e^{-x} & x \le 0 \\ \cos(x) & x>0 \end{array} \right.
+\eq
+ist im Punkte $x=0$
+\begin{description}
+\item{(A)} stetig
+\item{(B)} nicht stetig
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Funktion
+\bq
+ f(x) & = & \left\{\begin{array}{ll} \frac{1}{2} - e^{-x} & x \le 0 \\ \frac{1}{2} + e^{x} & x>0 \end{array} \right.
+\eq
+ist im Punkte $x=0$
+\begin{description}
+\item{(A)} stetig
+\item{(B)} nicht stetig
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Rationale Funktionen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rationale Funktionen}
+
+\begin{definition}
+Seien $p(x)$ und $q(x)$ Polynomfunktionen.
+Unter einer rationalen Funktion versteht man eine Funktion
+\bq
+ R(x) & = & \frac{p(x)}{q(x)}.
+\eq
+Der Definitionsbereich einer rationalen Funktion ist gegeben durch
+$D =\{ x\in {\mathbb R}, q(x) \neq 0\}$.
+\end{definition}
+Eine rationale Funktion ist in ihrem Definitionsbereich stetig.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Partialbruchzerlegung}
+
+Rationale Funktionen k\"onnen in {\bf Partialbr\"uche} zerlegt werden.
+Ist 
+{\footnotesize
+\bq
+ p(x) = p_n x^n + p_{n-1} x^{n-1} + ... + p_1 x + p_0,
+ \nonumber \\
+ q(x) = q_m x^m + q_{m-1} x^{m-1} + ... + q_1 x + q_0,
+\eq
+}
+
+\vspace*{-4mm}
+und ist ausserdem die Faktorisierung des Nennerpolynoms bekannt
+{\footnotesize
+\bq
+ q(x) = c \prod\limits_{j=1}^r \left( x - x_j \right)^{\lambda_j},
+\eq
+}
+
+\vspace*{-3mm}
+wobei $\lambda_j$ die Multiziplit\"at der Nullstelle $x_j$ angibt, 
+so l\"a{\ss}t sich die rationale Funktion
+schreiben als
+\bq
+ R(x) & = & \frac{p(x)}{q(x)}
+ \; = \;
+ P(x) + \sum\limits_{j=1}^r \sum\limits_{k=1}^{\lambda_j} \frac{a_{jk}}{(x-x_j)^k},
+\eq
+wobei $P(x)$ ein Polynom vom Grad $\deg p(x) - \deg q(x)$ ist und $a_{jk}\in \mathbb R$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Partialbruchzerlegung}
+
+Berechnung von $P(x)$ und der Konstanten $a_{jk}$:
+
+\vspace*{5mm}
+$P(x)$ bestimmt sich durch Polynomdivision mit Rest.
+
+\vspace*{5mm}
+Wir betrachten als Beispiel die rationale Funktion
+\bq
+\frac{x^4+3x^3-12x^2-3x+18}{(x-2)^2(x+2)}
+\eq
+F\"ur das Nennerpolynom haben wir
+\bq
+ (x-2)^2(x+2) & = & x^3 - 2 x^2 - 4 x + 8.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Polynomdivision}
+
+Polynomdivision mit Rest liefert
+{\scriptsize
+\bq
+\begin{array}{rcrcl}
+(x^4+3x^3-12x^2-3x+18) & : & (x^3 - 2 x^2 - 4 x + 8) & = & x + 5 + \frac{(2x^2+9x-22)}{(x^3-2x^2-4x+8)} \\
+-(x^4-2x^3-4x^2+8x) & & & & \\
+-------------& & & & \\
+5x^3-8x^2-11x+18 & & & & \\
+-(5x^3-10x^2-20x+40) & & & & \\
+------------ & & & & \\
+2x^2+9x-22 & & & & \\
+\end{array}
+\eq
+}
+
+Somit ist also $P(x)=x+5$. 
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Partialbruchzerlegung}
+
+F\"ur den Rest verwendet man den Ansatz
+\bq
+\frac{2x^2+9x-22}{x^3-2x^2-4x+8}
+& = & \frac{a_{12}}{(x-2)^2} + \frac{a_{11}}{x-2} + \frac{a_{21}}{x+2}.
+\eq
+Man bringt die rechte Seite auf den Hauptnenner
+{\footnotesize
+\bq
+\frac{a_{12}}{(x-2)^2} + \frac{a_{11}}{x-2} + \frac{a_{21}}{x+2}
+ & = &
+ \frac{(a_{11}+a_{21})x^2 + (a_{12}-4a_{21})x+(2a_{12}-4a_{11}+4a_{21})}{x^3-2x^2-4x+8}
+\eq
+}
+
+Koeffizientenvergleich liefert ein lineares Gleichungssystem:
+\bq
+ a_{11}+a_{21} & = & 2,
+ \nonumber \\
+ a_{12}-4a_{21} & = & 9,
+ \nonumber \\
+ 2a_{12}-4a_{11}+4a_{21} & = & -22.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Partialbruchzerlegung}
+
+Durch L\"osen des linearen Gleichungssystems
+\bq
+ a_{11}+a_{21} & = & 2,
+ \nonumber \\
+ a_{12}-4a_{21} & = & 9,
+ \nonumber \\
+ 2a_{12}-4a_{11}+4a_{21} & = & -22,
+\eq
+findet man
+\bq
+ a_{12} = 1, \;\;\; a_{11}=4, \;\;\; a_{21}=-2.
+\eq
+Somit erhalten wir das Ergebnis
+\bq
+\frac{x^4+3x^3-12x^2-3x+18}{(x-2)^2(x+2)}
+ & = & 
+ x + 5 + \frac{1}{(x-2)^2} + \frac{4}{x-2} - \frac{2}{x+2}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Trick}
+
+Die Koeffizienten der Partialbr\"uche mit der \superalert{h\"ochsten Potenz einer Nullstelle} lassen
+sich einfacher bestimmen, indem man im Ansatz mit $(x-x_j)^{\lambda_j}$ multipliziert und dann
+$x=x_j$ setzt. 
+
+\vspace*{4mm}
+In unserem Beispiel lassen sich so $a_{12}$ und $a_{21}$ bestimmen:
+{\scriptsize
+\bq
+ a_{12} & = & \left. \frac{2x^2+9x-22}{(x-2)^2(x+2)} (x-2)^2 \right|_{x=2}
+ = \left. \frac{2x^2+9x-22}{x+2} \right|_{x=2}
+ = \frac{8+18-22}{4} = 1,
+ \nonumber \\
+ a_{21} & = & \left. \frac{2x^2+9x-22}{(x-2)^2(x+2)} (x+2) \right|_{x=-2}
+ = \left. \frac{2x^2+9x-22}{(x-2)^2} \right|_{x=-2}
+ = \frac{8-18-22}{16} = -2.
+\eq
+}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Trigonometrische Funktionen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Trigonometrische Funktionen}
+
+Neben den Winkelfunktionen \alert{Sinus} und \alert{Kosinus}
+\bq
+ \cos x = \frac{1}{2} \left( e^{ix} + e^{-ix} \right),
+ & &
+ \sin x = \frac{1}{2i} \left( e^{ix} - e^{-ix} \right),
+\eq
+gibt es weitere trigonometrische Funktionen:
+\bq
+ \tan x & = & \frac{\sin x}{\cos x}, \;\;\;\alert{\mbox{Tangens}}
+ \nonumber \\
+ \cot x & = & \frac{\cos x}{\sin x}, \;\;\;\alert{\mbox{Kotangens}}
+ \nonumber \\
+ \sec x & = & \frac{1}{\cos x}, \;\;\;\alert{\mbox{Sekans}}
+ \nonumber \\
+ \csc x & = & \frac{1}{\sin x}, \;\;\;\alert{\mbox{Kosekans}}
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umkehrfunktionenen}
+
+Die Umkehrfunktionen werden mit $\arcsin$, $\arccos$, $\arctan$, etc. bezeichnet:
+\bq
+ \arcsin(x) & = & \sin^{-1}(x), \;\;\;\alert{\mbox{Arkussinus}}
+ \nonumber \\
+ \arccos(x) & = & \cos^{-1}(x), \;\;\;\alert{\mbox{Arkuskosinus}}
+ \nonumber \\
+ \arctan(x) & = & \tan^{-1}(x), \;\;\;\alert{\mbox{Arkustangens}}
+\eq
+Diese Umkehrfunktionen lassen sich durch den Logarithmus ausdr\"ucken:
+\bq
+ \arcsin(x) & = & \frac{1}{i} \ln\left( i x + \sqrt{1-x^2} \right),
+ \nonumber \\
+ \arccos(x) & = & \frac{1}{i} \ln\left( x + i \sqrt{1-x^2} \right),
+ \nonumber \\
+ \arctan(x) & = & \frac{1}{2i} \ln\left(\frac{1+ix}{1-ix}\right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Geometrie}
+
+\begin{center}
+\begin{tikzpicture}
+\draw [->] (-2.0,0.0) -- (2.0,0.0);
+\draw [->] (0.0,-2.0) -- (0.0,2.0);
+\draw (0.0,0.0) circle (1.5);
+\draw (0.0,0.0) -- (1.299,0.75);
+\draw (0.3,0.0) arc [radius=0.3, start angle=0, end angle=30];
+\node[left] at (0.7,0.1) {\tiny $\varphi$};
+\uncover<1>{
+\node[above] at (0.6,0.3) {\footnotesize $1$};
+}
+\uncover<2>{
+\draw [red,thick] (1.299,0.0) -- (1.299,0.75);
+\node[right] at (1.6,0.375) {\footnotesize $\sin(\varphi)$};
+}
+\uncover<3>{
+\draw (1.299,0.0) -- (1.299,0.75);
+\draw [red,thick] (0.0,0.0) -- (1.299,0.0);
+\node[right] at (1.6,0.375) {\footnotesize $\cos(\varphi)$};
+}
+\uncover<4>{
+\draw (0.0,0.0) -- (1.5,0.866);
+\draw [red,thick] (1.5,0.0) -- (1.5,0.866);
+\node[right] at (1.6,0.375) {\footnotesize $\tan(\varphi)$};
+}
+\uncover<5>{
+\draw (0.0,0.0) -- (2.598,1.5);
+\draw [red,thick] (0.0,1.5) -- (2.598,1.5);
+\node[right] at (1.6,0.375) {\footnotesize $\cot(\varphi)$};
+}
+\uncover<6>{
+\draw [red,thick] (0.0,0.0) -- (1.5,0.866);
+\draw (1.5,0.0) -- (1.5,0.866);
+\node[right] at (1.6,0.375) {\footnotesize $\sec(\varphi)$};
+}
+\uncover<7>{
+\draw [red,thick] (0.0,0.0) -- (2.598,1.5);
+\draw (0.0,1.5) -- (2.598,1.5);
+\node[right] at (1.6,0.375) {\footnotesize $\csc(\varphi)$};
+}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hyperbolische Funktionen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Hyperbolische Funktionen}
+
+Neben den bereits eingef\"uhrten hyperbolischen Funktionen
+\bq
+ \cosh x = \frac{1}{2} \left( e^{x} + e^{-x} \right),
+ & &
+ \sinh x = \frac{1}{2} \left( e^{x} - e^{-x} \right),
+\eq
+definiert man auch
+\bq
+ \tanh x & = & \frac{\sinh x}{\cosh x}.
+\eq
+Bemerkung: F\"ur $\sinh$ und $\cosh$ gilt
+\bq
+ \cosh^2 x - \sinh^2 x & = & 1.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umkehrfunktionenen}
+
+Die inversen Funktionen werden als Areafunktionen bezeichnet:
+\bq
+ \mbox{arsinh}(x) & = & \sinh^{-1}(x), \;\;\;\alert{\mbox{Areasinus Hyperbolicus}}
+ \nonumber \\
+ \mbox{arcosh}(x) & = & \cosh^{-1}(x), \;\;\;\alert{\mbox{Areakosinus Hyperbolicus}}
+ \nonumber \\
+ \mbox{artanh}(x) & = & \tanh^{-1}(x), \;\;\;\alert{\mbox{Areatangens Hyperbolicus}}
+\eq
+Diese Umkehrfunktionen lassen sich ebenfalls durch den Logarithmus ausdr\"ucken:
+\bq
+ \mbox{arsinh}(x) & = & \ln\left( x + \sqrt{x^2+1} \right),
+ \nonumber \\
+ \mbox{arcosh}(x) & = & \ln\left( x + \sqrt{x^2-1} \right),
+ \nonumber \\
+ \mbox{artanh}(x) & = & \frac{1}{2} \ln\left(\frac{1+x}{1-x}\right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Zusammenhang zwischen trigonometrischen Funktionen und hyperbolischen Funktionen}
+
+\bq
+ \sin x & = & \frac{1}{i} \sinh\left(i x \right),
+ \nonumber \\
+ \cos x & = & \cosh\left( i x \right),
+ \nonumber \\
+ \tan x & = & \frac{1}{i} \tanh\left(i x \right),
+ \nonumber \\
+ \arcsin(x) & = & \frac{1}{i} \mbox{arsinh}\left(i x \right),
+ \nonumber \\
+ \arccos(x) & = & \frac{1}{i} \mbox{arcosh}\left(x \right),
+ \nonumber \\
+ \arctan(x) & = & \frac{1}{i} \mbox{artanh}\left(i x \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Fl\"acheninhalt der schraffierten Fl\"ache ist
+\begin{center}
+\begin{tikzpicture}
+\path [fill=lightgray] (0.0,0.0) -- (0.866,-0.5) to [curve through={(1.0,0.0)}] (0.866,0.5) -- (0.0,0.0);
+\draw [->] (-1.5,0.0) -- (1.5,0.0);
+\draw [->] (0.0,-1.5) -- (0.0,1.5);
+\draw (0.0,0.0) circle (1.0);
+\draw (0.0,0.0) -- (0.866,0.5);
+\draw (0.0,0.0) -- (0.866,-0.5);
+\draw (0.3,0.0) arc [radius=0.3, start angle=0, end angle=30];
+\node[above] at (0.5,0.25) {\tiny $1$};
+\node[left] at (0.7,0.1) {\tiny $\varphi$};
+\end{tikzpicture}
+\end{center}
+\begin{columns}[b]
+\begin{column}{5cm}
+\begin{description}
+\item{(A)} $\frac{1}{6}$
+\item{(C)} $2 \varphi$
+\end{description}
+\end{column}
+\begin{column}{5cm}
+\begin{description}
+\item{(B)} $\varphi$
+\item{(D)} $\sin(\varphi)\cos(\varphi)$
+\end{description}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Hyperbolische Geometrie}
+
+\begin{center}
+\begin{tikzpicture}
+\node[below] at (-1.1,2.3) {\footnotesize $x^2-y^2=1$};
+\draw [->] (-2.0,0.0) -- (2.0,0.0);
+\draw [->] (0.0,-2.0) -- (0.0,2.0);
+\draw (-2.236,-2.0) to [curve through={(-2.059,-1.8)(-1.803,-1.5)(-1.72,-1.4)(-1.64,-1.3)(-1.0,0.0)(-1.64,1.3)(-1.72,1.4)(-1.803,1.5)(-2.059,1.8)}] (-2.236,2.0);
+\draw (2.236,-2.0) to [curve through={(2.059,-1.8)(1.803,-1.5)(1.72,-1.4)(1.64,-1.3)(1.0,0.0)(1.64,1.3)(1.72,1.4)(1.803,1.5)(2.059,1.8)}] (2.236,2.0);
+\draw (0.0,0.0) -- (1.803,1.5);
+\draw (0.0,0.0) -- (1.803,-1.5);
+\path [fill=lightgray] (0.0,0.0) -- (1.803,-1.5) to [curve through={(1.72,-1.4)(1.64,-1.3)(1.0,0.0)(1.64,1.3)(1.72,1.4)}] (1.803,1.5) -- (0.0,0.0);
+\node[above] at (0.7,0.1) {\tiny $\varphi$};
+\uncover<1>{
+}
+\uncover<2>{
+\draw [red,thick] (1.803,0.0) -- (1.803,1.5);
+\node[right] at (1.9,0.75) {\footnotesize $\sinh(\varphi)$};
+}
+\uncover<3>{
+\draw [red,thick] (0.0,1.5) -- (1.803,1.5);
+\node[right] at (1.9,0.75) {\footnotesize $\cosh(\varphi)$};
+}
+\uncover<4>{
+\draw [red,thick] (1.0,0.0) -- (1.0,0.832);
+\node[right] at (1.9,0.75) {\footnotesize $\tanh(\varphi)$};
+}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+

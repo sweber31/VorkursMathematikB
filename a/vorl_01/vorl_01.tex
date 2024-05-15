@@ -1,0 +1,775 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Mathematischer Br\"uckenkurs}
+
+\subtitle{Einf\"uhrung}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Begr\"u{\ss}ung}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Willkommen an der Universit\"at Mainz!}
+
+\begin{itemize}
+\item Mathematik ist die Grundlage aller Naturwissenschaften.
+
+\item Dieser Br\"uckenkurs richtet sich an Studienanf\"anger 
+in naturwissenschaftlichen F\"achern (Biologie, Geowissenschaften, Physik, Chemie, ...)
+
+\item Zeitumfang: Ganzt\"atig drei Wochen vor Semesterbeginn.
+
+\end{itemize}
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Ziele des Br\"uckenkurses}
+
+\begin{itemize}
+\item Sie haben Themen aus der Schulmathematik vergessen: 
+
+\alert{Auffrischen der Kenntnisse}.
+
+\item Sie kommen von unterschiedlichen Schulen, aus verschiedenen (Bundes-) L\"andern
+und haben in der Schule unterschiedliche optionale Themen behandelt:
+
+\alert{Angleichen des Kenntnisstandes}.
+
+\item Sie sind neu an der Universit\"at:
+
+\alert{Kn\"upfen neuer sozialer Kontakte}.
+
+\end{itemize}
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uni ist nicht gleich Schule!}
+
+\begin{itemize}
+\item Mit der Uni beginnt ein neuer Lebensabschnitt.
+
+\item Sie sind erwachsen und werden als erwachsene Menschen behandelt.
+
+\item Im Allgemeinen keine Anwesenheitspflicht!
+
+\end{itemize}
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uni ist nicht gleich Schule:}
+
+Die Kehrseite der Freiheit:
+\begin{itemize}
+\item Sie sind selbst verantwortlich, wie Sie lernen.
+
+\item Stoffmenge und Tempo einer Vorlesung liegt deutlich \"uber einer Schulstunde.
+
+\item In der Vorlesung wird ein neues Thema \alert{einmal} diskutiert, es wird nicht gewartet, bis es auch der Letzte verstanden hat.
+
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Organisatorisches}
+
+\frame{\sectionpage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Corona}
+
+Im Wintersemester 2020/21:
+
+\begin{itemize}
+\item Mathematischer Br\"uckenkurs A (Prof. T. Hurth):
+
+\alert{Soviel Pr\"asenz wie m\"oglich}.
+
+\item Mathematischer Br\"uckenkurs B (Prof. S. Weinzierl):
+
+\alert{Rein Online}.
+
+\end{itemize}
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Organisation}
+
+Mathematischer Br\"uckenkurs B:
+
+\vspace*{5mm}
+
+\begin{tabular}{rl}
+ 9:15 & Vorlesung (via BigBlueButton, wird aufgezeichnet) \\
+ 11:30 & Plenumsdiskussion (via BigBlueButton) \\
+ 14:00 & \"Ubungsgruppen (via BigBlueButton) \\
+\end{tabular}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Organisation}
+
+Als \alert{Plattform} wird \alert{BigBlueButton} verwendet:
+
+\begin{itemize}
+\item Link f\"ur Vorlesung und Plenumsdiskussion:
+\href{https://bbb.rlp.net/b/wei-hgp-axv-fqv}{\footnotesize \texttt{https://bbb.rlp.net/b/wei-hgp-axv-fqv}}
+
+\item \"Ubungsgruppen:
+\begin{tabular}{ll}
+ Gruppe 1 & \href{https://bbb.rlp.net/b/sch-ki2-awt-bxf}{\footnotesize \texttt{https://bbb.rlp.net/b/sch-ki2-awt-bxf}} \\
+ Gruppe 2 & \href{https://bbb.rlp.net/b/sau-pff-7xa-fi5}{\footnotesize \texttt{https://bbb.rlp.net/b/sau-pff-7xa-fi5}} \\
+ Gruppe 3 & \href{https://bbb.rlp.net/b/koc-jeb-38l-rvo}{\footnotesize \texttt{https://bbb.rlp.net/b/koc-jeb-38l-rvo}} \\
+ Gruppe 4 & \href{https://bbb.rlp.net/b/kre-k13-ljh-nbc}{\footnotesize \texttt{https://bbb.rlp.net/b/kre-k13-ljh-nbc}} \\
+\end{tabular}
+
+\end{itemize}
+
+\vspace*{10mm}
+
+Webseite des Br\"uckenkurses
+(\alert{Aktuelle Informationen}, \alert{Folien} der Vorlesung und \alert{\"Ubungsbl\"atter} als pdf-Dateien):
+\href{https://particlephysics.uni-mainz.de/weinzierl/vorkurs/}{\footnotesize \texttt{https://particlephysics.uni-mainz.de/weinzierl/vorkurs/}}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Studienf\"acher}
+
+Sie studieren:
+\begin{description}
+\item{(A)} Biologie
+\item{(B)} Geowissenschaften
+\item{(C)} Chemie
+\item{(D)} Physik
+\item{(E)} sonstige F\"acher
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Ort}
+
+Sie befinden sich jetzt 
+\begin{description}
+\item{(A)} in Mainz
+\item{(B)} im Umkreis von 10 km um Mainz
+\item{(C)} im Umkreis von 50 km um Mainz
+\item{(D)} im restlichen Universum
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \frac{3}{5} + \frac{2}{3} & = & ?
+\eq 
+\begin{description}
+\item{(A)} $\frac{5}{8}$
+\item{(B)} $\frac{5}{15}$
+\item{(C)} $\frac{19}{15}$
+\item{(D)} $\frac{2}{5}$
+\end{description}
+
+\end{frame}
+
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Bestimmen Sie $x$:
+\bq
+ \frac{2x-3}{x+3} & = & 5
+\eq 
+\begin{description}
+\item{(A)} $x=\frac{3}{2}$
+\item{(B)} $x=-3$
+\item{(C)} $x=-6$
+\item{(D)} $x=\frac{5}{2}$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \log_2\left(32^4\right) & = & ?
+\eq 
+\begin{description}
+\item{(A)} $\frac{5}{4}$
+\item{(B)} $9$
+\item{(C)} $20$
+\item{(D)} $32$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ f\left(x\right) & = & x^3 - 2 x^2 + 7 x +1
+\eq 
+Die Ableitung $f'(1)$ ist 
+\begin{description}
+\item{(A)} $0$
+\item{(B)} $5$
+\item{(C)} $6$
+\item{(D)} $7$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \int\limits_0^1 \left( 3 x^2 - 6 x + 1 \right) dx & = & ?
+\eq 
+\begin{description}
+\item{(A)} $-42$
+\item{(B)} $-2$
+\item{(C)} $-1$
+\item{(D)} $7$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Einteilung der \"Ubungsgruppen}
+
+Sei $N$ die Anzahl der \"Ubungsgruppen.
+\begin{itemize}
+\item Sie nehmen die Zahl Ihres Geburtsmonats \\
+(Januar $=1$, ..., Dezember $=12$).
+\item Sie teilen diese Zahl durch $N$ mit Rest.
+\item Falls ein Rest \"ubrig bleibt, gibt der Rest Ihre \"Ubungsgruppe an.
+\item Bleibt kein Rest \"ubrig, so sind Sie in Gruppe $N$.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Einteilung der \"Ubungsgruppen}
+
+\begin{example}[3 \"Ubungsgruppen]
+\begin{itemize}
+\item Gruppe 1: Januar, April, Juli, Oktober
+\item Gruppe 2: Februar, Mai, August, November
+\item Gruppe 3: M\"arz, Juni, September, Dezember
+\end{itemize}
+\end{example}
+
+\begin{example}[4 \"Ubungsgruppen]
+\begin{itemize}
+\item Gruppe 1: Januar, Mai, September
+\item Gruppe 2: Februar, Juni, Oktober
+\item Gruppe 3: M\"arz, Juli, November
+\item Gruppe 4: April, August, Dezember
+\end{itemize}
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Organisation}
+
+Erste \"Ubungsgruppen am Montag, 12.10.2020, 14h:
+
+\begin{itemize}
+\item Kennenlernen.
+
+\item Noch keine mathematischen \"Ubungen.
+
+\item Nutzen Sie diese Gelegenheit, um Kontaktdaten auszutauschen!
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Literatur}
+
+  \begin{thebibliography}{10}
+    
+  \beamertemplatebookbibitems
+  % Anfangen sollte man mit Übersichtswerken.
+
+  \bibitem{Brauner}
+    R. Brauner, F. Gei{\ss}
+    \newblock {\em Abiturwissen Mathematik}.
+    \newblock Fischer-Verlag, 2004.
+
+  \bibitem{Pross}
+    S. Pro{\ss}, Th. Imkamp
+    \newblock {\em Br\"uckenkurs Mathematik}.
+    \newblock Springer-Verlag, 2018.
+
+  \bibitem{Walz}
+    G. Walz, F. Zeilfelder, Th. Rie{\ss}inger
+    \newblock {\em Br\"uckenkurs Mathematik}.
+    \newblock Springer-Verlag, 2019.
+
+  \end{thebibliography}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Schreibweisen und Notation}
+
+\frame{\sectionpage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+\begin{itemize}
+
+\item 
+\alert{$\{a,b,c\}$}: Menge der Elemente $a$, $b$, und $c$.
+\\
+Die Ordnung spielt keine Rolle: $\{a,b,c\} = \{b,a,c\}$
+\pause
+
+\item
+\alert{$a\in A$}: $a$ ist ein Element der Menge $A$.
+\pause
+
+\item
+\alert{$A \subset B$}: Die Menge $A$ ist eine Teilmenge der Menge $B$.
+\pause
+
+\item Vereinigung: \alert{$A \cup B$} enth\"alt alle Elemente sowohl aus $A$ als auch aus $B$.
+\\
+$\{a,b,c\} \cup \{c,d,e\} = \{a,b,c,d,e\}$.
+\pause
+
+\item
+Durchschnitt: \alert{$A \cap B$} enh\"alt alle Elemente die sowohl in $A$ als auch in $B$ enthalten sind.
+\\
+$\{a,b,c\} \cap \{c,d,e\} = \{c\}$.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+\begin{itemize}
+
+\item
+Differenzmenge: \alert{$A \backslash B$} enth\"alt alle Elemente, die in $A$ enthalten sind, die aber nicht in $B$ enthalten sind.
+\\
+$\{a,b,c,d\} \backslash \{b,c\} = \{a,d\}$
+\pause
+
+\item
+\alert{$A \times B$}: Produktmenge, dies ist die Menge aller geordneten Paare $(a,b)$, wobei $a \in A$ und $b \in B$ gilt.
+\\
+$\{a\} \times \{b,c\} = \{ (a,b), (a,c) \}$
+\pause
+
+\item
+\alert{$[a,b]$}: Intervall, die Grenzen sind im Intervall enthalten: \\
+$a\in[a,b]$, $b\in[a,b]$ 
+\pause
+
+\item
+\alert{$]a,b[$}: Intervall, die Grenzen sind im Intervall nicht enthalten: \\
+$a\notin[a,b]$, $b\notin[a,b]$ 
+\pause
+
+\item
+Analog: \alert{$[a,b[$} und \alert{$]a,b]$}.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+\begin{itemize}
+
+\item 
+Logisch und: \alert{$\wedge$}
+{\footnotesize
+\bq
+ 0 \wedge 0 & = & 0
+ \nonumber \\
+ 0 \wedge 1 & = & 0
+ \nonumber \\
+ 1 \wedge 0 & = & 0
+ \nonumber \\
+ 1 \wedge 1 & = & 1
+\eq
+}
+\pause
+
+\item
+Logisch oder: \alert{$\vee$}
+{\footnotesize
+\bq
+ 0 \vee 0 & = & 0
+ \nonumber \\
+ 0 \vee 1 & = & 1
+ \nonumber \\
+ 1 \vee 0 & = & 1
+ \nonumber \\
+ 1 \vee 1 & = & 1
+\eq
+}
+\pause
+
+\item
+Negation: \alert{$\neg$}
+{\footnotesize
+\bq
+ \neg 0 & = & 1
+ \nonumber \\
+ \neg 1 & = & 0
+\eq
+}
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+\begin{itemize}
+
+\item
+\alert{$\exists$}: Es existiert
+\pause
+
+\item
+\alert{$\forall$}: F\"ur alle
+\pause
+
+\item
+\alert{$\infty$}: Symbol f\"ur Unendlich.
+\pause
+
+\item
+\alert{$\mathbb{N}$}: Die nat\"urlichen Zahlen $1,2,3,\dots$
+\pause
+
+\item
+\alert{$\mathbb{Z}$}: Die ganzen Zahlen $\dots,-2,-1,0,1,2,\dots$
+\pause
+
+\item
+\alert{$\mathbb{Q}$}: Die rationalen Zahlen, z.B. $\frac{2}{3}$
+\pause
+
+\item
+\alert{$\mathbb{R}$}: Die reellen Zahlen, z.B. $\sqrt{2}$
+\pause
+
+\item
+\alert{$\mathbb{C}$}: Die komplexen Zahlen, z.B. $\sqrt{-2}$
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+\begin{itemize}
+
+\item 
+\alert{$\sum$}: Summenzeichen 
+{\small
+\bq
+ \sum\limits_{j=1}^n a_j & = & a_1 + a_2 + a_3 + ... + a_{n-1} + a_{n}.
+\eq
+}
+\pause
+
+\item 
+\alert{$\prod$}: Produktzeichen
+{\small
+\bq
+ \prod\limits_{j=1}^n a_j & = & a_1 \cdot a_2 \cdot a_3 \cdot ... \cdot a_{n-1} \cdot a_{n}.
+\eq
+}
+\pause
+
+\item
+\alert{$n!$}: Fakult\"at. 
+{\small
+\bq
+ n! \; = \; 1 \cdot 2 \cdot ... \cdot (n-1) \cdot n,
+ & &
+ 0! \; = \; 1. 
+\eq
+}
+\pause
+
+\item
+\alert{$\left( \begin{array}{c} n \\ k \\ \end{array} \right)$}:
+Binomialkoeffizient:
+{\small
+\bq
+ \left( \begin{array}{c} n \\ k \\ \end{array} \right)
+ & = & \frac{n!}{k!(n-k)!}.
+\eq
+}
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+\begin{itemize}
+
+\item
+\alert{$\lim\limits_{x\rightarrow a}$}: Grenzwert f\"ur den Fall, da{\ss} sich $x$ dem Wert $a$ ann\"ahert.
+\pause
+
+\item 
+Ableitung: Sei $f(x)$ eine Funktion von $x$.
+{\small
+\bq
+ \alert{f'(x)} & = & \frac{df(x)}{dx} = \frac{d}{dx} f(x) = \lim\limits_{h\rightarrow 0} \frac{f(x+h)-f(x)}{(x+h)-x}.
+\eq
+}
+\pause
+
+\item
+Integral:
+{\small
+\bq
+ \alert{\int\limits_a^b f(x) dx} & = & \lim\limits_{n\rightarrow\infty} \sum\limits_{j=1}^n f(\xi_j) \Delta x_j,
+ \nonumber \\
+ & &
+ \Delta x_j = x_j - x_{j-1}, \; x_0=a, \; x_n=b, \; \xi_j\in[x_{j-1},x_j].
+\eq
+}
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+{\small
+Neben lateinischen Buchstaben
+verwendet man auch oft griechische Buchstaben:
+}
+{\footnotesize
+\begin{center}
+\begin{tabular}{llllllll}
+\alert{$\alpha$} & alpha 
+&&
+\alert{$\beta$} & beta
+&&
+\alert{$\gamma$} & gamma
+\\
+\alert{$\delta$} & delta
+&&
+\alert{$\epsilon$} oder \alert{$\varepsilon$} & epsilon
+&&
+\alert{$\zeta$} & zeta
+\\
+\alert{$\eta$} & eta
+&&
+\alert{$\theta$} oder \alert{$\vartheta$} & theta
+&&
+\alert{$\iota$} & iota
+\\
+\alert{$\kappa$} & kappa
+&&
+\alert{$\lambda$} & lambda
+&&
+\alert{$\mu$} & mu
+\\
+\alert{$\nu$} & nu
+&&
+\alert{$\xi$} & xi
+&&
+\alert{$o$} & o
+\\
+\alert{$\pi$} oder \alert{$\varpi$} & pi
+&&
+\alert{$\rho$} oder \alert{$\varrho$} & rho
+&&
+\alert{$\sigma$} oder \alert{$\varsigma$} & sigma
+\\
+\alert{$\tau$} & tau
+&&
+\alert{$\upsilon$} & upsilon
+&&
+\alert{$\phi$} oder \alert{$\varphi$} & phi
+\\
+\alert{$\chi$} & chi
+&&
+\alert{$\psi$} & psi
+&&
+\alert{$\omega$} & omega
+\\
+\end{tabular}
+\end{center}
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+{\small
+Griechische Gro{\ss}buchstaben:
+}
+{\footnotesize
+\begin{center}
+\begin{tabular}{llllllll}
+\alert{$A$} & Alpha 
+&&
+\alert{$B$} & Beta
+&&
+\alert{$\Gamma$} & Gamma
+\\
+\alert{$\Delta$} & Delta
+&&
+\alert{$E$} & Epsilon
+&&
+\alert{$Z$} & Zeta
+\\
+\alert{$H$} & Eta
+&&
+\alert{$\Theta$} & Theta
+&&
+\alert{$I$} & Iota
+\\
+\alert{$K$} & Kappa
+&&
+\alert{$\Lambda$} & Lambda
+&&
+\alert{$M$} & Mu
+\\
+\alert{$N$} & Nu
+&&
+\alert{$\Xi$} & Xi
+&&
+\alert{$O$} & O
+\\
+\alert{$\Pi$} & Pi
+&&
+\alert{$P$} & Rho
+&&
+\alert{$\Sigma$} & Sigma
+\\
+\alert{$T$} & Tau
+&&
+\alert{$\Upsilon$} & Upsilon
+&&
+\alert{$\Phi$} & Phi
+\\
+\alert{$X$} & Chi
+&&
+\alert{$\Psi$} & Psi
+&&
+\alert{$\Omega$} & Omega
+\\
+\end{tabular}
+\end{center}
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+{\small
+\begin{itemize}
+
+\item Aus dem hebr\"aischen Alphabet:
+\bq
+ \alert{\aleph} && \mbox{Aleph}.
+\eq
+\"Ublicherweise wird dieser Buchstabe zur Beschreibung der M\"achtigkeit der nat\"urlichen Zahlen verwendet.
+
+\item 
+Aus dem kyrillischen Alphabet:
+\bq
+ \alert{\shuffle} & & \mbox{Sha}.
+\eq
+\"Ublicherweise verwendet man dieses Zeichen zur Notation f\"ur das Shuffle-Produkt.
+
+Dies ist ein spezielles Produkt, wird aber in dieser Vorlesung nicht vorkommen.
+
+\end{itemize}
+}
+
+\end{frame}
+
+\end{document}

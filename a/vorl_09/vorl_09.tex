@@ -1,0 +1,828 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+\usepackage{tikz}
+\usetikzlibrary{hobby}
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem23}{Produktregel:} 
+\newtheorem*{mytheorem24}{Quotientenregel:} 
+\newtheorem*{mytheorem25}{Kettenregel:} 
+\newtheorem*{mytheorem26}{Ableitung der Umkehrfunktion:} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Differentialrechnung}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Die Ableitung}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Ableitung}
+
+\begin{definition}
+Sei $D \subset \mathbb R$ und $f:D \rightarrow \mathbb R$ eine Funktion.
+$f$ nennt man im Punkte $x\in D$ {\bf differenzierbar}, falls es mindestens eine Folge
+$(\xi_n) \in D\backslash x$ mit $\lim\limits_{n \rightarrow \infty} \xi_n = x$ gibt
+und f\"ur jede solche Folge der Grenzwert
+\bq
+ f'(x) & = & 
+ \lim\limits_{n \rightarrow \infty} \frac{f(\xi_n)-f(x)}{\xi_n-x}
+ \;\; = \;\;
+ \lim\limits_{\xi \rightarrow x} \frac{f(\xi)-f(x)}{\xi-x}
+\eq
+existiert.
+\end{definition}
+
+Man schreibt auch
+\bq
+ f'(x) & = & \frac{df(x)}{dx} = \frac{d}{dx} f(x) = \lim\limits_{h\rightarrow 0} \frac{f(x+h)-f(x)}{(x+h)-x}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Geometrische Bedeutung der Ableitung}
+
+Die Ableitung $f'(x_0)$ gibt die \alert{Steigung der Tangente} im Punkte $x_0$ an:
+\vspace*{10mm}
+\begin{center}
+\begin{tikzpicture}
+\draw [->] (-2.0,0.0) -- (2.0,0.0);
+\draw [->] (0.0,-1.0) -- (0.0,2.0);
+\draw (-1.5,2.25) to [curve through={(-1.4,1.96)(-1.0,1.0)(0.0,0.0)(1.0,1.0)(1.4,1.96)}] (1.5,2.25);
+\draw (0.3,-0.4) -- (1.5,2.0);
+\draw[dashed] (1.0,0.0) -- (1.0,1.0);
+\draw [fill] (1.0,1.0) circle (0.03);
+\node [below] at (1.0,-0.1) {\footnotesize $x_0$};
+\node [left] at (-1.5,1.8) {\footnotesize $f(x)$};
+\node [right] at (1.6,1.8) {\footnotesize $t(x)=f(x_0)+f'(x_0) \cdot (x-x_0)$};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Funktion
+\bq
+ f(x) & = & \left\{\begin{array}{ll} 0 & x \le 0 \\ \sin(x) & x>0 \end{array} \right.
+\eq
+ist im Punkte $x=0$
+\begin{description}
+\item{(A)} differenzierbar
+\item{(B)} nicht differenzierbar
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Funktion
+\bq
+ f(x) & = & \left\{\begin{array}{ll} 1 & x \le 0 \\ \cos(x) & x>0 \end{array} \right.
+\eq
+ist im Punkte $x=0$
+\begin{description}
+\item{(A)} differenzierbar
+\item{(B)} nicht differenzierbar
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber Ableitungen}
+
+\begin{theorem}
+Seien $f,g : D \rightarrow \mathbb R$ in $x \in D$ differenzierbare Funktionen und 
+$\lambda \in \mathbb R$.
+Dann sind auch die Funktionen $f+g$, und $\lambda f$ in $x$ differenzierbar
+und es gilt
+\bq
+ \left(f+g\right)'(x) & = & f'(x) + g'(x),
+ \nonumber \\
+ \left( \lambda f \right)'(x) & = & \lambda f'(x).
+\eq
+\end{theorem}
+
+\begin{mytheorem23}
+Mit den Voraussetzungen wie oben ist auch die Funktion $f\cdot g$ in $x$ differenzierbar
+und es gilt
+\bq
+ \left( f \cdot g \right)'(x) & = & f'(x) g(x) + f(x) g'(x).
+\eq
+\end{mytheorem23}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beweis der Produktregel}
+
+{\small
+\bq
+\lefteqn{
+\left( f \cdot g \right)'(x) = 
+} & &
+ \nonumber \\
+ & = &
+ \lim\limits_{h\rightarrow 0} \frac{f(x+h)g(x+h)-f(x)g(x)}{h}
+ \nonumber \\
+ & = &
+ \lim\limits_{h\rightarrow 0} \frac{1}{h} \left[ f(x+h)g(x+h)-f(x+h)g(x)+f(x+h)g(x)-f(x)g(x) \right]
+ \nonumber \\
+ & = &
+ \lim\limits_{h\rightarrow 0} f(x+h) \frac{g(x+h)-g(x)}{h} 
+ + \lim\limits_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}g(x)
+ \nonumber \\
+ & = &
+ f(x) g'(x) + f'(x) g(x).
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Produktregel}
+
+\begin{example}
+\bq
+ f\left(x\right) & = & \underbrace{\phantom{\left(x\right.}x^2\phantom{\left.x\right)} }_{f_1\left(x\right)} \underbrace{\sin\left(x\right)}_{f_2\left(x\right)}
+ \nonumber \\
+ f'\left(x\right) & = & 
+ \underbrace{\phantom{\left(x\right.}2 x\phantom{\left.x\right)} }_{f_1'\left(x\right)} \underbrace{\sin\left(x\right)}_{f_2\left(x\right)} 
+ + \underbrace{\phantom{\left(x\right.}x^2\phantom{\left.x\right)} }_{f_1\left(x\right)} \underbrace{\cos\left(x\right)}_{f_2'\left(x\right)}
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber Ableitungen}
+
+\begin{mytheorem24}
+{\bf Quotientenregel}: 
+Ist weiter $g(x)\neq 0$ f\"ur alle $x\in D$, so ist auch die Funktion $f/g$ in $x$ differenzierbar und es gilt
+\bq
+ \left( \frac{f}{g} \right)'(x) & = &
+ \frac{f'(x) g(x) - f(x) g'(x)}{g(x)^2}.
+\eq
+\end{mytheorem24}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Quotientenregel}
+
+\begin{example}
+\bq
+ f\left(x\right) & = & \frac{2x-3}{x+1}
+ \nonumber \\
+ f'\left(x\right) & = & 
+ \frac{2 \cdot \left(x+1\right)-\left(2x-3\right) \cdot 1}{\left(x+1\right)^2}
+ \; = \;
+ \frac{5}{\left(x+1\right)^2}
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber Ableitungen}
+
+\begin{mytheorem25}
+{\bf Kettenregel}: Seien $f : D_1 \rightarrow W_1$ und $g : D_2 \rightarrow W_2$ Funktionen mit
+$W_1 \subset D_2$. Falls $f$ im Punkte $x\in D_1$ differenzierbar ist und $g$ im Punkte $y=f(x)\in D_2$
+differenzierbar ist, so ist die zusammengesetzte Funktion $g \circ f: D_1 \rightarrow W_2$
+in $x$ differenzierbar und es gilt
+\bq
+ \left( g \circ f \right)'(x) & = & g'\left(f(x)\right) f'(x).
+\eq
+\end{mytheorem25}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Kettenregel}
+
+\begin{example}
+\bq
+ f\left(x\right) & = & \sin\left(3x^2+4x+5\right)
+ \nonumber \\
+ f'\left(x\right) & = & 
+ \left(6x+4\right) \cdot \cos\left(3x^2+4x+5\right)
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber Ableitungen}
+
+\begin{mytheorem26}
+{\bf Ableitung der Umkehrfunktion}:
+Sei $D \subset \mathbb R$ ein abgeschlossenes Intervall, $f : D \rightarrow W$ eine stetige, steng monotone
+Funktion und $f^{-1} : W \rightarrow D$ die Umkehrfunktion.
+Ist $f$ im Punkt $x\in D$ differenzierbar und ist $f'(x) \neq 0$, so ist $f^{-1}$ im Punkt $y=f(x)$
+differenzierbar und es gilt
+\bq
+ \left( f^{-1} \right)'(y) & = & \frac{1}{f'\left(x\right)} = \frac{1}{f'\left(f^{-1}(y)\right)}.
+\eq
+\end{mytheorem26}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Ableitung der Umkehrfunktion}
+
+\begin{example}
+Die Ableitung des \alert{Logarithmus} erh\"alt man mit Hilfe der Regel \"uber die Umkehrfunktion:
+
+Wir beginnen mit der Exponentialfunktion: $f(x)=e^x$, $f'(x)=e^x$.
+
+Die Umkehrfunktion ist der Logarithmus: 
+\bq
+ f^{-1}(y)=\ln y
+\eq
+Nun ist
+\bq
+ (f^{-1})'(y) & = & \frac{1}{f'(f^{-1}(y))} \; = \; \frac{1}{\exp(\ln y)} \; = \; \frac{1}{y},
+\eq 
+also
+\bq
+ f(x) = \ln x, & & f'(x) = \frac{1}{x}.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Ableitungen}
+
+\begin{example}
+Die Ableitungen von \alert{Sinus} und \alert{Kosinus} erh\"alt man aus der Darstellung
+\bq
+ \sin(x) \; = \; \frac{1}{2i} \left(e^{ix}-e^{-ix}\right), & & \cos(x) \; = \; \frac{1}{2}\left(e^{ix}+e^{-ix}\right)
+\eq 
+zu
+\bq
+ f(x) = \sin(x) & \Rightarrow & f'(x) = \cos(x),
+ \nonumber \\
+ f(x) = \cos(x) & \Rightarrow & f'(x) = -\sin(x).
+\eq
+\end{example}
+Rechnung:
+\bq
+ \frac{d}{dx} \sin\left(x\right)
+ & = &
+ \frac{d}{dx} \left[ \frac{1}{2i} \left(e^{ix}-e^{-ix}\right) \right]
+ \; = \;
+ \frac{1}{2i} \left(\frac{d}{dx}e^{ix}-\frac{d}{dx}e^{-ix}\right)
+ \nonumber \\
+ & = &
+ \frac{1}{2i} \left(ie^{ix}+ie^{-ix}\right)
+ \; = \;
+ \frac{1}{2} \left(e^{ix}+e^{-ix}\right)
+ \; = \;
+ \cos\left(x\right)
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Wichtige Ableitungen}
+
+Ableitungen einiger \alert{Grundfunktionen}:
+\bq
+ f(x) = x^n & \Rightarrow & f'(x) = n x^{n-1},
+ \nonumber \\
+ f(x) = e^x & \Rightarrow & f'(x) = e^x.
+\eq
+Die Ableitung des \alert{Logarithmus} erh\"alt man mit Hilfe der Regel \"uber die Umkehrfunktion:
+\bq
+ f(x) = \ln x & \Rightarrow & f'(x) = \frac{1}{x}.
+\eq
+Die Ableitungen von \alert{Sinus} und \alert{Kosinus} erh\"alt man aus der Darstellung
+mittels der Exponentialfunktion:
+\bq
+ f(x) = \sin(x) & \Rightarrow & f'(x) = \cos(x),
+ \nonumber \\
+ f(x) = \cos(x) & \Rightarrow & f'(x) = -\sin(x).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Weitere Ableitungen}
+
+Die Ableitung aller weiteren trigonometrischen und hyperbolischen Funktionen lassen sich ebenfalls mit den
+obigen Regeln bestimmen:
+{\small
+\bq
+ f(x) = \tan(x) & \Rightarrow & f'(x) = \frac{1}{\cos^2(x)},
+ \nonumber \\
+ f(x) = \arcsin(x) & \Rightarrow & f'(x) = \frac{1}{\sqrt{1-x^2}},
+ \nonumber \\
+ f(x) = \arctan(x) & \Rightarrow & f'(x) = \frac{1}{1+x^2},
+ \nonumber \\
+ f(x) = \sinh(x) & \Rightarrow & f'(x) = \cosh(x),
+ \nonumber \\
+ f(x) = \cosh(x) & \Rightarrow & f'(x) = \sinh(x),
+ \nonumber \\
+ f(x) = \tanh(x) & \Rightarrow & f'(x) = \frac{1}{\cosh^2(x)},
+ \nonumber \\
+ f(x) = \mbox{arsinh}(x) & \Rightarrow & f'(x) = \frac{1}{\sqrt{1+x^2}},
+ \nonumber \\
+ f(x) = \mbox{artanh}(x) & \Rightarrow & f'(x) = \frac{1}{1-x^2}.
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ f\left(x\right) & = & 3 x^3 -4
+ \nonumber \\
+ f'\left(x\right) & = & ?
+\eq
+\begin{description}
+\item{(A)} $\frac{3}{4}x^4-4x$
+\item{(B)} $9 x^2 - 4$
+\item{(C)} $9x^2$
+\item{(D)} $3x^2-4$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ f\left(x\right) & = & \sin\left(\cos\left(2x\right)\right)
+ \nonumber \\
+ f'\left(x\right) & = & ?
+\eq
+\begin{description}
+\item{(A)} $2 \cos\left(\cos\left(2x\right)\right)$
+\item{(B)} $2 \sin\left(2x\right) \cdot \cos\left(\cos\left(2x\right)\right)$
+\item{(C)} $- 2 \cos\left(2x\right) \cdot \cos\left(\sin\left(2x\right)\right)$
+\item{(D)} $- 2 \sin\left(2x\right) \cdot \cos\left(\cos\left(2x\right)\right)$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{H\"ohere Ableitungen}
+
+Sei $f : D \rightarrow {\mathbb R}$ eine differenzierbare Funktion.
+Ist $f' : D \rightarrow {\mathbb R}$ ebenfalls wieder differenzierbar, so bezeichnet man
+mit
+\bq
+ f''(x) & = &
+ \frac{d^2 f(x)}{dx^2}
+ \;\; = \;\;
+ (f')'(x)
+\eq
+die \superalert{zweite Ableitung}. Ist auch $f''(x)$ wieder differenzierbar, so erh\"alt man durch Ableiten
+die dritte Ableitung $f'''(x)$.
+Allgemein schreiben wir f\"ur die \superalert{$n$-te Ableitung}
+\bq
+ f^{(n)}(x) & = &
+ \frac{d^nf(x)}{dx^n}.
+\eq
+Unter der \alert{$0$-ten Ableitung} einer Funktion versteht man die Funktion selbst.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{H\"ohere Ableitungen}
+
+\begin{example}
+\bq
+ f\left(x\right) & = & 3 x^5 + 7 x^4 + 2 x^3 + x^2 - x + 5
+ \nonumber \\
+ f'\left(x\right) & = & 15 x^4 + 28 x^3 + 6 x^2 + 2 x - 1
+ \nonumber \\
+ f''\left(x\right) & = & 60 x^3 + 84 x^2 + 12 x + 2
+ \nonumber \\
+ f'''\left(x\right) & = & 180 x^2 + 168 x + 12
+ \nonumber \\
+ f^{(4)}\left(x\right) & = & 360 x + 168
+ \nonumber \\
+ f^{(5)}\left(x\right) & = & 360
+ \nonumber \\
+ f^{(6)}\left(x\right) & = & 0
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{H\"ohere Ableitungen}
+
+\begin{example}
+\bq
+ f\left(x\right) & = & \sin\left(x\right)
+ \nonumber \\
+ f'\left(x\right) & = & \cos\left(x\right)
+ \nonumber \\
+ f''\left(x\right) & = & -\sin\left(x\right)
+ \nonumber \\
+ f'''\left(x\right) & = & -\cos\left(x\right)
+ \nonumber \\
+ f^{(4)}\left(x\right) & = & \sin\left(x\right)
+ \nonumber \\
+ f^{(5)}\left(x\right) & = & \cos\left(x\right)
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ f\left(x\right) & = & e^{2x}
+ \nonumber \\
+ f^{(4)}\left(x\right) & = & ?
+\eq
+\begin{description}
+\item{(A)} $e^{2x}$
+\item{(B)} $2 e^{2x}$
+\item{(C)} $16 e^{2x}$
+\item{(D)} $24 e^{2x}$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stetige Differenzierbarkeit}
+
+\begin{definition}
+Eine Funktion $f(x)$ nennt man \superalert{stetig differenzierbar}, falls sie differenzierbar ist und die Ableitung $f'(x)$ stetig ist.
+\end{definition}
+\begin{definition}
+Eine Funktion $f(x)$ nennt man \superalert{$n$-mal stetig differenzierbar}, falls sie $n$-mal differenzierbar ist und die $n$-te 
+Ableitung $f^{(n)}(x)$ stetig ist.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stetige Differenzierbarkeit}
+
+\begin{example}
+\bq
+ f\left(x\right)
+ & = &
+ \left\{ \begin{array}{ll}
+ x^2 \sin\left(\frac{1}{x}\right) & x \neq 0 \\
+ 0 & x=0 \\
+ \end{array} \right.
+\eq
+$f$ ist differenzierbar im Punkt $x=0$:
+\bq
+ f'\left(0\right) 
+ & = &
+ \lim\limits_{h \rightarrow 0} \frac{h^2 \sin\left(\frac{1}{h}\right) - 0}{h} \; = \; 0.
+\eq
+Somit
+\bq
+ f'\left(x\right)
+ & = &
+ \left\{ \begin{array}{ll}
+ 2 x \sin\left(\frac{1}{x}\right) - \cos\left(\frac{1}{x}\right) & x \neq 0 \\
+ 0 & x=0 \\
+ \end{array} \right.
+\eq
+$f'$ ist nicht stetig im Punkt $x=0$.
+\end{example}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Taylorreihen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorreihen}
+
+Motivation:
+\begin{itemize}
+\item Wir haben bereits die \alert{Reihendarstellung} einiger Funktionen, wie zum Beispiel der Exponentialfunktion,
+Sinus oder Kosinus kennengelernt.
+\item In diesem Abschnitt geht es um die \superalert{systematische Entwicklung} von Funktionen \superalert{in Potenzreihen}.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorentwicklung}
+
+\begin{theorem}[Taylorsche Formel]
+Sei $I \subset \mathbb R$ und $f : I \rightarrow \mathbb R$ eine
+$(n+1)$-mal stetig differenzierbare Funktion. Dann gilt f\"ur $a \in I$ und $x\in I$
+{\footnotesize
+\bq
+ f(x) & = &
+  f(a) + \frac{f'(a)}{1!} \cdot (x-a) + \frac{f''(a)}{2!} \cdot (x-a)^2 
+  + ... + \frac{f^{(n)}(a)}{n!} \cdot (x-a)^n + R_{n+1}(x).
+\eq
+}
+
+\vspace*{-2mm}
+F\"ur das Restglied gilt:
+Es gibt ein $\xi$ zwischen $a$ und $x$ 
+
+(d.h. $\xi \in [a,x]$ f\"ur $x>a$ bzw. $\xi \in [x,a]$ f\"ur $x<a$), so da{\ss}
+{\footnotesize
+\bq
+ R_{n+1}(x) & = & \frac{f^{(n+1)}(\xi)}{(n+1)!} \cdot (x-a)^{n+1}.
+\eq
+}
+
+\vspace*{-2mm}
+Bemerkung: Dies ist eine Existenzaussage, $\xi$ ist im allgemeinen schwer zu bestimmen.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorentwicklung}
+
+\begin{itemize}
+\item In der Praxis verwendet man die ersten $n$ Terme der Taylorentwicklung, um eine Funktion zu approximieren
+und vernachl\"assigt das Restglied. 
+
+\item Das vernachl\"assigte Restglied liefert den Fehler dieser Absch\"atzung.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorentwicklung}
+
+\begin{example}
+\bq
+ f\left(x\right) & = & \cos\left( x \cdot e^x \right) + \sin\left( x^2 \cdot e^{-x} \right)
+\eq
+Taylorentwicklung um $x_0=0$:
+\bq
+ f\left(x\right) & = & 
+ 1 + \frac{1}{2} x^2 - 2 x^3 - \frac{11}{24} x^4 - \frac{2}{3} x^5 + \mathcal{O}\left(x^6\right)
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorreihen}
+
+\begin{definition}[Taylorreihe]
+Sei nun $f : I \rightarrow \mathbb R$ eine beliebig of differenzierbare Funktion und $a \in I$.
+Wir definieren die Taylorreihe einer Funktion $f$ um den Entwicklungspunkt $a$:
+\bq
+ T_f(x) & = & \sum\limits_{n=0}^\infty \frac{f^{(n)}(a)}{n!} \cdot (x-a)^n
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorreihen}
+
+Bemerkungen:
+\begin{enumerate}
+\item Der Konvergenzradius der Taylorreihe ist nicht notwendig $>0$.
+
+\item Falls die Taylorreihe von $f$ konvergiert, konvergiert sie nicht notwendigerweise gegen $f$.
+
+\item Die Taylorreihe konvergiert genau f\"ur diejenigen $x\in I$ gegen $f(x)$, f\"ur die das Restglied gegen
+Null konvergiert.
+\end{enumerate}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorreihen}
+
+\begin{example}
+Wir geben ein Gegenbeispiel zu Punkt 2 an: Wir betrachten die Taylorreihe der Funktion
+\bq
+ f(x) & = & \left\{ \begin{array}{ll}
+                     \exp\left(-\frac{1}{x^2}\right), & x \neq 0, \\
+                     0                                & x=0, \\
+                    \end{array} \right.
+\eq
+im Punkte $a=0$. $f$ ist beliebig oft differenzierbar und es gilt
+\bq
+ f^{(n)}(0) & = & 0.
+\eq
+Die Taylorreihe von $f$ um den Nullpunkt ist also identisch Null.
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Taylorreihen}
+
+\begin{center}
+\begin{tikzpicture}
+\draw [->] (-4.0,0.0) -- (4.0,0.0);
+\draw [->] (0.0,-1.0) -- (0.0,2.0);
+\draw (-4.0,0.939) to [curve through={(-3.0,0.895)(-2.0,0.7788)(-1.0,0.368)(-0.5,0.018)(-0.4,0.0019)(0.0,0.0)(0.4,0.0019)(0.5,0.018)(1.0,0.368)(2.0,0.7788)(3.0,0.895)}] (4.0,0.939);
+\node [left] at (-1.5,1.8) {\footnotesize $f(x)=\exp\left(-\frac{1}{x^2}\right)$};
+\node [right] at (4.0,0.0) {\footnotesize $x$};
+\node [above] at (0.0,2.0) {\footnotesize $y$};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Die Regeln von l'Hospital}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die erste Regel von l'Hospital}
+
+\begin{theorem}
+Seien $f,g : D \rightarrow \mathbb R$ zwei in $x_0 \in D$ stetige Funktionen mit
+$f(x_0)=g(x_0)=0$. Weiter seien $f$ und $g$ in einer Umgebung von $x_0$ differenzierbar.
+Existiert $\lim\limits_{x\rightarrow x_0} f'(x)/g'(x)$, so gilt:
+\bq
+ \lim\limits_{x\rightarrow x_0} \frac{f(x)}{g(x)} & = & \lim\limits_{x\rightarrow x_0} \frac{f'(x)}{g'(x)}.
+\eq
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die erste Regel von l'Hospital}
+
+\begin{example}
+\bq
+ \lim\limits_{x\rightarrow 0} \frac{1-\cos x}{x^2}
+ & = & 
+ \lim\limits_{x\rightarrow 0} \frac{\sin x}{2 x}
+ =
+ \frac{1}{2} \lim\limits_{x\rightarrow 0} \frac{\cos x}{1}
+ = \frac{1}{2}.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die zweite Regel von l'Hospital}
+
+\begin{theorem}
+Ist $\lim\limits_{x \rightarrow x_0} |f(x)| = \infty$ und $\lim\limits_{x \rightarrow x_0} |g(x)| = \infty$
+und exisitiert
+$\lim\limits_{x \rightarrow x_0} f'(x)/g'(x)$, so gilt ebenfalls
+\bq
+ \lim\limits_{x\rightarrow x_0} \frac{f(x)}{g(x)} & = & \lim\limits_{x\rightarrow x_0} \frac{f'(x)}{g'(x)}.
+\eq
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die zweite Regel von l'Hospital}
+
+\begin{example}
+\bq
+ \lim\limits_{x\rightarrow 0} \frac{\ln x}{\frac{1}{x}}
+ & = & 
+ \lim\limits_{x\rightarrow 0} \frac{\frac{1}{x}}{-\frac{1}{x^2}}
+ =
+ \lim\limits_{x\rightarrow 0} \left( - x \right) = 0.
+\eq
+\end{example}
+
+\vspace*{10mm}
+Bemerkung: Die l'Hospitalschen Regeln gelten auch f\"ur $x_0 \rightarrow \pm \infty$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \lim\limits_{x \rightarrow \infty} \frac{3x-4}{x^2+6x+5} 
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $0$
+\item{(B)} $\frac{1}{2}$
+\item{(C)} $\frac{3}{2}$
+\item{(D)} $3$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \lim\limits_{x \rightarrow \infty} \frac{7x^3+5x^2-3x-1}{x^3-20x^2+x+10} 
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $0$
+\item{(B)} $-\frac{1}{10}$
+\item{(C)} $7$
+\item{(D)} $21$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Mentoring-Programm für Studienanf\"angerinnen und -anf\"anger im Fach Physik}
+
+Was ist das Mentoring-Programm?
+\begin{itemize}
+\item Studierende („Mentees“) werden im ersten Bachelorsemester durch einen Professor bzw. eine Professorin aus der Physik unterst\"utzt.
+\item Der Mentor/die Mentorin ist Anlaufstelle für Fragen zum Studium.
+\item Die Teilnahme ist freiwillig und kostet Sie nichts.
+\end{itemize}
+
+So k\"onnen Sie teilnehmen:
+\begin{itemize}
+\item Alle Physik-Erstsemester erhalten am Ende der Einf\"uhrungswoche,
+Freitag, 30. Oktober 2020, eine E-Mail mit n\"aheren Anmeldeinfos.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+

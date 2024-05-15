@@ -1,0 +1,1070 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+\usepackage{tikz}
+\usetikzlibrary{hobby}
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem27}{Hauptsatz der Differential- und Integralrechnung:} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Integralrechnung}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Integrale}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Treppenfunktionen}
+
+\begin{definition}
+Man nennt $t : [a,b] \rightarrow \mathbb R$ {\bf Treppenfunktion},
+falls es eine Unterteilung
+\bq
+ a = x_0 < x_1 < ... < x_n = b
+\eq
+gibt, so da{\ss} $t$ auf jedem offenen Intervall $]x_{j-1},x_j[$ konstant ist.
+Der Wert auf diesem Intervall sei mit $c_j$ bezeichnet.
+\end{definition}
+
+\begin{definition}
+Das {\bf Integral einer Treppenfunktion} wird definiert als
+\bq
+ \int\limits_a^b t(x) \; dx 
+ & = &
+ \sum\limits_{j=1}^n c_j \left( x_j - x_{j-1} \right).
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Treppenfunktionen}
+
+\begin{center}
+\begin{tikzpicture}
+\draw [->] (-0.5,0.0) -- (5.0,0.0);
+\draw [->] (0.0,-0.5) -- (0.0,4.0);
+\draw (0.5,-0.2) -- (0.5,0.2);
+\draw (4.5,-0.2) -- (4.5,0.2);
+\node[below] at (0.5,-0.2) {\footnotesize $a$};
+\node[below] at (4.5,-0.2) {\footnotesize $b$};
+\node[right] at (5.0,0.0) {\footnotesize $x$};
+\node[above] at (0.0,4.0) {\footnotesize $y$};
+\uncover<1>{
+\draw (0.5,1.0) -- (1.5,1.0);
+\draw (1.5,2.0) -- (2.5,2.0);
+\draw (2.5,3.0) -- (3.5,3.0);
+\draw (3.5,2.5) -- (4.5,2.5);
+\draw [fill] (0.5,1.0) circle (0.03);
+\draw [fill] (1.5,2.0) circle (0.03);
+\draw [fill] (2.5,3.0) circle (0.03);
+\draw [fill] (3.5,2.5) circle (0.03);
+}
+\uncover<2>{
+\path [fill=red] (0.5,0.0) -- (0.5,1.0) -- (1.5,1.0) -- (1.5,2.0) -- (2.5,2.0) -- (2.5,3.0) -- (3.5,3.0) -- (3.5,2.5) -- (4.5,2.5) -- (4.5,0.0) -- (0.5,0.0);
+\draw (0.5,1.0) -- (1.5,1.0);
+\draw (1.5,2.0) -- (2.5,2.0);
+\draw (2.5,3.0) -- (3.5,3.0);
+\draw (3.5,2.5) -- (4.5,2.5);
+\draw [fill] (0.5,1.0) circle (0.03);
+\draw [fill] (1.5,2.0) circle (0.03);
+\draw [fill] (2.5,3.0) circle (0.03);
+\draw [fill] (3.5,2.5) circle (0.03);
+\draw [dashed] (0.5,0.0) -- (0.5,1.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (3.5,0.0) -- (3.5,3.0);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Treppenfunktionen}
+
+\begin{itemize}
+\item Die Menge aller Treppenfunktionen auf dem Intervall $[a,b]$ bilden einen Vektorraum.
+
+\item Wir bezeichnen diesen Vektorraum mit $T[a,b]$.
+
+\item Sei $f : [a,b] \rightarrow \mathbb R$ eine beliebige beschr\"ankte Funktion
+und $t\in T[a,b]$. 
+
+Man schreibt $f\ge t$ falls $f(x) \ge t(x)$ f\"ur alle $x\in[a,b]$ gilt.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Ober- und Unterintegrale}
+
+\begin{definition}
+Wir definieren nun das Ober- und Unterintegral f\"ur $f$:
+\bq
+ {\int\limits_a^b}^\ast f(x) \; dx 
+ & = &
+ \mbox{inf} \left\{ \int\limits_a^b t(x) \; dx; \; t \in T[a,b], \; t \ge f \right\},
+ \nonumber \\
+ {\int\limits_a^b}_\ast f(x) \; dx 
+ & = &
+ \mbox{sup} \left\{ \int\limits_a^b t(x) \; dx; \; t \in T[a,b], \; t \le f \right\}.
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Das Riemann-Integral}
+
+\begin{definition}
+Eine beschr\"ankte Funktion $f : [a,b] \rightarrow \mathbb R$
+hei{\ss}t {\bf Riemann-integrierbar}, falls
+\bq
+ {\int\limits_a^b}^\ast f(x) \; dx 
+ & = &
+ {\int\limits_a^b}_\ast f(x) \; dx.
+\eq
+In diesem Fall setzt man
+\bq
+ {\int\limits_a^b} f(x) \; dx 
+ & = & 
+ {\int\limits_a^b}^\ast f(x) \; dx.
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Approximation durch Treppenfunktionen}
+
+\begin{center}
+\begin{tikzpicture}
+\draw [->] (-0.5,0.0) -- (5.0,0.0);
+\draw [->] (0.0,-0.5) -- (0.0,4.0);
+\draw (0.5,-0.2) -- (0.5,0.2);
+\draw (4.5,-0.2) -- (4.5,0.2);
+\node[below] at (0.5,-0.2) {\footnotesize $a$};
+\node[below] at (4.5,-0.2) {\footnotesize $b$};
+\node[right] at (5.0,0.0) {\footnotesize $x$};
+\node[above] at (0.0,4.0) {\footnotesize $y$};
+\uncover<1>{
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<2>{
+\path [fill=yellow] (0.5,0.0) -- (0.5,2.0) -- (1.5,2.0) -- (1.5,3.0) -- (3.5,3.0) -- (3.5,2.5) -- (4.5,2.5) -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,2.0) -- (1.5,2.0);
+\draw [dashed] (1.5,3.0) -- (2.5,3.0);
+\draw [dashed] (2.5,3.0) -- (3.5,3.0);
+\draw [dashed] (3.5,2.5) -- (4.5,2.5);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,2.0);
+\draw [dashed] (1.5,0.0) -- (1.5,3.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (3.5,0.0) -- (3.5,3.0);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+%
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<3>{
+\path [fill=orange] (0.5,0.0) 
+              -- (0.5,1.38) -- (1.0,1.38) 
+              -- (1.0,2.0) -- (1.5,2.0) 
+              -- (1.5,2.85) -- (2.0,2.85) 
+              -- (2.0,3.0) -- (2.5,3.0) 
+              -- (2.5,3.0) -- (3.0,3.0) 
+              -- (3.0,2.6) -- (3.5,2.6) 
+              -- (3.5,2.0) -- (4.0,2.0) 
+              -- (4.0,2.5) -- (4.5,2.5) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.38) -- (1.0,1.38);
+\draw [dashed] (1.0,2.0) -- (1.5,2.0);
+\draw [dashed] (1.5,2.85) -- (2.0,2.85);
+\draw [dashed] (2.0,3.0) -- (2.5,3.0);
+\draw [dashed] (2.5,3.0) -- (3.0,3.0);
+\draw [dashed] (3.0,2.6) -- (3.5,2.6);
+\draw [dashed] (3.5,2.0) -- (4.0,2.0);
+\draw [dashed] (4.0,2.5) -- (4.5,2.5);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.38);
+\draw [dashed] (1.0,0.0) -- (1.0,2.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.85);
+\draw [dashed] (2.0,0.0) -- (2.0,3.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (3.0,0.0) -- (3.0,3.0);
+\draw [dashed] (3.5,0.0) -- (3.5,2.6);
+\draw [dashed] (4.0,0.0) -- (4.0,2.5);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+%
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<4>{
+\path [fill=red] (0.5,0.0) 
+              -- (0.5,1.17) -- (0.75,1.17) 
+              -- (0.75,1.38) -- (1.0,1.38) 
+              -- (1.0,1.64) -- (1.25,1.64) 
+              -- (1.25,2.0) -- (1.5,2.0) 
+              -- (1.5,2.5) -- (1.75,2.5) 
+              -- (1.75,2.85) -- (2.0,2.85) 
+              -- (2.0,3.0) -- (2.25,3.0) 
+              -- (2.25,3.0) -- (2.5,3.0) 
+              -- (2.5,3.0) -- (2.75,3.0) 
+              -- (2.75,2.9) -- (3.0,2.9) 
+              -- (3.0,2.6) -- (3.25,2.6) 
+              -- (3.25,2.25) -- (3.5,2.25) 
+              -- (3.5,2.0) -- (3.75,2.0) 
+              -- (3.75,1.95) -- (4.0,1.95) 
+              -- (4.0,2.1) -- (4.25,2.1) 
+              -- (4.25,2.5) -- (4.5,2.5) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.17) -- (0.75,1.17);
+\draw [dashed] (0.75,1.38) -- (1.0,1.38);
+\draw [dashed] (1.0,1.64) -- (1.25,1.64);
+\draw [dashed] (1.25,2.0) -- (1.5,2.0);
+\draw [dashed] (1.5,2.5) -- (1.75,2.5);
+\draw [dashed] (1.75,2.85) -- (2.0,2.85);
+\draw [dashed] (2.0,3.0) -- (2.25,3.0);
+\draw [dashed] (2.25,3.0) -- (2.5,3.0);
+\draw [dashed] (2.5,3.0) -- (2.75,3.0);
+\draw [dashed] (2.75,2.9) -- (3.0,2.9);
+\draw [dashed] (3.0,2.6) -- (3.25,2.6);
+\draw [dashed] (3.25,2.25) -- (3.5,2.25);
+\draw [dashed] (3.5,2.0) -- (3.75,2.0);
+\draw [dashed] (3.75,1.95) -- (4.0,1.95);
+\draw [dashed] (4.0,2.1) -- (4.25,2.1);
+\draw [dashed] (4.25,2.5) -- (4.5,2.5);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.17);
+\draw [dashed] (0.75,0.0) -- (0.75,1.38);
+\draw [dashed] (1.0,0.0) -- (1.0,1.64);
+\draw [dashed] (1.25,0.0) -- (1.25,2.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.5);
+\draw [dashed] (1.75,0.0) -- (1.75,2.85);
+\draw [dashed] (2.0,0.0) -- (2.0,3.0);
+\draw [dashed] (2.25,0.0) -- (2.25,3.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (2.75,0.0) -- (2.75,3.0);
+\draw [dashed] (3.0,0.0) -- (3.0,2.9);
+\draw [dashed] (3.25,0.0) -- (3.25,2.6);
+\draw [dashed] (3.5,0.0) -- (3.5,2.25);
+\draw [dashed] (3.75,0.0) -- (3.75,2.0);
+\draw [dashed] (4.0,0.0) -- (4.0,2.1);
+\draw [dashed] (4.25,0.0) -- (4.25,2.5);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+%
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<5>{
+\path [fill=red] (0.5,0.0) 
+              -- (0.5,1.17) -- (0.75,1.17) 
+              -- (0.75,1.38) -- (1.0,1.38) 
+              -- (1.0,1.64) -- (1.25,1.64) 
+              -- (1.25,2.0) -- (1.5,2.0) 
+              -- (1.5,2.5) -- (1.75,2.5) 
+              -- (1.75,2.85) -- (2.0,2.85) 
+              -- (2.0,3.0) -- (2.25,3.0) 
+              -- (2.25,3.0) -- (2.5,3.0) 
+              -- (2.5,3.0) -- (2.75,3.0) 
+              -- (2.75,2.9) -- (3.0,2.9) 
+              -- (3.0,2.6) -- (3.25,2.6) 
+              -- (3.25,2.25) -- (3.5,2.25) 
+              -- (3.5,2.0) -- (3.75,2.0) 
+              -- (3.75,1.95) -- (4.0,1.95) 
+              -- (4.0,2.1) -- (4.25,2.1) 
+              -- (4.25,2.5) -- (4.5,2.5) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.17) -- (0.75,1.17);
+\draw [dashed] (0.75,1.38) -- (1.0,1.38);
+\draw [dashed] (1.0,1.64) -- (1.25,1.64);
+\draw [dashed] (1.25,2.0) -- (1.5,2.0);
+\draw [dashed] (1.5,2.5) -- (1.75,2.5);
+\draw [dashed] (1.75,2.85) -- (2.0,2.85);
+\draw [dashed] (2.0,3.0) -- (2.25,3.0);
+\draw [dashed] (2.25,3.0) -- (2.5,3.0);
+\draw [dashed] (2.5,3.0) -- (2.75,3.0);
+\draw [dashed] (2.75,2.9) -- (3.0,2.9);
+\draw [dashed] (3.0,2.6) -- (3.25,2.6);
+\draw [dashed] (3.25,2.25) -- (3.5,2.25);
+\draw [dashed] (3.5,2.0) -- (3.75,2.0);
+\draw [dashed] (3.75,1.95) -- (4.0,1.95);
+\draw [dashed] (4.0,2.1) -- (4.25,2.1);
+\draw [dashed] (4.25,2.5) -- (4.5,2.5);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.17);
+\draw [dashed] (0.75,0.0) -- (0.75,1.38);
+\draw [dashed] (1.0,0.0) -- (1.0,1.64);
+\draw [dashed] (1.25,0.0) -- (1.25,2.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.5);
+\draw [dashed] (1.75,0.0) -- (1.75,2.85);
+\draw [dashed] (2.0,0.0) -- (2.0,3.0);
+\draw [dashed] (2.25,0.0) -- (2.25,3.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (2.75,0.0) -- (2.75,3.0);
+\draw [dashed] (3.0,0.0) -- (3.0,2.9);
+\draw [dashed] (3.25,0.0) -- (3.25,2.6);
+\draw [dashed] (3.5,0.0) -- (3.5,2.25);
+\draw [dashed] (3.75,0.0) -- (3.75,2.0);
+\draw [dashed] (4.0,0.0) -- (4.0,2.1);
+\draw [dashed] (4.25,0.0) -- (4.25,2.5);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+%
+\path [fill=lime] (0.5,0.0) -- (0.5,1.0) -- (1.5,1.0) -- (1.5,2.0) -- (3.5,2.0) -- (3.5,1.91) -- (4.5,1.91) -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.0) -- (1.5,1.0);
+\draw [dashed] (1.5,2.0) -- (2.5,2.0);
+\draw [dashed] (2.5,2.0) -- (3.5,2.0);
+\draw [dashed] (3.5,1.91) -- (4.5,1.91);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.0);
+\draw [dashed] (2.5,0.0) -- (2.5,2.0);
+\draw [dashed] (3.5,0.0) -- (3.5,2.0);
+\draw [dashed] (4.5,0.0) -- (4.5,1.91);
+%
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<6>{
+\path [fill=red] (0.5,0.0) 
+              -- (0.5,1.17) -- (0.75,1.17) 
+              -- (0.75,1.38) -- (1.0,1.38) 
+              -- (1.0,1.64) -- (1.25,1.64) 
+              -- (1.25,2.0) -- (1.5,2.0) 
+              -- (1.5,2.5) -- (1.75,2.5) 
+              -- (1.75,2.85) -- (2.0,2.85) 
+              -- (2.0,3.0) -- (2.25,3.0) 
+              -- (2.25,3.0) -- (2.5,3.0) 
+              -- (2.5,3.0) -- (2.75,3.0) 
+              -- (2.75,2.9) -- (3.0,2.9) 
+              -- (3.0,2.6) -- (3.25,2.6) 
+              -- (3.25,2.25) -- (3.5,2.25) 
+              -- (3.5,2.0) -- (3.75,2.0) 
+              -- (3.75,1.95) -- (4.0,1.95) 
+              -- (4.0,2.1) -- (4.25,2.1) 
+              -- (4.25,2.5) -- (4.5,2.5) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.17) -- (0.75,1.17);
+\draw [dashed] (0.75,1.38) -- (1.0,1.38);
+\draw [dashed] (1.0,1.64) -- (1.25,1.64);
+\draw [dashed] (1.25,2.0) -- (1.5,2.0);
+\draw [dashed] (1.5,2.5) -- (1.75,2.5);
+\draw [dashed] (1.75,2.85) -- (2.0,2.85);
+\draw [dashed] (2.0,3.0) -- (2.25,3.0);
+\draw [dashed] (2.25,3.0) -- (2.5,3.0);
+\draw [dashed] (2.5,3.0) -- (2.75,3.0);
+\draw [dashed] (2.75,2.9) -- (3.0,2.9);
+\draw [dashed] (3.0,2.6) -- (3.25,2.6);
+\draw [dashed] (3.25,2.25) -- (3.5,2.25);
+\draw [dashed] (3.5,2.0) -- (3.75,2.0);
+\draw [dashed] (3.75,1.95) -- (4.0,1.95);
+\draw [dashed] (4.0,2.1) -- (4.25,2.1);
+\draw [dashed] (4.25,2.5) -- (4.5,2.5);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.17);
+\draw [dashed] (0.75,0.0) -- (0.75,1.38);
+\draw [dashed] (1.0,0.0) -- (1.0,1.64);
+\draw [dashed] (1.25,0.0) -- (1.25,2.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.5);
+\draw [dashed] (1.75,0.0) -- (1.75,2.85);
+\draw [dashed] (2.0,0.0) -- (2.0,3.0);
+\draw [dashed] (2.25,0.0) -- (2.25,3.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (2.75,0.0) -- (2.75,3.0);
+\draw [dashed] (3.0,0.0) -- (3.0,2.9);
+\draw [dashed] (3.25,0.0) -- (3.25,2.6);
+\draw [dashed] (3.5,0.0) -- (3.5,2.25);
+\draw [dashed] (3.75,0.0) -- (3.75,2.0);
+\draw [dashed] (4.0,0.0) -- (4.0,2.1);
+\draw [dashed] (4.25,0.0) -- (4.25,2.5);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+%
+\path [fill=green] (0.5,0.0) 
+              -- (0.5,1.0) -- (1.0,1.0) 
+              -- (1.0,1.32) -- (1.5,1.32) 
+              -- (1.5,2.0) -- (2.0,2.0) 
+              -- (2.0,2.81) -- (2.5,2.81) 
+              -- (2.5,2.63) -- (3.0,2.63) 
+              -- (3.0,2.0) -- (3.5,2.0) 
+              -- (3.5,1.91) -- (4.0,1.91) 
+              -- (4.0,1.94) -- (4.5,1.94) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.0) -- (1.0,1.0);
+\draw [dashed] (1.0,1.32) -- (1.5,1.32);
+\draw [dashed] (1.5,2.0) -- (2.0,2.0);
+\draw [dashed] (2.0,2.81) -- (2.5,2.81);
+\draw [dashed] (2.5,2.63) -- (3.0,2.63);
+\draw [dashed] (3.0,2.0) -- (3.5,2.0);
+\draw [dashed] (3.5,1.91) -- (4.0,1.91);
+\draw [dashed] (4.0,1.94) -- (4.5,1.94);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.0);
+\draw [dashed] (1.0,0.0) -- (1.0,1.32);
+\draw [dashed] (1.5,0.0) -- (1.5,2.0);
+\draw [dashed] (2.0,0.0) -- (2.0,2.81);
+\draw [dashed] (2.5,0.0) -- (2.5,2.81);
+\draw [dashed] (3.0,0.0) -- (3.0,2.63);
+\draw [dashed] (3.5,0.0) -- (3.5,2.0);
+\draw [dashed] (4.0,0.0) -- (4.0,1.94);
+\draw [dashed] (4.5,0.0) -- (4.5,1.94);
+%
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<7>{
+\path [fill=red] (0.5,0.0) 
+              -- (0.5,1.17) -- (0.75,1.17) 
+              -- (0.75,1.38) -- (1.0,1.38) 
+              -- (1.0,1.64) -- (1.25,1.64) 
+              -- (1.25,2.0) -- (1.5,2.0) 
+              -- (1.5,2.5) -- (1.75,2.5) 
+              -- (1.75,2.85) -- (2.0,2.85) 
+              -- (2.0,3.0) -- (2.25,3.0) 
+              -- (2.25,3.0) -- (2.5,3.0) 
+              -- (2.5,3.0) -- (2.75,3.0) 
+              -- (2.75,2.9) -- (3.0,2.9) 
+              -- (3.0,2.6) -- (3.25,2.6) 
+              -- (3.25,2.25) -- (3.5,2.25) 
+              -- (3.5,2.0) -- (3.75,2.0) 
+              -- (3.75,1.95) -- (4.0,1.95) 
+              -- (4.0,2.1) -- (4.25,2.1) 
+              -- (4.25,2.5) -- (4.5,2.5) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.17) -- (0.75,1.17);
+\draw [dashed] (0.75,1.38) -- (1.0,1.38);
+\draw [dashed] (1.0,1.64) -- (1.25,1.64);
+\draw [dashed] (1.25,2.0) -- (1.5,2.0);
+\draw [dashed] (1.5,2.5) -- (1.75,2.5);
+\draw [dashed] (1.75,2.85) -- (2.0,2.85);
+\draw [dashed] (2.0,3.0) -- (2.25,3.0);
+\draw [dashed] (2.25,3.0) -- (2.5,3.0);
+\draw [dashed] (2.5,3.0) -- (2.75,3.0);
+\draw [dashed] (2.75,2.9) -- (3.0,2.9);
+\draw [dashed] (3.0,2.6) -- (3.25,2.6);
+\draw [dashed] (3.25,2.25) -- (3.5,2.25);
+\draw [dashed] (3.5,2.0) -- (3.75,2.0);
+\draw [dashed] (3.75,1.95) -- (4.0,1.95);
+\draw [dashed] (4.0,2.1) -- (4.25,2.1);
+\draw [dashed] (4.25,2.5) -- (4.5,2.5);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.17);
+\draw [dashed] (0.75,0.0) -- (0.75,1.38);
+\draw [dashed] (1.0,0.0) -- (1.0,1.64);
+\draw [dashed] (1.25,0.0) -- (1.25,2.0);
+\draw [dashed] (1.5,0.0) -- (1.5,2.5);
+\draw [dashed] (1.75,0.0) -- (1.75,2.85);
+\draw [dashed] (2.0,0.0) -- (2.0,3.0);
+\draw [dashed] (2.25,0.0) -- (2.25,3.0);
+\draw [dashed] (2.5,0.0) -- (2.5,3.0);
+\draw [dashed] (2.75,0.0) -- (2.75,3.0);
+\draw [dashed] (3.0,0.0) -- (3.0,2.9);
+\draw [dashed] (3.25,0.0) -- (3.25,2.6);
+\draw [dashed] (3.5,0.0) -- (3.5,2.25);
+\draw [dashed] (3.75,0.0) -- (3.75,2.0);
+\draw [dashed] (4.0,0.0) -- (4.0,2.1);
+\draw [dashed] (4.25,0.0) -- (4.25,2.5);
+\draw [dashed] (4.5,0.0) -- (4.5,2.5);
+%
+\path [fill=cyan] (0.5,0.0) 
+              -- (0.5,1.0) -- (0.75,1.0) 
+              -- (0.75,1.15) -- (1.0,1.15) 
+              -- (1.0,1.32) -- (1.25,1.32) 
+              -- (1.25,1.65) -- (1.5,1.65) 
+              -- (1.5,2.0) -- (1.75,2.0) 
+              -- (1.75,2.55) -- (2.0,2.53) 
+              -- (2.0,2.81) -- (2.25,2.81) 
+              -- (2.25,2.97) -- (2.5,2.97) 
+              -- (2.5,2.9) -- (2.75,2.9) 
+              -- (2.75,2.62) -- (3.0,2.62) 
+              -- (3.0,2.25) -- (3.25,2.25) 
+              -- (3.25,2.0) -- (3.5,2.0) 
+              -- (3.5,1.91) -- (3.75,1.91) 
+              -- (3.75,1.9) -- (4.0,1.9) 
+              -- (4.0,1.93) -- (4.25,1.93) 
+              -- (4.25,2.05) -- (4.5,2.05) 
+ -- (4.5,0.0) -- (0.5,0.0);
+%
+\draw [dashed] (0.5,1.0) -- (0.75,1.0);
+\draw [dashed] (0.75,1.15) -- (1.0,1.15);
+\draw [dashed] (1.0,1.32) -- (1.25,1.32);
+\draw [dashed] (1.25,1.65) -- (1.5,1.65);
+\draw [dashed] (1.5,2.0) -- (1.75,2.0);
+\draw [dashed] (1.75,2.53) -- (2.0,2.53);
+\draw [dashed] (2.0,2.81) -- (2.25,2.81);
+\draw [dashed] (2.25,2.97) -- (2.5,2.97);
+\draw [dashed] (2.5,2.9) -- (2.75,2.9);
+\draw [dashed] (2.75,2.62) -- (3.0,2.62);
+\draw [dashed] (3.0,2.25) -- (3.25,2.25);
+\draw [dashed] (3.25,2.0) -- (3.5,2.0);
+\draw [dashed] (3.5,1.91) -- (3.75,1.91);
+\draw [dashed] (3.75,1.9) -- (4.0,1.9);
+\draw [dashed] (4.0,1.93) -- (4.25,1.93);
+\draw [dashed] (4.25,2.05) -- (4.5,2.05);
+%
+\draw [dashed] (0.5,0.0) -- (0.5,1.0);
+\draw [dashed] (0.75,0.0) -- (0.75,1.15);
+\draw [dashed] (1.0,0.0) -- (1.0,1.32);
+\draw [dashed] (1.25,0.0) -- (1.25,1.65);
+\draw [dashed] (1.5,0.0) -- (1.5,2.0);
+\draw [dashed] (1.75,0.0) -- (1.75,2.53);
+\draw [dashed] (2.0,0.0) -- (2.0,2.81);
+\draw [dashed] (2.25,0.0) -- (2.25,2.97);
+\draw [dashed] (2.5,0.0) -- (2.5,2.97);
+\draw [dashed] (2.75,0.0) -- (2.75,2.9);
+\draw [dashed] (3.0,0.0) -- (3.0,2.62);
+\draw [dashed] (3.25,0.0) -- (3.25,2.25);
+\draw [dashed] (3.5,0.0) -- (3.5,2.0);
+\draw [dashed] (3.75,0.0) -- (3.75,1.91);
+\draw [dashed] (4.0,0.0) -- (4.0,1.93);
+\draw [dashed] (4.25,0.0) -- (4.25,2.05);
+\draw [dashed] (4.5,0.0) -- (4.5,2.05);
+%
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Geometrische Interpretation des Integrals}
+
+\begin{center}
+\begin{tikzpicture}
+\draw [->] (-0.5,0.0) -- (5.0,0.0);
+\draw [->] (0.0,-0.5) -- (0.0,4.0);
+\draw (0.5,-0.2) -- (0.5,0.2);
+\draw (4.5,-0.2) -- (4.5,0.2);
+\node[below] at (0.5,-0.2) {\footnotesize $a$};
+\node[below] at (4.5,-0.2) {\footnotesize $b$};
+\node[right] at (5.0,0.0) {\footnotesize $x$};
+\node[above] at (0.0,4.0) {\footnotesize $y$};
+\uncover<1>{
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\uncover<2>{
+\path [fill=red] (0.5,0.0) -- (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5) -- (4.5,0.0) -- (0.5,0.0);
+\draw (0.5,1.0) to [curve through={(1.5,2.0)(2.5,3.0)(3.5,2.0)}] (4.5,2.5);
+}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Das Riemann-Integral}
+
+\begin{example}
+\bq
+ \int\limits_0^1 f\left(x\right) dx,
+ & &
+ f\left(x\right)
+ = 
+ \left\{ \begin{array}{ll}
+  1 & x \in \mathbb{Q} \\
+  0 & x \notin \mathbb{Q} \\
+ \end{array} \right.
+\eq
+Diese Funktion ist nicht Riemann-integrierbar: 
+Alle Obersummen sind stets $1$, alle Untersummen sind stets $0$.
+\end{example}
+
+\vspace*{15mm}
+(Diese Funktion ist Lebesgue-integrierbar.)
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber integrierbare Funktionen}
+
+\begin{theorem}
+Jede stetige Funktion $f : [a,b] \rightarrow \mathbb R$ ist integrierbar.
+\end{theorem}
+
+\begin{theorem}
+Jede monotone Funktion $f : [a,b] \rightarrow \mathbb R$ ist integrierbar.
+\end{theorem}
+
+\begin{theorem}
+Seien $f, g : [a,b] \rightarrow \mathbb R$ integrierbare Funktionen und $\lambda \in \mathbb R$.
+Dann sind auch die Funktionen $f+g$ und $\lambda \cdot f$ integrierbar und es gilt
+{\footnotesize
+\bq
+ \int\limits_a^b (f+g)(x) \; dx & = & \int\limits_a^b f(x) \; dx + \int\limits_a^b g(x) \; dx,
+ \nonumber \\
+ \int\limits_a^b (\lambda f)(x) \; dx & = & \lambda \int\limits_a^b f(x) \; dx.
+\eq
+}
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber integrierbare Funktionen}
+
+\begin{theorem}
+Seien $f, g : [a,b] \rightarrow \mathbb R$ integrierbare Funktionen.
+Dann ist auch die Funktion $f \cdot g$ integrierbar.
+\end{theorem}
+
+Im Allgemeinen ist allerdings
+\bq
+ \int\limits_a^b (f \cdot g)(x) \; dx & \neq & \left( \int\limits_a^b f(x) \; dx \right)
+ \cdot \left(  \int\limits_a^b g(x) \; dx \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stammfunktionen}
+
+\begin{definition}
+Eine differenzierbare Funktion $F : I \rightarrow \mathbb R$ hei{\ss}t {\bf Stammfunktion} einer
+Funktion $f : I \rightarrow \mathbb R$, falls $F'(x)=f(x)$.
+\end{definition}
+
+Eine weitere Funktion $G : I \rightarrow \mathbb R$ ist genau dann ebenfalls eine Stammfunktion, falls
+$F-G$ eine Konstante ist.
+
+\vspace*{4mm}
+Man schreibt auch
+\bq
+ F(x) & = & \int f(x)\; dx.
+\eq
+Der Ausdruck auf der rechten Seite wird auch als {\bf unbestimmtes Integral} bezeichnet.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Hauptsatz der Differential- und Integralrechnung}
+
+\begin{mytheorem27}
+Sei $F(x)$ eine Stammfunktion von $f(x)$.
+\bq
+ \int\limits_a^b f(x) \; dx & = & F(b) - F(a).
+\eq
+\end{mytheorem27}
+
+Man schreibt auch
+\bq
+ \left. F(x) \right|_a^b & = & F(b) - F(a).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stammfunktionen}
+
+Stammfunktionen einiger Grundfunktionen:
+\bq
+ f(x) = x^n & \Rightarrow & F(x) = \frac{x^{n+1}}{n+1}, \;\;\; n \neq -1,
+ \nonumber \\
+ f(x) = e^x & \Rightarrow & F(x) = e^x, 
+ \nonumber \\
+ f(x) = \frac{1}{x} & \Rightarrow & F(x) = \ln\left| x \right|,
+ \nonumber \\
+ f(x) = \sin(x) & \Rightarrow & F(x) = -\cos(x),
+ \nonumber \\
+ f(x) = \cos(x) & \Rightarrow & F(x) = \sin(x),
+ \nonumber \\
+ f(x) = \frac{1}{1+x^2} & \Rightarrow & F(x) = \arctan(x).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Gesucht ist eine Stammfunktion zu
+\bq
+ 3 x^2 - 4 x + 5
+\eq
+\begin{description}
+\item{(A)} $6 x - 4$
+\item{(B)} $3 x^3 - 4 x^2 + 5 x$
+\item{(C)} $\frac{3}{2}x^3-4x^2 + 5 x$
+\item{(D)} $x^3 -2 x^2 + 5 x + 42$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Substitutionsregel}
+
+\begin{theorem}
+Sei $f : [a,b] \rightarrow W_1$ eine stetig differenzierbare Funktion und 
+$g : D_2 \rightarrow W_2$ eine stetige Funktion mit $W_1 \subset D_2$.
+Dann gilt
+\bq
+ \int\limits_a^b g\left( f(x) \right) f'(x) \; dx & = & 
+ \int\limits_{f(a)}^{f(b)} g(x) \; dx.
+\eq
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Substitutionsregel}
+
+\begin{example}
+Wir betrachten das Integral
+\bq
+ I & = &
+ \int\limits_0^\pi d\theta \; \sin \theta \left( 5 \cos^2 \theta + 3 \cos \theta + 1 \right).
+\eq
+F\"ur die Substitution $u = - \cos \theta$ gilt
+\bq
+ \frac{du}{d\theta} & = & \sin \theta
+\eq
+und daher ergibt sich mit Hilfe der Substitutionsregel
+\bq
+ I & = &
+ \int\limits_{-1}^1 du \left( 5 u^2 - 3 u + 1 \right)
+ \;\; = \;\;
+ \left. \left( \frac{5}{3} u^3 - \frac{3}{2} u^2 + u \right) \right|_{-1}^1
+ \;\; = \;\;
+ \frac{16}{3}. 
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Partielle Integration}
+
+\begin{theorem}
+Seien $f,g: [a,b] \rightarrow \mathbb R$ zwei stetig differenzierbare
+Funktionen. Dann gilt
+\bq
+ \int\limits_a^b f(x) g'(x) \; dx
+ & = & 
+ \left. f(x) g(x) \right|_a^b - \int\limits_a^b f'(x) g(x) \; dx.
+\eq
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Partielle Integration}
+
+\begin{example}
+Wir betrachten das Integral
+\bq
+ I & = &
+ \int\limits_0^1 dx \; x \; e^x.
+\eq
+Setzen wir $f(x)=x$ und $g'(x)=\exp(x)$, so l\"a{\ss}t sich die partielle Integration anwenden,
+falls wir eine Stammfunktion zu $g'(x)$ kennen. In diesem Beispiel ist dies besonders einfach,
+es ist $g(x)=\exp(x)$. Somit erhalten wir
+\bq
+ I & = &
+ \left. x \; e^x \right|_0^1
+ - 
+ \int\limits_0^1 dx \; e^x
+ \;\; = \;\;
+ \left. \left( x - 1 \right) \; e^x \right|_0^1
+ \;\; = \;\;
+ 1.
+\eq
+\end{example}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Integrale \"uber rationale Funktionen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Integrale \"uber rationale Funktionen}
+
+Wir betrachten als Beispiel
+\bq
+ I & = & \int\limits_0^1 \frac{x^4+3x^3-12x^2-3x+18}{(x-2)^2(x+2)} \; dx.
+\eq
+Im ersten Schritt zerlegt man den Integranden mit Hilfe der Partialbruchzerlegung:
+\bq
+\frac{x^4+3x^3-12x^2-3x+18}{(x-2)^2(x+2)}
+ & = & 
+ x + 5 + \frac{1}{(x-2)^2} + \frac{4}{x-2} - \frac{2}{x+2}.
+\eq
+Somit ist
+\bq
+ I & = & 
+ \int\limits_0^1 \left( x + 5 \right) \; dx 
+ + \int\limits_0^1 \frac{dx}{(x-2)^2} 
+ + 4 \int\limits_0^1 \frac{dx}{x-2} 
+ - 2 \int\limits_0^1 \frac{dx}{x+2}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Integrale \"uber rationale Funktionen}
+
+{\footnotesize
+\bq
+ I & = & 
+ \int\limits_0^1 \left( x + 5 \right) \; dx 
+ + \int\limits_0^1 \frac{dx}{(x-2)^2} 
+ + 4 \int\limits_0^1 \frac{dx}{x-2} 
+ - 2 \int\limits_0^1 \frac{dx}{x+2}.
+\eq
+}
+
+Wir berechnen nun die einzelnen Integrale:
+{\footnotesize
+\bq
+ \int\limits_0^1 \left( x + 5 \right) \; dx & = & 
+ \left. \frac{1}{2} x^2 + 5 x \right|_0^1 = \frac{11}{2},
+ \nonumber \\
+ \int\limits_0^1 \frac{dx}{(x-2)^2} & = & \left. - \frac{1}{x-2} \right|_0^1 = 1 - \frac{1}{2} = \frac{1}{2},
+ \nonumber \\
+ \int\limits_0^1 \frac{dx}{x-2} & = & \left. \ln\left(|x-2|\right) \right|_0^1 = \ln 1 - \ln 2 = -\ln 2,
+ \nonumber \\
+ \int\limits_0^1 \frac{dx}{x+2} & = & \left. \ln\left(|x+2|\right) \right|_0^1 = \ln 3 -\ln 2,
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Integrale \"uber rationale Funktionen}
+
+Somit erhalten wir
+\bq
+ I & = & \int\limits_0^1 \frac{x^4+3x^3-12x^2-3x+18}{(x-2)^2(x+2)} \; dx
+ \nonumber \\
+ & = & 
+ \frac{11}{2} + \frac{1}{2} + 4 \left( - \ln 2 \right) - 2 \left( \ln 3 - \ln 2 \right)
+ \nonumber \\
+ & = & 
+ 6 - 2 \ln 2 - 2 \ln 3 
+ \nonumber \\
+ & = & 
+ 6 -2 \ln 6.
+\eq
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Uneigentliche Integrale}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uneigentliche Integrale}
+
+\begin{definition}
+Unter einem uneigentlichen Integral versteht man ein Integral, bei dem eine Integrationsgrenze unendlich ist oder
+bei dem der Integrand an einer Integrationsgrenze nicht definiert ist.
+Es kann auch eine Kombination der beiden F\"alle auftreten.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uneigentliche Integrale}
+
+Wir betrachten zun\"achst den Fall, da{\ss} eine Integrationsgrenze unendlich ist.
+Sei $f: [a,\infty[ \rightarrow \mathbb R$ eine Funktion, die \"uber jedem Intervall $[a,\Lambda]$ mit
+$a<\Lambda <\infty$ Riemann-integrierbar ist. Falls der Grenzwert
+\bq
+ \lim\limits_{\Lambda \rightarrow \infty} \int\limits_a^\Lambda f(x) \; dx
+\eq
+existiert, nennt man das Integral von $a$  bis Unendlich konvergent und man setzt
+\bq
+ \int\limits_a^\infty f(x) \; dx
+ & = &
+ \lim\limits_{\Lambda \rightarrow \infty} \int\limits_a^\Lambda f(x) \; dx.
+\eq
+Analog definiert man das Integral f\"ur das Intervall $]-\infty,b]$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uneigentliche Integrale}
+
+\begin{example}
+\bq
+\int\limits_1^\infty \frac{dx}{x^2}
+ & = & 
+ \lim\limits_{\Lambda \rightarrow \infty} \int\limits_1^\Lambda \frac{dx}{x^2}
+ =
+ - \lim\limits_{\Lambda \rightarrow \infty} \left. \frac{1}{x} \right|^\Lambda_1
+ = 
+ 1 - \lim\limits_{\Lambda \rightarrow \infty} \frac{1}{\Lambda}
+ = 
+ 1.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uneigentliche Integrale}
+
+Wir betrachten nun den Fall, da{\ss} der Integrand an einer Intervallgrenze nicht definiert ist.
+Sei $f:]a,b] \rightarrow \mathbb R$ eine Funktion, die \"uber jedem Teilintervall $[a+\eps,b]$ mit
+$0<\eps<(b-a)$ Riemann-integrierbar ist. Falls der Grenzwert
+\bq
+ \lim\limits_{\eps\rightarrow 0+} \int\limits_{a+\eps}^b f(x) \; dx
+\eq
+existiert, nennt man das Integral \"uber $[a,b]$ konvergent und man setzt
+\bq
+ \int\limits_{a}^b f(x) \; dx
+ & = & 
+ \lim\limits_{\eps\rightarrow 0+} \int\limits_{a+\eps}^b f(x) \; dx
+\eq
+Analog definiert man das Integral f\"ur den Fall in der die Funktion an der oberen Intevallgrenze nicht
+definiert ist.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uneigentliche Integrale}
+
+\begin{example}
+\bq
+ \int\limits_0^1 \frac{dx}{\sqrt{x}}
+ & = &
+ \lim\limits_{\eps\rightarrow 0+} \int\limits_\eps^1 \frac{dx}{\sqrt{x}}
+ =
+ 2 \lim\limits_{\eps\rightarrow 0+} \left. \sqrt{x} \right|_\eps^1
+ =
+ 2 - 2 \lim\limits_{\eps\rightarrow 0+} \sqrt{\eps}
+ = 
+ 2.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Uneigentliche Integrale: Allgemeiner Fall}
+
+Sei $f: ]a,b[ \rightarrow \mathbb R$, 
+$a\in {\mathbb R} \cup \{-\infty\}$,
+$b\in {\mathbb R} \cup \{\infty\}$,
+eine Funktion, die \"uber jedem Teilintervall $[\alpha,\beta] \subset ]a,b[$ Riemann-integrierbar ist und sei
+$c\in ]a,b[$ beliebig.
+Falls die beiden uneigentlichen Integrale
+\bq
+ \int\limits_a^c f(x)\;dx = \lim\limits_{\alpha\rightarrow a+} \int\limits_\alpha^c f(x)\;dx,
+ & &
+ \int\limits_c^b f(x)\;dx = \lim\limits_{\beta\rightarrow b-} \int\limits_c^\beta f(x)\;dx
+\eq
+existieren, nennt man das Integral \"uber $]a,b[$ konvergent und man setzt
+\bq
+ \int\limits_a^b f(x)\;dx
+ & = & \int\limits_a^c f(x)\;dx + \int\limits_c^b f(x)\;dx.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \int\limits_0^1 \frac{dx}{x^{\frac{9}{10}}}
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $0$
+\item{(B)} $1$
+\item{(C)} $9$
+\item{(D)} $10$
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Organisation der n\"achsten Woche}
+
+Aufgrund von diversen Einf\"uhrungsveranstaltungen:
+\begin{itemize}
+\item Mittwoch, 28.10.2020: Plenum um 13:00h 
+
+(11:00h Erstsemesterbegr\"u{\ss}ung des Pr\"asidenten)
+\item Freitag, 30.10.2020: keine Vorlesung, kein neues \"Ubungsblatt.
+Plenum und \"Ubungsgruppen finden wie gewohnt statt.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+

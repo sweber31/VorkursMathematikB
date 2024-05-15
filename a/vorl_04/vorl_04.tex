@@ -1,0 +1,801 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+% dedicated environments
+\newtheorem*{myemptytheorem}{}
+\newtheorem*{mytheorem8}{Definition eines Vektorraumes}
+\newtheorem*{mytheorem9}{Ein euklidische Skalarprodukt eines reellen Vektorraumes ist eine positiv definite symmetrische Bilinearform $V \times V \rightarrow {\mathbb R}$:}
+\newtheorem*{mytheorem10}{Ein unit\"ares Skalarprodukt eines komplexen Vektorraumes ist eine positiv definite Hermitische Form $V \times V \rightarrow {\mathbb C}$:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Vektoren}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Motivation und Definition}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+Aus der Schulmathematik sind die Vektorr\"aume ${\mathbb R}^2$ und ${\mathbb R}^3$ bekannt.
+Vektoren aus dem \alert{${\mathbb R}^2$} k\"onnen durch \superalert{zwei reelle Zahlen $x$ und $y$} beschrieben werden
+\bq
+ \left( \begin{array}{c} x \\ y \\ \end{array} \right)
+ & \in & 
+ {\mathbb R}^2,
+\eq
+Vektoren aus dem \alert{${\mathbb R}^3$} k\"onnen durch \superalert{drei reelle Zahlen $x$, $y$ und $z$} 
+\bq
+ \left( \begin{array}{c} x \\ y \\ z \\ \end{array} \right)
+ & \in & 
+ {\mathbb R}^3.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+Wir k\"onnen das Konzept in zwei Richtungen erweitern:
+
+\begin{itemize}
+\item Wir lassen \superalert{andere Dimensionen} zu und beschr\"anken uns nicht mehr auf Vektorr\"aume der Dimension $2$ und $3$.
+
+Beispiel: ${\mathbb R}^n$
+\item Wir lassen \superalert{andere Grundk\"orper} zu, z.B die komplexen Zahlen ${\mathbb C}$.
+
+Beispiel: ${\mathbb C}^n$
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Vektorr\"aume}
+
+Sei $K$ ein K\"orper und $(V,+)$ eine kommutative Gruppe. 
+Weiter sei eine zus\"atzliche Verkn\"upfung gegeben, die man skalare Multiplikation nennt:
+\bq
+K \times V & \rightarrow & V \\
+(k,\vec{v}) & \rightarrow & k \cdot \vec{v}
+\eq
+
+\begin{mytheorem8}
+$V$ ist ein $K$-Vektorraum falls gilt:
+\begin{itemize}
+\item (V1) $(K,+,\cdot)$ ist ein K\"orper
+\item (V2) $(V,+)$ ist eine kommutative Gruppe
+\end{itemize}
+{\footnotesize (Fortsetzung n\"achste Folie)}
+\end{mytheorem8}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Vektorr\"aume}
+
+\begin{mytheorem8}[Fortsetzung]
+\begin{itemize}
+\item (V3) Es gelten die Distributivgesetze:
+\bq
+k \cdot ( \vec{v}_1 + \vec{v}_2 ) &=  & (k \cdot \vec{v}_1 ) + ( k \cdot \vec{v}_2 ) \\
+(k_1 + k_2 ) \cdot \vec{v} & = & (k_1 \cdot \vec{v}) + ( k_2 \cdot \vec{v})
+\eq
+\item (V4) Es gilt das Assoziativgesetz:
+\bq
+k_1 \cdot ( k_2 \cdot \vec{v}) & = & ( k_1 \cdot k_2 ) \cdot \vec{v}
+\eq
+\item (V5) F\"ur die Eins gilt:
+\bq
+1 \cdot \vec{v} & = & \vec{v}
+\eq
+\end{itemize}
+\end{mytheorem8}
+Bemerkung: Bei $(k_1 \cdot k_2)$ ist die Multiplikation im K\"orper gemeint.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Vektorr\"aume}
+
+Als Grundk\"orper treten in den Naturwissenschaften fast immer $\mathbb R$ oder $\mathbb C$ auf.
+Beispiele f\"ur Vektorr\"aume sind der ${\mathbb R}^n$  (mit Grundk\"orper $\mathbb R$)
+und der ${\mathbb C}^n$ (mit Grundk\"orper $\mathbb C$).
+\bq
+ {\mathbb R}^n & = & \left\{ \left( \begin{array}{c} x_1 \\ x_2 \\ ... \\ x_n \\ \end{array} \right) | \; x_1,x_2,...,x_n \in {\mathbb R} \right\},
+ \nonumber \\
+ {\mathbb C}^n & = & \left\{ \left( \begin{array}{c} z_1 \\ z_2 \\ ... \\ z_n \\ \end{array} \right) | \; z_1,z_2,...,z_n \in {\mathbb C} \right\}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Dualer Vektorraum}
+
+Man schreibt die Elemente aus dem Vektorraum als Spaltenvektoren, so zum Beispiel:
+\bq
+ \left( \begin{array}{c} x \\ y \\ z \\ \end{array} \right) \in {\mathbb R}^3.
+\eq
+Ebenso ist die Schreibweise als Zeilenvektor gebr\"auchlich:
+\bq
+ \left( x, y, z \right) \in \left.{\mathbb R}^3\right.^\ast.
+\eq
+$V^\ast$ bezeichnet den zu $V$ {\bf dualen Vektorraum} (falls $V$ alle Spaltenvektoren enth\"alt,
+so enth\"alt $V^\ast$ die Zeilenvektoren).
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Transposition}
+
+Man bezeichnet mit $\vec{v}^T$ den zu $\vec{v}$ transponierten Vektor
+(d.h. aus einem Spaltenvektor wird ein Zeilenvektor, und aus einem Zeilenvektor
+wird ein Spaltenvektor):
+\bq
+ \left( x_1, x_2, ..., x_n \right)^T 
+ & = & 
+ \left( \begin{array}{c} x_1 \\ x_2 \\ ... \\ x_n \\ \end{array} \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Addition und skalare Multiplikation}
+
+Bei der Summe zweier Vektoren werden die Vektoren komponentenweise addiert:
+\bq
+ \left( \begin{array}{c} 1 \\ 2 \\ 3 \\ \end{array} \right) 
+ +
+ \left( \begin{array}{c} 4 \\ 5 \\ 6 \\ \end{array} \right) 
+ =
+ \left( \begin{array}{c} 5 \\ 7 \\ 9 \\ \end{array} \right).
+\eq
+Bei der skalaren Multiplikation wird jede Komponente mit dem Skalar multipliziert:
+\bq
+ 3 \cdot
+ \left( \begin{array}{c} 4 \\ 5 \\ 6 \\ \end{array} \right) 
+ & = & 
+ \left( \begin{array}{c} 12 \\ 15 \\ 18 \\ \end{array} \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \vec{v}_1 \; = \; \left( \begin{array}{c} 3 \\ 5 \\ \end{array} \right),
+ & &
+ \vec{v}_2 \; = \; \left( \begin{array}{c} 1 \\ 1 \\ \end{array} \right).
+\eq
+\bq
+ 2 \vec{v}_1 + 3 \vec{v}_2 & = & ?
+\eq 
+\begin{columns}[b]
+\begin{column}{5cm}
+\begin{description}
+\item{(A)} $\left( \begin{array}{c} 4 \\ 6 \\ \end{array} \right)$
+\item{(C)} $\left( \begin{array}{c} 9 \\ 6 \\ \end{array} \right)$
+\end{description}
+\end{column}
+\begin{column}{5cm}
+\begin{description}
+\item{(B)} $\left( \begin{array}{c} 6 \\ 8 \\ \end{array} \right)$
+\item{(D)} $\left( \begin{array}{c} 9 \\ 13 \\ \end{array} \right)$
+\end{description}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \vec{v}_1 \; = \; \left( \begin{array}{c} 1 \\ 1 \\ \end{array} \right),
+ & &
+ \vec{v}_2 \; = \; \left( \begin{array}{c} 2 i \\ 2 i \\ \end{array} \right).
+\eq
+\bq
+ i \vec{v}_1 - \frac{1}{2} \vec{v}_2 & = & ?
+\eq 
+\begin{columns}[b]
+\begin{column}{5cm}
+\begin{description}
+\item{(A)} $\left( \begin{array}{c} 0 \\ 0 \\ \end{array} \right)$
+\item{(C)} $\left( \begin{array}{c} 2 i \\ 2 i \\ \end{array} \right)$
+\end{description}
+\end{column}
+\begin{column}{6cm}
+\begin{description}
+\item{(B)} $\frac{1}{\sqrt{2}} \left( \begin{array}{c} 1+i \\ 1+i \\ \end{array} \right)$
+\item{(D)} $\left( \begin{array}{c} 0 \\ 1 \\ \end{array} \right)$
+\end{description}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Einheitsvektoren}
+
+\begin{definition}
+Vektoren, die in fast allen Komponenten eine Null haben, bis auf eine Komponente, in
+der sie eine Eins haben, spielen eine wichtige Rolle. Hat so ein Vektor 
+in der $i$-ten Komponente eine Eins,
+\bq
+ \vec{e}_i & = & \left( \underbrace{0,0,...,0}_{i-1},1,0,...,0 \right)^T,
+\eq
+so bezeichnet man diesen Vektor als den {\bf $i$-ten Einheitsvektor}.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Unabh\"angigkeit}
+
+\begin{definition}
+Seien $n$ Vektoren $\vec{v}_1$, $\vec{v}_2$, ..., $\vec{v}_n$ gegeben.
+Folgt aus
+\bq
+ a_1 \vec{v}_1 + a_2 \vec{v}_2 + ... + a_n \vec{v}_n & = & \vec{0}
+\nonumber \\
+& \Rightarrow & a_1 = a_2 = ... = a_n = 0,
+\eq
+so nennt man die Vektoren {\bf linear unabh\"angig}. Anderfalls nennt man sie linear abh\"angig.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Basis und Dimension}
+
+\begin{definition}
+Sei $V$ ein Vektorraum. Die maximale Anzahl linear unabh\"angiger Vektoren
+in $V$ nennt man die {\bf Dimension des Vektorraumes}.
+
+Eine Menge linearer unabh\"angiger Vektoren, die maximal ist, nennt man eine {\bf Basis} von $V$.
+\end{definition}
+
+\begin{example}
+${\mathbb R}^n$ und ${\mathbb C}^n$ haben die Dimension $n$. Eine Basis
+von ${\mathbb R}^n$ und ${\mathbb C}^n$ ist zum Beispiel
+\bq
+ \left\{ \vec{e}_1, \vec{e}_2, ..., \vec{e}_n \right\}.
+\eq
+Man nennt diese Basis die Standardbasis.
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Standardbasis}
+
+\begin{example}[Standardbasis des $\mathbb{R}^4$]
+\bq
+ \left\{
+  \left( \begin{array}{c} 1 \\ 0 \\ 0 \\ 0 \\ \end{array} \right),
+  \left( \begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \\ \end{array} \right),
+  \left( \begin{array}{c} 0 \\ 0 \\ 1 \\ 0 \\ \end{array} \right),
+  \left( \begin{array}{c} 0 \\ 0 \\ 0 \\ 1 \\ \end{array} \right)
+ \right\}
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Die Standardbasis des $\mathbb{C}^2$ ist
+
+\vspace*{5mm}
+
+\begin{columns}[b]
+\begin{column}{6cm}
+\begin{description}
+\item{(A)} $\left\{ \left( \begin{array}{c} 1 \\ 0 \\ \end{array} \right), \left( \begin{array}{c} 0 \\ 1 \\ \end{array} \right) \right\}$
+\item{(C)} $\left\{ \left( \begin{array}{c} 1 \\ 0 \\ \end{array} \right), \left( \begin{array}{c} 0 \\ i \\ \end{array} \right) \right\}$
+\end{description}
+\end{column}
+\begin{column}{7cm}
+\begin{description}
+\item{(B)} $\left\{ \left( \begin{array}{c} i \\ 0 \\ \end{array} \right), \left( \begin{array}{c} 0 \\ i \\ \end{array} \right) \right\}$
+\item{(D)} $\left\{ \left( \begin{array}{c} i \\ 0 \\ \end{array} \right), \left( \begin{array}{c} 0 \\ -i \\ \end{array} \right) \right\}$
+\end{description}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Skalarprodukte}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Das euklidische Standardskalarprodukt im ${\mathbb R}^n$}
+
+Wir betrachten zun\"achst den \alert{${\mathbb R}^n$}. Seien $\vec{x}, \vec{y} \in {\mathbb R}^n$.
+Die Komponentendarstellung der beiden Vektoren bez\"uglich der Standardbasis sei
+\bq
+ \vec{x} =  \left( \begin{array}{c} x_1 \\ x_2 \\ ... \\ x_n \\ \end{array} \right),
+ & &
+ \vec{y} =  \left( \begin{array}{c} y_1 \\ y_2 \\ ... \\ y_n \\ \end{array} \right).
+\eq
+Wir definieren das \superalert{euklidische Standardskalarprodukt} zwischen zwei Vektoren als die Abbildung
+\bq
+ V \times V & \rightarrow & {\mathbb R},
+ \nonumber \\
+ \vec{x} \cdot \vec{y} & = & x_1 y_1 + x_2 y_2 + ... + x_n y_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Euklidische Skalarprodukte}
+
+\begin{mytheorem9}
+\begin{itemize}
+\item Linear in der ersten Komponente:
+{\small
+\bq
+ \left( \vec{x} + \vec{y} \right) \cdot \vec{z} 
+ \; = \; \vec{x} \cdot \vec{z} + \vec{y} \cdot \vec{z},
+ & &
+ \left( \lambda \cdot \vec{x} \right) \cdot \vec{y} \; = \; \lambda \left( \vec{x} \cdot \vec{y} \right).
+\eq
+}
+\item Linear in der zweiten Komponente:
+{\small
+\bq
+ \vec{x} \cdot \left( \vec{y} + \vec{z} \right)  
+ \; = \; \vec{x} \cdot \vec{y} + \vec{x} \cdot \vec{z},
+ & &
+ \vec{x} \cdot \left( \lambda \cdot \vec{y} \right) \; = \; \lambda \left( \vec{x} \cdot \vec{y} \right).
+\eq
+}
+\item Symmetrisch:
+{\small
+\bq
+ \vec{x} \cdot \vec{y} & = & \vec{y} \cdot \vec{x}.
+\eq
+}
+\item Positiv definit:
+{\small
+\bq
+ \vec{x} \cdot \vec{x} & > & 0, \;\;\;\mbox{falls}\;\;\; \vec{x} \neq \vec{0}.
+\eq
+}
+\end{itemize}
+\end{mytheorem9}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Euklidische Skalarprodukte}
+
+\begin{itemize}
+
+\item 
+Ein reeller Vektorraum mit einem euklidischen Skalarprodukt bezeichnet man als einen euklidischen Vektorraum.
+
+\item 
+Die Bezeichnung ``euklidisch'' bezieht sich insbesondere auf Forderung nach positiver Definitheit.
+
+\item
+In der Physik treten auch Skalarprodukte auf, bei denen die Forderung nach positiv Definitheit aufgegeben wird.
+
+Ein Beispiel hierf\"ur ist das Skalarprodukt im Minkowskiraum.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Euklidische Skalarprodukte}
+
+\begin{example}
+\bq
+ \left( \begin{array}{c} 1 \\ 2 \\ 3 \end{array} \right)
+ \cdot
+ \left( \begin{array}{c} 4 \\ 5 \\ 6 \end{array} \right)
+ & = &
+ 1 \cdot 4 + 2 \cdot 5 + 3 \cdot 6
+ \; = \;
+ 4 + 10 + 18 
+ \; = \;
+ 32 
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \left( \begin{array}{r} 7 \\ 3 \\ 1 \\ \end{array} \right)
+ \cdot
+ \left( \begin{array}{r} 2  \\ -5 \\ 3 \\ \end{array} \right)
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $1$
+\item{(B)} $2$
+\item{(C)} $32$
+\item{(D)} $42$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Das unit\"are Standardskalarprodukt im ${\mathbb C}^n$}
+
+Wir betrachten nun \alert{${\mathbb C}^n$}. 
+
+Seien $\vec{x}, \vec{y} \in {\mathbb C}^n$.
+
+In diesem Fall definieren wir das \superalert{unit\"are Standardskalarprodukt} als
+\bq
+ V \times V & \rightarrow & {\mathbb C},
+ \nonumber \\
+ \vec{x} \cdot \vec{y} & = & x_1^\ast y_1 + x_2^\ast y_2 + ... + x_n^\ast y_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Unit\"are Skalarprodukte}
+
+\begin{mytheorem10}
+\begin{itemize}
+\item Semilinear in der ersten Komponente:
+{\small
+\bq
+ \left( \vec{x} + \vec{y} \right) \cdot \vec{z} 
+ \; = \; \vec{x} \cdot \vec{z} + \vec{y} \cdot \vec{z},
+ & &
+ \left( \lambda \cdot \vec{x} \right) \cdot \vec{y} \; = \; \lambda^\ast \left( \vec{x} \cdot \vec{y} \right).
+\eq
+}
+\item Linear in der zweiten Komponente:
+{\small
+\bq
+ \vec{x} \cdot \left( \vec{y} + \vec{z} \right)  
+ \; = \; \vec{x} \cdot \vec{y} + \vec{x} \cdot \vec{z},
+ & &
+ \vec{x} \cdot \left( \lambda \cdot \vec{y} \right) \; = \; \lambda \left( \vec{x} \cdot \vec{y} \right).
+\eq
+}
+\item Hermitisch:
+{\small
+\bq
+ \vec{x} \cdot \vec{y} & = & \left( \vec{y} \cdot \vec{x} \right)^\ast.
+\eq
+}
+\item Positiv definit:
+{\small
+\bq
+ \vec{x} \cdot \vec{x} & > & 0, \;\;\;\mbox{falls}\;\;\; \vec{x} \neq \vec{0}.
+\eq
+}
+\end{itemize}
+\end{mytheorem10}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Unit\"are Skalarprodukte}
+
+\begin{example}
+\bq
+ \left( \begin{array}{c} i \\ 2 \\ 3i \end{array} \right)
+ \cdot
+ \left( \begin{array}{c} 4i \\ 5 \\ 6 \end{array} \right)
+ & = &
+ i^\ast \cdot \left(4i\right) + \left(2\right)^\ast \cdot 5 + \left(3i\right)^\ast \cdot 6
+ \nonumber \\
+ & = & 
+ \left(-i\right) \cdot \left(4i\right) + 2 \cdot 5 + \left(-3i\right) \cdot 6
+ \nonumber \\
+ & = &
+ 4 + 10 - 18 i
+ \nonumber \\
+ & = &
+ 14 - 18 i.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \left( \begin{array}{c} 1+i \\ i \\ \end{array} \right)
+ \cdot
+ \left( \begin{array}{c} 1+i  \\ i \\ \end{array} \right)
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $1+3i$
+\item{(B)} $2$
+\item{(C)} $3$
+\item{(D)} $-1+2i$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Betrag eines Vektors}
+
+\begin{definition}
+Man bezeichnet mit
+\bq
+ \left| \vec{x} \right|
+ & = & \sqrt{ \vec{x} \cdot \vec{x}}
+\eq
+die L\"ange oder den {\bf Betrag von $\vec{x}$}.
+\end{definition}
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Winkel zweier Vektoren und Orthogonalit\"at}
+
+Sei \alert{$\vec{x}, \vec{y} \in {\mathbb R}^n$}. Der Winkel zwischen den beiden Vektoren
+ist gegeben durch
+\bq
+ \vec{x} \cdot \vec{y} & = & \left| \vec{x} \right| \left| \vec{y} \right| \cos \varphi,
+\eq
+also
+\bq 
+\varphi & = & \arccos \frac{\vec{x} \cdot \vec{y}}{\left| \vec{x} \right| \left| \vec{y} \right|}.
+\eq
+Zwei Vektoren stehen {\bf senkrecht} aufeinander ($\varphi=90^\circ$), falls
+\bq
+ \vec{x} \cdot \vec{y} & = & 0.
+\eq
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Das Kreuzprodukt}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Das Kreuzprodukt}
+
+Sei $V$ der Vektorraum ${\mathbb R}^3$ oder ${\mathbb C}^3$. 
+
+In einem \superalert{dreidimensionalen Vektorraum} ist zus\"atzlich das Kreuzprodukt als eine Abbildung
+\bq
+ V \times V & \rightarrow & V,
+ \nonumber \\
+ \left( \begin{array}{c} x_1 \\ x_2 \\ x_3 \\ \end{array} \right)
+ \times
+ \left( \begin{array}{c} y_1 \\ y_2 \\ y_3 \\ \end{array} \right)
+  & = &
+ \left( \begin{array}{c} x_2 y_3 -x_3 y_2 \\ x_3 y_1 - x_1 y_3 \\ x_1 y_2 - x_2 y_1 \\ \end{array} \right)
+\eq
+definiert.
+
+\vspace*{5mm} 
+
+\alert{Wichtig}: Das Kreuzprodukt gibt es nur in drei Dimensionen!
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Das Kreuzprodukt}
+
+\begin{example}
+\bq
+ \left( \begin{array}{c} 1 \\ 2 \\ 3 \\ \end{array} \right)
+ \times
+ \left( \begin{array}{c} 4 \\ 5 \\ 6 \\ \end{array} \right)
+  & = &
+ \left( \begin{array}{c} 2 \cdot 6 - 3 \cdot 5 \\ 3 \cdot 4 - 1 \cdot 6 \\ 1 \cdot 5 - 2 \cdot 4 \\ \end{array} \right)
+ \; = \;
+ \left( \begin{array}{r} -3 \\ 6 \\ -3 \\ \end{array} \right)
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Eigenschaften des Kreuzproduktes}
+
+Das Kreuzprodukt ist anti-symmetrisch:
+\bq
+ \vec{x} \times \vec{y} & = & - \vec{y} \times \vec{x}.
+\eq
+Der Vektor $\vec{x} \times \vec{y}$ steht senkrecht auf $\vec{x}$ und $\vec{y}$:
+\bq
+ \vec{x} \cdot \left( \vec{x} \times \vec{y} \right) & = & 0,
+ \nonumber \\
+ \vec{y} \cdot \left( \vec{x} \times \vec{y} \right) & = & 0,
+\eq
+F\"ur den Betrag von $\vec{x} \times \vec{y}$ gilt:
+\bq
+ \left| \vec{x} \times \vec{y} \right | & = &
+ \left| \vec{x} \right| \left| \vec{y} \right| \sin \varphi,
+\eq
+wobei $\varphi$ der Winkel zwischen $\vec{x}$ und $\vec{y}$ ist.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Antisymmetrischer Tensor}
+
+Sei $\vec{z} = \vec{x} \times \vec{y}$.
+F\"ur die Komponenten von $\vec{z}$ gilt:
+\bq
+ z_i & = & \sum\limits_{j=1}^3 \sum\limits_{k=1}^3 \eps_{ijk} x_j y_k
+\eq
+Hier wurde der {\bf antisymmetrische Tensor} (oder {\bf Levi-Civita-Tensor}) $\eps_{ijk}$ verwendet.
+\begin{definition}[antisymmetrischer Tensor]
+\bq
+ \eps_{ijk} & = & \left\{
+ \begin{array}{rl}
+   +1 & \mbox{f\"ur $(i,j,k)$ eine gerade Permutation von $(1,2,3)$,} \\
+   -1 & \mbox{f\"ur $(i,j,k)$ eine ungerade Permutation von $(1,2,3)$,} \\
+   0 & \mbox{sonst}. \\
+ \end{array}
+\right.
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Permutationen}
+
+\begin{definition}
+Eine Permutation $(\sigma_1,\sigma_2,...,\sigma_n)$ nennt man gerade, wenn man sie durch eine
+gerade Anzahl von paarweisen Vertauschungen aus $(1,2,...,n)$ erzeugen kann.
+Ben\"otigt man eine ungerade Anzahl von Vertauschungen, so nennt man die Permutation ungerade.
+\end{definition}
+
+\begin{example}
+\bq
+ (3,2,1,5,4) & & \mbox{ist eine gerade Permutation}
+\nonumber \\
+ & & \mbox{(vertausche $1\leftrightarrow 3$ und $4 \leftrightarrow 5$),}
+\nonumber \\
+ (1,5,3,4,2) & & \mbox{ist eine ungerade Permutation}
+\nonumber \\
+ & & \mbox{(vertausche $2\leftrightarrow 5$).}
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Kronecker-Delta-Symbol}
+
+\begin{definition}[Kronecker-Delta-Symbol]
+\bq
+ \delta_{ij}
+ & = & \left\{
+ \begin{array}{rl}
+   +1 & \mbox{f\"ur $i=j$,} \\
+   0 & \mbox{f\"ur $i\neq j$}. \\
+ \end{array}
+\right.
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \eps_{132}
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $-1$
+\item{(B)} $0$
+\item{(C)} $1$
+\item{(D)} $6$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Bemerkungen}
+
+\begin{myemptytheorem}
+Unit\"ares Skalarprodukt: Sei $\vec{x}, \vec{y} \in \mathbb{C}^n$.
+Im Allgemeinen
+\bq
+ \vec{y} \cdot \vec{x} & \neq & \vec{x} \cdot \vec{y}.
+\eq
+Es ist
+\bq
+ \vec{y} \cdot \vec{x} & = & \left( \vec{x} \cdot \vec{y} \right)^\ast.
+\eq
+\end{myemptytheorem}
+\begin{myemptytheorem}
+Kreuzprodukt: Sei $\vec{x}, \vec{y} \in \mathbb{R}^3$.
+Im Allgemeinen
+\bq
+ \vec{y} \times \vec{x} & \neq & \vec{x} \times \vec{y}.
+\eq
+Es ist
+\bq
+ \vec{y} \times \vec{x} & = & - \vec{x} \times \vec{y}.
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+

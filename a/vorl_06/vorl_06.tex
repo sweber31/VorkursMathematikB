@@ -1,0 +1,1031 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem12}{Die Multiplikation einer $n\times k$-Matrix $A$ mit einer $k \times m$-Matrix $B$ ist wie folgt definiert:}
+\newtheorem*{mytheorem13}{Die Addition zweier Matrizen mit gleicher Spalten- und Zeilenanzahl ist definiert durch}
+\newtheorem*{mytheorem14}{Eine Multiplikation mit Skalaren ist definiert durch}
+\newtheorem*{mytheorem15}{Die Spur (engl. ``trace'') einer quadratischen Matrix ist die Summe der Diagonalelemente:}
+\newtheorem*{mytheorem16}{Die Determinante einer quadratischen $n \times n$-Matrix ist definiert durch}
+\newtheorem*{mytheorem17}{Laplace'sche Entwicklungssatz:}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Matrizen}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Definition}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Matrizen}
+
+\begin{definition}
+Eine rechteckige Anordnung 
+\bq
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1m} \\
+ a_{21} & a_{22} & ... & a_{2m} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nm} \\
+\end{array} \right)
+\eq
+von Elementen $a_{ij}$ aus einem K\"orper nennt man Matrix.
+
+Die Elemente $a_{ij}$ nennt man die Komponenten der Matrix.
+
+Eine Matrix mit $n$ Zeilen und $m$ Spalten bezeichnet man als $n \times m$-Matrix.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Matrizen}
+
+\begin{itemize}
+\item Eine Matrix bezeichnet man als \alert{quadratisch}, falls $n=m$.
+
+\item Eine Matrix bezeichnet man als \alert{Einheitsmatrix}, falls sie quadratisch ist und $a_{ij}=\delta_{ij}$.
+
+\item Eine Matrix bezeichnet man als \alert{Diagonalmatrix}, falls sie quadratisch ist und $a_{ij}=0$ f\"ur alle $i \neq j$.
+
+\item Eine Matrix bezeichnet man als \alert{obere Dreiecksmatrix}, falls sie quadratisch ist und $a_{ij}=0$ f\"ur alle $i>j$.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Matrizen}
+
+\begin{columns}[b]
+\begin{column}{5cm}
+\alert{Quadratisch}:
+\bq
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1n} \\
+ a_{21} & a_{22} & ... & a_{2n} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nn} \\
+\end{array} \right)
+\eq
+%
+\alert{Diagonalmatrix}:
+\bq
+\left( \begin{array}{cccc}
+ \lambda_1 & 0 & ... & 0 \\
+ 0 & \lambda_2 & ... & 0 \\
+ ...    & ...    & ... & ...    \\
+ 0 & 0 & ... & \lambda_n \\
+\end{array} \right)
+\eq
+\end{column}
+%
+\begin{column}{5cm}
+\alert{Einheitsmatrix}:
+\bq
+\left( \begin{array}{cccc}
+ 1 & 0 & ... & 0 \\
+ 0 & 1 & ... & 0 \\
+ ...    & ...    & ... & ...    \\
+ 0 & 0 & ... & 1 \\
+\end{array} \right)
+\eq
+%
+\alert{obere Dreiecksmatrix}:
+\bq
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1n} \\
+ 0 & a_{22} & ... & a_{2n} \\
+ ...    & ...    & ... & ...    \\
+ 0 & 0 & ... & a_{nn} \\
+\end{array} \right)
+\eq
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Addition von Matrizen}
+
+Seien $A$ und $B$ zwei $n \times m$-Matrizen.
+
+\begin{mytheorem13}
+{\scriptsize
+\bq
+\lefteqn{
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1m} \\
+ a_{21} & a_{22} & ... & a_{2m} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nm} \\
+\end{array} \right)
+ +
+\left( \begin{array}{cccc}
+ b_{11} & b_{12} & ... & b_{1m} \\
+ b_{21} & b_{22} & ... & b_{2m} \\
+ ...    & ...    & ... & ...    \\
+ b_{n1} & b_{n2} & ... & b_{nm} \\
+\end{array} \right)
+ } & &
+ \nonumber \\ 
+ & = &
+\left( \begin{array}{cccc}
+ a_{11} + b_{11} & a_{12} + b_{12} & ... & a_{1m} + b_{1m} \\
+ a_{21} + b_{21} & a_{22} + b_{22} & ... & a_{2m} + b_{2m} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} + b_{n1} & a_{n2} + b_{n2} & ... & a_{nm} + b_{nm} \\
+\end{array} \right)
+\eq
+}
+\end{mytheorem13}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Addition von Matrizen}
+
+\begin{example}
+\bq
+\left( \begin{array}{ccc}
+ 1 & 2 & 3 \\
+ 4 & 5 & 6 \\
+\end{array} \right)
+ +
+\left( \begin{array}{ccc}
+ 7 & 8 & 9 \\
+ 10 & 11 & 12 \\
+\end{array} \right)
+ & = &
+\left( \begin{array}{ccc}
+ 1+7 & 2+8 & 3+9 \\
+ 4+10 & 5+11 & 6+12 \\
+\end{array} \right)
+ \nonumber \\
+ & = &
+\left( \begin{array}{ccc}
+ 8 & 10 & 12 \\
+ 14 & 16 & 18 \\
+\end{array} \right)
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation mit Skalaren}
+
+\begin{mytheorem14}
+{\small
+\bq
+\lambda \cdot
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1m} \\
+ a_{21} & a_{22} & ... & a_{2m} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nm} \\
+\end{array} \right)
+& = & 
+\left( \begin{array}{cccc}
+ \lambda a_{11} & \lambda a_{12} & ... & \lambda a_{1m} \\
+ \lambda a_{21} & \lambda a_{22} & ... & \lambda a_{2m} \\
+ ...    & ...    & ... & ...    \\
+ \lambda a_{n1} & \lambda a_{n2} & ... & \lambda a_{nm} \\
+\end{array} \right)
+\eq
+}
+\end{mytheorem14}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation mit Skalaren}
+
+\begin{example}
+\bq
+ 3 \cdot
+\left( \begin{array}{ccc}
+ 1 & 2 & 3 \\
+ 4 & 5 & 6 \\
+\end{array} \right)
+ & = &
+\left( \begin{array}{ccc}
+ 3 \cdot 1 & 3 \cdot 2 & 3 \cdot 3 \\
+ 3 \cdot 4 & 3 \cdot 5 & 3 \cdot 6 \\
+\end{array} \right)
+ \nonumber \\
+ & = &
+\left( \begin{array}{ccc}
+ 3 & 6 & 9 \\
+ 12 & 15 & 18 \\
+\end{array} \right)
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Vektorraum der $n \times m$-Matrizen}
+
+\begin{itemize}
+\item Mit dieser Addition und dieser skalaren Multiplikation bilden die $n\times m$-Matrizen einen Vektorraum.
+
+\item Die Dimension dieses Vektorraumes ist $n \cdot m$.
+
+\item Eine Basis ist gegegeben durch die Matrizen $e_{ij}$,
+{\small
+\bq
+ e_{ij} & = &
+\left( \begin{array}{ccccccc}
+ 0 & ... & ... & 0 & ... & ... & 0 \\
+ ... & ... & ... & ... & ... & ... & ...\\
+ 0 & ... & ... & 0 & ... & ... & 0 \\
+ 0 & ... & 0 & 1 & 0 & ... & 0 \\
+ 0 & ... & ... & 0 & ... & ... & 0 \\
+ ... & ... & ... & ... & ... & ... & ...\\
+ 0 & ... & ... & 0 & ... & ... & 0 \\
+\end{array} \right),
+\eq
+}
+
+die nur in dem Eintrag in der $i$-ten Zeile und $j$-ten Spalte eine Eins haben, ansonsten nur Nullen.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation}
+
+\begin{mytheorem12}
+Das Ergebnis ist eine $n \times m$-Matrix $C$
+{\footnotesize
+\bq
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1k} \\
+ a_{21} & a_{22} & ... & a_{2k} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nk} \\
+\end{array} \right)
+ \cdot
+\left( \begin{array}{cccc}
+ b_{11} & b_{12} & ... & b_{1m} \\
+ b_{21} & b_{22} & ... & b_{2m} \\
+ ...    & ...    & ... & ...    \\
+ b_{k1} & b_{k2} & ... & b_{km} \\
+\end{array} \right)
+& = &
+\left( \begin{array}{cccc}
+ c_{11} & c_{12} & ... & c_{1m} \\
+ c_{21} & c_{22} & ... & c_{2m} \\
+ ...    & ...    & ... & ...    \\
+ c_{n1} & c_{n2} & ... & c_{nm} \\
+\end{array} \right),
+\eq
+}
+wobei
+\bq
+ c_{ij} & = & a_{i1} b_{1j} + a_{i2} b_{2j} + ... + a_{ik} b_{kj}.
+\eq
+\end{mytheorem12}
+
+\vspace*{2mm}
+Regel: \hspace*{17mm} Zeile $\times$ Spalte
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation}
+
+\begin{example}
+{\footnotesize
+\bq
+\left( \begin{array}{ccc}
+ 1 & 2 & 3 \\
+ 4 & 5 & 6 \\
+\end{array} \right)
+ \cdot
+\left( \begin{array}{cc}
+ 7 & 8 \\
+ 9 & 10 \\
+ 11 & 12 \\
+\end{array} \right)
+ & = &
+\left( \begin{array}{cc}
+ 1 \cdot 7 + 2 \cdot 9 + 3 \cdot 11 & 1 \cdot 8 + 2 \cdot 10 + 3 \cdot 12 \\
+ 4 \cdot 7 + 5 \cdot 9 + 6 \cdot 11 & 4 \cdot 8 + 5 \cdot 10 + 6 \cdot 12 \\
+\end{array} \right)
+ \nonumber \\
+ & = &
+\left( \begin{array}{cc}
+ 7 + 18 + 33 & 8 + 20 + 36 \\
+ 28 + 45 + 66 & 32 + 50 + 72 \\
+\end{array} \right)
+ \nonumber \\
+ & = &
+\left( \begin{array}{cc}
+ 58 & 64 \\
+ 139 & 154 \\
+\end{array} \right)
+\eq
+}
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+\left( \begin{array}{cc}
+ 1 & 2 \\
+ 3 & 4 \\
+\end{array} \right)
+ \cdot
+\left( \begin{array}{c}
+ 1 \\
+ 2 \\
+\end{array} \right)
+ & = & ?
+\eq
+\begin{columns}[b]
+\begin{column}{5cm}
+\begin{description}
+\item{(A)} $\left( \begin{array}{cc} 1 & 2 \\ 6 & 8 \\ \end{array} \right)$
+\item{(C)} $\left( \begin{array}{cc} 7 & 10 \end{array} \right)$
+\end{description}
+\end{column}
+\begin{column}{5cm}
+\begin{description}
+\item{(B)} $\left( \begin{array}{c} 5 \\ 11 \\ \end{array} \right)$
+\item{(D)} $\left( \begin{array}{c} 17 \\ \end{array} \right)$
+\end{description}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+\left( \begin{array}{cc}
+ 1 \\
+ 2 \\
+\end{array} \right)
+ \cdot
+\left( \begin{array}{cc}
+ 3 & 4 \\
+\end{array} \right)
+ & = & ?
+\eq
+\begin{columns}[b]
+\begin{column}{5cm}
+\begin{description}
+\item{(A)} $\left( \begin{array}{cc} 3 & 4 \\ 6 & 8 \\ \end{array} \right)$
+\item{(C)} $\left( \begin{array}{cc} 3 & 8 \end{array} \right)$
+\end{description}
+\end{column}
+\begin{column}{5cm}
+\begin{description}
+\item{(B)} $\left( \begin{array}{c} 3 \\ 8 \\ \end{array} \right)$
+\item{(D)} $\left( \begin{array}{c} 11 \\ \end{array} \right)$
+\end{description}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Spaltenvektoren und Zeilenvektoren als Matrizen}
+
+\begin{itemize}
+\item Ein $n$-dimensionaler Spaltenvektor 
+\bq
+ \left(\begin{array}{c} a_{11} \\ a_{21} \\ \dots \\ a_{n1} \\ \end{array} \right)
+\eq
+kann als eine $n \times 1$-Matrix aufgefasst werden.
+\item Ebenso kann ein $n$-dimensionaler Zeilenvektor 
+\bq
+ \left( a_{11}, a_{12}, \dots, a_{1n} \right)
+\eq
+als eine $1 \times n$-Matrix betrachtet werden.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Gleichungssysteme}
+
+Setzt man
+{\small
+\bq
+A =  
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1m} \\
+ a_{21} & a_{22} & ... & a_{2m} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nm} \\
+\end{array} \right),
+ \;\;\;
+\vec{x} = \left(\begin{array}{c} x_1 \\ x_2 \\ ... \\ x_m \\ \end{array} \right),
+ \;\;\;
+\vec{b} = \left(\begin{array}{c} b_1 \\ b_2 \\ ... \\ b_n \\ \end{array} \right),
+\eq
+}
+so l\"a{\ss}t sich das lineare Gleichungssystem
+{\small
+\bq
+ a_{11} x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ a_{n1} x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+}
+auch wie folgt schreiben:
+\bq
+ A \cdot \vec{x} & = & \vec{b}.
+\eq
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Spuren und Determinanten}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quadratische Matrizen}
+
+Wir betrachten im folgenden die \alert{quadratischen} $n\times n$-Matrizen
+\bq
+ A & = & 
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1n} \\
+ a_{21} & a_{22} & ... & a_{2n} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nn} \\
+\end{array} \right)
+\eq
+und f\"uhren die Begriffe {\bf Spur} und {\bf Determinante} ein.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Spur}
+
+Sei $A$ eine $n\times n$-Matrix:
+\bq
+ A & = & 
+\left( \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1n} \\
+ a_{21} & a_{22} & ... & a_{2n} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nn} \\
+\end{array} \right).
+\eq
+\begin{mytheorem15}
+\bq
+\mbox{Tr}\; A & = & \sum\limits_{i=1}^n a_{ii}
+ = a_{11} + a_{22} + ... + a_{nn}.
+\eq
+\end{mytheorem15}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rechenregeln f\"ur die Spur}
+
+Es seien $A$ und $B$ $n\times n$-Matrizen, $\lambda$ ein Skalar:
+\bq
+ \mbox{Tr} \; \left( A + B \right) & = & \mbox{Tr}\; A + \mbox{Tr}\; B,
+ \nonumber \\
+ \mbox{Tr} \; \left( \lambda \cdot A \right) & = & \lambda \; \mbox{Tr} \; A.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Spur}
+
+\begin{example}
+\bq
+ \mbox{Tr}
+\left( \begin{array}{rrrr}
+ 1 & 2 & 3 & 4 \\
+ 5 & 6 & 7 & 8 \\
+ 9 & 10 & 11 & 12 \\
+ 13 & 14 & 15 & 16 \\
+\end{array} \right)
+ & = & 
+ 1 + 6 + 11 +16
+ \; = \;
+ 34
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \mbox{Tr}
+\left( \begin{array}{rrrr}
+ 1 & 0 & 0 & 42 \\
+ 0 & 1 & 0 & 0 \\
+ 0 & 0 & 1 & 0 \\
+ 3 & 0 & 0 & 0 \\
+\end{array} \right)
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $\sqrt{3}$
+\item{(B)} $3$
+\item{(C)} $6$
+\item{(D)} $45$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Determinante}
+
+\begin{mytheorem16}
+\bq
+ \det A & = & 
+ \sum\limits_{i_1=1}^n \sum\limits_{i_2=1}^n ... \sum\limits_{i_n=1}^n
+ \eps_{i_1 i_2 ... i_n} a_{1i_1} a_{2i_2} ... a_{ni_n},
+\eq
+wobei $\eps_{i_1 i_2 ... i_n}$ das total antisymmetrische Symbol in $n$ Dimensionen ist
+{\footnotesize
+\bq
+ \eps_{i_1 i_2 ... i_n} & = & \left\{
+ \begin{array}{rl}
+   +1 & \mbox{f\"ur $(i_1 i_2 ... i_n)$ eine gerade Permutation von $(1,2,...,n)$,} \\
+   -1 & \mbox{f\"ur $(i_1 i_2 ... i_n)$ eine ungerade Permutation von $(1,2,...,n)$,} \\
+   0 & \mbox{sonst}. \\
+ \end{array}
+\right.
+\eq
+}
+\end{mytheorem16}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Determinante}
+
+F\"ur die Determinante existiert auch die folgende Schreibweise
+\bq
+ \det A & = & 
+\left| \begin{array}{cccc}
+ a_{11} & a_{12} & ... & a_{1n} \\
+ a_{21} & a_{22} & ... & a_{2n} \\
+ ...    & ...    & ... & ...    \\
+ a_{n1} & a_{n2} & ... & a_{nn} \\
+\end{array} \right|.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Determinante einer Diagonalmatrix}
+
+Sei $D=\mbox{diag}(\lambda_1, \lambda_2, ..., \lambda_n)$ eine Diagonalmatrix.
+
+\vspace*{5mm} 
+
+Dann ist
+\bq
+ \det D & = & \lambda_1 \cdot \lambda_2 \cdot ... \cdot \lambda_n.
+\eq
+
+\vspace*{10mm}
+
+Eine $1 \times 1$-Matrix ist immer eine Diagonalmatrix und somit
+\bq
+ \left| a_{11} \right| & = & a_{11}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Berechnung der Determinante}
+
+Zu einer $n\times n$-Matrix $A$ definieren wir zun\"achst eine $(n-1)\times (n-1)$-Matrix $A_{ij}$, 
+die dadurch ensteht, da{\ss} man die $i$-te Zeile und die $j$-te Spalte der Matrix $A$ entfernt.
+
+\begin{mytheorem17}
+Entwicklung nach der $i$-ten Zeile:
+{\small
+\bq
+ \det A & = & \sum\limits_{j=1}^n (-1)^{i+j} a_{ij} \det A_{ij}.
+\eq
+}
+\"Aquivalent kann auch nach der $j$-ten Spalte entwickelt werden:
+{\small
+\bq
+ \det A & = & \sum\limits_{i=1}^n (-1)^{i+j} a_{ij} \det A_{ij}.
+\eq
+}
+\end{mytheorem17}
+
+Dies erlaubt die rekursive Berechnung einer Determinante. 
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rechenregeln f\"ur die Determinante:}
+
+Es seien $A$ und $B$ $n\times n$-Matrizen, $\lambda$ ein Skalar:
+\bq
+ \det \left( A \cdot B \right) & = & \left( \det A \right) \cdot \left( \det B \right),
+ \nonumber \\
+ \det \left( \lambda \cdot A \right) & = & \lambda ^n \cdot \det A.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Determinante}
+
+\begin{example}
+\bq
+\left| \begin{array}{cccc}
+ 1 & 0 & 0 & 0 \\
+ 2 & 0 & 3 & 0 \\
+ 4 & 5 & 6 & 7 \\
+ 8 & 9 & 10 & 11 \\
+\end{array} \right|
+ & = &
+ 1 \cdot
+\left| \begin{array}{ccc}
+ 0 & 3 & 0 \\
+ 5 & 6 & 7 \\
+ 9 & 10 & 11 \\
+\end{array} \right|
+ \; = \;
+ -3 \cdot
+\left| \begin{array}{cc}
+ 5 & 7 \\
+ 9 & 11 \\
+\end{array} \right|
+ \nonumber \\
+ & = & 
+ -3 \cdot \left( 5 \cdot 11 - 7 \cdot 9 \right)
+ \; = \;
+ 24 
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+\left| \begin{array}{cccc}
+ 1 & 0 & 0 & 42 \\
+ 0 & 2 & 0 & 0 \\
+ 0 & 0 & 3 & 0 \\
+ 0 & 0 & 0 & 4 \\
+\end{array} \right|
+ & = & ?
+\eq
+\begin{description}
+\item{(A)} $0$
+\item{(B)} $10$
+\item{(C)} $24$
+\item{(D)} $-228$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quadratische Matrizen}
+
+Seien $A$ und $B$ zwei $n \times n$-Matrizen. In diesem Fall ist das Matrixprodukt
+\bq
+ A \cdot B
+\eq
+wieder eine $n \times n$-Matrix. 
+
+F\"ur $n \times n$-Matrizen ist die Matrizenmultiplikation also abgeschlossen.
+
+\vspace*{5mm}
+
+Das neutrale Element bez\"uglich der Matrizenmultiplikation ist offensichtlich die Einheitsmatrix
+{\small
+\bq
+ {\bf 1}  & = & 
+\left( \begin{array}{ccccc}
+ 1 & 0 & ... & ... & 0 \\
+ 0 & 1 & & & 0 \\
+ ... & & ... & & ... \\
+ 0 & & & 1 & 0 \\
+ 0 & ... & ... & 0 & 1 \\
+\end{array} \right).
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die inverse Matrix}
+
+Unter welchen Bedingungen existiert auch ein inverses Element?
+
+Falls so ein Element existiert bezeichnen wir es mit $A^{-1}$. Es soll also gelten
+\bq
+ A \cdot A^{-1} & = & {\bf 1}.
+\eq
+Nehmen wir auf beiden Seiten die Determinante, so erhalten wir
+\bq
+ \det A \cdot \det A^{-1} & = & \det {\bf 1} = 1,
+\eq
+also falls $\det A \neq 0$
+\bq
+ \det A^{-1} & = & \frac{1}{\det A}.
+\eq
+$\det A \neq 0$ ist eine notwendige Bedingung f\"ur die Existenz eines Inversen. 
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die inverse Matrix}
+
+Es l\"a{\ss}t sich zeigen, da{\ss} $\det A \neq 0$ 
+auch eine hinreichende Bedingung ist.
+
+\begin{theorem}
+$A^{-1}$ existiert genau dann, wenn $\det A \neq 0$.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Gruppe der invertierbaren Matrizen}
+
+Wir betrachten nun die Menge aller quadratischen $n \times n$-Matrizen mit der Eigenschaft $\det A \neq 0$.
+
+Wegen $\det(A B) = \det A \det B$ ist diese Menge abgeschlossen bez\"uglich der Matrizenmultiplikation.
+
+Wie gerade diskutiert wurde, existiert in dieser Menge zu jeder Matrix auch ein Inverses.
+
+Diese Menge bildet daher bez\"uglich der Matrizenmultiplikation eine Gruppe, die man als
+\bq
+ GL\left(n,{\mathbb R}\right),
+\;\;\;\mbox{bzw.}\;\;\;
+ GL\left(n,{\mathbb C}\right)
+\eq
+bezeichnet.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Berechnung der inversen Matrix}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die inverse Matrix}
+
+Sei $A$ eine $n \times n$-Matrix mit $\det A \neq 0$. Gesucht ist eine $n \times n$-Matrix $X$
+\bq
+ X & = & 
+\left( \begin{array}{cccc}
+ x_{11} & x_{12} & ... & x_{1n} \\
+ x_{21} & x_{22} & ... & x_{2n} \\
+ ...    & ...    & ... & ...    \\
+ x_{n1} & x_{n2} & ... & x_{nn} \\
+\end{array} \right),
+\eq
+so da{\ss} gilt:
+\bq
+ A \cdot X & = & {\bf 1}
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die inverse Matrix}
+
+Wir multiplizieren die linke Seite aus und betrachten danach die $j$-te Spalte auf beiden Seiten:
+\bq
+a_{11} x_{1j} + a_{12} x_{2j} + ... + a_{1n} x_{nj} & = & 0, 
+ \nonumber \\
+ ... & = & 0
+ \nonumber \\
+a_{j1} x_{1j} + a_{j2} x_{2j} + ... + a_{jn} x_{nj} & = & 1, 
+ \nonumber \\
+ ... & = & 0
+ \nonumber \\
+a_{n1} x_{1j} + a_{n2} x_{2j} + ... + a_{nn} x_{nj} & = & 0.
+\eq
+Diese $n$ Gleichungen bilden eine lineares Gleichungssystem f\"ur die Unbekannten $x_{1j}$, $x_{2j}$, ..., $x_{nj}$,
+welches mit Hilfe des Gau{\ss}schen Algorithmus gel\"ost werden kann.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die inverse Matrix}
+
+Da dies f\"ur jede Spalte $j$ gilt, kann man so alle $n^2$ Unbekannten $x_{ij}$ bestimmen.
+
+Da die Koeffizienten der linken Seite des linearen Gleichungssystems immer gleich sind, verf\"ahrt man in der Praxis wie
+folgt:
+
+Man schreibt die Gleichungen wie folgt an
+{\small
+\bq
+\begin{array}{cccc|cccc}
+ a_{11} & a_{12} & ... & a_{1n} & 1 & 0 & ... & 0 \\
+ a_{21} & a_{22} & ... & a_{2n} & 0 & 1 & ... & 0 \\
+ ...    & ...    & ... & ...    & ... & ... & ... & ... \\
+ a_{n1} & a_{n2} & ... & a_{nn} & 0 & 0 & ... & 1 \\
+\end{array}
+\eq
+}
+
+und bringt dieses Gleichungssystem mit Hilfe des Gau{\ss}'schen Algorithmus auf die Form
+{\small
+\bq
+\begin{array}{cccc|cccc}
+ 1 & 0 & ... & 0 & x_{11} & x_{12} & ... & x_{1n} \\
+ 0 & 1 & ... & 0 & x_{21} & x_{22} & ... & x_{2n} \\
+ ... & ... & ... & ... & ...    & ...    & ... & ...    \\
+ 0 & 0 & ... & 1 & x_{n1} & x_{n2} & ... & x_{nn} \\
+\end{array} 
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die inverse Matrix}
+
+Die inverse Matrix $A^{-1}$ ist dann gegeben durch
+\bq
+A^{-1} & = &
+\left( \begin{array}{cccc}
+ x_{11} & x_{12} & ... & x_{1n} \\
+ x_{21} & x_{22} & ... & x_{2n} \\
+ ...    & ...    & ... & ...    \\
+ x_{n1} & x_{n2} & ... & x_{nn} \\
+\end{array} \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiel}
+
+Sei $A$ die Matrix
+\bq
+ A & = &
+\left( \begin{array}{ccc}
+ 1 &  1 &  3 \\
+ 2 &  3 &  7 \\
+ 0 &  1 &  4 \\
+\end{array} \right).
+\eq
+Wir beginnen mit
+\begin{center}
+\begin{tabular}{rrr|rrr}
+ 1 &  1 &  3 & 1 & 0 & 0 \\
+ 2 &  3 &  7 & 0 & 1 & 0 \\
+ 0 &  1 &  4 & 0 & 0 & 1 \\
+\end{tabular}
+\end{center}
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Berechnung der inversen Matrix}
+
+{\footnotesize
+\begin{center}
+\begin{tabular}{rrr|rrrl}
+ 1 &  1 &  3 & 1 & 0 & 0 & \\
+ 2 &  3 &  7 & 0 & 1 & 0 & \mbox{Addiere das $(-2)$-fache der 1. Zeile} \\
+ 0 &  1 &  4 & 0 & 0 & 1 & \\
+ & & & & \\
+ 1 &  1 &  3 & 1 & 0 & 0 & \mbox{Addiere das $(-1)$-fache der 2. Zeile} \\
+ 0 &  1 &  1 & -2 & 1 & 0 & \\
+ 0 &  1 &  4 & 0 & 0 & 1 & \mbox{Addiere das $(-1)$-fache der 2. Zeile} \\
+ & & & & \\
+ 1 &  0 &  2 & 3 & -1 & 0 & \\
+ 0 &  1 &  1 & -2 & 1 & 0 & \\
+ 0 &  0 &  3 & 2 & -1 & 1 & \mbox{Multipliziere mit $\frac{1}{3}$} \\
+ & & & & \\
+ 1 &  0 &  2 & 3 & -1 & 0 & \mbox{Addiere das $(-2)$-fache der 3. Zeile} \\
+ 0 &  1 &  1 & -2 & 1 & 0 & \mbox{Addiere das $(-1)$-fache der 3. Zeile} \\
+ 0 &  0 &  1 & $\frac{2}{3}$ & $-\frac{1}{3}$ & $\frac{1}{3}$ & \\
+ & & & & \\
+ 1 &  0 &  0 & $\frac{5}{3}$ & $-\frac{1}{3}$ & $-\frac{2}{3}$ & \\
+ 0 &  1 &  0 & $-\frac{8}{3}$ & $\frac{4}{3}$ & $-\frac{1}{3}$ & \\
+ 0 &  0 &  1 & $\frac{2}{3}$ & $-\frac{1}{3}$ & $\frac{1}{3}$ & \\
+\end{tabular}
+\end{center}
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Berechnung der inversen Matrix}
+
+\begin{center}
+\begin{tabular}{rrr|rrrl}
+ 1 &  0 &  0 & $\frac{5}{3}$ & $-\frac{1}{3}$ & $-\frac{2}{3}$ & \\
+ 0 &  1 &  0 & $-\frac{8}{3}$ & $\frac{4}{3}$ & $-\frac{1}{3}$ & \\
+ 0 &  0 &  1 & $\frac{2}{3}$ & $-\frac{1}{3}$ & $\frac{1}{3}$ & \\
+\end{tabular}
+\end{center}
+Somit ist $A^{-1}$ gegeben durch
+\bq
+ A^{-1}
+ & = &
+ \frac{1}{3}
+\left( \begin{array}{rrr}
+ 5 &  -1 &  -2 \\
+ -8 &  4 &  -1 \\
+ 2 &  -1 &  1 \\
+\end{array} \right).
+\eq
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+
+
+

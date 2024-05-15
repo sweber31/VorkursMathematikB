@@ -1,0 +1,742 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+
+% dedicated environments
+\newtheorem*{myemptytheorem}{}
+\newtheorem*{mytheorem11}{Algorithmus}
+\newtheorem*{mytheorem11a}{Gegenbeispiel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Lineare Gleichungssysteme}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Definition und Problemstellung}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+\begin{itemize}
+\item Lineare Gleichungssysteme treten in den Naturwissenschaften relativ oft auf, 
+viele Problemstellungen lassen sich auf lineare Gleichungssysteme zur\"uckf\"uhren.
+
+\item \alert{Lineare Gleichungssysteme sind systematisch l\"osbar}.
+
+\item Der \superalert{Gau{\ss}'sche Eliminationsalgorithmus} ist eine systematische L\"osungsmethode.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Gleichungssysteme}
+
+\begin{definition}
+Unter einem linearen Gleichungssystem versteht man \textbf{\emph{n}} {\bf Gleichungen} mit \textbf{\emph{m}} {\bf Unbekannten}
+$x_1$, $x_2$, ..., $x_m$ der Form
+\bq
+ a_{11} x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ a_{n1} x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+Die Koeffizienten $a_{ij}$ und $b_{i}$ sind gegebene reelle oder komplexe Zahlen.
+\end{definition}
+
+Jede Variable kommt nur linear vor und jeder Summand auf der linken Seite enth\"alt nur eine Variable.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Gleichungssysteme}
+
+\begin{example}
+\bq
+ 3 x_1 + 3 x_2 + 9 x_3 & = & 36,
+ \nonumber \\
+ 2 x_1 + 3 x_2 + 7 x_3 & = & 29,
+ \nonumber \\
+ x_2 + 4 x_3 & = & 14.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Gleichungssysteme}
+
+\begin{mytheorem11a}
+\bq
+ 3 x_1^5 + 3 x_2 + 9 x_3 & = & 36,
+ \nonumber \\
+ x_1+ x_1 x_2 + 4 x_3 & = & 14,
+ \nonumber \\
+ \sin\left(x_1\right) + 7 x_3 & = & 29.
+\eq
+\end{mytheorem11a}
+
+\begin{itemize}
+\item $3 x_1^5$ ist nicht linear: h\"ohere Potenz in $x_1$
+\item $x_1 x_2$ ist nicht linear: enth\"alt mehr als eine Variable.
+\item $\sin(x_1)$ ist keine lineare Funktion von $x_1$.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Der Gau{\ss}'sche Eliminationsalgorithmus}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Zeilenvertauschungen}
+
+Wir betrachten nun einen Algorithmus um ein Gleichungssystem mit $n$ Gleichungen und $m$ Unbekannten systematisch zu vereinfachen
+und zu l\"osen.
+
+\vspace*{5mm}
+
+Wir beginnen mit einer trivialen Beobachtung: Offensichtlich \superalert{k\"onnen Zeilen vertauscht werden}, d.h. das Gleichungssystem
+\bq
+ a_{11} x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\eq
+ist \alert{\"aquivalent zu} dem Gleichungssystem
+\bq
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ a_{11} x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation mit Konstanten}
+
+Desweiteren sei $(x_1,x_2,...,x_m)$ ein $m$-Tupel, welches die Gleichung
+\bq
+ a_{1} x_1 + a_{2} x_2 + a_{3} x_3 + ... + a_{m} x_m & = & b,
+\eq
+erf\"ullt. Dann erf\"ullt es auch die Gleichung
+\bq
+ (c a_{1}) x_1 + (c a_{2}) x_2 + (c a_{3}) x_3 + ... + (c a_{m}) x_m & = & c b,
+\eq
+Umgekehrt gilt, da{\ss} f\"ur $c\neq 0$ jedes $m$-Tupel, welches die zweite Gleichung erf\"ullt, auch die
+erste Gleichung erf\"ullt. 
+
+\vspace*{5mm}
+
+\superalert{Daraus folgt, da{\ss} man die linke und rechte Seite einer Gleichung mit einer
+konstanten Zahl $c$ ungleich Null multiplizieren darf}.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Addition von Zeilen}
+
+Die dritte elementare Umformung ist die folgende: 
+\superalert{Man darf eine Zeile durch die Summe dieser Zeile mit einer anderen Zeile 
+ersetzen}, d.h. die Gleichungssysteme
+\bq
+ a_{11} x_1 + a_{12} x_2 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + ... + a_{2m} x_m & = & b_2,
+\eq
+und
+\bq
+ \left( a_{11} + a_{21} \right) x_1 + \left( a_{12} + a_{22} \right) x_2 + ... + \left( a_{1m} + a_{2m} \right) x_m & = & b_1 + b_2,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + ... + a_{2m} x_m & = & b_2,
+\eq
+haben die gleichen L\"osungen.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Gau{\ss}'sche Eliminationsalgorithmus}
+
+Mit Hilfe dieser drei elementaren Umformungen 
+\begin{enumerate}
+\item Zeilenvertauschungen
+\item Multiplikation mit Konstanten
+\item Addition von Zeilen
+\end{enumerate}
+l\"a{\ss}t sich ein Algorithmus zur systematischen Vereinfachung von 
+linearen Gleichungssystemen angeben.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ a_{11} x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ a_{31} x_1 + a_{32} x_2 + a_{33} x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ a_{n1} x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ \superalert{1} \cdot x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ a_{31} x_1 + a_{32} x_2 + a_{33} x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ a_{n1} x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ 1 \cdot x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ \superalert{0} \cdot x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ \superalert{0} \cdot x_1 + a_{32} x_2 + a_{33} x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ \superalert{0} \cdot x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ 1 \cdot x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ 0 \cdot x_1 + \,\superalert{1} \cdot x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ 0 \cdot x_1 + a_{32} x_2 + a_{33} x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ 0 \cdot x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ 1 \cdot x_1 + \, \superalert{0} \cdot x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ 0 \cdot x_1 + \, 1 \cdot x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ 0 \cdot x_1 + \, \superalert{0} \cdot x_2 + a_{33} x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ 0 \cdot x_1 + \, \superalert{0} \cdot x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ 1 \cdot x_1 + \, 0 \cdot x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ 0 \cdot x_1 + \, 1 \cdot x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ 0 \cdot x_1 + \, 0 \cdot x_2 + \;\! \superalert{1} \cdot x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ 0 \cdot x_1 + \, 0 \cdot x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Strategie}
+
+\bq
+ 1 \cdot x_1 + \, 0 \cdot x_2 + \;\! \superalert{0} \cdot x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ 0 \cdot x_1 + \, 1 \cdot x_2 + \;\! \superalert{0} \cdot x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ 0 \cdot x_1 + \, 0 \cdot x_2 + \;\! 1 \cdot x_3 + ... + a_{3m} x_m & = & b_3,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ 0 \cdot x_1 + \, 0 \cdot x_2 + \;\! \superalert{0} \cdot x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Gau{\ss}'sche Eliminationsalgorithmus}
+
+\begin{mytheorem11}
+{\small
+\begin{enumerate}
+\item Setze $i=1$ (Zeilenindex), $j=1$ (Spaltenindex).
+\item Falls $a_{ij}=0$ suche $k>i$, so da{\ss} $a_{kj}\neq 0$ und {\bf vertausche} Zeilen $i$ und $k$.
+\item Falls ein solches $k$ aus Schritt 2 nicht gefunden werden kann, setze $j\rightarrow j+1$.
+\item Falls man in Schritt 3 den Wert $j=m+1$ erreicht, beende den Algorithmus, andernfalls gehe zur\"uck zu
+Schritt 2.
+\item {\bf Multipliziere} Zeile $i$ mit $1/a_{ij}$.
+\item F\"ur alle Zeilen $k\neq i$ {\bf addiere} zur Zeile $k$ das $(-a_{kj})$-fache der $i$-ten Zeile.
+\item Setze $i \rightarrow i+1$ und $j \rightarrow j+1$.
+\item Falls man in Schritt 7 den Wert $i=n+1$ oder den Wert $j=m+1$ erreicht, beende den Algorithmus,
+andernfalls gehe zur\"uck zu Schritt 2.
+\end{enumerate}
+}
+\end{mytheorem11}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Notation}
+
+In der Praxis schreibt man das lineare Gleichungssystem
+{\small
+\bq
+ a_{11} x_1 + a_{12} x_2 + a_{13} x_3 + ... + a_{1m} x_m & = & b_1,
+\nonumber \\
+ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 + ... + a_{2m} x_m & = & b_2,
+\nonumber \\
+ ... & & 
+\nonumber \\
+ a_{n1} x_1 + a_{n2} x_2 + a_{n3} x_3 + ... + a_{nm} x_m & = & b_n.
+\eq
+}
+wie folgt auf:
+\begin{center}
+{\small
+\begin{tabular}{ccccc|c}
+$a_{11}$ & $a_{12}$ & $a_{13}$ & ... & $a_{1m}$ & $b_1$ \\
+$a_{21}$ & $a_{22}$ & $a_{23}$ & ... & $a_{2m}$ & $b_2$ \\
+...     & ...     & ...     & ... & ...     & ... \\
+$a_{n1}$ & $a_{n2}$ & $a_{n3}$ & ... & $a_{nm}$ & $b_1$ \\
+\end{tabular}
+}
+\end{center}
+Dies ist ausreichend, da alle Umformungen nur auf die Koeffizienten $a_{ij}$ und $b_i$ wirken.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiel}
+
+Wir betrachten das obige Beispiel:
+\bq
+ 3 x_1 + 3 x_2 + 9 x_3 & = & 36,
+ \nonumber \\
+ 2 x_1 + 3 x_2 + 7 x_3 & = & 29,
+ \nonumber \\
+ x_2 + 4 x_3 & = & 14.
+\eq
+Aufgeschrieben ergibt dies:
+\begin{center}
+\begin{tabular}{rrr|r}
+ 3 &  3 &  9 & 36 \\
+ 2 &  3 &  7 & 29 \\
+ 0 &  1 &  4 & 14 \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umformungen}
+
+\begin{center}
+\begin{tabular}{rrr|rl}
+ 3 &  3 &  9 & 36 & \mbox{Multipliziere mit $\frac{1}{3}$} \\
+ 2 &  3 &  7 & 29 & \\
+ 0 &  1 &  4 & 14&  \\
+ & & & & \\
+ 1 &  1 &  3 & 12 & \\
+ 2 &  3 &  7 & 29 & \mbox{Addiere das $(-2)$-fache der 1. Zeile} \\
+ 0 &  1 &  4 & 14 & \\
+ & & & & \\
+ 1 &  1 &  3 & 12 & \mbox{Addiere das $(-1)$-fache der 2. Zeile} \\
+ 0 &  1 &  1 & 5 & \\
+ 0 &  1 &  4 & 14 & \mbox{Addiere das $(-1)$-fache der 2. Zeile} \\
+ & & & & \\
+ 1 &  0 &  2 & 7 & \\
+ 0 &  1 &  1 & 5 & \\
+ 0 &  0 &  3 & 9 & \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umformungen (Fortsetzung)}
+
+\begin{center}
+\begin{tabular}{rrr|rl}
+ 1 &  0 &  2 & 7 & \\
+ 0 &  1 &  1 & 5 & \\
+ 0 &  0 &  3 & 9 & \mbox{Multipliziere mit $\frac{1}{3}$} \\
+ & & & & \\
+ 1 &  0 &  2 & 7 & \mbox{Addiere das $(-2)$-fache der 3. Zeile} \\
+ 0 &  1 &  1 & 5 & \mbox{Addiere das $(-1)$-fache der 3. Zeile} \\
+ 0 &  0 &  1 & 3 & \\
+ & & & & \\
+ 1 &  0 &  0 & 1 & \\
+ 0 &  1 &  0 & 2 & \\
+ 0 &  0 &  1 & 3 & \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Ergebnis}
+
+Der Gau{\ss}'sche Eliminationsalgorithmus endete mit
+\begin{center}
+\begin{tabular}{rrr|rl}
+ 1 &  0 &  0 & 1 & \\
+ 0 &  1 &  0 & 2 & \\
+ 0 &  0 &  1 & 3 & \\
+\end{tabular}
+\end{center}
+Das lineare Gleichungssystem ist somit \"aquivalent zu dem Gleichungssystem
+\bq
+ x_1 & = & 1, \nonumber \\
+ x_2 & = & 2, \nonumber \\
+ x_3 & = & 3.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Rang eines linearen Gleichungssystems}
+
+Durch \alert{Umbenennung der Variablen} $x_1$, ..., $x_m$ (dies ist gleichbedeutend mit \superalert{Spaltenvertauschungen}) l\"a{ss}t sich durch den
+Gau{\ss}'schen Eliminationsalgorithmus die folgende Form erreichen:
+\begin{center}
+\begin{tabular}{ccccccc|c}
+1 & 0 & ... & 0 & $a_{1(r+1)}$ & ... & $a_{1m}$ & $b_1$ \\
+0 & 1 & ... & 0 & $a_{2(r+1)}$ & ... & $a_{2m}$ & $b_2$ \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 1 & $a_{r(r+1)}$ & ... & $a_{rm}$ & $b_r$ \\
+0 & 0 & ... & 0 & 0 & ... & 0 & $b_{r+1}$ \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 0 & 0 & ... & 0 & $b_{n}$ \\
+\end{tabular}
+\end{center}
+Man bezeichnet $r$ als den \superalert{Rang} (engl. ``rank'').
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{L\"osungen eines linearen Gleichungssystems}
+
+Das lineare Gleichungssystem
+hat keine L\"osung, eine eindeutige L\"osung oder mehrere
+L\"osungen falls:
+\begin{itemize}
+\item Ist eine der Zahlen $b_{r+1}$, ..., $b_n$ ungleich Null, so hat das lineare Gleichungssystem \alert{keine L\"osung}.
+\item Ist $r=m$ und $b_{r+1}=...=b_n=0$, so gibt es eine \alert{eindeutige L\"osung}.
+\item Ist $r<m$ und $b_{r+1}=...=b_n=0$, so gibt es \alert{mehrere L\"osungen}.
+\end{itemize}
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{1. Fall: Keine L\"osung}
+
+\begin{itemize}
+\item Ist eine der Zahlen $b_{r+1}$, ..., $b_n$ ungleich Null, so hat das lineare Gleichungssystem keine L\"osung.
+\item In diesem Fall ist notwendigerweise $r<n$.
+\end{itemize}
+\begin{center}
+\begin{tabular}{ccccccc|c}
+1 & 0 & ... & 0 & $a_{1(r+1)}$ & ... & $a_{1m}$ & $b_1$ \\
+0 & 1 & ... & 0 & $a_{2(r+1)}$ & ... & $a_{2m}$ & $b_2$ \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 1 & $a_{r(r+1)}$ & ... & $a_{rm}$ & $b_r$ \\
+0 & 0 & ... & 0 & 0 & ... & 0 & \superalert{$b_{r+1}$} \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 0 & 0 & ... & 0 & \superalert{$b_{n}$} \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{2. Fall: Eindeutige L\"osung}
+
+\begin{itemize}
+\item Ist $r=m$ und $b_{r+1}=...=b_n=0$, so gibt es eine eindeutige L\"osung.
+\item Dies beinhaltet auch den Spezialfall $r=n$. F\"ur $r=n$ ist
+$\{b_{r+1},...,b_n\}=\emptyset$ und der zweite Fall reduziert sich auf $r=n=m$.
+\end{itemize}
+\begin{center}
+\begin{tabular}{cccc|c}
+\superalert{1} & 0 & ... & 0 & \alert{$b_1$} \\
+0 & \superalert{1} & ... & 0 & \alert{$b_2$} \\
+... & ... & ... & ... & ... \\
+0 & 0 & ... & \superalert{1} & \alert{$b_r$} \\
+0 & 0 & ... & 0 & 0 \\
+... & ... & ... & ... & ... \\
+0 & 0 & ... & 0 & 0 \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{3. Fall: Mehrere L\"osungen}
+
+\begin{itemize}
+\item Ist $r<m$ und $b_{r+1}=...=b_n=0$, so gibt es mehrere L\"osungen.
+\item Dies beinhaltet auch den Spezialfall $r=n$. F\"ur $r=n$ ist
+$\{b_{r+1},...,b_n\}=\emptyset$ und der dritte Fall reduziert sich auf auf $r=n$ und $r<m$.
+\end{itemize}
+\begin{center}
+\begin{tabular}{ccccccc|c}
+1 & 0 & ... & 0 & \superalert{$a_{1(r+1)}$} & ... & \superalert{$a_{1m}$} & $b_1$ \\
+0 & 1 & ... & 0 & \superalert{$a_{2(r+1)}$} & ... & \superalert{$a_{2m}$} & $b_2$ \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 1 & \superalert{$a_{r(r+1)}$} & ... & \superalert{$a_{rm}$} & $b_r$ \\
+0 & 0 & ... & 0 & 0 & ... & 0 & $0$ \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 0 & 0 & ... & 0 & $0$ \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{L\"osungen eines linearen Gleichungssystems}
+
+\begin{itemize}
+\item Ist $r<n$ und $b_{r+1}=...=b_n=0$, so reduzieren sich die Zeilen $(r+1)$ bis $n$ 
+\begin{center}
+\begin{tabular}{ccccccc|c}
+0 & 0 & ... & 0 & 0 & ... & 0 & 0 \\
+... & ... & ... & ... & ... & ... & ... & ... \\
+0 & 0 & ... & 0 & 0 & ... & 0 & 0 \\
+\end{tabular}
+\end{center}
+auf die triviale
+Gleichung 
+\bq
+ 0 & = & 0.
+\eq
+Diese Zeilen enthalten keine zus\"atzliche Information und \superalert{k\"onnen auch weggelassen werden}.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+F\"ur ein lineares Gleichungssystem mit vier Variablen $x_1, x_2, x_3, x_4$
+liefert der Gau{\ss}'sche Eliminationsalgorithmus
+\begin{center}
+\begin{tabular}{rrrr|r}
+ 1 &  0 &  0 & 1 & 1 \\
+ 0 &  1 &  0 & 1 & 2 \\
+ 0 &  0 &  0 & 0 & 3\\
+ 0 &  0 &  0 & 0 & 0\\
+\end{tabular}
+\end{center}
+
+{\small
+\vspace*{2mm}
+(A) Das Gleichungssystem hat keine L\"osung.
+
+\vspace*{2mm}
+(B) Das Gleichungssystem hat die eindeutige L\"osung \\ $x_1=1$, $x_2=2$, $x_3=3$, $x_4=0$.
+
+\vspace*{2mm}
+(C) Das Gleichungssystem hat unendlich viele L\"osungen, die auf einer Geraden im $\mathbb{R}^4$ liegen:
+$x_1=1-t$, $x_2=2-t$, $x_3=3$, $x_4=t$.
+
+\vspace*{2mm}
+(D) Das Gleichungssystem hat unendlich viele L\"osungen, die auf einer Ebene im $\mathbb{R}^4$ liegen:
+$x_1=1-t_2$, $x_2=2-t_2$, $x_3=3+t_1$, $x_4=t_2$.
+}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Anwendungen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Unabh\"angigkeit von Vektoren}
+
+Zur Erinnerung: $m$ Vektoren $\vec{v}_1$, $\vec{v}_2$, ..., $\vec{v}_m$ nennt man linear unabh\"angig,
+falls die Gleichung
+\bq
+ \lambda_1 \vec{v}_1 + \lambda_2 \vec{v}_2 + ... + \lambda_m \vec{v}_m & = & \vec{0}
+\eq
+nur die L\"osung $(\lambda_1,\lambda_2,...,\lambda_m)=(0,0,...,0)$ hat. 
+
+Andernfalls nennt man sie linear abh\"angig.
+
+Ist der zugrundeliegende Vektorraum $n$-dimensional, so ergibt die obige Gleichung ausgeschrieben
+in Komponenten $n$ lineare Gleichungen mit $m$ Unbekannten $\lambda_1$,..., $\lambda_m$.
+
+Man kann nun mit Hilfe des Gau{\ss}'schen Eliminationsalgorithmuses feststellen, ob die Vektoren
+linear abh\"angig sind.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiel}
+
+Sei
+\bq
+ \vec{v}_1 = \left( \begin{array}{r} 1 \\ 1 \\ 1 \\ \end{array} \right),
+ \;\;\;
+ \vec{v}_2 = \left( \begin{array}{r} 2 \\ 3 \\ 4 \\ \end{array} \right),
+ \;\;\;
+ \vec{v}_3 = \left( \begin{array}{r} -1 \\ -4 \\ -7 \\ \end{array} \right).
+\eq
+Dies f\"uhrt zu dem linearen Gleichungssystem
+\bq
+ \lambda_1 + 2 \lambda_2 - \lambda_3 & = & 0,
+ \nonumber \\
+ \lambda_1 + 3 \lambda_2 - 4 \lambda_3 & = & 0,
+ \nonumber \\
+ \lambda_1 + 4 \lambda_2 - 7 \lambda_3 & = & 0.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Unabh\"angigkeit von Vektoren}
+
+Wir formen dieses Gleichungssystem mit Hilfe des Gau{\ss}'schen Eliminationsalgorithmuses um:
+\begin{center}
+\begin{tabular}{rrr|rl}
+1 & 2 & -1 & 0 & \\
+1 & 3 & -4 & 0 & \mbox{Addiere das $(-1)$-fache der 1. Zeile} \\
+1 & 4 & -7 & 0 & \mbox{Addiere das $(-1)$-fache der 1. Zeile} \\
+ & & & & \\
+1 & 2 & -1 & 0 & \mbox{Addiere das $(-2)$-fache der 2. Zeile} \\
+0 & 1 & -3 & 0 & \\
+0 & 2 & -6 & 0 & \mbox{Addiere das $(-2)$-fache der 2. Zeile} \\
+ & & & & \\
+1 & 0 &  5 & 0 & \\
+0 & 1 & -3 & 0 & \\
+0 & 0 &  0 & 0 & \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Unabh\"angigkeit von Vektoren}
+
+\begin{center}
+\begin{tabular}{rrr|rl}
+1 & 0 &  5 & 0 & \\
+0 & 1 & -3 & 0 & \\
+0 & 0 &  0 & 0 & \\
+\end{tabular}
+\end{center}
+Somit gibt es mehrere L\"osungen:
+\bq 
+ \lambda_1 = -5 t,
+ \;\;\;
+ \lambda_2 = 3 t,
+ \;\;\;
+ \lambda_3 = t,
+ \;\;\;
+ t \in {\mathbb R}.
+\eq
+Die drei Vektoren sind linear abh\"angig.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+
+
+

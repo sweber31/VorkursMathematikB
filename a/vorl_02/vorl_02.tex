@@ -1,0 +1,824 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+\definecolor{MyYellowOrange}   {cmyk}{0,0.5,1,0}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\newtheorem*{mytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem1}{Die {\bf Axiome von Peano} f\"ur die nat\"urlichen Zahlen:}
+\newtheorem*{mytheorem2}{{\bf Definition einer Gruppe}:}
+\newtheorem*{mytheorem3}{{\bf Definition eines Rings}:}
+\newtheorem*{mytheorem4}{{\bf Definition eines K\"orpers}:}
+\newtheorem*{mytheorem5}{{\bf Anordnungsaxiome}:}
+
+\newtheorem*{myproof1}{{\bf Induktionsanfang}:}
+\newtheorem*{myproof2}{{\bf Induktionsschritt}:}
+
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Zahlen}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Die nat\"urlichen Zahlen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die nat\"urlichen Zahlen}
+
+\begin{itemize}
+\item \alert{${\mathbb N}$}: Die nat\"urlichen Zahlen ${\mathbb N} = \{1,2,3,4,....\}$.
+
+\begin{mytheorem1}
+\begin{itemize}
+\item (P1) Die Zahl 1 ist eine nat\"urliche Zahl.
+\item (P2) Falls $n$ eine nat\"urliche Zahl, so ist die nachfolgende Zahl $n+1$ ebenfalls eine 
+nat\"urliche Zahl.
+\item (P3) Die nat\"urlichen Zahlen sind die minimale Menge, welche die ersten beiden Axiome erf\"ullt.
+\end{itemize}
+\end{mytheorem1}
+
+\item \alert{${\mathbb N}_0$}: Die nat\"urlichen Zahlen mit der Null ${\mathbb N}_0 = \{0,1,2,3,4,....\}$.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die nat\"urlichen Zahlen}
+
+Sei $a, b \in {\mathbb N}$:
+\begin{itemize}
+\item \alert{Addition}: $a+b \in {\mathbb N}$
+\item Aber: $a-b$ ist im Allgemeinen keine nat\"urliche Zahl.
+
+Gegenbeispiel: $a=1$ und $b=3$.
+\item \alert{Multiplikation}: $a \cdot b \in {\mathbb N}$
+\item Aber: $a/b$ ist im Allgemeinen keine nat\"urliche Zahl.
+
+Gegenbeispiel: $a=1$ und $b=3$.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Induktionsbeweis}
+
+Man ist oft in der Situation
+eine Aussage der Form
+\bq
+ f(n) & = & g(n)
+\eq
+\alert{f\"ur alle $n \in {\mathbb N}$} beweisen zu m\"ussen. Hier bietet sich der Induktionsbeweis an.
+
+\vspace*{3mm}
+
+Der Induktionsbeweis verl\"auft in zwei Teilen: 
+\begin{enumerate}
+\item Induktionsanfang: Im ersten Teil zeigt man zun\"achst, da{\ss} die Behauptung f\"ur $n=1$ richtig ist.
+\item Induktionsschritt: Im zweiten Teil nimmt man an, da{\ss} die Behauptung f\"ur $(n-1)$ richtig ist und zeigt, da{\ss} sie dann auch f\"ur $n$ richtig ist.
+\end{enumerate}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Induktionsbeweis}
+
+Man sieht leicht, da{\ss} dies die allgemeine Aussage beweist:
+\begin{itemize}
+\item F\"ur $n=1$ wird die Aussage im ersten Teil bewiesen.
+\item F\"ur $n=2$ k\"onnen wir dann verwenden, da{\ss} die Aussage f\"ur $n=1$ richtig ist. 
+
+Somit liegt die Voraussetzung f\"ur den zweiten Teil vor und es folgt
+aufgrund des zweiten Teils die Richtigkeit f\"ur $n=2$.
+\item Diese Argumentation l\"a{\ss} sich nun fortsetzen: 
+
+Da die Aussage f\"ur $n=2$ richtig ist, mu{\ss} sie aufgrund des zweiten Teils auch f\"ur $n=3$ richtig sein, usw..
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Induktionsbeweis}
+
+\begin{example}
+F\"ur jede nat\"urliche Zahl $n$ ist die folgende Behauptung zu zeigen:
+\bq
+ \sum\limits_{j=1}^n j & = & \frac{n(n+1)}{2}
+\eq
+\end{example}
+\begin{myproof1}
+F\"ur $n=1$ haben wir
+\bq
+ \mbox{linke Seite}: & & \sum\limits_{j=1}^1 j = 1. \\
+ \mbox{rechte Seite}: & & \frac{1(1+1)}{2} = 1.
+\eq
+\end{myproof1}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der Induktionsbeweis}
+
+\begin{myproof2}
+Wir d\"urfen nun annehmen, da{\ss} die Behauptung f\"ur $n-1$ richtig ist, und m\"ussen zeigen, da{\ss} sie dann auch 
+f\"ur $n$ gilt. In unserem Fall:
+\bq
+  \sum\limits_{j=1}^n j & = &  \left( \sum\limits_{j=1}^{n-1} j \right) + n
+ = \frac{(n-1)n}{2} + n = \frac{n^2-n+2n}{2} = \frac{n(n+1)}{2}
+\eq
+\end{myproof2}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Die ganzen Zahlen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gruppen}
+
+\begin{mytheorem2}
+Sei $G$ eine nicht-leere Menge mit einer Verkn\"upfung $\circ$, d.h.
+eine Abbildung $\circ : G \times G \rightarrow G$.  Das Paar $(G,\circ)$ ist eine Gruppe,
+falls:
+\begin{itemize}
+\item (G1) $\circ$ ist assoziativ: $a \circ ( b \circ c ) = ( a \circ b ) \circ c$
+\item (G2) Es gibt ein links-neutrales Element : $e \circ a = a$ f\"ur alle $a \in G$
+\item (G3) Zu jedem $a \in G$ gibt es ein links-inverses Element $a^{-1}$ : $a^{-1} \circ a = e$
+\end{itemize}
+Eine Gruppe $(G,\circ)$ nennt man kommutativ oder Abelsch, falls 
+$a \circ b = b \circ a$.
+\end{mytheorem2}
+
+In einer Gruppe ist das links-neutrale Element identisch mit dem 
+recht-neutralen Element. 
+
+Ebenso sind links- und rechts-inverses Element identisch.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die ganzen Zahlen}
+
+\alert{${\mathbb Z}$}: Die ganzen Zahlen ${\mathbb Z}=\{....,-3,-2,-1,0,1,2,3,....\}$. 
+
+Die ganzen Zahlen bilden bez\"uglich der Addition eine Gruppe.
+
+\begin{itemize}
+\item Assoziativgesetz: 
+
+Beispiel: $3 + ( 5 + 7 ) = ( 3 + 5 ) + 7$
+\item Die Null ist das links-neutrale Element: 
+
+Beispiel: $0 + 7 = 7$.
+\item Das links-inverse Element zu $a$ ist $(-a)$: 
+
+Beispiel: Es ist $(-7) + 7 = 0$.
+
+\item Die Gruppe ist kommutativ:
+
+Beispiel: $5 + 7 = 7 + 5$.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Ringe}
+
+\begin{mytheorem3}
+Ein {\bf Ring} ist eine nicht-leere Menge $R$ mit zwei Verkn\"upfungen, die \"ublicherweise als $+$ und $\cdot$ geschrieben
+werden, so da{\ss}
+\begin{itemize}
+\item (R1) $(R,+)$ ist eine kommutative Gruppe.
+\item (R2) $(R,\cdot)$ ist assoziativ: $ a \cdot ( b \cdot c ) = ( a \cdot b ) \cdot c$
+\item (R3) Es gelten die Distributivgesetze:
+\bq
+a \cdot ( b+ c ) &=  & (a \cdot b ) + ( a \cdot c ) \\
+(a + b ) \cdot c & = & (a \cdot c) + ( b \cdot c)
+\eq
+\end{itemize}
+\end{mytheorem3}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die ganzen Zahlen}
+
+Die ganzen Zahlen ${\mathbb Z}$ bilden einen Ring.
+
+\begin{itemize}
+\item Assoziativgesetz: 
+
+Beispiel: $3 \cdot ( 5 \cdot 7 ) = ( 3 \cdot 5 ) \cdot 7$
+\item Distributivgesetze:
+\bq
+3 \cdot (5+ 7) &=  & (3 \cdot 5) + (3 \cdot 7) 
+ \nonumber \\
+(3 + 5) \cdot 7 & = & (3 \cdot 7) + (5 \cdot 7)
+\eq
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Die rationalen Zahlen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die rationalen Zahlen}
+
+\alert{${\mathbb Q}$}: Die rationalen Zahlen.
+\bq
+ {\mathbb Q } & = & \left\{ r \; \left| r = \frac{p}{q}, \right. \; p,q \in {\mathbb Z}, \; q \neq 0 \right\}.
+\eq
+Die rationalen Zahlen sind bez\"uglich der Division abgeschlossen.
+Sie bilden einen K\"orper.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{K\"orper}
+
+\begin{mytheorem4}
+Eine nicht-leere Menge $K$ mit zwei Verkn\"upfungen $+$ und $\cdot$ nennt man {\bf K\"orper},
+falls gilt:
+\begin{itemize}
+\item (K1) $(K,+)$ ist eine kommutative Gruppe.
+\item (K2) $(K\setminus\{0\}, \cdot)$ ist eine kommutative Gruppe.
+\item (K3) Es gelten die Distributivgesetze:
+\bq
+a \cdot ( b+ c ) &=  & (a \cdot b ) + ( a \cdot c ) \\
+(a + b ) \cdot c & = & (a \cdot c) + ( b \cdot c)
+\eq
+\end{itemize}
+\end{mytheorem4}
+
+\end{frame}
+
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Bruchrechnen}
+
+\begin{itemize}
+
+\item Erweitern/K\"urzen:
+\bq
+ \frac{c \cdot p_1}{c \cdot q_1} & = & \frac{p_1}{q_1}
+\eq
+
+\item Multiplikation:
+\bq
+ \frac{p_1}{q_1} \cdot \frac{p_2}{q_2} & = & \frac{p_1 \cdot p_2}{q_1 \cdot q_2}
+\eq
+
+\item Division:
+\bq
+ \frac{p_1}{q_1} : \frac{p_2}{q_2} & = & \frac{p_1 \cdot q_2}{q_1 \cdot p_2}
+ \nonumber \\
+ \frac{\hphantom{a} \frac{p_1}{q_1} \hphantom{a} }{\frac{p_2}{q_2}} & = & \frac{p_1 \cdot q_2}{q_1 \cdot p_2}
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Bruchrechnen}
+
+\begin{itemize}
+
+\item Addition:
+\bq
+ \frac{p_1}{q_1} + \frac{p_2}{q_2} & = & \frac{p_1 \cdot q_2 + p_2 \cdot q_1}{q_1 \cdot q_2}
+\eq
+
+\item Subtraktion:
+\bq
+ \frac{p_1}{q_1} - \frac{p_2}{q_2} & = & \frac{p_1 \cdot q_2 - p_2 \cdot q_1}{q_1 \cdot q_2}
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele}
+
+\begin{itemize}
+
+\item Erweitern/K\"urzen:
+\bq
+ \frac{15}{9} \; = \; \frac{3 \cdot 5}{3 \cdot 3} \; = \; \frac{5}{3}
+\eq
+
+\item Addition:
+\bq
+ \frac{3}{5} + \frac{2}{3} 
+ \; = \;
+ \frac{3 \cdot 3}{3 \cdot 5} + \frac{2 \cdot 5}{3 \cdot 5} 
+ \; = \;
+ \frac{9}{15} + \frac{10}{15} 
+ \; = \;
+ \frac{9+10}{15}
+ \; = \;
+ \frac{19}{15}
+\eq
+
+\item Division:
+\bq
+ \frac{\hphantom{a} \frac{2}{3} \hphantom{a} }{\frac{5}{7}} 
+ \; = \; 
+ \frac{2 \cdot 7}{3 \cdot 5}
+ \; = \; 
+ \frac{14}{15}
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Potenzen}
+
+F\"ur Potenzen schreiben wir
+\bq
+ a^n & = & \underbrace{a \cdot a \cdot a \cdot ... \cdot a}_{n \;\;\;\mathrm{mal}}
+\eq
+Rechnen mit Potenzen:
+\bq
+ a^n \cdot b^n = \left( a \cdot b \right)^n
+ & &
+\;\;\;\;\;\;\;\;\;
+ \frac{a^n}{b^n} = \left( \frac{a}{b} \right)^n
+ \nonumber \\
+ a^n \cdot a^m = a^{n+m}
+ & &
+\;\;\;\;\;\;\;\;\;
+ \frac{a^n}{a^m} = a^{n-m}
+ \nonumber \\
+ \left( a^n \right)^m = a^{n\cdot m}
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele}
+
+\begin{itemize}
+
+\item Gleicher Exponent:
+\bq
+ 2^7 \cdot 3^7 \; = \; \left(2 \cdot 3 \right)^7 \; = \; 6^7
+\eq
+
+\item Gleiche Basis:
+\bq
+ 2^5 \cdot 2^7 \; = \; 2^{\left(5+7\right)} \; = \; 2^{12}
+\eq
+
+\item Potenz einer Potenz:
+\bq
+ \left(3^2\right)^5 \; = \; 3^{\left(2 \cdot 5 \right)} \; = \; 3^{10}
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \frac{x^{-1} x^3 x^5}{x^2 x^{7}} & = & ?
+\eq 
+\begin{description}
+\item{(A)} $0$
+\item{(B)} $1$
+\item{(C)} $x^2$
+\item{(D)} $\frac{1}{x^2}$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die binomischen Formeln}
+
+\begin{mytheorem}
+\bq
+ \left(a+b\right)^2 & = & a^2 + 2 a b + b^2
+ \nonumber \\
+ \left(a-b\right)^2 & = & a^2 - 2 a b + b^2
+ \nonumber \\
+ \left(a+b\right)\left(a-b\right) & = & a^2 - b^2
+\eq
+\end{mytheorem}
+
+\bq
+ \left(\alert{a}+\alert{b}\right)\left(\superalert{a}-\superalert{b}\right)
+ & = &
+ \alert{a} \cdot \superalert{a} - \alert{a} \cdot \superalert{b} + \alert{b} \cdot \superalert{a} - \alert{b} \cdot \superalert{b}
+ \nonumber \\
+ & = &
+ a^2 - a b + a b - b^2
+ \nonumber \\
+ & = &
+ a^2 - b^2
+\eq
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Die reellen Zahlen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die reellen Zahlen}
+
+\alert{${\mathbb R}$}: Die reellen Zahlen.
+
+Die reellen Zahlen bilden einen K\"orper.
+
+\begin{itemize}
+
+\item Alle rationalen Zahlen sind in den reellen Zahlen enthalten.
+
+\item $\mathbb R$ enth\"alt Zahlen, die nicht rational sind. 
+Diese nennt man irrational.
+
+\begin{itemize}
+
+\item 
+$\sqrt{2}$ ist eine irrationale Zahl.
+$\sqrt{2}$ ist L\"osung der Gleichung $x^2=2$. 
+Zahlen, welche L\"osungen einer algebraischen Gleichung sind, nennt man algebraisch.
+
+\item
+$\mathbb R$ enth\"alt auch irrationale Zahlen, die keine L\"osung einer algebraischen Gleichung sind.
+Solche Zahlen nennt man transzendental. Die Kreiszahl $\pi$ oder die Eulersche Konstante $e$ sind
+transzendental.
+
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Cauchy-Folgen}
+
+Eine Folge $(a_n)_{n\in \mathbb N}$ reeller Zahlen nennt man {\bf Cauchy-Folge}, falls es zu jedem $\eps>0$ ein
+$N\in \mathbb N$ gibt, so da{\ss}
+\bq
+ \left| a_n - a_m \right | < \eps, \;\;\; \forall n,m \ge N.
+\eq
+Vollst\"andigkeitsaxiom: Jede Cauchy-Folge konvergiert.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Anordnungseigenschaften}
+
+Die reellen Zahlen sind {\bf angeordnet}:
+\begin{mytheorem5}
+Es sind gewisse Elemente als positiv ausgezeichnet $(x>0)$, so da{\ss} die folgenden Axiome erf\"ullt sind:
+\begin{itemize}
+\item (O1) Es gilt genau eine der Beziehungen $x<0$, $x=0$ oder $x>0$.
+\item (O2) Aus $x>0$ und $y>0$ folgt $x+y>0$.
+\item (O3) Aus $x>0$ und $y>0$ folgt $x \cdot y >0$.
+\end{itemize}
+\end{mytheorem5}
+
+Man nennt eine Ordnung {\bf archimedisch}, falls zu jedem $x>0$ und $y>0$ ein nat\"urliche Zahl $n$ exisiert,
+so da{\ss}
+\bq
+n \cdot x > y.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die reellen Zahlen}
+
+Axiomatisch lassen sich die reellen Zahlen als ein K\"orper, der archimedisch angeordnet ist und in dem jede
+Cauchy-Folge konvergiert, charakterisieren.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lineare Gleichungen}
+
+Es seien $a \neq 0$ und $b$ gegebene reelle Zahlen und $x$ eine Unbekannte.
+Man nennt
+\bq
+ a x + b & = & 0
+\eq
+eine \alert{lineare Gleichung} f\"ur $x$.
+
+\vspace*{3mm} 
+Die Gleichung hat die L\"osung
+\bq
+ x & = & - \frac{b}{a}
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quadratische Gleichungen ($a b c$-Formel)}
+
+Es seien $a \neq 0$, $b$ und $c$ gegebene reelle Zahlen und $x$ eine Unbekannte.
+Man nennt
+\bq
+ a x^2 + b x + c & = & 0
+\eq
+eine \alert{quadratische Gleichung} f\"ur $x$.
+
+Falls $D=b^2-4ac \ge 0$, so hat die Gleichung die L\"osungen 
+\bq
+ x_{1/2}
+ & = &
+ \frac{1}{2a} \left( -b \pm \sqrt{b^2 -4 a c} \right)
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quadratische Gleichungen ($p q$-Formel)}
+
+Da $a\neq 0$ k\"onnen wir durch $a$ teilen:
+\bq
+ a x^2 + b x + c & = & 0
+ \nonumber \\
+ x^2 + \frac{b}{a} x + \frac{c}{a} & = & 0
+\eq
+Setzen wir $p = b/a$ und $q=c/a$ so ergibt sich
+\bq
+ x^2 + p x + q & = & 0
+\eq
+Falls $D=p^2-4q \ge 0$, so hat die Gleichung die L\"osungen 
+\bq
+ x_{1/2}
+ & = &
+ -\frac{p}{2} \pm \sqrt{\left(\frac{p}{2}\right)^2 - q}
+\eq
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{$\mathbb{Q}[\sqrt{3}]$}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{$\mathbb{Q}[\sqrt{3}]$}
+
+Wir betrachten Zahlen der Form
+\bq
+ a + b \sqrt{3},
+ & & 
+ a,b \; \in \; \mathbb{Q}
+\eq
+Wir bezeichnen die Menge dieser Zahlen als
+\bq
+ \mathbb{Q}[\sqrt{3}]
+ & = &
+ \left\{
+  a + b \sqrt{3}
+  \; | \; a,b \; \in \; \mathbb{Q}
+ \right\}
+\eq
+Beispiel:
+\bq
+ \frac{1}{3} + \frac{7}{8} \sqrt{3}
+ & \in & \mathbb{Q}[\sqrt{3}]
+ \nonumber \\
+ \sqrt{7} & \notin &
+ \mathbb{Q}[\sqrt{3}]
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{$\mathbb{Q}[\sqrt{3}]$}
+
+\begin{theorem}
+$\mathbb{Q}[\sqrt{3}]$ ist ein K\"orper.
+\end{theorem}
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Abgeschlossenheit}
+
+\begin{itemize}
+\item Addition:
+\bq
+ \left( a_1 + b_1 \sqrt{3} \right) + \left( a_2 + b_2 \sqrt{3} \right)
+ & = &
+ \left( a_1 + a_2 \right) + \left( b_1 + b_2 \right) \sqrt{3}
+\eq
+
+\item Multiplikation:
+\bq
+\lefteqn{
+ \left( a_1 + b_1 \sqrt{3} \right) \cdot \left( a_2 + b_2 \sqrt{3} \right)
+ = } & & \nonumber \\
+ & = &
+ a_1 a_2 + a_1 b_2 \sqrt{3} + b_1 a_2 \sqrt{3} + b_1 b_2 \left(\sqrt{3}\right)^2
+ \nonumber \\
+ & = &
+ a_1 a_2 + a_1 b_2 \sqrt{3} + b_1 a_2 \sqrt{3} + 3 b_1 b_2
+ \nonumber \\
+ & = &
+ \left( a_1 a_2 + 3 b_1 b_2 \right) + \left( a_1 b_2 + b_1 a_2 \right) \sqrt{3} 
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Neutrale Elemente}
+
+\begin{itemize}
+\item Addition:
+\bq
+ 0 + \left( a + b \sqrt{3} \right)
+ \; = \;
+ \left( 0 + 0 \cdot \sqrt{3} \right) + \left( a + b \sqrt{3} \right)
+ \; = \;
+ a + b \sqrt{3}
+\eq
+
+\item Multiplikation:
+\bq
+ 1 \cdot \left( a + b \sqrt{3} \right)
+ \; = \;
+ \left( 1 + 0 \cdot \sqrt{3} \right) \cdot \left( a + b \sqrt{3} \right)
+ \; = \;
+ a + b \sqrt{3}
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Inverse Elemente}
+
+\begin{itemize}
+\item Addition:
+\bq
+ - \left( a + b \sqrt{3} \right)
+ & = &
+ \left(-a\right) + \left(-b\right) \sqrt{3}
+\eq
+
+\item Multiplikation $(a,b) \neq (0,0)$:
+\bq
+ \frac{1}{a + b \sqrt{3}}
+ & = &
+ \frac{a - b \sqrt{3}}{\left(a + b \sqrt{3}\right) \left(a - b \sqrt{3}\right)}
+ \nonumber \\
+ & = &
+ \frac{a - b \sqrt{3}}{a^2 - 3 b^2}
+ \nonumber \\
+ & = &
+ \frac{a}{a^2 - 3 b^2}
+ - \frac{b}{a^2 - 3 b^2}  \sqrt{3}
+\eq
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiel}
+
+Das zu $1+\sqrt{3}$ bez\"uglich der Multiplikation inverse Element ist
+\bq
+ \frac{1}{1 + \sqrt{3}}
+ & = &
+ \frac{1 - \sqrt{3}}{\left(1 + \sqrt{3}\right) \left(1 - \sqrt{3}\right)}
+ \; = \;
+ \frac{1 - \sqrt{3}}{1 - 3}
+ \; = \;
+ - \frac{1}{2} \left(1 - \sqrt{3}\right)
+ \nonumber \\
+ & = &
+ - \frac{1}{2} + \frac{1}{2} \sqrt{3}
+\eq
+Probe:
+\bq
+ \left( - \frac{1}{2} + \frac{1}{2} \sqrt{3} \right) \left( 1+\sqrt{3} \right) 
+ & = &
+ - \frac{1}{2} - \frac{1}{2} \sqrt{3} + \frac{1}{2} \sqrt{3} + \frac{1}{2} \left( \sqrt{3} \right)^2 
+ \nonumber \\
+ & = &
+ - \frac{1}{2} + \frac{3}{2}
+ \; = \; 
+ 1
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Bemerkung}
+
+Bei den Grundrechenarten mit Zahlen der Form 
+$a+b\sqrt{3}$ ist der wesentliche Trick
+\bq
+ \left( \sqrt{3} \right)^2
+ & = & 3.
+\eq
+Setzen wir $w=\sqrt{3}$ und betrachten Zahlen $a+bw$, so lautet der wesentliche Trick
+\bq
+ w^2 & = & 3.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ i^2 & = & ?
+\eq 
+\begin{description}
+\item{(A)} $-1$
+\item{(B)} unbekannt
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}

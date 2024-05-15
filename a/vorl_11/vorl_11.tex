@@ -1,0 +1,798 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem28}{Zusammenfassung:} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Differentialgleichungen}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Allgemeines}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Einf\"uhrung}
+
+Es sei $f(x)$ eine unbekannte Funktion der Variablen $x$.
+
+Nehmen wir weiter an, es sei bekannt, da{\ss} $f(x)$ die Gleichung
+\bq
+ f(x)^2 - x \cdot f(x) - 1 & = & 0
+\eq
+erf\"ullt. 
+
+Dies ist eine \alert{algebraische Gleichung} f\"ur $f(x)$.
+
+Durch Aufl\"osen nach $f(x)$ finden wir
+\bq
+ f\left(x\right)
+ & = &
+ \frac{1}{2} \left( x \pm \sqrt{x^2+4} \right)
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Einf\"uhrung}
+
+In den Naturwissenschaften tritt oft der Fall auf, da{\ss} wir eine Gleichung bestimmen k\"onnen,
+die die \alert{unbekannte Funktion $f(x)$} \superalert{und deren Ableitung $f'(x)$} enth\"alt.
+
+\begin{example}
+\bq
+ f'\left(x\right) - x \cdot f\left(x\right) & = & 0
+\eq
+\end{example}
+
+Eine solche Gleichung nennt man eine \superalert{Differentialgleichung}.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Einf\"uhrung}
+
+\begin{itemize}
+\item Die Theorie der Differentialgleichungen geht weit \"uber den Inhalt des 
+mathematischen Br\"uckenkurses hinaus.
+\item In den Naturwissenschaften treten einige wenige Differentialgleichungen relativ oft auf.
+\item In dieser Vorlesung: Einstieg in die Differentialgleichungen mittels wichtiger Beispiele und 
+elementarer L\"osungsmethoden.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Klassifizierung}
+
+\begin{itemize}
+\item Tritt nur die Ableitung nach einer Variablen auf, spricht man von einer
+\superalert{gew\"ohnlichen Differentialgleichung}. 
+
+\item H\"angt dagegen die gesuchte Funktion von mehreren Variablen ab, und
+treten Ableitungen nach verschiedenen Variablen auf, so spricht man von einer
+\superalert{partiellen Differentialgleichung}.
+
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{itemize}
+\item Tritt neben der unbekannten Funktion $f$ \alert{nur die erste Ableitung $f'$} auf, so spricht man von
+einer \superalert{Differentialgleichung erster Ordnung}.
+
+\item Ist die \alert{h\"ochste auftretende Ableitung $f^{(n)}$}, so spricht man von einer
+\superalert{Differentialgleichung $n$-ter Ordnung}.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{definition}
+Sei $D$ eine Teilmenge von ${\mathbb R}^2$ und
+\bq
+ G & : & D \rightarrow {\mathbb R},
+ \nonumber \\
+ & & (x,y) \rightarrow G(x,y)
+\eq
+eine stetige Funktion.
+Dann nennt man
+\bq
+ y' & = & G(x,y)
+\eq
+eine \superalert{Differentialgleichung erster Ordnung}. 
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{myemptytheorem}
+Unter einer L\"osung versteht man
+eine auf einem Intervall $I \subset \mathbb R$ definierte differenzierbare Funktion
+\bq
+ f & : & I \rightarrow {\mathbb R}
+\eq
+mit folgenden Eigenschaften:
+\begin{itemize}
+\item Der Graph von $f$ ist in $D$ enthalten, d.h.
+\bq
+ \Gamma_f = \{(x,y) \in I \times {\mathbb R} : y=f(x) \} \subset D.
+\eq
+\item Es gilt
+\bq
+ f'(x) & = & G(x,f(x)).
+\eq
+\end{itemize}
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{example}
+$G(x,y)=-\lambda y$ f\"uhrt auf die Differentialgleichung
+\bq
+ f'(x) & = & -\lambda f(x).
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{definition}
+Sei $D$ eine Teilmenge von ${\mathbb R} \times {\mathbb R}^n$ und 
+\bq
+ G & : & D \rightarrow {\mathbb R},
+ \nonumber \\
+ & & \left(x,\vec{y}\right) \rightarrow G\left(x,\vec{y}\right)
+\eq
+eine stetige Funktion.
+Dann nennt man
+\bq
+ y^{(n)} & = & G\left(x,y,y',...,y^{(n-1)}\right)
+\eq
+eine \superalert{Differentialgleichungen $n$-ter Ordnung}.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{myemptytheorem}
+Unter einer L\"osung versteht man
+eine auf einem Intervall $I \subset \mathbb R$ definierte differenzierbare Funktion
+\bq
+ f & : & I \rightarrow {\mathbb R}
+\eq
+mit folgenden Eigenschaften:
+\begin{itemize}
+\item Die Menge
+\bq
+ \left\{ (x,y_0,y_1,...,y_{n-1}) \in I \times {\mathbb R}^n : y_j = f^{(j)}(x), 0 \le j < n \right\}
+\eq
+ist in $D$ enthalten.
+\item Es gilt
+\bq
+ f^{(n)}(x) & = & G\left(x,f(x),f'(x),...,f^{(n-1)}(x)\right).
+\eq
+\end{itemize}
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Gew\"ohnliche Differentialgleichungen}
+
+\begin{example}
+$G(x,y_0,y_1)=-\omega^2 y_0$ f\"uhrt auf die Differentialgleichung zweiter Ordnung
+\bq
+ f''(x) & = & - \omega^2 f(x).
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Existenz und Eindeutigkeit von L\"osungen}
+
+\begin{itemize}
+\item Die S\"atze \"uber die Existenz und die Eindeutigkeit von L\"osungen einer Differentialgleichung setzen voraus,
+da{\ss} die Funktion $G$ lokal eine Lipschitz-Bedingung erf\"ullt.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Lipschitz-Bedingung}
+
+\begin{definition}[Lipschitz-Bedingung f\"ur eine Differentialgleichung erster Ordnung]
+Sei $D$ eine Teilmenge von ${\mathbb R}^2$ und 
+\bq
+ G & : & D \rightarrow {\mathbb R},
+ \nonumber \\
+ & & \left(x,y\right) \rightarrow G\left(x,y\right)
+\eq
+eine Funktion.
+Man sagt, $G$ gen\"ugt in $D$ einer {\bf Lipschitz-Bedingung} mit der
+Lipschitz-Konstanten $L \ge 0$, falls f\"ur alle $(x,y)$, $(x,z) \in D$ gilt
+\bq
+ \left| G\left(x,y\right) - G\left(x,z\right) \right|
+ & \le &
+ L \left| y - z \right|.
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Eindeutigkeit von L\"osungen}
+
+\begin{theorem}
+Wir setzen voraus, da{\ss} die Funktion
+$G$ in $D$ lokal einer Lipschitz-Bedingung gen\"ugt.
+Seien $f(x)$ und $g(x)$ zwei L\"osungen der Differentialgleichung
+\bq
+ y^{(n)} & = & G\left(x,\vec{y}\right)
+\eq
+\"uber einem Intervall $I \subset {\mathbb R}$. Gilt dann
+\bq
+ f^{(j)}\left(x_0\right) & = & g^{(j)}\left(x_0\right) 
+ \;\;\;\;\;\; \forall \; 0 \le j < n 
+\eq
+f\"ur ein $x_0 \in I$, so folgt
+\bq
+ f\left(x\right) & = & g\left(x\right) 
+\eq
+f\"ur alle $x\in I$.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Existenz von L\"osungen}
+
+\begin{theorem}[Picard -- Lindel\"of]
+Sei $D$ offen und $G : D \rightarrow {\mathbb R}$ eine stetige Funktion, die lokal
+einer Lipschitz-Bedingung gen\"ugt.
+Dann gibt es zu jedem $\left(x_0,\tilde{y}_0,\tilde{y}_1,\dots,\tilde{y}_{n-1}\right) \in D$ ein $\eps > 0$ und eine L\"osung
+\bq
+ f & : & \left[x_0-\eps, x_0+\eps \right] \rightarrow {\mathbb R}
+\eq
+der Differentialgleichung $y^{(n)} = G\left(x,\vec{y}\right)$
+mit der Anfangsbedinung
+\bq
+ f^{(j)}(x_0) & = & \tilde{y}_j
+ \;\;\;\;\;\;
+ 0 \le j < n.
+\eq
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Existenz und Eindeutigkeit von L\"osungen}
+
+\begin{mytheorem28}
+Die L\"osung einer gew\"ohnlichen Differentialgleichung $n$-ter Ordnung
+wird eindeutig durch \superalert{$n$} Anfangsbedingungen 
+\bq
+ f(x_0), f'(x_0), ..., f^{(n-1)}(x_0)
+\eq
+bestimmt.
+\end{mytheorem28}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Wichtige Beispiele}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Exponentielles Wachstum / exponentieller Zerfall}
+
+\begin{example}
+Wir betrachten die Differentialgleichung
+\bq
+ f'(x) & = & -\lambda f(x).
+\eq
+Gesucht ist eine L\"osung zur Anfangsbedingung
+\bq
+ f(0) & = & C.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Exponentielles Wachstum / exponentieller Zerfall}
+
+Wir betrachten die Funktion
+\begin{myemptytheorem}
+\bq
+ f\left(x\right) & = & C e^{-\lambda x}.
+\eq
+\end{myemptytheorem}
+Es ist
+\bq
+ f'\left(x\right) & = & - \lambda C e^{-\lambda x}
+ \; = \; 
+ - \lambda f\left(x\right).
+\eq
+F\"ur die Anfangsbedingung gilt
+\bq
+ f\left(0\right) & = & C.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Eine L\"osung der Differentialgleichung
+\bq
+ f'(x) & = & 2 f(x)
+\eq
+zur Anfangsbedingung $f(0)=2$ ist
+\begin{description}
+\item{(A)} $f(x) = 2 e^x$
+\item{(B)} $f(x) = e^{2x}$
+\item{(C)} $f(x) = 2 e^{2x}$
+\item{(D)} $f(x) = 2 e^{-2x}$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Exponentielles Wachstum}
+
+\begin{example}
+Annahme: Eine mit einem Virus infizierte Person steckt im Mittel pro Tag 1.3 nicht-infizierte Personen an.
+
+Zu Beginn der Z\"ahlung seien 10 000 Personen infiziert.
+
+Wie viele Personen sind nach 10 Tagen infiziert?
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Exponentielles Wachstum}
+
+Es sei $f(t)$ die Anzahl der infizierten Personen am Tag $t$.
+
+Die Anzahl der Neuinfizierten pro Tag ist proportional zur Anzahl der bereits infizierten Personen, daher haben
+wir die Differentialgleichung
+\bq
+ f'\left(t\right)
+ & = &
+ \kappa f\left(t\right),
+\eq
+deren L\"osung durch
+\bq
+ f\left(t\right)
+ & = & 
+ C e^{\kappa t}
+\eq
+gegeben ist.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Exponentielles Wachstum}
+
+Wir bestimmen die Konstante $C$ aus der Anfangsbedingung:
+\bq
+ f\left(0\right) \; = \; 10000
+ & \Rightarrow &
+ C \; = \; 10000.
+\eq
+Wir bestimmen die Konstante $\kappa$ aus der Ver\"anderung pro Tag: 
+
+Nach einem Tag haben wir $23000$ Infizierte 
+
+($13000$ neu Infizierte plus $10000$ bereits Infizierte):
+\bq
+ f\left(1\right) \; = \; 23000
+ & \Rightarrow &
+ 10000 e^\kappa \; = \; 23000
+ \;\;\; \Rightarrow \;\;\;
+ \kappa \; = \; \ln\left(2.3\right)
+\eq
+Somit
+\bq
+ f\left(t\right) 
+ & = & 
+ 10000 \cdot \left(2.3\right)^t,
+ \nonumber \\
+ f\left(10\right)
+ & \approx &
+ 41 \cdot 10^6.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Exponentielles Wachstum}
+
+Bemerkungen:
+\begin{itemize}
+\item Wir haben angenommen, da{\ss} eine infizierte Person ansteckend bleibt.
+\item Wir haben S\"attigungseffekte vernachl\"assigt: Sind alle Personen infiziert, k\"onnen keine neuen Personen mehr infiziert werden.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der harmonische Oszillator}
+
+\begin{example}
+Wir betrachten die Differentialgleichung
+\bq
+ f''(t) & = & - \omega^2 f(t).
+\eq
+Gesucht ist eine L\"osung zu den Anfangsbedingungen
+\bq
+ f(0) \; = \; x_0,
+ & &
+ f'(0) \; = \; v_0.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der harmonische Oszillator}
+
+Wir betrachten die Funktion
+\begin{myemptytheorem}
+\bq
+ f\left(t\right) & = & A_1 \sin\left(\omega t\right) + A_2 \cos\left(\omega t\right)
+\eq
+\end{myemptytheorem}
+Es ist
+\bq
+ f'\left(t\right) & = & \omega A_1 \cos\left(\omega t\right) - \omega A_2 \sin\left(\omega t\right),
+ \nonumber \\
+ f''\left(t\right) & = & - \omega^2 A_1 \sin\left(\omega t\right) - \omega^2 A_2 \cos\left(\omega t\right)
+ \; = \; 
+ - \omega^2 f(t).
+\eq
+F\"ur die Anfangsbedingung gilt
+\bq
+ x_0 & = & f\left(0\right) \; = \; A_1 \sin\left(0\right) + A_2 \cos\left(0\right) \; = \; A_2,
+ \nonumber \\
+ v_0 & = &  f'\left(0\right) \; = \; \omega A_1 \cos\left(0\right) - \omega A_2 \sin\left(0\right)
+ \; = \; \omega A_1.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der harmonische Oszillator}
+
+Somit lautet die L\"osung
+\begin{myemptytheorem}
+\bq
+ f\left(t\right) & = & x_0 \cos\left(\omega t\right) +\frac{v_0}{\omega} \sin\left(\omega t\right) 
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der harmonische Oszillator}
+
+Wir k\"onnen auch die Funktion
+\begin{myemptytheorem}
+\bq
+ f\left(t\right) & = & c_1 e^{i\omega t} + c_2 e^{-i \omega t}
+\eq
+\end{myemptytheorem}
+betrachten.
+Es ist
+\bq
+ f'\left(t\right) & = & i \omega c_1 e^{i\omega t} - i \omega c_2 e^{-i \omega t},
+ \nonumber \\
+ f''\left(t\right) & = & - \omega^2 c_1 e^{i\omega t} - \omega^2 c_2 e^{-i \omega t}
+ \; = \; 
+ - \omega^2 f(t).
+\eq
+Aufgrund von
+\bq
+ \cos\left(\omega t\right) = \frac{1}{2} \left( e^{i\omega t} + e^{-i\omega t} \right),
+ & &
+ \sin\left(\omega t\right) = \frac{1}{2i} \left( e^{i\omega t} - e^{-i\omega t} \right),
+\eq
+ist dies \"aquivalent zur vorherigen L\"osung.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der harmonische Oszillator}
+
+\begin{example}
+F\"ur ein Federpendel ist die r\"ucktreibende Kraft proportional zur Auslenkung:
+\bq
+ F & = & - D x,
+\eq
+wobei $D$ die Federkonstante angibt.
+Das Newtonsche Gesetz lautet
+\bq
+ F & = & m a,
+\eq
+wobei $a$ die Beschleunigung angibt. 
+Die Beschleunigung ist die zweite Ableitung des Ortes nach der Zeit.
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der harmonische Oszillator}
+
+F\"ur die Auslenkung $x(t)$ erhalten wir die Differentialgleichung
+\bq
+ x''\left(t\right) & = & - \frac{D}{m} x\left(t\right).
+\eq
+Dies ist die Differentialgleichung eines harmonischen Oszillators mit der L\"osung
+\bq
+ x\left(t\right) & = & x_0 \cos\left(\omega t\right) +\frac{v_0}{\omega} \sin\left(\omega t\right),
+ \;\;\;\;\;\;
+ \omega \; = \; \sqrt{\frac{D}{m}}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Eine L\"osung der Differentialgleichung
+\bq
+ f'(x) & = & \omega^2 f(x)
+\eq
+zu den Anfangsbedingungen $f(0)=2$, $f'(0)=0$ ist
+\begin{description}
+\item{(A)} $f(x) = 2 cos(\omega x)$
+\item{(B)} $f(x) = 2 cos(\omega x) + \frac{2}{\omega} sin(\omega x)$
+\item{(C)} $f(x) = cos(2 \omega x)$
+\item{(D)} $f(x) = 2 cosh(\omega x)$
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Elementare L\"osungsmethoden}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Elementare L\"osungsmethoden}
+
+\begin{myemptytheorem}
+Wir betrachten eine gew\"ohnliche Differentialgleichung erster Ordnung:
+\bq
+ y' & = & G(x,y)
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Elementare L\"osungsmethoden}
+
+\begin{myemptytheorem}
+H\"angt die Funktion $G$ nur von $x$, aber nicht von $y$ ab, so hat man
+\bq
+ f'(x) & = & G(x)
+\eq
+und man erh\"alt eine L\"osung durch Integration:
+\bq
+ f(x) & = & c + \int\limits_{x_0}^x G(t) \; dt.
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Differentialgleichungen mit separierten Variablen}
+
+\begin{myemptytheorem}
+Als n\"achstes betrachten wir den Fall, da{\ss} die Funktion $G$ faktorisiert:
+\bq
+ G(x,y) & = & h(x) k(y).
+\eq
+In diesem Fall spricht man von einer Differentialgleichungen mit separierten Variablen.
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Differentialgleichungen mit separierten Variablen}
+
+Wir wollen annehmen, da{\ss} 
+\bq
+ h : I \rightarrow {\mathbb R},
+ & &
+ k : J \rightarrow {\mathbb R},
+\eq
+stetige Funktionen auf offenen Intervallen $I, J \subset {\mathbb R}$ sind.
+Weiter sei $k(y)\neq 0$ f\"ur alle $y\in J$.
+Sei nun $(x_0,y_0) \in I \times J$.
+Wir setzen
+\bq
+ H(x) = \int\limits_{x_0}^x h(t) dt,
+ & &
+ K(y) = \int\limits_{y_0}^y \frac{dt}{k(t)}.
+\eq
+Es sei $I' \subset I$ ein Intervall mit $x_0 \in I'$ und $H(I') \subset K(J)$.
+Dann exisitiert genau eine L\"osung $f:I' \rightarrow {\mathbb R}$ mit
+\bq
+ f(x_0) = y_0.
+\eq
+Diese L\"osung erf\"ullt die Beziehung
+\bq
+ K\left(f(x)\right) & = & H(x).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Differentialgleichungen mit separierten Variablen}
+
+\begin{example}
+Wir betrachten die Differentialgleichung
+\bq
+ y' & = & 2 x e^{-y}
+\eq
+und suchen eine L\"osung zu der Anfangsbedingung $f(0)=c$.
+Die Variablen sind klarerweise getrennt.
+F\"ur dieses Beispiel k\"onnen wir
+\bq
+ h(x) = 2x, 
+ & &
+ k(y) = e^{-y}
+\eq
+setzen. 
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Differentialgleichungen mit separierten Variablen}
+
+Wir erhalten
+\bq
+ H(x) & = & 2 \int\limits_0^x t \; dt = x^2,
+ \nonumber \\
+ K(y) & = & \int\limits_{c}^y \frac{dt}{e^{-t}} = e^y - e^c.
+\eq
+Somit
+\bq
+ e^{f(x)} - e^c & = & x^2.
+\eq
+Umgeformt ergibt sich
+\bq
+ f(x) & = & \ln\left( x^2 + e^c \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Differentialgleichungen mit separierten Variablen}
+
+\begin{example}
+Als zweites Beispiel betrachten wir die Differentialgleichung
+\bq
+ y' & = & y^2.
+\eq
+Gesucht ist eine L\"osung zu der Anfangsbedingung $y(0)=1$.
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Differentialgleichungen mit separierten Variablen}
+
+Wir haben
+\bq
+ \frac{dy}{y^2} & = & dx,
+\eq
+und somit liefert die Integration
+\bq
+ - \frac{1}{y} & = & x + c.
+\eq
+Durch Aufl\"osen nach $y$ erh\"alt man
+\bq
+ y & = & - \frac{1}{x+c}.
+\eq
+Die Anfangsbedingung $y(0)=1$ liefert $c=-1$, somit lautet die L\"osung
+\bq
+ y & = & \frac{1}{1-x}.
+\eq
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+
+
+

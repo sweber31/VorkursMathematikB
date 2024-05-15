@@ -1,0 +1,721 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+\definecolor{MyYellowOrange}{cmyk}{0,0.5,1,0}
+\newcommand{\superalert}[1]{{\color{MyYellowOrange}{#1}}}
+\newtheorem*{myemptytheorem}{}
+
+% dedicated environments
+\newtheorem*{mytheorem27}{Hauptsatz der Differential- und Integralrechnung:} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Fehlerrechnung}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Motivation}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+Eine Person A mi{\ss}t eine bestimmte Gr\"o{\ss}e experimentell.
+Sie f\"uhrt diese Messung \"ofters durch. 
+Aufgrund der experimentellen Me{\ss}ungenauigkeit ergeben sich leicht unterschiedliche Werte.
+
+\vspace*{2mm}
+{\footnotesize
+Me{\ss}reihe 1:
+\bq
+\begin{array}{l|lllllllllllll}
+\mbox{Messung}  & 1   & 2   & 3   & 4   & 5   & 6   & 7   & 8   & 9   & 10  & 11  & 12  & 13  \\
+\hline \\
+\mbox{Ergebnis} & 2.6 & 2.3 & 2.5 & 2.3 & 2.6 & 2.4 & 2.2 & 2.3 & 2.4 & 2.5 & 2.6 & 2.8 & 2.7 \\
+\end{array}
+\eq
+}
+
+Wir definieren den \superalert{Mittelwert einer Me{\ss}reihe} mit $n$ Me{\ss}punkten als
+\bq
+ \bar{x} & = & \frac{1}{n} \sum\limits_{j=1}^n x_j.
+\eq
+F\"ur die obige Me{\ss}reihe ergibt sich
+\bq
+ \bar{x} & = & 2.48
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+Eine Person B bestimmt die gleiche Gr\"o{\ss}e ebenfalls experimentell.
+Person B verwendet allerdings eine schlechtere Me{\ss}apparatur und f\"uhrt weniger Messungen durch.
+Person B erh\"alt die folgenden Me{\ss}werte:
+
+\vspace*{2mm}
+{\footnotesize
+Me{\ss}reihe 2:
+\bq
+\begin{array}{l|llll}
+\mbox{Messung}  & 1   & 2   & 3   & 4   \\
+\hline \\
+\mbox{Ergebnis} & 0.3 & 5.2 & 3.1 & 1.4 \\
+\end{array}
+\eq
+}
+
+Der Mittelwert ergibt sich zu
+\bq
+ \bar{x} & = & 2.48
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+\begin{itemize}
+\item Im zweiten Fall streuen die einzelnen Messungen wesentlich st\"arker als im ersten Fall.
+
+\item Es ist daher offensichtlich, da{\ss} das Ergebnis von Person A vertauensw\"urdiger als das 
+Ergebnis von Person B ist. 
+
+\item Wir wollen nun diese Aussage quantitativ machen und suchen ein
+Ma{\ss} f\"ur die Streuung der Me{\ss}punkte.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Grundlagen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stochastik}
+
+\begin{definition}
+\bq
+\Omega & : & \mbox{Ergebnismenge eines Zufallsexperiments},
+ \nonumber \\
+\mbox{Zufallsfunktion} & : & \mbox{Funktion} \;\; X: \; \Omega \rightarrow {\mathbb R},
+\eq
+Wahrscheinlichkeitsfunktion einer Zufallsgr\"o{\ss}e $X$:
+\bq
+ W : x & \rightarrow & P\left( \omega | X(\omega) = x \right).
+\eq
+{\bf Erwartungswert einer Zufallsgr\"o{\ss}e}: Nimmt die Zufallsgr\"o{\ss}e $X$ die Werte
+$x_1$, $x_2$, ..., $x_n$ an, so bezeichnet man mit
+\bq
+ \mu\left(X \right) & = & \sum\limits_{j=1}^n x_j W(x_j)
+\eq
+den Erwartungswert von $X$.
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Stochastik}
+
+\begin{theorem}
+Entsprechen die einzelnen Messungen einzelnen unabh\"angigen Realisierungen eines
+Zufallsexperiments, so ist der Mittelwert $\bar{x}$ eine Sch\"atzung f\"ur $\mu(X)$.
+\end{theorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Varianz und Standardabweichung}
+
+\begin{definition}
+Die Varianz einer Zufallsgr\"o{\ss}e ist definiert durch
+\bq
+ \mbox{Var}(X) & = & \sum\limits_{j=1}^n \left( x_j - \mu \right)^2 W(x_j).
+\eq
+\end{definition}
+
+\begin{definition}
+Die Standardabweichung einer Zufallsgr\"o{\ss}e ist definiert durch
+\bq
+ \sigma(X) & = & \sqrt{\mbox{Var}(X)}.
+\eq
+\end{definition}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Sch\"atzfunktion f\"ur die Varianz}
+
+\alert{Kennen wir den Erwartungswert $\mu$} einer Zufallsgr\"o{\ss}e und machen $n$ Messungen $x_j$, so ist
+\bq
+ \frac{1}{n} \sum\limits_{j=1}^n \left( x_j - \mu \right)^2
+\eq
+eine Sch\"atzfunktion f\"ur die Varianz.
+
+\vspace*{3mm}
+\superalert{Im Allgemeinen ist $\mu$ aber nicht bekannt} und man verwendet $\bar{x}$ als Sch\"atzung f\"ur $\mu$.
+In diesem Fall ist 
+\bq
+ S^2 & = & 
+ \frac{1}{n-1} \sum\limits_{j=1}^n \left( x_j - \bar{x} \right)^2
+\eq
+eine Sch\"atzfunktion f\"ur die Varianz der Zufallsgr\"o{\ss}e $X$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{S\"atze \"uber die Varianz}
+
+Sei $c \in \mathbb R$ und seien $X_1$, $X_2$, ..., $X_n$ unabh\"angige Zufallsgr\"o{\ss}en.
+Dann gilt:
+\begin{myemptytheorem}
+\bq
+ \mbox{Var}\left( c X \right) & = & c^2 \; \mbox{Var}\left(X \right),
+ \nonumber \\
+ \mbox{Var}\left( X_1 + X_2 + ... + X_n  \right) & = & 
+  \mbox{Var}\left(X_1 \right) + \mbox{Var}\left(X_2 \right) + ...
+  + \mbox{Var}\left(X_n \right).
+\eq
+\end{myemptytheorem}
+Insbesondere gilt:
+\bq
+ \mbox{Var}\left( \frac{1}{n} \underbrace{\left( X + X + ... + X  \right)}_{n\;\mbox{\scriptsize mal}} \right) & = & 
+ \frac{1}{n^2} \left( 
+  \mbox{Var}\left(X \right) + \mbox{Var}\left(X \right) + ...
+  + \mbox{Var}\left(X \right) \right)
+ \nonumber \\
+ & = &
+ \frac{1}{n} \mbox{Var}\left(X \right).
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Varianz des Mittelwertes}
+
+Es interessiert in erster Linie nicht die Varianz der einzelnen Messungen $\mbox{Var}(X)$, sondern
+die Varianz des Mittelwertes $\mbox{Var}(\bar{X})$.
+Bei $n$ Messungen gilt:
+\bq
+ \mbox{Var}(\bar{X}) & = & \frac{1}{n} \mbox{Var}(X).
+\eq
+Somit erh\"alt man als Sch\"atzung f\"ur die Varianz des Mittelwertes
+\bq
+ S_{\bar{X}}^2 & = & \frac{1}{n} S^2
+ = \frac{1}{n(n-1)} \sum\limits_{j=1}^n \left( x_j - \bar{x} \right)^2.
+\eq
+F\"ur die Standardabweichung erh\"alt man
+\bq
+ \sigma_{\bar{X}} & = & 
+ \sqrt{ \frac{1}{n(n-1)} \sum\limits_{j=1}^n \left( x_j - \bar{x} \right)^2}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiel}
+
+Somit findet man f\"ur die beiden oben aufgef\"uhrten Me{\ss}reihen:
+\bq
+ \mbox{Me{\ss}reihe}\; 1: & & \sigma_{\bar{X}} = 0.05,
+ \nonumber \\
+ \mbox{Me{\ss}reihe}\; 2: & & \sigma_{\bar{X}} = 1.07.
+\eq
+Es ist \"ublich mit dem Mittelwert auch immer die Standardabweichung anzugeben, also
+\bq
+ \mbox{Me{\ss}reihe}\; 1: & & x = 2.48 \pm 0.05,
+ \nonumber \\
+ \mbox{Me{\ss}reihe}\; 2: & & x = 2.48 \pm 1.07.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Normalverteilung}
+
+Zur Interpretation der Standardabweichung betrachten wir zun\"achst \alert{kontinuierliche Zufallsgr\"o{\ss}en}.
+Die Wahrscheinlichkeitsdichtefunktion $p(x)$ f\"ur eine kontinuierliche Zufallsgr\"o{\ss}e
+beschreibt
+\bq
+ P\left( a < X \le b \right)
+ & = & \int\limits_a^b p(x) \; dx.
+\eq
+Definition: Man nennt eine kontinuierliche Zufallsgr\"o{\ss}e \superalert{normalverteilt},
+falls sie die Wahrscheinlichkeitsdichtefunktion
+\bq
+ p(x) & = & \frac{1}{\sqrt{2\pi}} \frac{1}{\sigma} \exp\left( - \frac{1}{2} \frac{(x-\mu)^2}{\sigma^2} \right)
+\eq
+besitzt. Der Erwartungswert dieser normalverteilten Zufallsgr\"o{\ss}e ist $\mu$, die Standardabweichung
+ist $\sigma$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Normalverteilung}
+
+F\"ur eine normalverteilte Zufallsgr\"o{\ss}e gilt:
+\bq
+ P\left( \mu-\sigma < X \le \mu+\sigma \right) & \approx & 68.27 \%,
+ \nonumber \\
+ P\left( \mu-2\sigma < X \le \mu+2\sigma \right) & \approx & 95.45 \%,
+ \nonumber \\
+ P\left( \mu-3\sigma < X \le \mu+3\sigma \right) & \approx & 99.73 \%.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Ein Experiment mi{\ss}t eine Gr\"o{\ss}e $O$ und berichtet
+\bq
+ O & = &
+ 5.94\pm 0.02
+\eq
+Dies bedeutet:
+
+\vspace*{5mm}
+(A) Der wahre Wert der Observablen $O$ ist $5.94$.
+
+\vspace*{2mm}
+(B) Der wahre Wert der Observablen $O$ liegt im Intervall $[5.92,5.96]$.
+
+\vspace*{2mm}
+(C) Die Wahrscheinlichkeit, da{\ss} der wahre Wert der Observablen $O$ im Intervall $[5.92,5.96]$ liegt, betr\"agt $99.7\%$.
+
+\vspace*{2mm}
+(D) Die Wahrscheinlichkeit, da{\ss} der wahre Wert der Observablen $O$ im Intervall $[5.92,5.96]$ liegt, betr\"agt $68.3\%$,
+falls der Me{\ss}wert einer Normalverteilung folgt.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fehlerfortpflanzung}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Problemstellung}
+
+Gesucht wird eine Gr\"o{\ss}e $f=f(x,y)$ die von zwei weiteren Gr\"o{\ss}en
+$x$ und $y$ abh\"angt. 
+
+Die Funktion $f$ wird als bekannt vorausgesetzt, die Gr\"o{\ss}en 
+$x$ und $y$ werden durch eine Messung mit Fehlern $x \pm \Delta x$ und $y \pm \Delta y$ bestimmt.
+
+Gesucht ist nun der Fehler f\"ur die Gr\"o{\ss}e $f$.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Fehlerfortpflanzung}
+
+F\"ur die Gr\"o{\ss}e $f$ beginnen wir mit der Taylorentwicklung:
+\bq
+ f\left(x+\Delta x, y+ \Delta y \right) 
+ & = & f(x,y) + \frac{\partial f(x,y)}{\partial x} \Delta x
+              + \frac{\partial f(x,y)}{\partial y} \Delta y 
+              + ...
+\eq
+Wir nehmen an, da{\ss} wir $n$ Messungen f\"ur die Gr\"o{\ss}en $x$ und $y$ haben, die einzelnen
+Me{\ss}werte seien mit $x_j$ und $y_j$ bezeichnet.
+Somit haben wir auch $n$ Ergebnisse f\"ur $f$.
+F\"ur die Abweichung eines Einzelergebnisses vom Mittelwert gilt f\"ur kleine Abweichungen
+\bq
+ f_j - \bar{f} & = & \frac{\partial f}{\partial x} \cdot \left( x_j - \bar{x} \right)
+                   + \frac{\partial f}{\partial y} \cdot \left( y_j - \bar{y} \right)
+                   + ...
+\eq
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Fehlerfortpflanzung}
+
+\bq
+ f_j - \bar{f} & = & \frac{\partial f}{\partial x} \cdot \left( x_j - \bar{x} \right)
+                   + \frac{\partial f}{\partial y} \cdot \left( y_j - \bar{y} \right)
+                   + ...
+\eq
+Somit gilt f\"ur die Varianz:
+{\scriptsize
+\bq
+\lefteqn{
+ \sigma_f^2 = 
+} & &
+\nonumber \\
+ & = & 
+ \lim\limits_{n \rightarrow \infty} \frac{1}{n} \sum\limits_{j=1}^n \left( f_j - \bar{f} \right)^2
+ \nonumber \\
+ & = & 
+ \lim\limits_{n \rightarrow \infty} \frac{1}{n} \sum\limits_{j=1}^n 
+  \left[ 
+         \left( x_j - \bar{x} \right)^2 \left( \frac{\partial f}{\partial x} \right)^2
+       + \left( y_j - \bar{y} \right)^2 \left( \frac{\partial f}{\partial y} \right)^2
+       + 2 \left( x_j - \bar{x} \right) \left( y_j - \bar{y} \right) 
+           \left( \frac{\partial f}{\partial x} \right) \left( \frac{\partial f}{\partial y} \right)
+  \right]
+\eq
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Kovarianz}
+
+Wir definieren die {\bf Kovarianz} als
+\bq
+ \mbox{Cov}(x,y) & = & \sigma_{x y} = 
+ \lim\limits_{n \rightarrow \infty} \frac{1}{n} \sum\limits_{j=1}^n 
+  \left( x_j - \bar{x} \right) \left( y_j - \bar{y} \right) 
+\eq
+Somit haben wir
+\bq
+ \sigma_f^2 & = & 
+         \left( \frac{\partial f}{\partial x} \right)^2 \sigma_x^2
+       + \left( \frac{\partial f}{\partial y} \right)^2 \sigma_y^2
+       + 2 \left( \frac{\partial f}{\partial x} \right) \left( \frac{\partial f}{\partial y} \right)
+           \sigma_{xy}.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Unkorrelierte Zufallsgr\"o{\ss}en}
+
+Falls $x$ und $y$ unkorreliert sind, gilt $\sigma_{x y} = 0$ und somit
+\bq
+ \sigma_f^2 & = & 
+         \left( \frac{\partial f}{\partial x} \right)^2 \sigma_x^2
+       + \left( \frac{\partial f}{\partial y} \right)^2 \sigma_y^2,
+\eq
+bzw.
+\begin{myemptytheorem}
+\bq
+ \sigma_f & = & 
+         \sqrt{ \left( \frac{\partial f}{\partial x} \right)^2 \sigma_x^2
+       + \left( \frac{\partial f}{\partial y} \right)^2 \sigma_y^2}.
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Addition}
+
+\begin{enumerate}
+
+\item $f=x+y$. In diesem Fall haben wir
+\bq
+ \sigma_f & = & \sqrt{\sigma_x^2 + \sigma_y^2},
+\eq
+man sagt, die (absoluten) Fehler addieren sich quadratisch.
+
+\end{enumerate}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Addition}
+
+\begin{example}
+\bq
+ f \; = \; x+y,
+ & & 
+ \sigma_f \; = \; \sqrt{\sigma_x^2 + \sigma_y^2}.
+\eq
+Es sei $x=15\pm 3$ und $y=17\pm 4$.
+
+\vspace*{5mm}
+Es ist
+\bq
+ \bar{f} & = & \bar{x} + \bar{y} \; = \; 15 + 17 \; = \; 32,
+ \nonumber \\
+ \sigma_f & = & \sqrt{\sigma_x^2 + \sigma_y^2} \; = \; \sqrt{3^2 + 4^2} \; = \; 5.
+\eq
+Somit
+\bq
+ f & = & 32 \pm 5.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Multiplikation}
+
+\begin{enumerate}[2]
+
+\item $f = x \cdot y$. In diesem Fall findet man
+\bq 
+\sigma_f & = & \sqrt{y^2 \sigma_x^2 + x^2 \sigma_y^2},
+\eq
+oder anders geschrieben
+\bq
+ \frac{\sigma_f}{f} & = & \sqrt{ \left(\frac{\sigma_x}{x}\right)^2 + \left(\frac{\sigma_y}{y}\right)^2 }.
+\eq
+Bei einem Produkt addieren sich die relativen Fehler quadratisch.
+
+\end{enumerate}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Multiplikation}
+
+\begin{example}
+\bq
+ f \; = \; x \cdot y,
+ & & 
+ \frac{\sigma_f}{f} \; = \; \sqrt{ \left(\frac{\sigma_x}{x}\right)^2 + \left(\frac{\sigma_y}{y}\right)^2 }.
+\eq
+Es sei $x=2\pm 0.06$ und $y=5\pm 0.2$.
+
+\vspace*{5mm}
+Es ist
+{\footnotesize
+\bq
+ \bar{f} & = & \bar{x} \cdot \bar{y} \; = \; 2 \cdot 5 \; = \; 10,
+ \nonumber \\
+ \sigma_f & = & f \sqrt{ \left(\frac{\sigma_x}{x}\right)^2 + \left(\frac{\sigma_y}{y}\right)^2 } 
+ \; = \; 
+ 10 \sqrt{ \left(\frac{6}{200}\right)^2 + \left(\frac{2}{50}\right)^2 }
+ \; = \;
+ \frac{10}{\sqrt{400}}
+ \; = \; 
+ \frac{1}{2}.
+\eq
+}
+
+\vspace*{-2mm}
+Somit
+\bq
+ f & = & 10 \pm 0.5.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Subtraktion}
+
+\begin{enumerate}[3]
+
+\item $f=x-y$. Hier findet man wie bei einer Summe
+\bq
+ \sigma_f & = & \sqrt{\sigma_x^2 + \sigma_y^2}.
+\eq
+
+\end{enumerate}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Es sei $x=17 \pm 4$ und $y=15\pm3$, sowie
+\bq
+ f & = & x-y.
+\eq
+Mittelwert und Fehler f\"ur $f$ ergeben sich zu
+\begin{description}
+\item{(A)} $f = 2 \pm 1$
+\item{(B)} $f = 2 \pm \sqrt{7}$
+\item{(C)} $f = 2 \pm 4$
+\item{(D)} $f = 2 \pm 5$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Division}
+
+\begin{enumerate}[4]
+
+\item $f = \frac{x}{y}$. In diesem Fall findet man
+\bq 
+\sigma_f & = & \sqrt{\frac{1}{y^2} \sigma_x^2 + \frac{x^2}{y^4} \sigma_y^2}.
+\eq
+Schreibt man dies mit Hilfe der relativen Fehler erh\"alt man wie beim Produkt
+\bq
+ \frac{\sigma_f}{f} & = & \sqrt{ \left(\frac{\sigma_x}{x}\right)^2 + \left(\frac{\sigma_y}{y}\right)^2 }.
+\eq
+
+\end{enumerate}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Division}
+
+\begin{example}
+\bq
+ f \; = \; \frac{x}{y},
+ & & 
+ \frac{\sigma_f}{f} \; = \; \sqrt{ \left(\frac{\sigma_x}{x}\right)^2 + \left(\frac{\sigma_y}{y}\right)^2 }.
+\eq
+Es sei $x=2\pm 0.06$ und $y=5\pm 0.2$.
+
+\vspace*{5mm}
+Es ist
+{\footnotesize
+\bq
+ \bar{f} & = & \frac{\bar{x}}{\bar{y}} \; = \; \frac{2}{5} \; = \; 0.4,
+ \nonumber \\
+ \sigma_f & = & f \sqrt{ \left(\frac{\sigma_x}{x}\right)^2 + \left(\frac{\sigma_y}{y}\right)^2 } 
+ \; = \; 
+ \frac{2}{5} \sqrt{ \left(\frac{6}{200}\right)^2 + \left(\frac{2}{50}\right)^2 }
+ \; = \;
+ \frac{2}{5 \sqrt{400}}
+ \; = \; 
+ \frac{1}{50}.
+\eq
+}
+
+\vspace*{-2mm}
+Somit
+\bq
+ f & = & 0.4 \pm 0.02.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Beispiele: Potenzen}
+
+\begin{enumerate}[5]
+
+\item Zum Abschluss betrachten wir noch $f = x^a y^b$. Man erh\"alt
+\bq
+ \sigma_f & = & \sqrt{ \left( a x^{a-1} y^b \right)^2 \sigma_x^2 
+                     + \left( b x^a y^{b-1} \right)^2 \sigma_y^2}
+\eq
+Auch hier empfiehlt es sich wieder, die Formel in relativen Fehler zu schreiben:
+\bq
+ \frac{\sigma_f}{f} & = & \sqrt{ a^2 \left(\frac{\sigma_x}{x}\right)^2 + b^2 \left(\frac{\sigma_y}{y}\right)^2 }.
+\eq
+
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kombination von Messungen}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Anwendungsbeispiel}
+
+Wir hatten zuvor den Fall betrachtet, da{\ss} eine Gr\"o{\ss}e durch zwei Me{\ss}reihen 
+experimentell bestimmt wird: 
+\bq
+ \mbox{Me{\ss}reihe}\; 1: & & x = 2.48 \pm 0.05,
+ \nonumber \\
+ \mbox{Me{\ss}reihe}\; 2: & & x = 2.48 \pm 1.07.
+\eq
+Es stellt sich nun die Frage, wie man diese Ergebnisse miteinander kombiniert.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Kombination von Messungen}
+
+Etwas allgemeiner seien f\"ur eine Gr\"o{\ss}e $x$ $n$ Messungen $x_j$ mit Fehlern $\sigma_j$ gegeben.
+
+\vspace*{3mm}
+Dann setzt man
+\begin{myemptytheorem}
+\bq
+ x = \frac{\frac{1}{\sigma_1^2} x_1 + \frac{1}{\sigma_2^2} x_2 + ... + \frac{1}{\sigma_n^2} x_n}
+              {\frac{1}{\sigma_1^2} + \frac{1}{\sigma_2^2} + ... + \frac{1}{\sigma_n^2} },
+ & &
+ \sigma = \frac{1}{\sqrt{\frac{1}{\sigma_1^2} + \frac{1}{\sigma_2^2} + ... + \frac{1}{\sigma_n^2}}}.
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Anwendungsbeispiel}
+
+F\"ur das Beispiel hat man
+\bq
+ x_1 = 2.48, & & \sigma_1 = 0.05,
+ \nonumber \\
+ x_2 = 2.48, & & \sigma_2 = 1.07.
+\eq
+Man findet somit
+\bq
+ x = 2.48, & & \sigma = 0.04995.
+\eq
+Die zweite Me{\ss}reihe liefert keinen wesentlichen Beitrag zur Verbesserung des Fehlers.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
+

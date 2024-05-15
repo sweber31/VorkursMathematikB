@@ -1,0 +1,719 @@
+\documentclass[german]{beamer}
+
+\mode<presentation>
+{
+ \usetheme{Madrid}
+
+% \usecolortheme{crane}
+ \usecolortheme{wolverine}
+}
+
+\usepackage{hyperref}
+
+\usepackage[german]{babel}
+\usepackage{times}
+\usepackage[latin1,utf8]{inputenc}
+\usepackage[OT2,T1]{fontenc}
+\usepackage{shuffle}
+\usepackage{axodraw}
+
+
+% Stefan's abbreveations
+\newcommand{\bq}{\begin{eqnarray*}}
+\newcommand{\eq}{\end{eqnarray*}}
+\newcommand{\eps}{\varepsilon}
+
+% dedicated environments
+\newtheorem*{myemptytheorem}{}
+\newtheorem*{mytheorem6}{Die komplexen Zahlen $\mathbb C$ sind die Menge}
+\newtheorem*{mytheorem6a}{Der K\"orper $\mathbb{Q}[\sqrt{3}]$ ist die Menge}
+\newtheorem*{mytheorem7}{Definition der Addition und der Multiplikation:}
+\newtheorem*{mytheorem7a}{Definition der Subtraktion und Division:}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Komplexe Zahlen}
+
+\subtitle{Mathematischer Br\"uckenkurs}
+
+\author{Stefan Weinzierl}
+
+\institute[Uni Mainz]{Institut f\"ur Physik, Universit\"at Mainz}%
+
+\date[WiSe 2020/21]{Wintersemester 2020/21}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Motivation und Definition}
+
+\frame{\sectionpage}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Motivation}
+
+Die reellen Zahlen enthalten algebraische Zahlen, so zum Beispiel die L\"osungen $\sqrt{2}$ und $-\sqrt{2}$ der
+Gleichung
+\bq
+ x^2 & = & 2.
+\eq
+Aber: Nicht jede algebraische Zahl ist eine reelle Zahl.
+So hat zum Beispiel die Gleichung
+\bq
+ x^2 & = & -2
+\eq
+keine reellen L\"osungen.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Definition der komplexen Zahlen}
+
+\begin{definition}
+Man definiert die {\bf imagin\"are Einheit} $i$ als eine L\"osung der Gleichung
+\bq
+ x^2 & = & -1.
+\eq
+\end{definition}
+
+\begin{mytheorem6}
+\bq
+ {\mathbb C} & = & \left\{ x+iy \;|\; x,y \in {\mathbb R} \right\}.
+\eq
+\end{mytheorem6}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Analogie mit $\mathbb{Q}[\sqrt{3}]$}
+
+\begin{definition}
+Setzen wir $w=\sqrt{3}$, so ist $w$ 
+eine L\"osung der Gleichung
+\bq
+ w^2 & = & 3.
+\eq
+\end{definition}
+
+\begin{mytheorem6a}
+\bq
+ \mathbb{Q}[\sqrt{3}] & = & \left\{ a+bw \;|\; a,b \in {\mathbb Q} \right\}.
+\eq
+\end{mytheorem6a}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Addition und Multiplikation von komplexen Zahlen}
+
+Sei $z_1=x_1+iy_1$ und $z_2=x_2+iy_2$.
+\begin{mytheorem7}
+\bq
+ z_1 + z_2 & = & \left( x_1+iy_1 \right) + \left( x_2+iy_2 \right) = \left(x_1+x_2\right) + i \left(y_1+y_2\right),
+ \nonumber \\
+z_1 \cdot z_2 & = & \left( x_1+iy_1 \right) \cdot \left( x_2+iy_2 \right) 
+ = \left(x_1 x_2 - y_1 y_2 \right) + i \left(x_1 y_2 + y_1 x_2 \right)
+\eq
+\end{mytheorem7}
+
+\begin{example}
+\bq
+ \left(1+2i\right) + \left(3+4i\right) & = & 4 + 6 i
+ \nonumber \\
+ \left(1+2i\right) \cdot \left(3+4i\right) & = & -5 + 10 i
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Sei $z_1=7+13i$ und $z_2=2-5i$.
+\bq
+ z_1+z_2 & = & ?
+\eq 
+\begin{description}
+\item{(A)} $17i$
+\item{(B)} $9+8i$
+\item{(C)} $9+18i$
+\item{(D)} $5-18i$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Sei $z_1=5+9i$ und $z_2=2i$.
+\bq
+ z_1 \cdot z_2 & = & ?
+\eq 
+\begin{description}
+\item{(A)} $10+18i$
+\item{(B)} $10-18i$
+\item{(C)} $-18+10i$
+\item{(D)} $18+10i$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Subtraktion und Division von komplexen Zahlen}
+
+Sei $z_1=x_1+iy_1$ und $z_2=x_2+iy_2$.
+\begin{mytheorem7a}
+\bq
+ z_1 - z_2 & = & \left( x_1+iy_1 \right) - \left( x_2+iy_2 \right) = \left(x_1-x_2\right) + i \left(y_1-y_2\right),
+ \nonumber \\
+\frac{z_1}{z_2} & = & \frac{x_1+iy_1}{x_2+iy_2} 
+ = \frac{\left( x_1+iy_1 \right) \cdot \left( x_2-iy_2 \right)}{\left( x_2+iy_2 \right) \cdot \left( x_2-iy_2 \right)} 
+ \nonumber \\
+ & = & 
+ \frac{\left(x_1 x_2 + y_1 y_2 \right) + i \left(-x_1 y_2 + y_1 x_2 \right)}{x_2^2+y_2^2}
+ \nonumber \\
+ & = & 
+ \frac{\left(x_1 x_2 + y_1 y_2 \right)}{x_2^2+y_2^2}
+ + 
+ i \frac{\left(y_1 x_2 - x_1 y_2\right)}{x_2^2+y_2^2}.
+\eq
+\end{mytheorem7a}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Subtraktion und Division von komplexen Zahlen}
+
+\begin{example}
+\bq
+ \left(1+2i\right) - \left(3+4i\right) & = & \left(1-3\right) + i \left(2-4\right)
+ \nonumber \\
+ & = & 
+ -2 - 2i,
+ \nonumber \\
+ & & \nonumber \\
+ \frac{1+2i}{3+4i} 
+ & = & 
+ \frac{\left(1+2i\right)\left(3-4i\right)}{\left(3+4i\right)\left(3-4i\right)}
+ \nonumber \\
+ & = &
+ \frac{\left(3+8\right) + i\left(6-4\right)}{9+16}
+ \nonumber \\
+ & = &
+ \frac{11}{25} + \frac{2}{25} i.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+Sei $z_1=6+8i$ und $z_2=2i$.
+\bq
+ \frac{z_1}{z_2} & = & ?
+\eq 
+\begin{description}
+\item{(A)} $10$
+\item{(B)} $3+4i$
+\item{(C)} $4-3i$
+\item{(D)} $4+3i$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Der K\"orper der komplexen Zahlen}
+
+\begin{itemize}
+\item Mit dieser Addition und Multiplikation bilden die komplexen Zahlen einen K\"orper.
+\item Dieser K\"orper ist algebraisch abgeschlossen, d.h. die Nullstellen eines jeden Polynoms liegen in dem K\"orper.
+\item Der K\"orper ist allerdings nicht angeordnet.
+\item Das Vollst\"andigkeitsaxiom gilt.
+\end{itemize}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Nullstellen eines Polynoms}
+
+\begin{myemptytheorem}
+Es seien $c_n, c_{n-1}, \dots c_1, c_0 \in \mathbb{C}$.
+Wir betrachten die Gleichung
+\bq
+ c_n z^n + c_{n-1} z^{n-1} + \dots + c_1 z + c_0 & = & 0.
+\eq
+Diese Gleichung hat f\"ur die unbekannte Variable $z$ in $\mathbb{C}$ genau $n$ L\"osungen, wobei Vielfachheiten mitgez\"ahlt werden.
+\end{myemptytheorem}
+
+\vspace*{5mm}
+\begin{myemptytheorem}
+Anders ausgedr\"uckt: Ein Polynom $n$-ten Grades hat in $\mathbb{C}$ genau $n$ Nullstellen, wobei Vielfachheiten mitgez\"ahlt werden.
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Vielfachheiten}
+
+\begin{example}
+Betrachte das Polynom
+\bq
+ \left(z-4\right) \left(z-5\right)^2
+\eq
+Die Nullstelle $z=4$ hat die Vielfachtheit $1$, die Nullstelle $5$ hat die Vielfachtheit $2$.
+
+Das Polynom hat den Grad $3$, es sollte also drei Nullstellen haben.
+Eine einfache Nullstelle und eine doppelte Nullstelle ergibt
+\bq
+ 1 + 2 & = & 3.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Nullstellen eines Polynoms}
+
+\begin{example}
+Wir betrachten die quadratische Gleichung
+\bq
+ 2 z^2 - 8 z + 26 & = & 0
+\eq
+Die Diskriminante ist
+\bq
+ D & = & b^2 - 4 a c \; = \; -144
+\eq
+Somit
+\bq
+ z_{1/2}
+ & = &
+ \frac{1}{4} \left( 8 \pm \sqrt{-144} \right)
+ \; = \;
+ \frac{1}{4} \left( 8 \pm \sqrt{\left(-1\right) \cdot \left(12\right)^2} \right)
+ \nonumber \\
+ & = &
+ \frac{1}{4} \left( 8 \pm 12 i \right)
+ \; = \; 
+ 2 \pm 3 i
+\eq
+
+
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Real- und Imagin\"arteil}
+
+\begin{definition}
+Sei $z=x+iy$ eine komplexe Zahl. 
+
+Man bezeichnet $x$ als \alert{Realteil} und $y$ als \alert{Imagin\"arteil}.
+\bq
+ \mathrm{Re}\;z & = & x,
+ \nonumber \\
+ \mathrm{Im}\;z & = & y.
+\eq
+\end{definition}
+
+\begin{example}
+\bq
+ \mathrm{Re}\;\left(3+5i\right) & = & 3,
+ \nonumber \\
+ \mathrm{Im}\;\left(3+5i\right) & = & 5.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Konjugation}
+
+\begin{definition}
+Die zu $z=x+iy$ \alert{konjugiert komplexe Zahl} ist
+\bq
+ z^\ast & = & x-iy.
+\eq
+\end{definition}
+
+\begin{example}
+\bq
+ \left( 3 + 5 i \right)^\ast & = & 3 - 5 i
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Rechenregeln}
+
+\begin{myemptytheorem}
+\bq
+ \left( z^\ast \right)^\ast & = & z,
+\eq
+\end{myemptytheorem}
+
+\begin{myemptytheorem}
+\bq
+ \left( z_1 + z_2 \right)^\ast & = & z_1^\ast + z_2^\ast,
+ \nonumber \\
+ \left( z_1 - z_2 \right)^\ast & = & z_1^\ast - z_2^\ast,
+ \nonumber \\
+ \left( z_1 \cdot z_2 \right)^\ast & = & z_1^\ast \cdot z_2^\ast,
+ \nonumber \\
+ \left( \frac{z_1}{z_2} \right)^\ast & = & \frac{z_1^\ast}{z_2^\ast},
+\eq
+\end{myemptytheorem}
+
+\begin{myemptytheorem}
+\bq
+ \mathrm{Re}\;z \; = \; \frac{1}{2} \left( z + z^\ast \right),
+ & &
+ \mathrm{Im}\;z \; = \; \frac{1}{2i} \left( z - z^\ast \right).
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Betrag einer komplexen Zahl}
+
+Sei $z=x+iy$ eine komplexe Zahl. 
+Es ist
+\bq
+ z \cdot z^\ast & = & (x+iy) \cdot (x-iy) = x^2 + y^2.
+\eq
+\begin{definition}
+Als \alert{Betrag} der komplexen Zahl bezeichnet man
+\bq
+ \left| z \right| & = & \sqrt{ z z^\ast} = \sqrt{x^2+y^2}.
+\eq
+\end{definition}
+\begin{example}
+\bq
+ \left| 3+5i \right| & = & \sqrt{\left(3+5i\right)\left(3-5i\right)}
+ \; = \; \sqrt{9+25} \; = \; \sqrt{34}.
+\eq
+\end{example}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die komplexe Zahlenebene}
+
+Eine komplexe Zahl $z=x+iy$ wird durch ein Paar $(x,y)$ zweier reeller Zahlen beschrieben.
+\begin{center}
+\begin{picture}(250,130)(0,0)
+\LongArrow(0,20)(230,20)
+\LongArrow(20,0)(20,110)
+\Vertex(140,80){2}
+\DashLine(140,20)(140,80){5}
+\DashLine(20,80)(140,80){5}
+\Text(240,20)[l]{$\mathrm{Re}(z)$}
+\Text(20,120)[b]{$\mathrm{Im}(z)$}
+\Text(143,83)[lb]{$z$}
+\Text(10,80)[l]{$y$}
+\Text(140,10)[t]{$x$}
+\end{picture}
+\end{center}
+Die reellen Zahlen sind genau die Zahlen, f\"ur die $\mathrm{Im}(z)=0$ gilt.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die komplexe Zahlenebene}
+
+\begin{center}
+\begin{picture}(250,130)(0,0)
+\LongArrow(0,20)(230,20)
+\LongArrow(20,0)(20,110)
+\Line(20,20)(140,100)
+\Vertex(140,100){2}
+\Line(140,20)(140,100)
+\CArc(20,20)(20,0,33.7)
+\Text(240,20)[l]{$\mathrm{Re}(z)$}
+\Text(20,120)[b]{$\mathrm{Im}(z)$}
+\Text(143,103)[lb]{$z$}
+\Text(150,60)[l]{$y$}
+\Text(80,10)[t]{$x$}
+\Text(50,30)[l]{$\varphi$}
+\Text(80,70)[b]{$|z|$}
+\end{picture}
+\end{center}
+Polardarstellung einer komplexen Zahl:
+\bq
+ z & = & \left| z \right| \cdot \left( \cos \varphi + i \sin \varphi \right)
+\eq
+$\varphi$ nennt man das Argument oder die Phase der komplexen Zahl.
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umrechnung: Normalform in Polarform}
+
+{\small
+\bq
+ \left| z \right| & = & \sqrt{x^2+y^2}
+ \nonumber \\
+ \tan \varphi & = & \frac{y}{x}, \;\;\; x\neq0,
+ \nonumber \\
+ \varphi & = & \frac{\pi}{2} \;\;\;\mbox{f\"ur} \;\; x=0, \; y>0,
+ \nonumber \\
+ \varphi & = & \frac{3\pi}{2} \;\;\;\mbox{f\"ur} \;\; x=0, \; y<0.
+\eq
+}
+Die Aufl\"osung der Gleichung $\tan \varphi = y/x$ nach $\varphi$ ergibt
+{\small
+\begin{align*}
+ \varphi \;\; & = \;\; \arctan \frac{y}{x}, && \mbox{f\"ur} \; x>0, y \ge 0, 
+ \nonumber \\
+ \varphi \;\; & = \;\; \pi + \arctan \frac{y}{x}, && \mbox{f\"ur} \; x<0 
+ \nonumber \\
+ \varphi \;\; & = \;\; 2\pi + \arctan \frac{y}{x}, && \mbox{f\"ur} \; x>0, y < 0.
+\end{align*}
+}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Umrechnung: Polarform in Normalform}
+
+\bq
+ x = |z| \cos \varphi,
+ & &
+ y = |z| \sin \varphi.
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation und Division in Polarform}
+
+\begin{myemptytheorem}
+In der Normalform hatten wir:
+\bq
+ z_1 \cdot z_2 & = & \left(x_1 x_2 - y_1 y_2 \right) + i \left(x_1 y_2 + y_1 x_2 \right),
+ \nonumber \\
+\frac{z_1}{z_2} & = &  
+ \frac{\left(x_1 x_2 + y_1 y_2 \right)}{x_2^2+y_2^2}
+ + 
+ i \frac{\left(y_1 x_2 - x_1 y_2\right)}{x_2^2+y_2^2}.
+\eq
+\end{myemptytheorem}
+\begin{myemptytheorem}
+In der Polarform sind Multiplikation und Division besonders einfach:
+\bq
+ z_1 \cdot z_2 & = & \left| z_1 \right| \left| z_2 \right|
+   \left[ \cos\left(\varphi_1+\varphi_2\right) + i \sin\left(\varphi_1+\varphi_2\right) \right],
+ \nonumber \\
+ \frac{z_1}{z_2} & = & \frac{\left| z_1 \right|}{\left| z_2 \right|}
+   \left[ \cos\left(\varphi_1-\varphi_2\right) + i \sin\left(\varphi_1-\varphi_2\right) \right].
+\eq
+\end{myemptytheorem}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Formel von Moivre}
+
+\begin{myemptytheorem}
+Aus
+\bq
+ z_1 \cdot z_2 & = & \left| z_1 \right| \left| z_2 \right|
+   \left[ \cos\left(\varphi_1+\varphi_2\right) + i \sin\left(\varphi_1+\varphi_2\right) \right]
+\eq
+folgt insbesondere
+\bq
+ z^n & = & \left| z \right|^n \left( \cos n \varphi + i \sin n \varphi \right).
+\eq
+Diese Gleichung wird auch als Formel von Moivre bezeichnet.
+\end{myemptytheorem}
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Die Formel von Euler}
+
+Polardarstellung einer komplexen Zahl:
+\bq
+ z & = & \left| z \right| \cdot \left( \cos \varphi + i \sin \varphi \right)
+\eq
+Wir werden sp\"ater komplexwertige Funktionen kennenlernen. Im Vorgriff soll allerdings hier schon die Formel von Euler erw\"ahnt werden
+\begin{myemptytheorem}
+\bq
+ e^{i \varphi} & = & \cos \varphi + i \sin \varphi.
+\eq
+\end{myemptytheorem}
+Diese Formel werden wir sp\"ater mit Hilfe der Reihendarstellung der Funktionen $\exp$, $\sin$ und $\cos$ relativ einfach beweisen k\"onnen.
+Somit
+\bq
+ z & = & \left| z \right| \cdot e^{i \varphi}
+\eq
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Multiplikation und Division mit der Formel von Euler}
+
+Es sei $z_1=|z_1| e^{i \varphi_1}$ und $z_2=|z_2| e^{i \varphi_2}$.
+Dann ist
+\begin{myemptytheorem}
+\bq
+ z_1 \cdot z_2 & = & 
+  \left| z_1 \right| \left| z_2 \right| e^{i \left(\varphi_1+\varphi_2\right)},
+ \nonumber \\
+ \frac{z_1}{z_2} & = & \frac{\left| z_1 \right|}{\left| z_2 \right|} e^{i \left(\varphi_1-\varphi_2\right)}.
+\eq
+\end{myemptytheorem}
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ i^9 & = & ?
+\eq 
+\begin{description}
+\item{(A)} $-i$
+\item{(B)} $i$
+\item{(C)} $9 i$
+\item{(D)} $9+i$
+\end{description}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Antwort}
+
+\bq
+ i^9 & = & 
+ i \cdot i \cdot i \cdot i \cdot i \cdot i \cdot i \cdot i \cdot i 
+ \nonumber \\
+ & = &
+ i^2 \cdot i^2 \cdot i^2 \cdot i^2 \cdot i
+ \nonumber \\
+ & = &  
+ \left(-1\right) \cdot \left(-1\right) \cdot \left(-1\right) \cdot \left(-1\right) \cdot i
+ \nonumber \\
+ & = &
+ \left(-1\right)^4 \cdot i
+ \nonumber \\
+ & = & 
+ i 
+\eq 
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Betrag und Argument von $i$}
+
+Wir schreiben $i$ in Polarform: Es ist
+\bq
+ \left| i \right| 
+ & = & 
+ \sqrt{ i \cdot i^\ast}
+ \; = \; \sqrt{ i \cdot \left(-i\right)}
+ \; = \; \sqrt{1}
+ \; = \; 1.
+\eq
+Da $i = 0 + 1 \cdot i$ und somit $x=0$ und $y=1$ gilt
+\bq
+ \varphi & = & \frac{\pi}{2}.
+\eq
+Somit
+\bq
+ i & = & \underbrace{\cos \frac{\pi}{2}}_{0} + i \underbrace{\sin \frac{\pi}{2}}_{1}.
+\eq
+
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Potenzen von $i$}
+
+Sei $n \in {\mathbb Z}$. Mit Formel von Moivre haben wir
+\bq
+ i^n
+ & = &
+ \cos\left( \frac{n \pi}{2} \right) + i \sin\left( \frac{n \pi}{2}\right)
+\eq
+Insbesondere:
+\begin{align*}
+ i^{-4} & = 1,
+ &
+ i^{-3} & = i,
+ &
+ i^{-2} & = -1,
+ &
+ i^{-1} & = -i,
+ \nonumber \\
+ \alert{i^0} & \alert{= 1},
+ &
+ \alert{i^1} & \alert{= i},
+ &
+ \alert{i^2} & \alert{= -1},
+ &
+ \alert{i^3} & = \alert{-i},
+ \nonumber \\
+ i^4 & = 1,
+ &
+ i^5 & = i,
+ &
+ i^6 & = -1,
+ &
+ i^7 & = -i,
+ \nonumber \\
+ i^8 & = 1,
+ &
+ i^9 & = i,
+ &
+ i^{10} & = -1,
+ &
+ i^{11} & = -i,
+\end{align*}
+
+\end{frame}
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}{Quiz}
+
+\bq
+ \sqrt{i} & = & ?
+\eq 
+\begin{description}
+\item{(A)} $-1$
+\item{(B)} $i$
+\item{(C)} $\frac{1}{\sqrt{2}}\left(1+i\right)$
+\item{(D)} $-1+i$
+\end{description}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% page --------------------------------------------------------------------------------------------------
+\begin{frame}
+
+\end{frame}
+
+\end{document}
