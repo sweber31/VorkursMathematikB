@@ -1,0 +1,474 @@
+\documentclass[11pt,answers]{exam}
+\usepackage[german]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{latexsym,ifthen,amssymb,amsfonts,amsmath}
+
+\begin{document}
+
+\include{definitions}
+
+\pagestyle{empty}
+
+\def\loesungen{1}
+\newcommand{\lansel}[2]{#1}
+
+\ifthenelse{\equal{\loesungen}{1}}{\printanswers}{\relax}
+\renewcommand{\solutiontitle}{\noindent\textbf{L\"osung:}\enspace}
+\newcommand{\loesungname}{\ifthenelse{\equal{\loesungen}{1}}{L\"osungen zu }{\relax}}
+
+\begin{center}
+\textbf{\LARGE \loesungname \lansel{\"Ubungsblatt}{Examples Sheet} 4} \\ \vspace{1ex}
+\textbf{\large \lansel{zum Mathematischen Brückenkurs \\ für Naturwissenschaftler:innen}{for the preparatory mathematics course for bio- and geoscientists}} \\ \vspace{1ex}
+\textbf{\large \lansel{im Wintersemester}{Winter} 2023/24} \\ \vspace{0.5cm}
+\textrm{\normalsize \hfill \lansel{Dozent}{Lecturer}: Apl.Prof. Dr. G. von Hippel\hfill${}$}
+\end{center}
+\normalsize\vspace{0.5cm}
+
+\ifthenelse{\equal{\loesungen}{1}}{
+\begin{center}
+\textbf{Die direkte Weitergabe der Musterl\"osungen an Studierende ist nicht gestattet!}
+\end{center}
+}{
+\vspace{3ex}
+}
+
+\begin{questions}
+\pointname{ P.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \input{Q_integral.tex}
+\question{{\it Eigenschaften der Hyperbelfunktionen}}
+
+Zeigen Sie, dass die Hyperbelfunktionen $\sinh$ und $\cosh$ folgenden Beziehungen genügen:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\cosh^2 x-\sinh^2 x=1$
+\item $\sinh (ix)=i\sin x$
+\item $\cosh (ix)=\cos x$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{3}
+\item $\cosh^2 x+\sinh^2 x=\cosh (2x)$
+\item $\sinh x+\cosh x=\rme^x$
+\item $\cosh x-\sinh x=\rme^{-x}$
+\end{enumerate}}
+\begin{solution} Wir schreiben zun"achst die Definitionen von $\sinh$ und $\cosh$ auf
+\begin{align*}
+\sinh(x)&=\frac{1}{2}\left(e^{x}-e^{-x}\right),
+\\
+\cosh(x)&=\frac{1}{2}\left(e^{x}+e^{-x}\right).
+\end{align*}
+1.
+\begin{align*}
+\cosh^2 x-\sinh^2 x
+&=
+\frac{1}{4} \left(e^{x}+e^{-x}\right)^2-\frac{1}{4} \left(e^x-e^{-x}\right)^2
+\\
+&=
+\frac{1}{4} \left(e^{2x}+2+e^{-2x}-e^{2x}+2-e^{-2x}\right)
+\\
+&=
+1
+\end{align*}
+2.
+\begin{align*}
+\sinh(ix)
+&=
+\frac{1}{2} \left(e^{ix}-e^{-ix}\right)
+=
+i\frac{1}{2i} \left(e^{ix}-e^{-ix}\right)
+=
+i\sin(x)
+\end{align*}
+3.
+\begin{align*}
+\cosh(ix)
+&=
+\frac{1}{2} \left(e^{ix}+e^{-ix}\right)
+=
+\cos(x)
+\end{align*}
+4.
+\begin{align*}
+\cosh^2 x+\sinh^2 x
+&=
+\frac{1}{4} \left(e^{x}+e^{-x}\right)^2+\frac{1}{4} \left(e^x-e^{-x}\right)^2
+\\
+&=
+\frac{1}{4} \left(e^{2x}+2+e^{-2x}+e^{2x}-2+e^{-2x}\right)
+\\
+&=
+\frac{1}{2} \left(e^{2x}+e^{-2x}\right)=\cosh(2x)
+\end{align*}
+5.
+\begin{align*}
+\sinh(x)+\cosh(x)
+&=
+\frac{1}{2} \left(e^{x}+e^{-x}+e^{x}-e^{-x}\right)
+=
+\frac{1}{2} \left(2e^{x}\right)=e^x
+\end{align*}
+6.
+\begin{align*}
+\sinh(x)-\cosh(x)
+&=
+\frac{1}{2} \left(e^{x}+e^{-x}-e^{x}+e^{-x}\right)
+=
+\frac{1}{2} \left(2e^{-x}\right)=e^{-x}
+\end{align*}
+\end{solution}
+
+
+
+\question{{\it Ableitungen von Umkehrfunktionen}}
+
+Benutzen Sie jeweils die Regel für die Ableitung der Umkehrfunktion, um die Ableitungen folgender Funktionen zu bestimmen:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $x\mapsto\arcsin x$
+\item $x\mapsto\arctan x$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{2}
+\item $x\mapsto \mathrm{arsinh}~x$
+\item $x\mapsto \mathrm{artanh}~x$
+\end{enumerate}}
+\begin{solution}Die Regeln zur Ableitung der Umkehrfunktion lauten wie folgt
+\begin{align*}
+\frac{d}{dx}(f(f^{-1}(x)))&=(f^{-1})'(x)f'(f^{-1}(x))=1,
+\\
+\frac{d}{dx}(f^{-1}(f(x)))&=f'(x)(f^{-1})'(f(x))=1.
+\end{align*}
+Dies folgt aus der Eigenschaft der Umkehrfunktion 
+$f(f^{-1}(x))=x$, $f^{-1}(f(x))=x$ sowie der Kettenregel.
+\\ \\
+1. $f(x)=\arcsin(x)$, $f^{-1}(x)=\sin(x)$, $(f^{-1})'(x)=\cos(x)$
+\begin{align*}
+f'(x)=\frac{1}{(f^{-1})'(f(x))}
+=
+\frac{1}{\cos(\arcsin(x))}
+=
+\frac{1}{\sqrt{1-\sin^2(\arcsin(x))}}
+=
+\frac{1}{\sqrt{1-x^2}}
+\end{align*}
+2. $f(x)=\arctan(x)$, $f^{-1}(x)=\tan(x)$, $(f^{-1})'(x)=1+\tan^2(x)$
+\begin{align*}
+f'(x)=\frac{1}{(f^{-1})'(f(x))}
+=
+\frac{1}{1+\tan^2(\arctan(x))}
+=
+\frac{1}{1+x^2}
+\end{align*}
+3. $f(x)=\text{arsinh}(x)$, $f^{-1}(x)=\sinh(x)$, $(f^{-1})'(x)=\cosh(x)$
+\begin{align*}
+f'(x)=\frac{1}{(f^{-1})'(f(x))}
+=
+\frac{1}{\cosh(\text{arsinh}(x))}
+=
+\frac{1}{\sqrt{1+\sinh^2(\text{arsinh}(x))}}
+=
+\frac{1}{\sqrt{1+x^2}}
+\end{align*}
+4. $f(x)=\text{artanh}$, $f^{-1}(x)=\tanh(x)$, $(f^{-1})'(x)=1-\tanh^2(x)$
+\begin{align*}
+f'(x)=\frac{1}{(f^{-1})'(f(x))}
+=
+\frac{1}{1-\tanh^2(\text{artanh}(x))}
+=
+\frac{1}{1-x^2}
+\end{align*}
+\end{solution}
+
+
+\question{{\it Stammfunktionen}}
+
+Bestimmen Sie für die folgenden Funktionen $f:D\to\Rset$ jeweils die maximale Definitionsmenge $D$ sowie eine Stammfunktion auf $D$:\\
+\parbox{0.4\textwidth}{\begin{enumerate}
+\item $f(x)=x^2$
+\item $f(x)=\frac{1}{x^4}$
+\item $f(x)=x^5+x^3-x$
+\item $f(x)=(x^2-1)^2$
+\item $f(x)=\rme^x$
+\item $f(x)=\rme^{-x}$
+\item $f(x)=\sin x$
+\item $f(x)=\cos (x+a)$
+\item $f(x)=\sinh x$
+\item $f(x)=\cosh x$
+\item $f(x)=\log x$
+\item $f(x)=a x^2+\rme^{-bx}+\log (c x+d)$
+\item $f(x)=x\log x$
+\end{enumerate}}\parbox{0.6\textwidth}{\begin{enumerate}\setcounter{enumi}{13}
+\item $f(x)=x^n\log x$
+\item $f(x)=\frac{x^2}{1+x}$
+\item $f(x)=x\rme^x$
+\item $f(x)=\rme^{ax}\sin (\omega x)$
+\item $f(x)=\sin x\cos x$
+\item $f(x)=\frac{1}{\sqrt{1-x^2}}$
+\item $f(x)=\sqrt{1+x^2}$
+\item $f(x)=\rme^{\sin(\lambda x)}\cos(\lambda x)$
+\item $f(x)=\frac{x}{\sqrt{1+x^2}}$
+\item $f(x)=\frac{\sqrt{1+x}}{\sqrt{1-x^2}}$
+\item $f(x)=\rme^{-\sin^2 x}\cos x\sin x$
+\item $f(x)=\frac{2 x^3}{(x^2+1)^2}$
+\item $f(x)=\frac{7 x^3-5 x^2-6}{x^4-x^3-x^2-x-2}$
+\end{enumerate}}
+\begin{solution}Wir geben im Folgenden f"ur $f:D\to\mathbb{R}$ eine Stammfunktion $F:D\to\mathbb{R}$ an, welche definitionsgem"a"s die Eigentschaft $F'=f$ hat. Die Stammfunktion ist nicht eindeutig, da auch stets $G=F+a,a\in\mathbb{R}\backslash\{0\}$ mit $G'=f$ eine Stammfunktion von $f$ ist.
+\begin{enumerate}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{1}{3}x^3
+\end{align*}
+\item $D=\mathbb{R}\backslash\{0\}$
+\begin{align*}
+F(x)=-\frac{1}{3x^3}
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{x^6}{6}+\frac{x^4}{4}-\frac{x^2}{2}
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{x^5}{5}-\frac{2 x^3}{3}+x
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=e^x
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=-e^{-x}
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=-\cos(x)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\sin (a) \cos (x)+\cos (a) \sin (x)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\cosh(x)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\sinh(x)
+\end{align*}
+\item $D=\mathbb{R}^+$
+\begin{align*}
+F(x)=x\ln(x)-x
+\end{align*}
+\item F"ur $c,d\in\mathbb{R}\backslash\{0\}$ betrachte $c>0:D=\{x\in\mathbb{R}:x>-\frac{d}{c}\}$ \\ und f"ur 
+$c<0:D=\{x\in\mathbb{R}:x<-\frac{d}{c}\}$
+\begin{align*}
+F(x)=\frac{a x^3}{3}-\frac{e^{-b x}}{b}+x \log (c x+d)+\frac{d \log (c x+d)}{c}-x
+\end{align*}
+\item $D=\mathbb{R}^+$
+\begin{align*}
+F(x)=\frac{1}{2} x^2 \ln (x)-\frac{x^2}{4}
+\end{align*}
+\item $D=\mathbb{R}^+$
+\begin{align*}
+F(x)=\frac{x^{n+1} ((n+1) \ln (x)-1)}{(n+1)^2}
+\end{align*}
+\item $D=\mathbb{R}\backslash\{-1\}$
+\begin{align*}
+F(x)=\frac{1}{2} (x+1)^2-2 (x+1)+\ln (x+1)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=e^x (x-1)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{e^{a x} (a \sin (\omega x)-\omega  \cos (\omega x))}{a^2+\omega ^2}
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=-\frac{1}{2} \cos ^2(x)
+\end{align*}
+\item $D=(-1,1)=\{x\in\mathbb{R}:-1<x<1\}$
+\begin{align*}
+F(x)=\arcsin(x)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{1}{2} \left(x\sqrt{x^2+1}+\text{arcsinh}(x)\right)
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{e^{\sin (\lambda  x)}}{\lambda }
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\sqrt{x^2+1}
+\end{align*}
+\item $D=(-1,1)$
+\begin{align*}
+F(x)=-2 \sqrt{1-x}
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=-\frac{1}{2} e^{-\sin ^2(x)}
+\end{align*}
+\item $D=\mathbb{R}$
+\begin{align*}
+F(x)=\frac{1}{x^2+1}+\ln \left(x^2+1\right)
+\end{align*}
+\item $D=\mathbb{R}\backslash\{-1,2\}$
+\begin{align*}
+F(x)=\ln \left(x^2+1\right)+2 \ln (2-x)+3 \ln (x+1)+\arctan(x)
+\end{align*}
+\end{enumerate}
+\end{solution}
+
+
+\question{{\it Bestimmte Integrale}}
+
+Bestimmen Sie jeweils den Wert der folgenden bestimmten Integrale:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\int_0^1 x~\rmd x$  
+\item $\int_a^b x^n~\rmd x$
+\item $\int_\alpha^\beta (3x^2-2\beta x+\alpha\beta)~\rmd x$  
+\item $\int_0^1 \rme^x~\rmd x$ 
+\item $\int_0^\pi \sin\alpha~\rmd\alpha$  
+\item $\int_0^\pi \cos\beta~\rmd\beta$  
+\item $\int_{-1}^1\sqrt{1-x^2}~\rmd x$  
+\item $\int_{-1}^1\sqrt{1+x^2}~\rmd x$  
+\item $\int_0^2 \frac{2x}{1+x^2}\rmd x$  
+\item $\int_{\frac{1}{2}}^2\log x~\rmd x$  
+\item $\int_{\frac{1}{2}}^2\frac{\log x}{x}\rmd x$  
+\item $\int_0^{2\pi}\sin^2\omega~\rmd\omega$  
+\item $\int_0^{2\pi}\sin^2\omega\cos\omega~\rmd\omega$  
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{13}
+\item $\int_{-\pi}^{\pi/3}\sin x\cos x~\rmd x$  
+\item $\int_1^{\rme^n} x^n\log x~\rmd x$  
+\item $\int_0^1 \frac{7 x^3-5 x^2-6}{x^4-x^3-x^2-x-2}\rmd x$  
+\item $\int_2^3 \frac{2 x^3}{(x^2+1)^2}\rmd x$  
+\item $\int_0^y \frac{\rmd x}{1-xy}$,~$y<1$
+\item $\int_0^y \frac{\rmd x}{1+xy}$,~$y>0$
+\item $\int_0^{\pi/2}\rme^{-\sin^2 x}\cos x\sin x~\rmd x$  
+\item $\int_{-1}^1\tanh t~\rmd t$  
+\item $\int_\rme^{\rme^2}\frac{\log(\log \xi)}{\xi}\rmd\xi$  
+\item $\int_\rme^{\rme^2}\frac{\log\xi \log(\log \xi)}{\xi}\rmd\xi$  
+\item $\int_0^\omega \sinh(\cosh u)\sinh u~\rmd u$  
+\item $\int_0^{\frac{\pi }{2}} \frac{(\sin x+9) \cos x}{\cos^2 x +8}~\rmd x$  
+\item $\int_0^2 x^5\rme^{-x^2}~\rmd x$  
+\end{enumerate}}
+\begin{solution}
+\begin{enumerate}
+\item $\int_0^1 x~\rmd x=\frac{1}{2}$  
+\item $\int_a^b x^n~\rmd x=\frac{1}{n+1}(b^{n+1}-a^{n+1})$
+\item $\int_\alpha^\beta (3x^2-2\beta x+\alpha\beta)~\rmd x=\alpha  \beta ^2-\alpha ^3$  
+\item $\int_0^1 \rme^x~\rmd x=e-1$ 
+\item $\int_0^\pi \sin\alpha~\rmd\alpha=2$  
+\item $\int_0^\pi \cos\beta~\rmd\beta=0$  
+\item $\int_{-1}^1\sqrt{1-x^2}~\rmd x=\frac{\pi}{2}$  
+\item $\int_{-1}^1\sqrt{1+x^2}~\rmd x=\sqrt{2}+\text{arsinh}(1)$  
+\item $\int_0^2 \frac{2x}{1+x^2}\rmd x=\ln(5)$  
+\item $\int_{\frac{1}{2}}^2\log x~\rmd x=\frac{1}{2} (\ln (32)-3)$  
+\item $\int_{\frac{1}{2}}^2\frac{\log x}{x}\rmd x=0$  
+\item $\int_0^{2\pi}\sin^2\omega~\rmd\omega=\pi$  
+\item $\int_0^{2\pi}\sin^2\omega\cos\omega~\rmd\omega=0$  
+\item $\int_{-\pi}^{\pi/3}\sin x\cos x~\rmd x=\frac{3}{8}$  
+\item $\int_1^{\rme^n} x^n\log x~\rmd x=\frac{e^{n (n+1)} 
+\left(n^2+n-1\right)+1}{(n+1)^2}$  
+\item $\int_0^1 \frac{7 x^3-5 x^2-6}{x^4-x^3-x^2-x-2}\rmd x=\frac{\pi }{4}+\ln (4)$  
+\item $\int_2^3 \frac{2 x^3}{(x^2+1)^2}\rmd x=\ln (2)-\frac{1}{10}$  
+\item $\int_0^y \frac{\rmd x}{1-xy}=-\frac{\ln \left(1-y^2\right)}{y}$
+\item $\int_0^y \frac{\rmd x}{1+xy}=\frac{\ln \left(y^2+1\right)}{y}$
+\item $\int_0^{\pi/2}\rme^{-\sin^2 x}\cos x\sin x~\rmd x=\frac{e-1}{2 e}$  
+\item $\int_{-1}^1\tanh t~\rmd t=0$  
+\item $\int_\rme^{\rme^2}\frac{\log(\log \xi)}{\xi}\rmd\xi=\ln (4)-1$  
+\item $\int_\rme^{\rme^2}\frac{\log\xi \log(\log \xi)}{\xi}\rmd\xi=\ln (4)-\frac{3}{4}$  
+\item $\int_0^\omega \sinh(\cosh u)\sinh u~\rmd u=\cosh (\cosh (\omega ))-\cosh (1)$  
+\item $\int_0^{\frac{\pi }{2}} \frac{(\sin x+9) \cos x}{\cos^2 x +8}~\rmd x=\ln (3)$  
+\item $\int_0^2 x^5\rme^{-x^2}~\rmd x=1-\frac{13}{e^4}$  
+\end{enumerate}
+\end{solution}
+
+
+\question{{\it Uneigentliche Integrale}}
+
+Bestimmen Sie jeweils, ob folgende uneigentliche Integrale existieren und bestimmen Sie gegebenenfalls deren Wert:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\int_0^\infty \frac{\rmd x}{x}$ 
+\item $\int_1^\infty \frac{\rmd y}{y}$
+\item $\int_0^\infty \frac{\rmd x}{x^2}$
+\item $\int_1^\infty \frac{\rmd x}{x^2}$
+\item $\int_0^\infty \frac{\rmd z}{\sqrt{z}}$
+\item $\int_1^\infty \frac{\rmd u}{\sqrt{u}}$
+\item $\int_0^1 \frac{\rmd u}{\sqrt{u}}$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{7}
+\item $\int_0^\infty \rme^{x}~\rmd x$
+\item $\int_{-\infty}^0 \rme^{x}~\rmd x$
+\item $\int_0^\infty \rme^{-x}~\rmd x$
+\item $\int_{-\infty}^0 \rme^{-x}~\rmd x$
+\item $\int_0^\infty x\rme^{-x}~\rmd x$
+\item $\int_{-\infty}^\infty x\rme^{-x^2/2}~\rmd x$
+\item $\int_{-\infty}^\infty \frac{\rmd \omega}{1+\omega^2}$ 
+\end{enumerate}}
+\begin{solution}F"ur uneigentliche Integrale betrachten wir unterschiedliche F"alle 
+\begin{enumerate}
+\item Eine der Integrationsgrenzen ist nicht endlich, dann berechnen wir den folgenden Grenzwert
+\begin{align*}
+\int^\infty_af(x)\,dx=\lim_{R\to\infty}\int_a^Rf(x)\,dx,
+\end{align*}
+und analog f"ur die untere Integralgrenze.
+\item Der Integrand ist an einer (oder beiden) Integrationsgrenze nicht definiert, daher berechnen wir f"ur $f:(a,b]\to\mathbb{R}$ folgenden Grenzwert f"ur das uneigentliche Integral
+\begin{align*}
+\lim_{\varepsilon\to 0}\int_{a+\varepsilon}^{b}f(x)\,dx,
+\end{align*}
+analog f"ur m"ogliche Definitionsl"ucken an der oberen (oder beiden) Integrationsgrenzen.
+\end{enumerate}
+\begin{align*}
+1.&\quad\int_0^\infty\frac{dx}{x}
+=\infty
+%\lim_{\varepsilon\to 0}\lim_{R\to \infty}\int_\varepsilon^R\frac{dx}{x}=
+%\lim_{\varepsilon\to 0}\lim_{R\to \infty}\ln\left(\frac{R}{\varepsilon}\right)=\infty
+\\
+2.&\quad\int_1^\infty\frac{dy}{y}
+=\infty
+%\lim_{R\to \infty}\int_1^R\frac{dy}{y}=
+%\lim_{R\to \infty}\ln(R)=\infty
+\\
+3.&\quad\int_0^\infty\frac{dx}{x^2}=\infty
+\\
+4.&\quad\int_1^\infty\frac{dx}{x^2}
+=\lim_{R\to\infty}\int_1^R\frac{dx}{x^2}
+=\lim_{R\to\infty}\left(-\frac{1}{R}+1\right)=1
+\\
+5.&\quad\int_0^\infty\frac{dz}{\sqrt{z}}=\infty
+\\
+6.&\quad\int_1^\infty\frac{du}{\sqrt{u}}=\infty
+\\
+7.&\quad\int_0^1\frac{du}{\sqrt{u}}
+=\lim_{\varepsilon\to 0}\int_\varepsilon^1\frac{du}{\sqrt{u}}
+=\lim_{\varepsilon\to 0}2\left(\sqrt{1}-\sqrt{\varepsilon}\right)=2
+\\
+8.&\quad\int_0^\infty e^x\,dx=\infty
+\\
+9.&\quad\int_{-\infty}^0e^x\,dx
+=\lim_{R\to\infty}\int_{-R}^0e^x\,dx
+=\lim_{R\to\infty}\left(1-e^{-R}\right)=1
+\\
+10.&\quad\int_0^\infty e^{-x}\,dx=1\quad \text{(analog zu 9.)}
+\\
+11.&\quad\int_{-\infty}^0e^{-x}\,dx=\infty\quad \text{(analog zu 8.)}
+\\
+12.&\quad\int_0^\infty xe^{-x}\,dx
+=\lim_{R\to\infty}\int_0^R xe^{-x}\,dx
+=\lim_{R\to\infty}\left(1-e^{-R}(1+R)\right)=1
+\\
+13.&\quad\int_{-\infty}^\infty xe^{-x^2/2}\,dx
+=\lim_{R\to\infty}\left[-e^{-x^2/2}\right]^R_{-R}
+=0
+\\
+14.&\quad\int_{-\infty}^{\infty}\frac{d\omega}{1+\omega^2}
+=\lim_{R\to\infty}\int_{-R}^R\frac{1}{1+\omega^2}\,d\omega
+=\lim_{R\to\infty}\left(\arctan(R)-\arctan(-R)\right)=\pi
+\end{align*}
+\end{solution}
+
+
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,128 @@
+%\question{{\it Differentialgleichungen erster Ordnung}}
+%
+%Finden Sie jeweils die Lösung für das Anfangswertproblem $u(0)=u_0$
+%mit $u_0>0$ zu folgenden Differentialgleichungen erster Ordnung:\\
+%\parbox{0.5\textwidth}{\begin{enumerate}
+%\item $u'(x)+x^nu(x)=0$,~$n>-1$%separabel
+%\item $u'(x)-u(x)^3=0$%separabel
+%\item $u'(x)+x^2u(x)^2=u(x)$%separabel
+%\item $(1+x)u'(x)=[xu(x)]^2$%separabel
+%\item $(1+x)^2u'(x)-x^2u(x)=0$%separabel
+%\item $u'(x)\cos x=-u(x)\sin x$%separabel
+%\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{6}
+%\item $\left(x^2+1\right) u'(x)+2 x u(x)=0$%exakt
+%\item $(2 x u(x)+1) u'(x)+u(x)^2=0$%exakt
+%\item $(u(x)- x^3)u'(x)-3 x^2 u(x) = 3 x^5 $%exakt
+%\item $2 x - u(x) - x u'(x) + 2 u(x)u'(x)=0$%exakt
+%\item $u(x)u'(x)+\sqrt{x^2+u(x)^2}+x=0$%integrierender Faktor 1/\sqrt{x^2+u^2}
+%\item $2 u(x) u'(x)+u(x)^2+e^{-x} = 0$%integrierender Faktor e^x
+%\end{enumerate}}
+
+
+
+\question{{\it Einige spezielle Differentialgleichungen zweiter Ordnung}}
+
+\begin{parts}
+\part Finden Sie für die folgenden Differentialgleichungen jeweils eine
+Lösung in Form eines Polynoms vom Grad $n$ für $n\in\{2,3,4,5,6\}$,
+dessen führender Koeffizient gleich Eins ist:
+\begin{enumerate}
+\item $p''(t)-2tp'(t)+2np(t)=0$
+\item $tp''(t)+(1-t)p'(t)+np(t)=0$
+\item $(1-t^2)p''(t)-2tp'(t)+n(n+1)p(t)=0$
+\item $(1-t^2)p''(t)-3tp'(t)+n(n+2)p(t)=0$
+\end{enumerate}
+
+\part Verifizieren Sie, dass für $k\in\{0,1,2,3\}$ die Lösungen des
+Anfangswertproblems
+\[
+-u_k''(x)+x^2u_k(x)=(2k+1)u_k(x),~~~~~u_k(0)=\frac{1+(-1)^k}{2},~~~u_k'(0)=\frac{1-(-1)^k}{2}
+\]
+durch
+\[
+u_0(x)=\rme^{-\frac{x^2}{2}},~~~
+u_1(x)=x\rme^{-\frac{x^2}{2}},~~~
+u_2(x)=(1-2x^2)\rme^{-\frac{x^2}{2}},~~~
+u_3(x)=x(1-\frac{2}{3}x^2)\rme^{-\frac{x^2}{2}}
+\]
+gegeben sind.
+
+\end{parts}
+
+
+
+\question{{\it Erzwungene Schwingungen}}%$^\ast$}}
+
+\begin{parts}
+%\part Vollziehen Sie die in der Vorlesung dargestellte Herleitung der
+%allgemeinen Lösung der homogenenen Differentialgleichung
+%\[
+%f''(t)+2\gamma f'(t)+\omega_0^2 f(t)=0
+%\]
+%nach.
+
+\part Verifizieren Sie, dass für $\gamma>0$ oder $\omega\not=\omega_0$
+eine partikuläre Lösung der inhomogenen Differentialgleichung
+\[
+f''(t)+2\gamma f'(t)+\omega_0^2 f(t)=A\sin(\omega t)
+\]
+durch
+\[
+f(t) = \frac{A \left(\omega_0^2-\omega ^2\right) \sin (t \omega )-2 A \gamma
+   \omega  \cos (t \omega )}{4 \gamma^2 \omega ^2+\left(\omega ^2-\omega_0^2\right)^2}
+\]
+gegeben ist. Interpretieren Sie diese Lösung in Hinsicht auf die in der
+Vorlesung angegebene komplexifizierte Lösung.
+(Hinweis: Benutzen Sie die Euler-Formel!)
+
+\part Verifizieren Sie ferner, dass für $\gamma=0$, $\omega=\omega_0$ eine
+partikuläre Lösung der inhomogenen Differentialgleichung
+\[
+f''(t)+\omega_0^2 f(t)=A\sin(\omega_0 t)
+\]
+durch
+\[
+f(t)=-\frac{A t\cos(\omega_0 t)}{2\omega_0}
+\]
+gegeben ist. Interpretieren Sie diese Lösung im Hinblick auf das Verhalten
+ungedämpft schwingender Systeme unter resonanter Anregung.
+
+%\part Verifizieren Sie zu guter Letzt, dass eine partikuläre Lösung der
+%inhomogenen Differentialgleichung
+%\[
+%f''(t)+\omega_0^2 f(t)=h(t)
+%\]
+%für stetiges $h$ durch
+%\[
+%f(t)=\frac{\sin(\omega_0 t)}{\omega_0}\int_0^t\cos(\omega_0\tau)h(\tau)~\rmd\tau-\frac{\cos(\omega_0 t)}{\omega_0}\int_0^t\sin(\omega_0\tau)h(\tau)~\rmd\tau
+%\]
+%gegeben ist.
+\end{parts}
+
+%\question{{\it Das Eulersche Polygonzugverfahren$^\ast$}}
+%
+%Sehr oft können Differentialgleichungen nicht analytisch gelöst werden.
+%In diesem Fall sind numerische Näherungsverfahren von großer praktischer
+%Bedeutung. Ein einfaches solches Verfahren ist das Eulersche
+%Polygonzugverfahren, in dem die Lösung $y(t)$ des Anfangswertproblems
+%\[
+%y'(t)=f(y(t),t)~~~~~~~~y(0)=y_0
+%\]
+%%durch einen Polygonzug
+%\[
+%\tilde{y}(t)=y_n+(t-nh)f(y_n,nh)~~~\textrm{für}~t\in[nh;(n+1)h]
+%\]
+%mit der rekursiv definierten Folge von Vertices
+%\[
+%y_{n+1}=y_n+hf(y_n,nh)
+%\]
+%angenähert wird.
+%
+%\begin{parts}
+%\part Welche Folge von Vertices $y_n$ ergibt sich für die Wachstumsgleichung?
+%Was geschieht im Limes $h\to 0$?
+%
+%\part Wenden Sie das Eulersche Polygonzugverfahren auf die Probleme aus
+%Aufgabe 1 an und vergleichen Sie die Folge der Vertices jeweils mit
+%der exakten Lösung.
+%\end{parts}

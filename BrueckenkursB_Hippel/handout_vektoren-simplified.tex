@@ -1,0 +1,296 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{Zusammenfassung zum Thema \\ Vektor- und Matrizenrechnung}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+{\bf Grundbegriffe der Linearen Algebra}
+
+Viele physikalische Größen (Geschwindigkeit, Kraft, $\ldots$) haben neben
+einem Betrag auch eine räumliche Richtung
+(Vektoren, von lat. {\em vector} ``Fahrer'')
+und können als Pfeile dargestellt werden,
+deren Länge dem Betrag der Größe entspricht.
+Pfeile im Anschauungsraum können mit einem reellen Betrag skaliert, sowie
+durch Aneinanderreihung zueinander addiert werden (Parallelogrammregel).
+Durch Einführen von kartesischen Koordinaten identifizieren wir den
+Anschauungsraum der zwei- bzw. dreidimensionalen Pfeile mit
+$\Rset^2$ bzw. $\Rset^3$,
+wobei das Skalieren bzw. die Addition in $\mathbb{K}^n$ ($\mathbb{K}=\Rset$
+oder $\mathbb{K}=\Cset$) komponentenweise erfolgen:
+\begin{align*}
+\lambda (x_1,\ldots,x_n) &= (\lambda x_1,\ldots,\lambda x_n) \\
+(x_1,\ldots,x_n) + (y_1,\ldots,y_n) &= (x_1+y_1,\ldots,x_n+y_n)
+\end{align*}
+Aus einer endlichen Menge $\{\vec{v}_1,\ldots,\vec{v}_n\}$ von
+Vektoren $\vec{v}_k\in \mathbb{K}^n$
+können weitere Vektoren durch Linearkombinationen
+\[
+\sum_{k=1}^n \lambda_k \vec{v}_k \in \mathbb{K}^n
+\]
+erzeugt werden.
+Die Frage, wann ein Vektor als Linearkombination anderer Vektoren
+dargestellt werden kann, führt auf die Definition: Eine Menge $W\subseteq
+\mathbb{K}^n$
+von Vektoren heißt linear unabhängig, wenn aus
+\[
+\sum_{k=1}^n \lambda_k \vec{v}_k = 0
+\]
+mit $\vec{v}_k\in W$ immer $\forall k~\lambda_k=0$ folgt.
+
+Eine linear unabhängige Menge $B\subset \mathbb{K}^n$, zu der kein weiterer Vektor
+hinzugefügt werden kann, ohne die lineare Unabhängigkeit zu zerstören,
+nennen wir eine Basis von $\mathbb{K}^n$.
+Im $\mathbb{K}^n$ haben wir als besonders wichtige Basis die kanonische
+Basis $\{\vec{e}_1,\ldots,\vec{e}_n\}$ mit
+\[
+\vec{e}_1=(1,0,\ldots,0),~~
+\vec{e}_2=(0,1,\ldots,0),~
+\cdots~~\vec{e}_n=(0,0,\ldots,1)
+\]
+bzw. kompakter $(\vec{e}_i)_j=\delta_{ij}$
+(wobei das Kronecker-Symbol durch $\delta_{ii}=1$ und $\delta_{ij}=0$,
+$j\not=i$ definiert ist).\\
+
+\pagebreak
+
+{\bf Skalarprodukte}
+
+Aus der Physik wissen wir, dass die verrichtete Arbeit das Produkt aus
+dem zurückgelegten Weg und der längs dieses Weges wirkenden Komponente
+der Kraft ist.
+Definiert man dieses Produkt als Produkt der zugehörigen Vektoren, so
+erhält man das skalare Produkt
+\[
+\vec{a}\cdot \vec{b}=|\vec{a}||\vec{b}|\cos\vartheta
+\]
+mit $|\vec{x}|$ dem Betrag des Vektors $\vec{x}$
+und $\vartheta$ dem Winkel zwischen $\vec{a}$ und $\vec{b}$.
+Man überprüft leicht, dass dieses Produkt die Eigenschaften
+\begin{align*}
+\vec{a}\cdot \vec{b} &= \vec{b}\cdot \vec{a} &
+\vec{a}\cdot \vec{a} &> 0,~~~\vec{a}\not=0 \\
+\vec{a}\cdot (\vec{b}+\vec{c}) &= \vec{a}\cdot \vec{b} + \vec{a}\cdot \vec{c} &
+\vec{a}\cdot (\lambda \vec{b}) &= \lambda (\vec{a}\cdot \vec{b})
+\end{align*}
+besitzt, die wir zur Definition eines Skalarprodukts erheben.
+Im $\Rset^n$ ist ein Skalarprodukt durch
+\[
+\vec{a}\cdot \vec{b} = \sum_{i=1}^n a_i b_i
+\]
+definiert (und man überzeugt sich leicht, dass dieses für $n=2$ und $n=3$
+mit der anschaulichen Idee übereinstimmt).
+Es gilt entsprechend
+\[
+|\vec{a}|=\sqrt{\vec{a}\cdot \vec{a}}
+\]
+und
+\[
+\cos\vartheta = \frac{\vec{a}\cdot \vec{b}}{|\vec{a}||\vec{b}|}
+\]
+
+{\bf Vektorprodukt im $\Rset^3$}
+
+Speziell im $\Rset^3$ lässt sich ein weiteres Produkt zweier Vektoren
+$\vec{a},\vec{b}\in \Rset^3$ definieren: Es gibt genau eine Richtung, die
+senkrecht auf der von $\vec{a}$ und $\vec{b}$ aufgespannten Ebene steht
+und mit $\vec{a}$ und $\vec{b}$ ein rechtshändiges System bildet. Ein
+Vektor $\vec{a}\times\vec{b}$ mit dieser Richtung und dem Betrag
+\[
+|\vec{a}\times\vec{b}|=|\vec{a}||\vec{b}|\sin\vartheta
+\]
+(entspricht dem Flächeninhalt des von $\vec{a}$ und $\vec{b}$ aufgespannten
+Parallelograms) definiert das Vektorprodukt $\vec{a}\times\vec{b}\in\Rset^3$.
+Man überprüft leicht, dass dieses Produkt die Eigenschaften
+\begin{align*}
+\vec{a}\times \vec{b} &= -\vec{b}\times \vec{a} &
+\vec{a}\cdot(\vec{a}\times\vec{b})&=\vec{b}\cdot(\vec{a}\times\vec{b})=0\\
+\vec{a}\times (\vec{b}+\vec{c}) &= \vec{a}\times \vec{b} + \vec{a}\times \vec{c} &
+\vec{a}\times (\lambda \vec{b}) &= \lambda (\vec{a}\times \vec{b})
+\end{align*}
+besitzt.
+In Komponenten gilt
+\[
+\vec{a}\times \vec{b} = (a_2b_3-a_3b_2,a_3b_1-a_1b_3,a_1b_2-a_2b_1)
+\]
+oder kompakt
+\[
+[\vec{a}\times \vec{b}]_i = \sum_{j,k=1}^3 \epsilon_{ijk}a_jb_k
+\]
+mit dem Levi-Civita-Symbol
+\[
+\epsilon_{ijk} = \left\{\begin{array}{rl}1,&ijk\textrm{~zyklisch~(123,~231,~312),}\\-1,&ijk\textrm{~antizyklisch~(321,~132,~213),}\\0,&\textrm{sonst.}\end{array}\right.
+\]
+
+\pagebreak
+
+{\bf Analytische Geometrie des Raumes}
+
+\begin{itemize}
+\item Gerade in Parameterform:
+\[
+\vec{x}=\vec{p}+\lambda\vec{u}
+\]
+mit Stützpunkt $\vec{p}$ und Richtungsvektor $\vec{u}$.
+
+\item Ebene in Parameterform:
+\[
+\vec{x}=\vec{p}+\lambda_1\vec{u}_1+\lambda_2\vec{u}_2
+\]
+mit Stützpunkt $\vec{p}$ und linear unabhängigen Richtungsvektoren
+$\vec{u}_1,\vec{u}_2$.
+
+\item Ebene in Normalenform:
+\[
+\vec{n}\cdot\vec{x}=c
+\]
+mit Normalenvektor $\vec{n}\propto \vec{u}_1\times\vec{u}_2$ und
+Abstandskonstante $c=\vec{n}\cdot\vec{p}$.
+\end{itemize}
+
+{\bf Lineare Gleichungssysteme}
+
+Die Suche nach den Schnittmengen von Geraden und Ebenen untereinander
+führt (wie bereits zuvor die Partialbruchzerlegung) auf lineare
+Gleichungssysteme der Form
+\[
+\begin{array}{ccccccc}
+a_{11}x_1&+&\ldots&+&a_{1n}x_n &=& b_1\\
+\vdots &&\ddots&&\vdots &=&\vdots \\
+a_{m1}x_1&+&\ldots&+&a_{mn}x_n&=&b_m
+\end{array}
+\]
+Die geometrische Anschauung lehrt, dass diese Systeme entweder keine,
+genau eine oder unendlich viele Lösungen haben.
+Eine kurze Überlegung zeigt, dass die Reihenfolge der
+Gleichungen keine
+Rolle spielt, und dass wir jede Gleichung durch beidseitige Addition
+einer anderen Gleichung umformen können, ohne hierdurch die Lösungsmenge
+des Systems zu verändern.
+
+Wir können daher lineare Gleichungssysteme mit dem Gaussschen
+Eliminationsverfahren lösen:\\
+Für jedes $j\in\{1,\ldots,m\}$
+\begin{itemize}
+\item stelle, falls nötig, durch Vertauschen von Gleichungen
+$a_{jj}\not=0$ sicher,
+\item eliminiere für jedes $i\in\{j+1,\ldots,m\}$ den Term mit
+Koeffizienten $a_{ij}$ durch beidseitige Subtraktion des
+$a_{ij}/a_{jj}$-fachen der $j$-ten Gleichung von der $i$-ten Gleichung.
+\end{itemize}
+Wenn hierbei
+\begin{itemize}
+\item eine Gleichung der Form $0=c$ mit $c\not=0$ auftritt,
+hat das System keine Lösung,
+\item am Ende weniger nichttriviale Gleichungen als Variablen
+auftreten, hat das System unendlich viele Lösungen, die durch die
+redundanten Variablen parametrisiert werden können.
+\end{itemize}
+Ansonsten ist das System durch Rückwärtseinsetzen ausgehend von der
+letzten Gleichung (die nun auf die Form $ax_n=b$ reduziert ist)
+eindeutig lösbar.\\
+
+{\bf Lineare Abbildungen und Matrizen}
+
+Eine Funktion $f:\mathbb{K}^n\to \mathbb{K}^m$ heißt lineare
+Abbildung, falls für alle $\vec{x},\vec{y}\in \mathbb{K}^n$, $\lambda,\mu\in\mathbb{K}$
+\[
+f(\lambda \vec{x}+\mu \vec{y})=\lambda f(\vec{x})+\mu f(\vec{y})
+\]
+gilt.
+Eine lineare Abbildung ist wegen
+\[
+f\left(\sum_k \lambda_k \vec{v}_k\right)=\sum_k \lambda_k f(\vec{v}_k)
+\]
+durch die Bilder der Vektoren einer Basis von $\mathbb{K}^n$ eindeutig bestimmt.
+
+Für lineare Abbildungen $f:\mathbb{K}^n\to\mathbb{K}^m$ können wir daher
+$f$ mit der $m\times n$ Matrix
+\[
+A = \left(\begin{array}{ccc}a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{m1}&\cdots&a_{mn}\end{array}\right)
+\]
+mit $f(\vec{e}_j)=\sum_{i=1}^m a_{ij}\vec{e}_i$ identifizieren.
+
+Seien $f,g:\mathbb{K}^n\to \mathbb{K}^m$ lineare Abbildungen. Dann ist wegen
+\[
+\eta g(\lambda \vec{a}+\mu \vec{b}) + \xi f(\lambda \vec{a}+\mu \vec{b})
+=\lambda (\eta g(\vec{a})+\xi f(\vec{a}))+\mu (\eta g(\vec{b})+\xi f(\vec{b}))
+\]
+auch ihre Linearkombination $(\eta g+\xi f):\mathbb{K}^n\to \mathbb{K}^m$ eine lineare Abbildung.
+Für $f,g:\mathbb{K}^n\to \mathbb{K}^m$
+mit zugehörigen Matrizen $A$ und $B$ bildet $(\eta g+\xi f):\mathbb{K}^n\to \mathbb{K}^m$
+den Basisvektor $e_j\in \mathbb{K}^n$ auf
+\[
+(\eta g+\xi f)(e_j) = \sum_{i=1}^m \eta b_{ij} e_i + \sum_{i=1}^m \xi a_{ij} e_i
+= \sum_{i=1}^m (\eta b_{ij}+\xi a_{ij})\vec{e}_i
+\]
+ab.
+Entsprechend definieren wir Summe und skalare Multiplikation
+von Matrizen elementweise als
+\[
+(A+B)_{ij} = a_{ij}+b_{ij}~~~~~~~(\lambda A)_{ij} = \lambda a_{ij}
+\]
+Seien $f:\mathbb{K}^n\to \mathbb{K}^r$, $g:\mathbb{K}^r\to \mathbb{K}^m$
+lineare Abbildungen. Dann ist wegen
+\[
+g(f(\lambda \vec{a}+\mu\vec{b})) = g(\lambda f(\vec{a})+\mu f(\vec{b}))
+=\lambda g(f(\vec{a}))+\mu g(f(\vec{b}))
+\]
+auch die Verkettung $g\circ f:\mathbb{K}^n\to \mathbb{K}^m$ eine lineare Abbildung.
+Für $f:\mathbb{K}^n\to \mathbb{K}^r$ und $g:\mathbb{K}^r\to \mathbb{K}^m$
+mit zugehörigen Matrizen $A$ und $B$ bildet
+$g\circ f:\mathbb{K}^n\to \mathbb{K}^m$ den Basisvektor
+$\vec{e}_j\in \mathbb{K}^n$ auf
+\[
+(g\circ f)(\vec{e}_j) = g(f(\vec{e}_j)) = \sum_{i=1}^r a_{ij}g(\vec{e}_i)
+= \sum_{k=1}^m\sum_{i=1}^r a_{ij}b_{ki}\vec{e}_k
+\]
+ab.
+Entsprechend definieren wir das Matrixprodukt als
+\[
+(BA)_{kj} = \sum_{i=1}^r b_{ki}a_{ij}
+\]
+
+Mit diesen Definitionen gelten die Rechengesetze
+\begin{align*}
+A+(B+C) &= (A+B)+C &
+A+B &= B+A\\
+(A+B)C &= AC+BC &
+A(B+C) &= AB+AC\\
+A(BC) &= (AB)C
+\end{align*}
+Die Summe $A+B$ ist nur definiert, wenn $A$ und $B$ dieselben Dimensionen haben.
+Das Produkt $AB$ ist nur definiert, wenn $A$ soviele Spalten wie $B$ Zeilen hat.
+Wenn zwei Matrizen $A$ und $B$ in beide Richtungen miteinander multipliziert werden können, so gilt im Allgemeinen $AB\not=BA$.
+
+Unter der linearen Abbildung $f:\mathbb{K}^n\to \mathbb{K}^m$
+mit zugehöriger Matrix $A$ wird $\vec{x}\in \mathbb{K}^n$ nach
+\[
+f(\vec{x}) = f\left(\sum_{j=1}^n x_j \vec{e}_j\right) = \sum_{j=1}^n x_j f(\vec{e}_j)
+= \sum_{i=1}^n\sum_{j=1}^n a_{ij}x_j \vec{e}_i
+\]
+abgebildet.
+Die Frage nach dem Urbild $\vec{x}\in \mathbb{K}^n$ eines Vektors
+$\vec{b}\in \mathbb{K}^m$ unter $f$
+entspricht also dem linearen Gleichungssystem mit Koeffizienten $a_{ij}$
+und rechter Seite $b_i$, das wir als
+\vskip-1ex\[
+Ax=b
+\]\enlargethispage{3ex}\nopagebreak
+schreiben können, wenn wir Vektoren im $\mathbb{K}^r$ als einspaltige Matrizen
+(Spaltenvektoren) auffassen.\\
+
+\end{document}
+

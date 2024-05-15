@@ -1,0 +1,467 @@
+\documentclass[11pt]{exam}
+\usepackage[german]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{latexsym,ifthen,amssymb,amsfonts,amsmath}
+\usepackage{diagbox}
+
+\begin{document}
+
+\include{definitions}
+
+\pagestyle{empty}
+
+\def\loesungen{1}
+\newcommand{\lansel}[2]{#1}
+
+\ifthenelse{\equal{\loesungen}{1}}{\printanswers}{\relax}
+\renewcommand{\solutiontitle}{\noindent\textbf{L\"osung:}\enspace}
+\newcommand{\loesungname}{\ifthenelse{\equal{\loesungen}{1}}{L\"osungen zu }{\relax}}
+
+\begin{center}
+\textbf{\LARGE \loesungname \lansel{\"Ubungsblatt}{Examples Sheet} 5} \\ \vspace{1ex}
+\textbf{\large \lansel{zum Mathematischen Brückenkurs \\ für Naturwissenschaftler:innen}{for the preparatory mathematics course for bio- and geoscientists}} \\ \vspace{1ex}
+\textbf{\large \lansel{im Wintersemester}{Winter} 2023/24} \\ \vspace{0.5cm}
+\textrm{\normalsize \hfill \lansel{Dozent}{Lecturer}: Apl.Prof. Dr. G. von Hippel\hfill${}$}
+\end{center}
+\normalsize\vspace{0.5cm}
+
+\ifthenelse{\equal{\loesungen}{1}}{
+\begin{center}
+\textbf{Die direkte Weitergabe der Musterl\"osungen an Studierende ist nicht gestattet!}
+\end{center}
+}{
+\vspace{3ex}
+}
+
+\begin{questions}
+\pointname{ P.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\question{{\it Rechnen mit Vektoren im $\Rset^n$}}
+
+\begin{enumerate}
+	\item Bestimmen Sie für Paare $\vec{x}_i$, $\vec{x}_j$ von Vektoren gleicher Dimension jeweils $\vec{x}_i+\vec{x}_j$, $\vec{x}_i-\vec{x}_j$, $\vec{x}_i\cdot\vec{x}_j$, sowie den Kosinus des Winkels zwischen $\vec{x}_i$ und $\vec{x}_j$. Welche Vektoren sind jeweils parallel bzw. orthogonal zueinander?
+	\item Bestimmen Sie für Mengen von $k$ Vektoren $\{\vec{x}_i\}$ im $\Rset^n$ jeweils, ob diese linear unabhängig sind. Was gilt für $k>n$?
+\end{enumerate}
+\begin{align*}
+	\vec{x}_1&=\left(\begin{array}{c}1\\0\end{array}\right)
+	&\vec{x}_2&=\left(\begin{array}{c}0\\3\end{array}\right)
+	&\vec{x}_3&=\left(\begin{array}{c}1\\2\end{array}\right)
+	&\vec{x}_4&=\left(\begin{array}{c}2\\4\end{array}\right)
+	&\vec{x}_5&=\left(\begin{array}{c}\sin\beta\\\cos\beta\end{array}\right)\\
+	\vec{x}_6&=\left(\begin{array}{c}1\\0\\1\end{array}\right)
+	&\vec{x}_7&=\left(\begin{array}{c}2\\1\\0\end{array}\right)
+	&\vec{x}_8&=\left(\begin{array}{c}0\\2\\3\end{array}\right)
+	&\vec{x}_9&=\left(\begin{array}{c}1\\{}-2\\0\end{array}\right)
+	&\vec{x}_{10}&=\left(\begin{array}{c}1\\-\sin\alpha\\{}\cos\alpha\end{array}\right)\\
+	\vec{x}_{11}&=\left(\begin{array}{c}1\\1\\1\\1\end{array}\right)
+	&\vec{x}_{12}&=\left(\begin{array}{c}0\\0\\2\\2\end{array}\right)
+	&\vec{x}_{13}&=\left(\begin{array}{c}\xi\\0\\0\\{}-\xi\end{array}\right)
+	&\vec{x}_{14}&=\left(\begin{array}{c}0\\0\\0\\0\\0\end{array}\right)
+	&\vec{x}_{15}&=\left(\begin{array}{c}-5\\{}-3\\1\\1\\1\end{array}\right)
+\end{align*}
+
+\begin{solution}\\ \\
+	1. 
+	\begin{align*}
+		\vec{x}_1+\vec{x}_2&=\left(\begin{array}{c}1\\3\end{array}\right),&
+		\vec{x}_1+\vec{x}_3&=\left(\begin{array}{c}2\\2\end{array}\right),&
+		\vec{x}_1+\vec{x}_4&=\left(\begin{array}{c}3\\4\end{array}\right),\\
+		\vec{x}_1+\vec{x}_5&=\left(\begin{array}{c}1+\sin(\beta)\\\cos(\beta)\end{array}\right),&
+		\vec{x}_2+\vec{x}_3&=\left(\begin{array}{c}1\\5\end{array}\right),&
+		\vec{x}_2+\vec{x}_4&=\left(\begin{array}{c}2\\7\end{array}\right),\\
+		\vec{x}_2+\vec{x}_5&=\left(\begin{array}{c}\sin(\beta)\\3+\cos(\beta)\end{array}\right),&
+		\vec{x}_3+\vec{x}_4&=\left(\begin{array}{c}3\\6\end{array}\right),&
+		\vec{x}_3+\vec{x}_5&=\left(\begin{array}{c}1+\sin(\beta)\\2+\cos(\beta)\end{array}\right),\\
+		\vec{x}_4+\vec{x}_5&=\left(\begin{array}{c}2+\sin(\beta)\\4+\cos(\beta)\end{array}\right),&
+		\vec{x}_1-\vec{x}_2&=\left(\begin{array}{c}1\\-3\end{array}\right),&
+		\vec{x}_1-\vec{x}_3&=\left(\begin{array}{c}0\\-2\end{array}\right),\\
+	\end{align*}\begin{align*}
+		\vec{x}_1-\vec{x}_4&=\left(\begin{array}{c}-1\\-4\end{array}\right),&
+		\vec{x}_1-\vec{x}_5&=\left(\begin{array}{c}1-\sin(\beta)\\-\cos(\beta)\end{array}\right),&
+		\vec{x}_2-\vec{x}_3&=\left(\begin{array}{c}-1\\1\end{array}\right),\\
+		\vec{x}_2-\vec{x}_4&=\left(\begin{array}{c}-2\\-1\end{array}\right),&
+		\vec{x}_2-\vec{x}_5&=\left(\begin{array}{c}-\sin(\beta)\\3-\cos(\beta)\end{array}\right),&
+		\vec{x}_3-\vec{x}_4&=\left(\begin{array}{c}-1\\-2\end{array}\right),\\
+		\vec{x}_3-\vec{x}_5&=\left(\begin{array}{c}1-\sin(\beta)\\2-\cos(\beta)\end{array}\right),&
+		\vec{x}_4-\vec{x}_5&=\left(\begin{array}{c}2-\sin(\beta)\\4-\cos(\beta)\end{array}\right),&
+		\vec{x}_6+\vec{x}_7&=\left(\begin{array}{c}3\\1\\1\end{array}\right),\\
+		\vec{x}_6+\vec{x}_8&=\left(\begin{array}{c}1\\2\\4\end{array}\right),&
+		\vec{x}_6+\vec{x}_9&=\left(\begin{array}{c}2\\-2\\1\end{array}\right),&
+		\vec{x}_6+\vec{x}_{10}&=\left(\begin{array}{c}2\\-\sin(\alpha)\\1+\cos(\alpha)\end{array}\right),\\
+		\vec{x}_7+\vec{x}_8&=\left(\begin{array}{c}2\\3\\3\end{array}\right),&
+		\vec{x}_7+\vec{x}_9&=\left(\begin{array}{c}3\\-1\\0\end{array}\right),&
+		\vec{x}_7+\vec{x}_{10}&=\left(\begin{array}{c}3\\1-\sin(\alpha)\\\cos(\alpha)\end{array}\right),\\
+		\vec{x}_8+\vec{x}_9&=\left(\begin{array}{c}1\\0\\3\end{array}\right),&
+		\vec{x}_8+\vec{x}_{10}&=\left(\begin{array}{c}1\\2-\sin(\alpha)\\3+\cos(\alpha)\end{array}\right),&
+		\vec{x}_9+\vec{x}_{10}&=\left(\begin{array}{c}2\\-2-\sin(\alpha)\\\cos(\alpha)\end{array}\right),\\
+		\vec{x}_6-\vec{x}_7&=\left(\begin{array}{c}-1\\-1\\1\end{array}\right),&
+		\vec{x}_6-\vec{x}_8&=\left(\begin{array}{c}1\\-2\\-2\end{array}\right),&
+		\vec{x}_6-\vec{x}_9&=\left(\begin{array}{c}0\\2\\1\end{array}\right),\\
+		\vec{x}_6-\vec{x}_{10}&=\left(\begin{array}{c}0\\\sin(\alpha)\\1-\cos(\alpha)\end{array}\right),&
+		\vec{x}_7-\vec{x}_8&=\left(\begin{array}{c}2\\-1\\-3\end{array}\right),&
+		\vec{x}_7-\vec{x}_9&=\left(\begin{array}{c}1\\3\\0\end{array}\right),\\
+		\vec{x}_7-\vec{x}_{10}&=\left(\begin{array}{c}1\\1+\sin(\alpha)\\-\cos(\alpha)\end{array}\right),&
+		\vec{x}_8-\vec{x}_9&=\left(\begin{array}{c}-1\\4\\3\end{array}\right),&
+		\vec{x}_8-\vec{x}_{10}&=\left(\begin{array}{c}-1\\2+\sin(\alpha)\\3-\cos(\alpha)\end{array}\right),\\
+		\vec{x}_9-\vec{x}_{10}&=\left(\begin{array}{c}0\\-2+\sin(\alpha)\\-\cos(\alpha)\end{array}\right),&
+		\vec{x}_{11}+\vec{x}_{12}&=\left(\begin{array}{c}1\\1\\3\\3\end{array}\right),&
+		\vec{x}_{11}+\vec{x}_{13}&=\left(\begin{array}{c}1+\xi\\1\\1\\1-\xi\end{array}\right),\\
+		\vec{x}_{12}+\vec{x}_{13}&=\left(\begin{array}{c}\xi\\0\\2\\2-\xi\end{array}\right),&
+		\vec{x}_{11}-\vec{x}_{12}&=\left(\begin{array}{c}1\\1\\-1\\-1\end{array}\right),&
+		\vec{x}_{11}-\vec{x}_{13}&=\left(\begin{array}{c}1-\xi\\1\\1\\1+\xi\end{array}\right),\\
+		\vec{x}_{12}-\vec{x}_{13}&=\left(\begin{array}{c}-\xi\\0\\2\\2+\xi\end{array}\right),&
+		\vec{x}_{14}+\vec{x}_{15}&=\left(\begin{array}{c}-5\\-3\\1\\1\\1\end{array}\right),&
+		\vec{x}_{14}-\vec{x}_{15}&=\left(\begin{array}{c}5\\3\\-1\\-1\\-1\end{array}\right).
+	\end{align*}\pagebreak\\
+	Für den Winkel $\alpha_{ij}$ zwischen zwei Vektoren $\vec{x}_i$ und $\vec{x}_j$ gilt $\cos(\alpha_{ij})=\frac{\vec{x}_i\cdot\vec{x}_j}{|\vec{x}_i|\cdot|\vec{x}_j|}$. Zwei Vektoren sind genau dann parallel, wenn $|\cos(\alpha_{ij})|=1$ und genau dann orthogonal, wenn $\cos(\alpha_{ij})=0$:
+	\begin{align*}
+		\cos(\alpha_{12})&=0,&
+		\cos(\alpha_{13})&=\frac{1}{\sqrt{5}},&
+		\cos(\alpha_{14})&=\frac{1}{\sqrt{5}},\\
+		\cos(\alpha_{15})&=\sin(\beta),&
+		\cos(\alpha_{23})&=\frac{2}{\sqrt{5}},&
+		\cos(\alpha_{24})&=\frac{2}{\sqrt{5}},\\
+		\cos(\alpha_{25})&=\cos(\beta),&
+		\cos(\alpha_{34})&=1,&
+		\cos(\alpha_{35})&=\frac{2\cos(\beta) + \sin(\beta)}{\sqrt{5}},\\
+		\cos(\alpha_{45})&=\frac{2\cos(\beta) + \sin(\beta)}{\sqrt{5}},&
+		\cos(\alpha_{67})&=\frac{2}{\sqrt{10}},&
+		\cos(\alpha_{68})&=\frac{3}{\sqrt{26}},\\
+		\cos(\alpha_{69})&=\frac{1}{\sqrt{10}},&
+		\cos(\alpha_{610})&=\frac{1 + \cos(\alpha)}{2},&
+		\cos(\alpha_{78})&=\frac{2}{\sqrt{65}},\\
+		\cos(\alpha_{79})&=0,&
+		\cos(\alpha_{710})&=\frac{2 - \sin(\alpha)}{\sqrt{10}},&
+		\cos(\alpha_{89})&=-\frac{4}{\sqrt{65}},\\
+		\cos(\alpha_{810})&=\frac{3\cos(\alpha) - 2\sin(\alpha)}{\sqrt{26}},&
+		\cos(\alpha_{910})&=\frac{1 + 2\sin(\alpha)}{\sqrt{10}},&
+		\cos(\alpha_{1112})&=\frac{1}{\sqrt{2}},\\
+		\cos(\alpha_{1113})&=0,&
+		\cos(\alpha_{1213})&=-\frac{1}{2}&
+	\end{align*}
+	2. Eine Menge von $k$ Vektoren $\{\vec{x}_i\}$ heißt genau dann linear unabhängig, wenn die einzige Lösung der Gleichung $\sum_{m=1}^{k}a_m\vec{x}_m=\vec{0}$ mit $a_i\in\Rset$ diejenige ist, bei der alle Koeffizienten $a_i=0$ sind. Es können maximal $n$ Vektoren des $\Rset^n$ linear unabhängig sein.
+	\begin{enumerate}
+		\item[$\Rset^2$:] Zwei Vektoren $\vec{x}$ und $\vec{y}$ sind linear abhängig, wenn es ein $\lambda\in\Rset$ gibt mit $\vec{x}=\lambda\vec{y}$. Dies ist der Fall für $\vec{x}_4=2\vec{x}_3$ und bei entsprechender Wahl von $\beta$ für $\vec{x}_5$ und jeden der anderen Vektoren.\\
+		\item[$\Rset^3$:] Für entsprechendes $\alpha$ ist $\vec{x}_6=\vec{x}_{10}$, sowie die Mengen $\{\vec{x}_7,\vec{x}_8,\vec{x}_{10}\}$, $\{\vec{x}_7,\vec{x}_9,\vec{x}_{10}\}$ und $\{\vec{x}_8,\vec{x}_9,\vec{x}_{10}\}$ linear abhängig. Anstatt die Lösungsmenge des Gleichungssystems zu bestimmen, kann die lineare Abhängigkeit von $n$ Vektoren des $\Rset^n$ auch durch das Berechnen der Determinante $\det\left(\vec{x}_1\dots\vec{x}_n\right)$ überprüft werden. Die Vektoren $\{\vec{x}_1, ..., \vec{x}_n\}$ sind genau dann linear abhängig, wenn die Determinante gleich 0 ist.\\
+		\item[$\Rset^4$:] Die drei Vektoren $\vec{x}_{11}$, $\vec{x}_{12}$ und $\vec{x}_{13}$ sind linear unabhängig, solange $\xi\neq0$.\\
+		\item[$\Rset^5$:] Enthält eine Menge an Vektoren den Nullvektor ($\vec{x}_{14}$) ist sie immer linear abhängig.
+	\end{enumerate}
+\end{solution}
+
+
+
+\question{{\it Vektorprodukt im $\Rset^3$}}
+
+\begin{enumerate}
+	\item Bestimmen Sie für Paare $\vec{x}_i$, $\vec{x}_j$ von dreidimensionalen Vektoren jeweils das Vektorprodukt $\vec{x}_i\times\vec{x}_j$.
+	\item Bestimmen Sie für Tripel $\vec{x}_i$, $\vec{x}_j$, $\vec{x}_k$ von dreidimensionalen Vektoren jeweils $\vec{x}_i\cdot(\vec{x_j}\times\vec{x}_k)$. Wann ist dieses Produkt gleich Null, und warum?
+\end{enumerate}
+\begin{align*}
+	\vec{x}_1&=\left(\begin{array}{c}1\\0\\1\end{array}\right)
+	&\vec{x}_2&=\left(\begin{array}{c}2\\1\\0\end{array}\right)
+	&\vec{x}_3&=\left(\begin{array}{c}0\\2\\3\end{array}\right)
+	&\vec{x}_4&=\left(\begin{array}{c}1\\{}-2\\0\end{array}\right)\\
+	\vec{x}_5&=\left(\begin{array}{c}1\\0\\0\end{array}\right)
+	&\vec{x}_6&=\left(\begin{array}{c}0\\-1\\0\end{array}\right)
+	&\vec{x}_7&=\left(\begin{array}{c}1\\2\\2\end{array}\right)
+	&\vec{x}_8&=\left(\begin{array}{c}2\\2\\3\end{array}\right)\\
+\end{align*}
+
+\begin{solution}\\
+	1. $\vec{x}\times\vec{y}=\left(\begin{array}{c}
+		x_2\, y_3-x_3\, y_2\\x_3\, y_1-x_1\, y_3\\x_1\, y_2-x_2\, y_1
+	\end{array}\right)$, $(\vec{x}_i\times\vec{x}_j)^T=$
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+			\hline \diagbox{i}{j}&1&2&3&4&5&6&7&8\\
+			\hline 1&(0,0,0)&(-1,2,1)&(-2,-3,2)&(2,1,-2)&(0,1,0)&(1,0,-1)&(-2,-1,2)&(-2,-1,2)\\
+			\hline 2&(1,-2,-1)&(0,0,0)&(3,-6,4)&(0,0,-5)&(0,0,-1)&(0,0,-2)&(2,-4,3)&(3,-6,2)\\
+			\hline 3&(2,3,-2)&(-3,6,-4)&(0,0,0)&(6,3,-2)&(0,3,-2)&(3,0,0)&(-2,3,-2)&(0,6,-4)\\
+			\hline 4&(-2,-1,2)&(0,0,5)&(-6,-3,2)&(0,0,0)&(0,0,2)&(0,0,-1)&(-4,-2,4)&(-6,-3,6)\\
+			\hline 5&(0,-1,0)&(0,0,1)&(0,-3,2)&(0,0,-2)&(0,0,0)&(0,0,-1)&(0,-2,2)&(0,-3,2)\\
+			\hline 6&(-1,0,1)&(0,0,2)&(-3,0,0)&(0,0,1)&(0,0,1)&(0,0,0)&(-2,0,1)&(-3,0,2)\\
+			\hline 7&(2,1,-2)&(-2,4,-3)&(2,-3,2)&(4,2,-4)&(0,2,-2)&(2,0,-1)&(0,0,0)&(2,1,-2)\\
+			\hline 8&(2,1,-2)&(-3,6,-2)&(0,-6,4)&(6,3,-6)&(0,3,-2)&(3,0,-2)&(-2,-1,2)&(0,0,0)\\
+			\hline
+		\end{tabular}
+	\end{center}
+	2. Das Spatprodukt $\vec{x}_i\cdot(\vec{x}_j\times\vec{x}_k)$ gleicht der Determinanten der Matrix $\left(\vec{x}_i\ \vec{x}_j\ \vec{x}_k\right)$. Es folgt, dass das Vertauschen zweier Vektoren zu einem Vorzeichenwechsel führt. Es genügt also die Fälle $i<j<k$ zu betrachten. Außerdem gilt $\vec{x}_i\cdot(\vec{x}_j\times\vec{x}_k)=0$ genau dann, wenn die drei Vektoren linear abhängig sind. Anschaulich wird dies klar, wenn man betrachtet, dass drei Vektoren genau dann linear abhängig sind, wenn sie in einer gemeinsamen Ebene liegen. Genau dann ist aber $\vec{x}_i$ senkrecht zu $\vec{x}_j\times\vec{x}_k$.
+	\begin{align*}
+		\vec{x}_1\cdot(\vec{x}_2\times\vec{x}_3)&=7,&
+		\vec{x}_1\cdot(\vec{x}_2\times\vec{x}_4)&=-5,&
+		\vec{x}_1\cdot(\vec{x}_2\times\vec{x}_5)&=-1,&
+		\vec{x}_1\cdot(\vec{x}_2\times\vec{x}_6)&=-2,\\
+		\vec{x}_1\cdot(\vec{x}_2\times\vec{x}_7)&=5,&
+		\vec{x}_1\cdot(\vec{x}_2\times\vec{x}_8)&=5,&
+		\vec{x}_1\cdot(\vec{x}_3\times\vec{x}_4)&=4,&
+		\vec{x}_1\cdot(\vec{x}_3\times\vec{x}_5)&=-2,\\
+		\vec{x}_1\cdot(\vec{x}_3\times\vec{x}_6)&=3,&
+		\vec{x}_1\cdot(\vec{x}_3\times\vec{x}_7)&=-4,&
+		\vec{x}_1\cdot(\vec{x}_3\times\vec{x}_8)&=-4,&
+		\vec{x}_1\cdot(\vec{x}_4\times\vec{x}_5)&=2,\\
+		\vec{x}_1\cdot(\vec{x}_4\times\vec{x}_6)&=-1,&
+		\vec{x}_1\cdot(\vec{x}_4\times\vec{x}_7)&=0,&
+		\vec{x}_1\cdot(\vec{x}_4\times\vec{x}_8)&=0,&
+		\vec{x}_1\cdot(\vec{x}_5\times\vec{x}_6)&=-1,\\
+		\vec{x}_1\cdot(\vec{x}_5\times\vec{x}_7)&=2,&
+		\vec{x}_1\cdot(\vec{x}_5\times\vec{x}_8)&=2,&
+		\vec{x}_1\cdot(\vec{x}_6\times\vec{x}_7)&=-1,&
+		\vec{x}_1\cdot(\vec{x}_6\times\vec{x}_8)&=-1,\\
+		\vec{x}_1\cdot(\vec{x}_7\times\vec{x}_8)&=0,&
+		\vec{x}_2\cdot(\vec{x}_3\times\vec{x}_4)&=15,&
+		\vec{x}_2\cdot(\vec{x}_3\times\vec{x}_5)&=3,&
+		\vec{x}_2\cdot(\vec{x}_3\times\vec{x}_6)&=6,\\
+		\vec{x}_2\cdot(\vec{x}_3\times\vec{x}_7)&=-1,&
+		\vec{x}_2\cdot(\vec{x}_3\times\vec{x}_8)&=6,&
+		\vec{x}_2\cdot(\vec{x}_4\times\vec{x}_5)&=0,&
+		\vec{x}_2\cdot(\vec{x}_4\times\vec{x}_6)&=0,\\
+		\vec{x}_2\cdot(\vec{x}_4\times\vec{x}_7)&=-10,&
+		\vec{x}_2\cdot(\vec{x}_4\times\vec{x}_8)&=-15,&
+		\vec{x}_2\cdot(\vec{x}_5\times\vec{x}_6)&=0,&
+		\vec{x}_2\cdot(\vec{x}_5\times\vec{x}_7)&=-2,\\
+	\end{align*}\begin{align*}
+		\vec{x}_2\cdot(\vec{x}_5\times\vec{x}_8)&=-3,&
+		\vec{x}_2\cdot(\vec{x}_6\times\vec{x}_7)&=-4,&
+		\vec{x}_2\cdot(\vec{x}_6\times\vec{x}_8)&=-6,&
+		\vec{x}_2\cdot(\vec{x}_7\times\vec{x}_8)&=5,\\
+		\vec{x}_3\cdot(\vec{x}_4\times\vec{x}_5)&=6,&
+		\vec{x}_3\cdot(\vec{x}_4\times\vec{x}_6)&=-3,&
+		\vec{x}_3\cdot(\vec{x}_4\times\vec{x}_7)&=8,&
+		\vec{x}_3\cdot(\vec{x}_4\times\vec{x}_8)&=12,\\
+		\vec{x}_3\cdot(\vec{x}_5\times\vec{x}_6)&=-3,&
+		\vec{x}_3\cdot(\vec{x}_5\times\vec{x}_7)&=2,&
+		\vec{x}_3\cdot(\vec{x}_5\times\vec{x}_8)&=0,&
+		\vec{x}_3\cdot(\vec{x}_6\times\vec{x}_7)&=3,\\
+		\vec{x}_3\cdot(\vec{x}_6\times\vec{x}_8)&=6,&
+		\vec{x}_3\cdot(\vec{x}_7\times\vec{x}_8)&=-4,&
+		\vec{x}_4\cdot(\vec{x}_5\times\vec{x}_6)&=0,&
+		\vec{x}_4\cdot(\vec{x}_5\times\vec{x}_7)&=4,\\
+		\vec{x}_4\cdot(\vec{x}_5\times\vec{x}_8)&=6,&
+		\vec{x}_4\cdot(\vec{x}_6\times\vec{x}_7)&=-2,&
+		\vec{x}_4\cdot(\vec{x}_6\times\vec{x}_8)&=-3,&
+		\vec{x}_4\cdot(\vec{x}_7\times\vec{x}_8)&=0,\\
+		\vec{x}_5\cdot(\vec{x}_6\times\vec{x}_7)&=-2,&
+		\vec{x}_5\cdot(\vec{x}_6\times\vec{x}_8)&=-3,&
+		\vec{x}_5\cdot(\vec{x}_7\times\vec{x}_8)&=2,&
+		\vec{x}_6\cdot(\vec{x}_7\times\vec{x}_8)&=-1
+	\end{align*}
+\end{solution}
+
+
+
+
+\question{{\it Rechnen mit Matrizen}}
+
+Bestimmen Sie für alle Paare $X$, $Y$ von Matrizen, welche der Operationen $X+Y$, $XY$, und $YX$ jeweils definiert sind, und werten Sie diese gegebenenfalls aus:
+\\
+\begin{align*}
+	A &= \left(\begin{array}{cc}0&1\\1&0\end{array}\right)
+	&B &= \left(\begin{array}{cc}1&2\\0&3\end{array}\right)
+	&C &= \left(\begin{array}{cc}\cos\phi&\sin\phi\\-\sin\phi&\cos\phi\end{array}\right)\\
+	D &= \left(\begin{array}{cc}1&0\\0&1\\2&3\end{array}\right)
+	&E &= \left(\begin{array}{ccc}1&1&1\\0&1&\xi\end{array}\right)
+	&F &= \left(\begin{array}{ccc}1&0&-1\\0&1&0\\1&0&1\end{array}\right)\\
+	G &= \left(\begin{array}{ccc}1&1&1\\0&1&2\\0&0&3\end{array}\right)
+	&H &= \left(\begin{array}{cccc}0&2&0&1\\1&0&2&0\end{array}\right)
+	&K &= \left(\begin{array}{cccc}1&0&0&0\\0&-1&0&0\\0&0&-1&0\\0&0&0&-1\end{array}\right)\\
+	L &= \left(\begin{array}{c}t\\x\\y\\z\end{array}\right)
+	&M &= \left(\begin{array}{cccc}\tau&\xi&\eta&0\end{array}\right)
+	&N &= \left(\begin{array}{ccc}1&0&1\\0&1&\cos\gamma\\0&0&\sin\gamma\\1&0&0\end{array}\right)
+\end{align*}
+
+\begin{solution}
+	Die Matrizenaddition ist für je zwei Matrizen gleicher Größe definiert:
+	\begin{align*}
+		A+B&=\left(\begin{array}{cc}1&3\\1&3\end{array}\right),& A+C&=\left(\begin{array}{cc}\cos(\phi)&1+\sin(\phi)\\1-\sin(\phi)&\cos(\phi)\end{array}\right),\\
+		B+C&=\left(\begin{array}{cc}1+\cos(\phi)&2+\sin(\phi)\\-\sin(\phi)&3+\cos(\phi)\end{array}\right),&
+		F+G&=\left(\begin{array}{ccc}2&1&0\\0&2&2\\1&0&4\end{array}\right)
+	\end{align*}
+	Die Matrizenmultiplikation ist definiert, wenn Spaltenzahl der ersten und Zeilenzahl der zweiten Matrix übereinstimmen:
+	\begin{align*}
+		&AB=\left(\begin{array}{cc}0&3\\1&2\end{array}\right),\,
+		AC=\left(\begin{array}{cc}-\sin(\phi)&\cos(\phi)\\\cos(\phi)&\sin(\phi)\end{array}\right),\,
+		AE=\left(\begin{array}{ccc}0&1&\xi\\1&1&1\end{array}\right),\,
+		AH=\left(\begin{array}{cccc}1&0&2&0\\0&2&0&1\end{array}\right),\\
+		&BA=\left(\begin{array}{cc}2&1\\3&0\end{array}\right),\,
+		BC=\left(\begin{array}{cc}\cos(\phi)-2\sin(\phi)&2\cos(\phi)+\sin(\phi)\\-3\sin(\phi)&3\cos(\phi)\end{array}\right),\,
+		BE=\left(\begin{array}{ccc}1&3&1+2\xi\\0&3&3\xi\end{array}\right),\\
+	\end{align*}\begin{align*}
+		&BH=\left(\begin{array}{cccc}2&2&4&1\\3&0&6&0\end{array}\right),\,
+		CA=\left(\begin{array}{cc}\sin(\phi)&\cos(\phi)\\\cos(\phi)&-\sin(\phi)\end{array}\right),\,
+		CB=\left(\begin{array}{cc}\cos(\phi)&2\cos(\phi)+3\sin(\phi)\\-\sin(\phi)&3\cos(\phi)-2\sin(\phi)\end{array}\right),\\
+		&CE=\left(\begin{array}{ccc}\cos(\phi)&\cos(\phi)+\sin(\phi)&\cos(\phi)+\sin(\phi)*\xi\\-\sin(\phi)&\cos(\phi)-\sin(\phi)&-\sin(\phi)+\cos(\phi)*\xi\end{array}\right),\\
+		&CH=\left(\begin{array}{cccc}\sin(\phi)&2\cos(\phi)&2\sin(\phi)&\cos(\phi)\\\cos(\phi)&-2\sin(\phi)&2\cos(\phi)&-\sin(\phi)\end{array}\right),\,
+		DA=\left(\begin{array}{cc}0&1\\1&0\\3&2\end{array}\right),\,
+		DB=\left(\begin{array}{cc}1&2\\0&3\\2&13\end{array}\right),\\
+		&DC=\left(\begin{array}{cc}\cos(\phi)&\sin(\phi)\\-\sin(\phi)&\cos(\phi)\\2\cos(\phi)-3\sin(\phi)&3\cos(\phi)+2\sin(\phi)\end{array}\right),\,
+		DE=\left(\begin{array}{ccc}1&1&1\\0&1&\xi\\2&5&2+3\xi\end{array}\right),\\
+		&DH=\left(\begin{array}{cccc}0&2&0&1\\1&0&2&0\\3&4&6&2\end{array}\right),\,
+		ED=\left(\begin{array}{cc}3&4\\2\xi&1+3\xi\end{array}\right),\,
+		EF=\left(\begin{array}{ccc}2&1&0\\\xi&1&\xi\end{array}\right),\,
+		EG=\left(\begin{array}{ccc}1&2&6\\0&1&2+3\xi\end{array}\right),\\
+		&FD=\left(\begin{array}{cc}-1&-3\\0&1\\3&3\end{array}\right),\,
+		FG=\left(\begin{array}{ccc}1&1&-2\\0&1&2\\1&1&4\end{array}\right),\,
+		GD=\left(\begin{array}{cc}3&4\\4&7\\6&9\end{array}\right),\,
+		GF=\left(\begin{array}{ccc}2&1&0\\2&1&2\\3&0&3\end{array}\right),\\
+		&HK=\left(\begin{array}{cccc}0&-2&0&-1\\1&0&-2&0\end{array}\right),\,
+		HL=\left(\begin{array}{cc}2x+z,&t+2y\end{array}\right),\,
+		HN=\left(\begin{array}{ccc}1&2&2\cos(\gamma)\\1&0&1+2\sin(\gamma)\end{array}\right),\\
+		&KL=\left(\begin{array}{cccc}t,&-x,&-y,&-z\end{array}\right),\,
+		KN=\left(\begin{array}{ccc}1&0&1\\0&-1&-\cos(\gamma)\\0&0&-\sin(\gamma)\\-1&0&0\end{array}\right),\,
+		LM=\left(\begin{array}{cccc}t \tau&t \xi&\eta t&0\\\tau x&x \xi&\eta x&0\\\tau y&\xi y&\eta y&0\\\tau z&\xi z&\eta z&0\end{array}\right),\\
+		&MK=\left(\begin{array}{cccc}\tau&-\xi&-\eta&0\end{array}\right),\,
+		ML=\left(\begin{array}{c}\eta y+t \tau+x \xi\end{array}\right),\,
+		MN=\left(\begin{array}{ccc}\tau&\xi&\tau+\cos(\gamma) \xi+\eta \sin(\gamma)\end{array}\right),\\
+		&ND=\left(\begin{array}{cc}3&3\\2\cos(\gamma)&1+3\cos(\gamma)\\2\sin(\gamma)&3\sin(\gamma)\\1&0\end{array}\right),\,
+		NF=\left(\begin{array}{ccc}2&0&0\\\cos(\gamma)&1&\cos(\gamma)\\\sin(\gamma)&0&\sin(\gamma)\\1&0&-1\end{array}\right),\,
+		NG=\left(\begin{array}{ccc}1&1&4\\0&1&2+3\cos(\gamma)\\0&0&3\sin(\gamma)\\1&1&1\end{array}\right)
+	\end{align*}
+\end{solution}
+
+
+
+\question{{\it Drehungen in der Ebene und im Raum}}
+
+\begin{parts}
+	\part Überzeugen Sie sich davon, dass die zu der Matrix
+	\[
+	R(\alpha)=\left(\begin{array}{cc}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{array}\right)
+	\]
+	gehörige lineare Abbildung $\Rset^2\to\Rset^2$ eine Drehung um den Winkel $\alpha$ um den Ursprung darstellt. Überprüfen Sie, dass tatsächlich $R(\alpha+\beta)=R(\alpha)R(\beta)$ gilt.
+	
+	\part Bestimmen Sie die drei Matrizen $R_1(\alpha)$, $R_2(\beta)$, $R_3(\gamma)$, die jeweils einer Drehung des $\Rset^3$ um die $x_1$-, $x_2$- bzw. $x_3$-Achse mit einem Drehwinkel von $\alpha$, $\beta$ bzw. $\gamma$ entsprechen.
+	
+	\part Berechnen Sie jeweils $R_i(\varphi)R_j(\vartheta)$ und $R_j(\vartheta)R_i(\varphi)$ für $i\not=j$. Was beobachten Sie? Interpretieren Sie dieses Ergebnis geometrisch.
+	
+\end{parts}
+
+\begin{solution}\\
+	(a) Wir betrachten die Wirkung von $R(\alpha)$ auf die beiden Basisvektoren $\left(\begin{array}{c}1\\0\end{array}\right)$ und $\left(\begin{array}{c}0\\1\end{array}\right)$: \begin{align*}
+		R(\alpha)\cdot\left(\begin{array}{c}1\\0\end{array}\right)&=\left(\begin{array}{c}\cos\alpha\\\sin\alpha\end{array}\right),& R(\alpha)\cdot\left(\begin{array}{c}0\\1\end{array}\right)&=\left(\begin{array}{c}-\sin\alpha\\\cos\alpha\end{array}\right)=\left(\begin{array}{c}\cos(\alpha+90^\circ)\\\sin(\alpha+90^\circ)\end{array}\right)
+	\end{align*}
+	Dies entspricht gerade einer Drehung um den Winkel $\alpha$ um den Ursprung. Außerdem gilt
+	\begin{align*}
+		R(\alpha)R(\beta)&=\left(\begin{array}{cc}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{array}\right)\cdot\left(\begin{array}{cc}\cos\beta&-\sin\beta\\\sin\beta&\cos\beta\end{array}\right)\\
+		&=\left(\begin{array}{cc}\cos\alpha\cos\beta-\sin\alpha\sin\beta&-\sin\alpha\cos\beta-\cos\alpha\sin\beta\\\sin\alpha\cos\beta+\cos\alpha\sin\beta&\cos\alpha\cos\beta-\sin\alpha\sin\beta\end{array}\right)\\
+		&=\left(\begin{array}{cc}\cos(\alpha+\beta)&-\sin(\alpha+\beta)\\\sin(\alpha+\beta)&\cos(\alpha+\beta)\end{array}\right)
+	\end{align*}
+	(b) \begin{align*}
+		R_1(\alpha)&=\left(\begin{array}{ccc}1&0&0\\0&\cos\alpha&-\sin\alpha\\0&\sin\alpha&\cos\alpha\end{array}\right),&R_2(\beta)&=\left(\begin{array}{ccc}\cos\beta&0&-\sin\beta\\0&1&0\\\sin\beta&0&\cos\beta\end{array}\right),\\
+		R_3(\gamma)&=\left(\begin{array}{ccc}\cos\gamma&-\sin\gamma&0\\\sin\gamma&\cos\gamma&0\\0&0&1\end{array}\right)
+	\end{align*}
+	(c) Bei Rotationen um unterschiedliche Achsen im $\Rset^3$ spielt die Reihenfolge eine Rolle. So ist
+	\begin{align*}
+		R_1(\alpha)R_2(\beta)&=\left(\begin{array}{ccc}\cos\beta&0&-\sin\beta\\-\sin\alpha\sin\beta&\cos\alpha&-\sin\alpha\cos\beta\\\cos\alpha\sin\beta&\sin\alpha&\cos\alpha\cos\beta\end{array}\right)\\
+		\neq R_2(\beta)R_1(\alpha)&=\left(\begin{array}{ccc}\cos\beta&-\sin\alpha\sin\beta&-\cos\alpha\sin\beta\\0&\cos\alpha&-\sin\alpha\\\sin\beta&\sin\alpha\cos\beta&\cos\alpha\cos\beta\end{array}\right),\\
+		R_1(\alpha)R_3(\gamma)&=\left(\begin{array}{ccc}\cos\gamma&-\sin\gamma&0\\\cos\alpha\sin\gamma&\cos\alpha\cos\gamma&-\sin\alpha\\\sin\alpha\sin\gamma&\sin\alpha\cos\gamma&\cos\alpha\end{array}\right)\\
+		\neq R_3(\gamma)R_1(\alpha)&=\left(\begin{array}{ccc}\cos\gamma&-\cos\alpha\sin\gamma&\sin\alpha\sin\gamma\\\sin\gamma&\cos\alpha\cos\gamma&-\sin\alpha\cos\gamma\\0&\sin\alpha&\cos\alpha\end{array}\right),\\
+		R_2(\beta)R_3(\gamma)&=\left(\begin{array}{ccc}\cos\gamma\cos\beta&-\sin\gamma\cos\beta&-\sin\beta\\\sin\gamma&\cos\gamma&0\\\sin\beta\cos\gamma&-\sin\beta\sin\gamma&\cos\beta\end{array}\right)\\
+		\neq R_3(\gamma)R_2(\beta)&=\left(\begin{array}{ccc}\cos\gamma\cos\beta&-\sin\gamma&-\sin\beta\cos\gamma\\\sin\gamma\cos\beta&\cos\gamma&-\sin\beta\sin\gamma\\\sin\beta&0&\cos\beta\end{array}\right).
+	\end{align*}
+\end{solution}
+
+
+
+\question{{\it Lineare Gleichungssysteme und Matrizen}}
+
+%\begin{parts}
+%\part Berechnen Sie jeweils die Determinanten der folgenden Matrizen. Für Matrizen mit Determinante Null finden Sie jeweils einen Vektor $x$ mit $Ax=0$. Für Matrizen mit von Null verschiedener Determinante finden Sie jeweils die Lösungen der Gleichungen $Ax=e_i$.
+%\begin{align*}
+%\left(\begin{array}{cc}1&1\\0&1\end{array}\right) &&
+%\left(\begin{array}{cc}0&1\\1&0\end{array}\right) &&
+%\left(\begin{array}{cc}0&1\\-1&0\end{array}\right) &&
+%\left(\begin{array}{cc}1&1\\2&2\end{array}\right)\\
+%\left(\begin{array}{ccc}1&1&0\\0&1&1\\1&1&0\end{array}\right) &&
+%\left(\begin{array}{ccc}0&1&1\\1&0&1\\1&1&2\end{array}\right) &&
+%\left(\begin{array}{ccc}0&1&0\\-1&0&0\\0&0&1\end{array}\right) &&
+%\left(\begin{array}{ccc}1&1&0\\2&2&1\\1&0&0\end{array}\right)
+%\end{align*}
+
+%\part
+Bestimmen Sie, für welche Paare $A$, $b$ von Matrizen $A$ aus Aufgabe 3 und Vektoren $b$ aus Aufgabe 1 das Gleichungssystem $Ax=b$ definiert ist und finden Sie (falls es definiert ist) seine jeweilige Lösungsmenge.
+%\end{parts}
+\begin{solution}
+	Ein Gleichungssystem $Ay=b$ ist dann definiert, wenn $A$ und $b$ gleich viele Zeilen besitzen. Die Lösungsmenge des Gleichungssystems kann mithilfe des Gaußschen Eliminationsverfahren bestimmt werden wie hier am Beispiel von $Fy=\vec{x}_8$ zu sehen ist:
+	\begin{align*}
+		&
+		\left(\begin{array}{rrr|r}
+			1 & 0 & -1 & 0\\
+			0 & 1 & 0 & 2\\
+			1 & 0 & 1 & 3
+		\end{array} \right)
+		\rightarrow
+		\left(\begin{array}{rrr|r}
+			1 & 0 & -1 & 0\\
+			0 & 1 & 0 & 2\\
+			0 & 0 & 2 & 3
+		\end{array} \right)
+	\end{align*}
+	\begin{align*}
+		&\Rightarrow&&y_3=\tfrac{3}{2}&&\Rightarrow&&y_2=2&&\Rightarrow&&y_1=y_3=\tfrac{3}{2}&&\Rightarrow&&\mathbb{L}=\left\{\left(\frac{3}{2},2,\frac{3}{2}\right)^T\right\}
+	\end{align*}
+	\begin{align*}
+		Ay&=\vec{x}_1&\Rightarrow&&y&\in\mathbb{L}=\left\{(0,1)^T\right\}\\
+		Ay&=\vec{x}_2&\Rightarrow&&y&\in\mathbb{L}=\left\{(3,0)^T\right\}\\
+		Ay&=\vec{x}_3&\Rightarrow&&y&\in\mathbb{L}=\left\{(2,1)^T\right\}\\
+		Ay&=\vec{x}_4&\Rightarrow&&y&\in\mathbb{L}=\left\{(4,2)^T\right\}\\
+		Ay&=\vec{x}_5&\Rightarrow&&y&\in\mathbb{L}=\left\{(\cos\beta,\sin\beta)^T\right\}\\
+		By&=\vec{x}_1&\Rightarrow&&y&\in\mathbb{L}=\left\{(1,0)^T\right\}\\
+		By&=\vec{x}_2&\Rightarrow&&y&\in\mathbb{L}=\left\{(-2,1)^T\right\}\\
+		By&=\vec{x}_3&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(-\frac{1}{3},\frac{2}{3}\right)^T\right\}\\
+		By&=\vec{x}_4&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(-\frac{2}{3},\frac{4}{3}\right)^T\right\}\\
+		By&=\vec{x}_5&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(\frac{-2\cos\beta}{3}+\sin\beta,\frac{\cos\beta}{3}\right)^T\right\}\\
+		Cy&=\vec{x}_1&\Rightarrow&&y&\in\mathbb{L}=\left\{(\cos\phi,\sin\phi)^T\right\}\\
+		Cy&=\vec{x}_2&\Rightarrow&&y&\in\mathbb{L}=\left\{(-3\sin\phi,3\cos\phi)^T\right\}\\
+		Cy&=\vec{x}_3&\Rightarrow&&y&\in\mathbb{L}=\left\{(\cos\phi-2\sin\phi,2\cos\phi+\sin\phi)^T\right\}\\
+		Cy&=\vec{x}_4&\Rightarrow&&y&\in\mathbb{L}=\left\{(2\cos\phi-4\sin\phi,4\cos\phi+2\sin\phi)^T\right\}\\
+		Cy&=\vec{x}_5&\Rightarrow&&y&\in\mathbb{L}=\left\{(\sin(\beta-\phi),\cos(\beta-\phi))^T\right\}\\
+		Fy&=\vec{x}_6&\Rightarrow&&y&\in\mathbb{L}=\left\{(1,0,0)^T\right\}\\
+		Fy&=\vec{x}_7&\Rightarrow&&y&\in\mathbb{L}=\left\{(1,1,-1)^T\right\}\\
+	\end{align*}\begin{align*}
+		Fy&=\vec{x}_8&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(\frac{3}{2},2,\frac{3}{2}\right)^T\right\}\\
+		Fy&=\vec{x}_9&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(\frac{1}{2},-2,-\frac{1}{2}\right)^T\right\}\\
+		Fy&=\vec{x}_{10}&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(1+\frac{-1+\cos\alpha}{2},-\sin\alpha,\frac{-1+\cos\alpha}{2}\right)^T\right\}\\
+		Gy&=\vec{x}_6&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(\frac{4}{3},-\frac{2}{3},\frac{1}{3}\right)^T\right\}\\
+		Gy&=\vec{x}_7&\Rightarrow&&y&\in\mathbb{L}=\left\{(1,1,0)^T\right\}\\
+		Gy&=\vec{x}_8&\Rightarrow&&y&\in\mathbb{L}=\left\{(-1,0,1)^T\right\}\\
+		Gy&=\vec{x}_9&\Rightarrow&&y&\in\mathbb{L}=\left\{(3,-2,0)^T\right\}\\
+		Gy&=\vec{x}_{10}&\Rightarrow&&y&\in\mathbb{L}=\left\{\left(1+\frac{\cos\alpha}{3}+\sin\alpha,-\frac{2\cos\alpha}{3}-\sin\alpha,\frac{\cos\alpha}{3}\right)^T\right\}\\
+		Ky&=\vec{x}_{11}&\Rightarrow&&y&\in\mathbb{L}=\left\{(1,-1,-1,-1)^T\right\}\\
+		Ky&=\vec{x}_{12}&\Rightarrow&&y&\in\mathbb{L}=\left\{(0,0,-2,-2)^T\right\}\\
+		Ky&=\vec{x}_{13}&\Rightarrow&&y&\in\mathbb{L}=\left\{(\xi,0,0,\xi)^T\right\}\\
+	\end{align*}
+	In folgenden Fällen kann das Gleichungssystem aufgrund der zusätzlichen Freiheitsgrade um die Gleichungen $y_3=a\in\Rset$ und $y_4=b\in\Rset$ ergänzt werden:
+	\begin{align*}
+		Ey&=\vec{x}_1&\Rightarrow&&y&\in\mathbb{L}=\left\{\left((\xi-1)a+1,-\xi a,a\right)^T\,|\,a\in\Rset\right\}\\
+		Ey&=\vec{x}_2&\Rightarrow&&y&\in\mathbb{L}=\left\{\left((\xi-1)a-3,-\xi a+3,a\right)^T\,|\,a\in\Rset\right\}\\
+		Ey&=\vec{x}_3&\Rightarrow&&y&\in\mathbb{L}=\left\{\left((\xi-1)a-1,-\xi a+2,a\right)^T\,|\,a\in\Rset\right\}\\
+		Ey&=\vec{x}_4&\Rightarrow&&y&\in\mathbb{L}=\left\{\left((\xi-1)a-2,-\xi a+4,a\right)^T\,|\,a\in\Rset\right\}\\
+		Ey&=\vec{x}_5&\Rightarrow&&y&\in\mathbb{L}=\left\{\left((\xi-1)a+\sin\beta-\cos\beta,-\xi a+\cos\beta,a\right)^T\,|\,a\in\Rset\right\}\\
+		Hy&=\vec{x}_1&\Rightarrow&&y&\in\mathbb{L}=\left\{(2a,b,-a,-2b+1)^T\,|\,a,b\in\Rset\right\}\\
+		Hy&=\vec{x}_2&\Rightarrow&&y&\in\mathbb{L}=\left\{(2a+3,b,-a,-2b)^T\,|\,a,b\in\Rset\right\}\\
+		Hy&=\vec{x}_3&\Rightarrow&&y&\in\mathbb{L}=\left\{(2a+2,b,-a,-2b+1)^T\,|\,a,b\in\Rset\right\}\\
+		Hy&=\vec{x}_4&\Rightarrow&&y&\in\mathbb{L}=\left\{(2a+4,b,-a,-2b+2)^T\,|\,a,b\in\Rset\right\}\\
+		Hy&=\vec{x}_5&\Rightarrow&&y&\in\mathbb{L}=\left\{(2a+\cos\beta,b,-a,-2b+\sin\beta)^T\,|\,a,b\in\Rset\right\}\\
+	\end{align*}\pagebreak\\
+	Für die folgenden Gleichungssysteme existieren Lösungen nur für bestimmte Werte von $t$, $x$, $y$, $z$ und $\gamma$:
+	\begin{align*}
+		Dy&=\vec{x}_6&\Rightarrow&&y&\in\mathbb{L}=\emptyset,&
+		Dy&=\vec{x}_7&\Rightarrow&&y&\in\mathbb{L}=\emptyset\\
+		Dy&=\vec{x}_8&\Rightarrow&&y&\in\mathbb{L}=\emptyset,&
+		Dy&=\vec{x}_9&\Rightarrow&&y&\in\mathbb{L}=\emptyset\\
+		Dy&=\vec{x}_{10}&\Rightarrow&&y&\in\mathbb{L}=\emptyset,&
+		Ly&=\vec{x}_{11}&\Rightarrow&&y&\in\mathbb{L}=\emptyset\\
+		Ly&=\vec{x}_{12}&\Rightarrow&&y&\in\mathbb{L}=\emptyset,&
+		Ly&=\vec{x}_{13}&\Rightarrow&&y&\in\mathbb{L}=\emptyset\\
+		Ny&=\vec{x}_{11}&\Rightarrow&&y&\in\mathbb{L}=\emptyset,&
+		Ny&=\vec{x}_{12}&\Rightarrow&&y&\in\mathbb{L}=\emptyset\\
+		Ny&=\vec{x}_{13}&\Rightarrow&&y&\in\mathbb{L}=\emptyset&
+	\end{align*}
+\end{solution}
+
+\end{questions}
+
+\end{document}

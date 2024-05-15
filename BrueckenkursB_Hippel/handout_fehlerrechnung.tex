@@ -1,0 +1,117 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{Zusammenfassung zum Thema Fehlerrechnung}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+{\bf Messfehler}
+
+Jede physikalische Messung ist mit Fehlern behaftet.
+Wir unterscheiden zwei Arten von Fehlern:
+\begin{itemize}
+\item systematische Fehler, die z.B. durch fehlerhaft justierte Messapparaturen
+      oder andere Unzulänglichkeiten des Messverfahrens entstehen,
+\item statistische Fehler, die durch zufällige Einflüsse auf einzelne
+      Messungen entstehen.
+\end{itemize}
+Wenn eine Messung wiederholt wird, variieren die statistischen Fehler,
+die systematischen Fehler bleiben gleich.
+Im Folgenden behandeln wir nur die statistischen Fehler.\\
+
+{\bf Wahrscheinlichkeitsverteilungen}
+
+Wenn wir eine Messung beliebig oft wiederholen könnten, würden wir
+eine Streuung der Messwerte beobachten, bei der Werte in verschiedenen
+Intervallen verschieden häufig auftauchen.
+
+Es gilt das Gesetz der großen Zahlen:
+Bei $N$-facher Messung einer zufällig verteilten Größe gilt
+für die relative Häufigkeit, mit der das Ergebnis $E$ erzielt wird,
+\[
+\lim\limits_{N\to\infty} \frac{\#(E)}{N} = P(E)
+\]
+wobei $P(E)$ die Wahrscheinlichkeit von $E$ ist.
+
+Für kontinuierlich verteilte Größen gilt
+\[
+P(x\in[a;b]) = \int_a^b p(y)\rmd y
+\]
+mit einer Wahrscheinlichkeitsverteilung (Dichte) $p:\Rset\to[0;\infty)$,
+die $p(y)\ge 0$ und $\int_{-\infty}^\infty p(y)\rmd y=1$ genügt.\\
+
+{\bf Erwartungswert und Varianz}
+
+Bei $N$-facher Wiederholung einer Messung ist der mittlere Messwert
+\[
+\bar{x}=\frac{1}{N}\sum_{n=1}^N x_n
+\]
+und nach dem Gesetz der großen Zahlen erwarten wir hierfür im Limes
+$N\to\infty$
+\[
+\langle x\rangle = \int_{-\infty}^\infty x p(x)\rmd x
+\]
+was den Erwartungswert definiert.
+
+Als ein Maß für die mittlere Streuung der Ergebnisse um den Erwartungswert
+definieren wir ferner die Varianz
+\[
+\Delta x^2 = \int_{-\infty}^\infty (x-\langle x\rangle)^2 p(x)~\rmd x
+           = \langle x^2\rangle-\langle x\rangle^2
+\]
+\pagebreak
+
+{\bf Die Normalverteilung}
+
+Eine besonders wichtige Warscheinlichkeitsverteilung ist die sogenannte
+Normalverteilung (oder Gauss-Verteilung)
+\[
+p_{\mu,\sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}}\rme^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\]
+mit Erwartungswert $\mu$ und Varianz $\sigma^2$.
+
+Ihre Bedeutung erklärt sich aus dem Zentralen Grenzwertsatz:
+Seien $x_1,\ldots,x_N$ unabhägig voneinander identisch verteilt mit
+Erwartungswert $\mu$ und Varianz $\sigma^2$. Dann ist im Limes $N\to\infty$
+der Mittelwert $\frac{1}{N}\sum_{n=1}^N x_n$ normalverteilt mit
+Erwartungswert $\mu$ und Varianz $\frac{\sigma^2}{N}$.\\
+
+
+{\bf Statistische Schätzer und Fehlerfortpflanzung}
+
+Für eine endliche Messreihe $x_1,\ldots,x_N$ nehmen wir an, dass die
+einzelnen Messwerte unabhängig voneinander identisch normalverteilt
+mit Erwartungswert $\mu$ und Varianz $\sigma^2$ sind, und schätzen
+die unbekannten Parameter $\mu$ und $\sigma$ durch
+\begin{align*}
+\tilde{\mu} &= \frac{1}{N}\sum_{n=1}^N x_n \\
+\tilde{\sigma} &= \sqrt{\frac{1}{N-1}\sum_{n=1}^N (x_n-\tilde{\mu})^2}
+\end{align*}
+Nach dem Zentralen Grenzwertsatz hat unser geschätzter Mittelwert einen
+mittleren Fehler von
+\[
+\sigma_{\tilde{\mu}}=\frac{\sigma}{\sqrt{N}}\approx \frac{\tilde{\sigma}}{\sqrt{N}}
+\]
+
+Für den Fehler einer Funktion $f(x,y)$ von unabhängig
+voneinander fehlerbehafteten Größen $x$, $y$ gilt das
+Fehlerfortpflanzungsgesetz
+\[
+\sigma_{f(\tilde{\mu}_x,\tilde{\mu}_y)} = 
+   \sqrt{\left(\frac{\partial f}{\partial x}\right)^2\sigma_{\tilde{\mu}_x}^2
+        +\left(\frac{\partial f}{\partial y}\right)^2\sigma_{\tilde{\mu}_y}^2}
+\]
+
+\end{document}
+

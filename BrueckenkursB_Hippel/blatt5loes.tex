@@ -1,0 +1,920 @@
+\documentclass[11pt,answers]{exam}
+\usepackage[german]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{latexsym,ifthen,amssymb,amsfonts,amsmath}
+
+\begin{document}
+
+\include{definitions}
+
+\pagestyle{empty}
+
+\def\loesungen{1}
+\newcommand{\lansel}[2]{#1}
+
+\ifthenelse{\equal{\loesungen}{1}}{\printanswers}{\relax}
+\renewcommand{\solutiontitle}{\noindent\textbf{L\"osung:}\enspace}
+\newcommand{\loesungname}{\ifthenelse{\equal{\loesungen}{1}}{L\"osungen zu }{\relax}}
+
+\begin{center}
+\textbf{\LARGE \loesungname \lansel{\"Ubungsblatt}{Examples Sheet} 6} \\ \vspace{1ex}
+\textbf{\large \lansel{zum Mathematischen Brückenkurs \\ für Naturwissenschaftler:innen}{for the preparatory mathematics course for bio- and geoscientists}} \\ \vspace{1ex}
+\textbf{\large \lansel{im Wintersemester}{Winter} 2023/24} \\ \vspace{0.5cm}
+\textrm{\normalsize \hfill \lansel{Dozent}{Lecturer}: Apl.Prof. Dr. G. von Hippel\hfill${}$}
+\end{center}
+\normalsize\vspace{0.5cm}
+
+\ifthenelse{\equal{\loesungen}{1}}{
+\begin{center}
+\textbf{Die direkte Weitergabe der Musterl\"osungen an Studierende ist nicht gestattet!}
+\end{center}
+}{
+\vspace{3ex}
+}
+
+\begin{questions}
+\pointname{ P.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \input{Q_multivar.tex}
+\question{{\it Bewegung entlang gekrümmter Kurven}}
+
+Berechnen Sie für folgende Bahnkurven $x:[0;T]\to\Rset^3$,
+$t\mapsto\vec{x}(t)$ jeweils die Geschwindigkeit $\dot{\vec{x}}$ und
+Beschleunigung $\ddot{\vec{x}}$ als Funktion der Zeit $t$.
+Bestimmen Sie (soweit möglich) ferner die gesamte zurückgelegte Strecke
+$s=\int_0^T |\dot{\vec{x}}|~\rmd t$.\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\vec{x}(t)=(vt,0,0)$
+\item $\vec{x}(t)=(0,0,ut)$
+\item $\vec{x}(t)=(v_1t,v_2t,v_3t)$
+\item $\vec{x}(t)=(d,d,h-kt^2)$
+\item $\vec{x}(t)=(d,d+wt,h-\frac{1}{2}gt^2)$
+\item $\vec{x}(t)=(s_1+w_1t,s_2+w_2t,s_3+w_3t-\frac{a}{2}t^2)$
+\item $\vec{x}(t)=(r\sin(2\pi t/T),r\cos(2\pi t/T),0)$
+\item $\vec{x}(t)=(r\sin(2\pi t/T),r\cos(2\pi t/T),ut)$
+\item $\vec{x}(t)=(r\sin(2\pi t/T),r\cos(2\pi t/T),t(u-kt))$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{9}
+\item $\vec{x}(t)=(a\sin(2\pi t/T),b\cos(2\pi t/T),0)$
+\item $\vec{x}(t)=(a\cos(2\pi t/T),b\sin(2\pi t/T),0)$
+\item $\vec{x}(t)=(a\sin(2\pi t/T),b\cos(2\pi t/T),c\sin(8\pi t/T))$
+\item $\vec{x}(t)=(v(t-T/2),0,\sqrt{d^2+u^2(t-T/2)^2})$
+\item $\vec{x}(t)=(aT/(t+T),bT/(t+T),ct/(t+T))$
+\item $\vec{x}(t)=(d+vt,d-vt,R+a\sin(2\pi t/T))$
+\item $\vec{x}(t)=(\lambda\rme^{-\alpha t/T},\mu\rme^{\beta t/T},\xi t/T)$
+\item $\vec{x}(t)=\rme^{-\gamma t/T}(R\cos(2\pi t/T),R\sin(2\pi t/T),R)$
+\item $\vec{x}(t)=(\frac{RT}{t+T}\cos(2\pi t/T),\frac{RT}{t+T}\sin(2\pi t/T),0)$
+\end{enumerate}}
+\begin{solution}
+\begin{enumerate}
+%1
+\item $\vec{x}(t)=(vt,0,0)$
+\begin{align*}
+\dot{\vec{x}}(t)&=(v,0,0)
+\\
+\ddot{\vec{x}}(t)&=\vec{0}
+\\
+s&=\int_0^Tv\,\mathrm dt=vT
+\end{align*}
+%2
+\item $\vec{x}(t)=(0,0,ut)$
+\begin{align*}
+\dot{\vec{x}}(t)&=(0,0,u)
+\\
+\ddot{\vec{x}}(t)&=\vec{0}
+\\
+s&=\int_0^Tu\,\mathrm dt=uT
+\end{align*}
+%3
+\item $\vec{x}(t)=(v_1t,v_2t,v_3t)$
+\begin{align*}
+\dot{\vec{x}}(t)&=(v_1,v_2,v_3)
+\\
+\ddot{\vec{x}}(t)&=\vec{0}
+\\
+s&=\int_0^T\sqrt{v_1^2+v_2^2+v_3^2}\,\mathrm dt=T\sqrt{v_1^2+v_2^2+v_3^2}
+\end{align*}
+%4
+\item $\vec{x}(t)=(d,d,h-kt^2)$
+\begin{align*}
+\dot{\vec{x}}(t)&=(0,0,-2kt)
+\\
+\ddot{\vec{x}}(t)&=(0,0,-2k)
+\\
+s&=\int_0^T2kt\,\mathrm dt=kT^2
+\end{align*}
+%5
+\item $\vec{x}(t)=(d,d+wt,h-\frac{1}{2}gt^2)$
+\begin{align*}
+\dot{\vec{x}}(t)&=(0,w,-gt)
+\\
+\ddot{\vec{x}}(t)&=(0,0,-g)
+\\
+s&=\int_0^T\sqrt{w^2+g^2t^2}\,\mathrm dt=
+\frac{w^2}{2g}\left(\frac{gT}{w}\sqrt{1+\left(\frac{gT}{w}\right)^2}+\text{arcsinh}\left(\frac{gT}{w}\right)\right)
+\end{align*}
+%6
+\item $\vec{x}(t)=(s_1+w_1t,s_2+w_2t,s_3+w_3t-\frac{a}{2}t^2)$
+\begin{align*}
+\dot{\vec{x}}(t)&=(w_1,w_2,w_3-at)
+\\
+\ddot{\vec{x}}(t)&=(0,0,-a)
+\\
+s&=\int_0^T\sqrt{w_1^2+w_2^2+(w_3-at)^2}\,\mathrm dt
+\\
+&=\frac{1}{2a}\Bigg[
+w_3\sqrt{w_1^2+w_2^2+w_3^2}+aT\sqrt{w_1^2+w_2^2+(-aT+w_3)^2}-
+\\
+&
+w_3\sqrt{w_1^2+w_2^2+(-aT+w_3)^2}+(w_1^2+w_2^2)\left(\ln(w_3+\sqrt{w_1^2+w_2^2+w_3^2})\right)
+\\
+&
+-\ln(-aT+w_3+\sqrt{w_1^2+w_2^2+(-aT+w_3)^2})
+\Bigg]
+\end{align*}
+%7
+\item $\vec{x}(t)=(r\sin(2\pi t/T),r\cos(2\pi t/T),0)$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(\frac{2\pi r}{T}\cos(2\pi t/T),
+-\frac{2\pi r}{T}\sin(2\pi t/T),0\right)
+\\
+\ddot{\vec{x}}(t)&=\left(-\frac{4\pi^2 r}{T^2}\sin(2\pi t/T),
+-\frac{4\pi^2 r}{T^2}\cos(2\pi t/T),0\right)
+\\
+s&=\int_0^T\frac{2\pi r}{T}\,\mathrm dt
+=2\pi r
+\end{align*}
+%8
+\item $\vec{x}(t)=(r\sin(2\pi t/T),r\cos(2\pi t/T),ut)$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(\frac{2\pi r}{T}\cos(2\pi t/T),
+-\frac{2\pi r}{T}\sin(2\pi t/T),u\right)
+\\
+\ddot{\vec{x}}(t)&=\left(-\frac{4\pi^2 r}{T^2}\sin(2\pi t/T),
+-\frac{4\pi^2 r}{T^2}\cos(2\pi t/T),0\right)
+\\
+s&=\int_0^T\sqrt{\left(\frac{2\pi r}{T}\right)^2+u^2}\,\mathrm dt
+=T\sqrt{\left(\frac{2\pi r}{T}\right)^2+u^2}
+=\sqrt{(2\pi r)^2+(u T)^2}
+\end{align*}
+%9
+\item $\vec{x}(t)=(r\sin(2\pi t/T),r\cos(2\pi t/T),t(u-kt))$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(\frac{2\pi r}{T}\cos(2\pi t/T),
+-\frac{2\pi r}{T}\sin(2\pi t/T),u-2kt\right)
+\\
+\ddot{\vec{x}}(t)&=\left(-\frac{4\pi^2 r}{T^2}\sin(2\pi t/T),
+-\frac{4\pi^2 r}{T^2}\cos(2\pi t/T),-2k\right)
+\\
+s&=\int_0^T\sqrt{\left(\frac{2\pi r}{T}\right)^2+(u-2kt)^2}\,\mathrm dt
+\end{align*}
+%10
+\item $\vec{x}(t)=(a\sin(2\pi t/T),b\cos(2\pi t/T),0)$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(\frac{2\pi a}{T}\cos(2\pi t/T),
+-\frac{2\pi b}{T}\sin(2\pi t/T),0\right)
+\\
+\ddot{\vec{x}}(t)&=\left(-\frac{4\pi^2 a}{T^2}\sin(2\pi t/T),
+-\frac{4\pi^2 b}{T^2}\cos(2\pi t/T),0\right)
+\\
+s&=\int_0^T\sqrt{\left(\frac{2\pi a}{T}\right)^2\cos^2(2\pi t/T)+
+\left(\frac{2\pi b}{T}\right)^2\sin^2(2\pi t/T)}\,\mathrm dt
+\end{align*}
+%11
+\item $\vec{x}(t)=(a\cos(2\pi t/T),b\sin(2\pi t/T),0)$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(-\frac{2\pi a}{T}\sin(2\pi t/T),
+\frac{2\pi b}{T}\cos(2\pi t/T),0\right)
+\\
+\ddot{\vec{x}}(t)&=\left(-\frac{4\pi^2 a}{T^2}\cos(2\pi t/T),
+-\frac{4\pi^2 b}{T^2}\sin(2\pi t/T),0\right)
+\\
+s&=\int_0^T\sqrt{\left(\frac{2\pi a}{T}\right)^2\sin^2(2\pi t/T)+
+\left(\frac{2\pi b}{T}\right)^2\cos^2(2\pi t/T)}\,\mathrm dt
+\end{align*}
+%12
+\item $\vec{x}(t)=(a\sin(2\pi t/T),b\cos(2\pi t/T),c\sin(8\pi t/T))$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(\frac{2\pi a}{T}\cos(2\pi t/T),
+-\frac{2\pi b}{T}\sin(2\pi t/T),+\frac{8\pi c}{T}\cos(8\pi t/T)\right)
+\\
+\ddot{\vec{x}}(t)&=\left(-\frac{4\pi^2 a}{T^2}\sin(2\pi t/T),
+-\frac{4\pi^2 b}{T^2}\cos(2\pi t/T),-\frac{64\pi^2 c^2}{T^2}\sin(8\pi t/T)\right)
+\\
+s&=\int_0^T\sqrt{\left(\frac{2\pi a}{T}\right)^2\cos^2(2\pi t/T)+
+\left(\frac{2\pi b}{T}\right)^2\sin^2(2\pi t/T)+\left(\frac{8\pi c}{T}\right)^2\sin^2(8\pi t/T)}\,\mathrm dt
+\end{align*}
+
+%13
+\item $\vec{x}(t)=(v(t-T/2),0,\sqrt{d^2+u^2(t-T/2)^2})$
+\begin{align*}
+\dot{\vec{x}}(t)&=\left(v,0,\frac{u^2(t-T/2)}{\sqrt{d^2+(t-T/2)^2u^2}}\right)
+\\
+\ddot{\vec{x}}(t)&=\left(0,0,\frac{8d^2u^2}{(4d^2+(T-2t)^2u^2)^{3/2}}\right)
+\\
+s&=\int_0^T\sqrt{v^2+\frac{u^4(t-T/2)^2}{d^2+(t-T/2)^2u^2}}\,\mathrm dt
+\end{align*}
+%14
+\item $\vec{x}(t)=(aT/(t+T),bT/(t+T),ct/(t+T))$
+\begin{align*}
+	\dot{\vec{x}}(t)&=\left( - \frac{T a}{\left( T + t \right)^{2}},  - \frac{T b}{\left( T + t \right)^{2}}, \frac{T c}{\left( T + t \right)^{2}}\right)\\
+	\ddot{\vec{x}}(t)&=\left(\frac{2 T a}{\left( T + t \right)^{3}}, \frac{2 T b}{\left( T + t \right)^{3}}, \frac{ - 2 T c}{\left( T + t \right)^{3}} \right)\\
+	s&=\int_0^T\sqrt{\left| - \frac{T a}{\left( T + t \right)^{2}}\right|^{2} + \left| - \frac{T b}{\left( T + t \right)^{2}}\right|^{2} + \left|\frac{T c}{\left( T + t \right)^{2}}\right|^{2}}\,\mathrm dt= \frac{1}{2}\sqrt{a^2+b^2+c^2}
+\end{align*}
+%15
+\item $\vec{x}(t)=(d+vt,d-vt,R+a\sin(2\pi t/T))$
+\begin{align*}
+	\dot{\vec{x}}(t)&=\left(v,  - v, \frac{2 a \cos\left( \frac{2 t \pi_{}}{T} \right) \pi_{}}{T} \right)\\
+	\ddot{\vec{x}}(t)&=\left(0, 0, \frac{ - 4 \pi_{}^{2} a \sin\left( \frac{2 t \pi_{}}{T} \right)}{T^{2}} \right)\\
+	s&=\int_0^T\sqrt{2 v^{2} + \frac{4 \pi^2 a^2}{T^2}\cos^2\left( \frac{2 t \pi_{}}{T} \right)}\,\mathrm dt
+\end{align*}
+%16
+\item $\vec{x}(t)=(\lambda\rme^{-\alpha t/T},\mu\rme^{\beta t/T},\xi t/T)$
+\begin{align*}
+	\dot{\vec{x}}(t)&=\left(\frac{ - e^{\frac{ - t \alpha}{T}} \alpha \lambda}{T}, \frac{e^{\frac{t \beta}{T}} \beta \mu}{T}, \frac{\xi}{T} \right)\\
+	\ddot{\vec{x}}(t)&=\left(\frac{\alpha^{2} e^{\frac{ - t \alpha}{T}} \lambda}{T^{2}}, \frac{\beta^{2} e^{\frac{t \beta}{T}} \mu}{T^{2}}, 0 \right)\\
+	s&=\int_0^T\frac{1}{T}\sqrt{e^{\frac{2 t \beta}{T}} \beta^2 \mu^2 + \xi^{2} + e^{\frac{ - 2 t \alpha}{T}} \alpha^2 \lambda^2}\,\mathrm dt
+\end{align*}
+%17
+\item $\vec{x}(t)=\rme^{-\gamma t/T}(R\cos(2\pi t/T),R\sin(2\pi t/T),R)$
+\begin{align*}
+\dot{\vec{x}}(t)&=\frac{Re^{-\gamma t/T}}{T}\left(
+-\gamma\cos(2\pi t/T)-2\pi\sin(2\pi t/T),
+2\pi\cos(2\pi t/T)-\gamma\sin(2\pi t/T),
+-\gamma\right)
+\\
+\ddot{\vec{x}}(t)&=\frac{Re^{-\gamma t/T}}{T^2}
+\\
+&
+\left(
+(-4\pi^2+\gamma^2)\cos(2\pi t/T)+4\pi\gamma\sin(2\pi t/T),
+(-4\pi^2+\gamma^2)\sin(2\pi t/T)+4\pi\gamma\cos(2\pi t/T),
+\gamma^2\right)
+\\
+s&=\int_0^T\frac{Re^{-\gamma t/T}}{T}\sqrt{2\gamma^2+4\pi^2}\,\mathrm dt=\frac{R}{\gamma}\left(1-e^{-\gamma}\right)\sqrt{2\gamma^2+4\pi^2}
+\end{align*}
+%18
+\item $\vec{x}(t)=(\frac{RT}{t+T}\cos(2\pi t/T),\frac{RT}{t+T}\sin(2\pi t/T),0)$
+\begin{align*}
+	\dot{\vec{x}}(t)&=\left(\frac{ - 2 R \sin\left( \frac{2 t \pi_{}}{T} \right) \pi_{}}{T + t} + \frac{ - R T \cos\left( \frac{2 t \pi_{}}{T} \right)}{\left( T + t \right)^{2}}, \frac{2 R \cos\left( \frac{2 t \pi_{}}{T} \right) \pi_{}}{T + t} + \frac{ - R T \sin\left( \frac{2 t \pi_{}}{T} \right)}{\left( T + t \right)^{2}}, 0 \right)\\
+	\ddot{\vec{x}}(t)&=\left(\frac{4 R \sin\left( \frac{2 t \pi_{}}{T} \right) \pi_{}}{\left( T + t \right)^{2}} - \frac{4 \pi_{}^{2} R \cos\left( \frac{2 t \pi_{}}{T} \right)}{\left( T + t \right) T} + \frac{ 2 R T \cos\left( \frac{2 t \pi_{}}{T} \right)}{\left( T + t \right)^{3}},\right.\\
+	&\left.-\frac{4 R \cos\left( \frac{2 t \pi_{}}{T} \right) \pi_{}}{\left( T + t \right)^{2}} - \frac{4 \pi_{}^{2} R \sin\left( \frac{2 t \pi_{}}{T} \right)}{\left( T + t \right) T} + \frac{ 2 R T \sin\left( \frac{2 t \pi_{}}{T} \right)}{\left( T + t \right)^{3}}, 0 \right)\\
+	s&=\int_0^TR\sqrt{4\pi^2+\frac{T^2}{(T+t)^2}}\,\mathrm dt
+\end{align*}
+\end{enumerate}
+\end{solution}
+
+
+
+\question{{\it Partielle Ableitungen}}
+
+Bestimmen Sie jeweils die ersten und zweiten (einschließlich aller gemischten)
+partiellen Ableitungen der folgenden Funktionen nach den angegebenen Variablen.
+Verifizieren Sie jeweils, dass die partiellen Ableitungen vertauschen.\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $f(x,y)=x+y^2$
+\item $g(x,y,z)=x+y+z-xy-yz-zx+xyz$
+\item $h(\alpha,\beta,\gamma,\delta)=\frac{\alpha^2-\beta^2}{\gamma^2+\delta^2}$
+\item $f(x_1,x_2,x_3)=\sqrt{x_1^2+x_2^2+x_3^2}$
+\item $V(x,y,z)=\frac{1}{\sqrt{x^2+y^2+z^2}}$
+\item $G(\phi_1,\phi_2)=(\phi_1^2+\phi_2^2)$
+\item $H(\phi_1,\phi_2)=(\phi_1^2+\phi_2^2)^2$
+\item $V(\phi_1,\phi_2)=\left(\phi_1^2+\phi_2^2-v^2\right)^2$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{8}
+\item $S(\alpha,\omega)=\frac{\alpha\omega}{\alpha^2+\omega^2+1}$
+\item $P(r,s)=\rme^{-(r^2+s^2)}$
+\item $p(x,y,z)=\rme^{-\alpha x^2-\beta y^2-\gamma z^2}$
+\item $f(x,y)=\sin(xy)\cos(x+y)$
+\item $\zeta(s_1,s_2)=(s_1+s_2)\rme^{-s_1}\sin^2(s_2)$
+\item $a(\omega,\gamma,\phi,t)=\frac{A}{\omega^2-\gamma^2}\sin(\omega t+\phi)$
+\item $A(s,\Gamma)=\frac{1}{(s^2-\Gamma^2)^2+4s^2\Gamma^2}$
+\item $f(x_1,x_2,x_3)=\sum_{i=1}^3\sin\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)$
+\end{enumerate}}
+\begin{solution}Der Satz von Schwarz besagt, dass falls eine Funktion
+$f:U\to\mathbb{R}$, $U\subset\mathbb{R}^n$ ($U$ offen) 
+\textit{zweimal stetig partiell differenzierbar} ist, f"ur alle $a\in U$ gilt, dass $\partial_j\partial_if(a)
+=\partial_i\partial_jf(a)$, sprich die partiellen Ableitung vertauscht werden k"onnen.
+
+\begin{enumerate}
+\item $f(x,y)=x+y^2$
+\begin{align*}
+\partial_xf(x,y)&=1
+\\
+\partial_yf(x,y)&=2y
+\\
+\partial_x^2f(x,y)&=0
+,\quad
+\partial_y^2f(x,y)=2
+\\
+\partial_y\partial_xf(x,y)&=0
+,\quad
+\partial_x\partial_yf(x,y)=0
+\end{align*}
+% 2
+\item $g(x,y,z)=x+y+z-xy-yz-zx+xyz$
+\begin{align*}
+\partial_xf(x,y,z)&=1-y-z+yz
+\\
+\partial_yf(x,y,z)&=1-x-z+xz
+\\
+\partial_zf(x,y,z)&=1-y-x+xy
+\\
+\partial_x^2f(x,y,z)&=0, \quad \partial_y^2f(x,y,z)=0,\quad \partial_z^2f(x,y,z)=0
+\\
+\partial_y\partial_xf(x,y,z)&=-1+z
+,\quad
+\partial_y\partial_zf(x,y,z)=-1+x
+\\
+\partial_x\partial_yf(x,y,z)&=-1+z
+,\quad
+\partial_x\partial_zf(x,y,z)=-1+y
+\\
+\partial_z\partial_xf(x,y,z)&=-1+y
+,\quad
+\partial_z\partial_yf(x,y,z)=-1+x
+\end{align*}
+% 3
+\item $h(\alpha,\beta,\gamma,\delta)=\frac{\alpha^2-\beta^2}{\gamma^2+\delta^2}$
+\begin{align*}
+	\partial_\alpha h(\alpha,\beta,\gamma,\delta)&=\frac{2\alpha}{\gamma^2+\delta^2}
+	\\
+	\partial_\beta h(\alpha,\beta,\gamma,\delta)&=\frac{-2\beta}{\gamma^2+\delta^2}
+	\\
+	\partial_\gamma h(\alpha,\beta,\gamma,\delta)&=-2\gamma\frac{\alpha^2-\beta^2}{(\gamma^2+\delta^2)^2}
+	\\
+	\partial_\delta h(\alpha,\beta,\gamma,\delta)&=-2\delta\frac{\alpha^2-\beta^2}{(\gamma^2+\delta^2)^2}
+	\\
+	\partial_\alpha^2h(\alpha,\beta,\gamma,\delta)&=\frac{2}{\gamma^2+\delta^2}, \quad \partial_\beta^2h(\alpha,\beta,\gamma,\delta)=\frac{2}{\gamma^2+\delta^2},\\ \partial_\gamma^2h(\alpha,\beta,\gamma,\delta)&=(6\gamma^2-2\delta^2)\frac{\alpha^2-\beta^2}{(\gamma^2+\delta^2)^3}, \quad \partial_\delta^2h(\alpha,\beta,\gamma,\delta)=(6\delta^2-2\gamma^2)\frac{\alpha^2-\beta^2}{(\gamma^2+\delta^2)^3}
+	\\
+	\partial_\beta\partial_\alpha h(\alpha,\beta,\gamma,\delta)&=0
+	,\quad
+	\partial_\gamma\partial_\alpha h(\alpha,\beta,\gamma,\delta)=\frac{-4\gamma\alpha}{(\gamma^2+\delta^2)^2}
+	\\
+	\partial_\delta\partial_\alpha h(\alpha,\beta,\gamma,\delta)&=\frac{-4\delta\alpha}{(\gamma^2+\delta^2)^2}
+	,\quad
+	\partial_\gamma\partial_\beta h(\alpha,\beta,\gamma,\delta)=\frac{4\gamma\beta}{(\gamma^2+\delta^2)^2}
+	\\
+	\partial_\delta\partial_\beta h(\alpha,\beta,\gamma,\delta)&=\frac{4\delta\beta}{(\gamma^2+\delta^2)^2}
+	,\quad
+	\partial_\delta\partial_\gamma h(\alpha,\beta,\gamma,\delta)=8\gamma\delta\frac{\alpha^2-\beta^2}{(\gamma^2+\delta^2)^3}
+\end{align*}
+% 4
+\item $f(x_1,x_2,x_3)=\sqrt{x_1^2+x_2^2+x_3^2}$
+\begin{align*}
+\partial_{x_1}f(x_1,x_2,x_3)&=\frac{x_1}{\sqrt{x_1^2+x_2^2+x_3^2}}
+\\
+\partial_{x_2}f(x_1,x_2,x_3)&=\frac{x_2}{\sqrt{x_1^2+x_2^2+x_3^2}}
+\\
+\partial_{x_3}f(x_1,x_2,x_3)&=\frac{x_3}{\sqrt{x_1^2+x_2^2+x_3^2}}
+\\
+\partial_{x_1}^2f(x_1,x_2,x_3)&=\frac{x_2^2+x_3^2}{(x_1^2+x_2^2+x_3^2)^{3/2}}
+\\
+\partial_{x_2}^2f(x_1,x_2,x_3)&=\frac{x_1^2+x_3^2}{(x_1^2+x_2^2+x_3^2)^{3/2}}
+\\ 
+\partial_{x_3}^2f(x_1,x_2,x_3)&=\frac{x_1^2+x_2^2}{(x_1^2+x_2^2+x_3^2)^{3/2}}
+\\
+\partial_{x_2}\partial_{x_1}f(x_1,x_2,x_3)&=-\frac{x_1x_2}{(x_1^2+x_2^2+x_3^2)^{3/2}}
+,\quad
+\partial_{x_1}\partial_{x_2}f(x_1,x_2,x_3)&=-\frac{x_1x_2}{(x_1^2+x_2^2+x_3^2)^{3/2}}
+\end{align*}
+% 5
+\item $V(x,y,z)=\frac{1}{\sqrt{x^2+y^2+z^2}}$
+\begin{align*}
+	\partial_xV(x,y,z)&=\frac{-x}{\sqrt{x^2+y^2+z^2}^3}
+	\\
+	\partial_yV(x,y,z)&=\frac{-y}{\sqrt{x^2+y^2+z^2}^3}
+	\\
+	\partial_zV(x,y,z)&=\frac{-z}{\sqrt{x^2+y^2+z^2}^3}
+	\\
+	\partial_x^2V(x,y,z)&=\frac{2x^2-y^2-z^2}{\sqrt{x^2+y^2+z^2}^5}, \\ \partial_y^2V(x,y,z)&=\frac{2y^2-x^2-z^2}{\sqrt{x^2+y^2+z^2}^5},\\\partial_z^2V(x,y,z)&=\frac{2z^2-x^2-z^2}{\sqrt{x^2+y^2+z^2}^5}
+	\\
+	\partial_y\partial_xV(x,y,z)&=\frac{3xy}{\sqrt{x^2+y^2+z^2}^5}
+	,\quad
+	\partial_y\partial_zV(x,y,z)=\frac{3zy}{\sqrt{x^2+y^2+z^2}^5}
+	\\
+	\partial_x\partial_yV(x,y,z)&=\frac{3yx}{\sqrt{x^2+y^2+z^2}^5}
+	,\quad
+	\partial_x\partial_zV(x,y,z)=\frac{3zx}{\sqrt{x^2+y^2+z^2}^5}
+	\\
+	\partial_z\partial_xV(x,y,z)&=\frac{3xz}{\sqrt{x^2+y^2+z^2}^5}
+	,\quad
+	\partial_z\partial_yV(x,y,z)=\frac{3yz}{\sqrt{x^2+y^2+z^2}^5}
+\end{align*}
+% 6
+\item $G(\phi_1,\phi_2)=(\phi_1^2+\phi_2^2)$
+\begin{align*}
+	\partial_{\phi_1}G(\phi_1,\phi_2)&=2\phi_1
+	\\
+	\partial_{\phi_2}G(\phi_1,\phi_2)&=2\phi_2
+	\\
+	\partial_{\phi_1}^2G(\phi_1,\phi_2)&=2
+	,\quad
+	\partial_{\phi_2}^2G(\phi_1,\phi_2)=2
+	\\
+	\partial_{\phi_2}\partial_{\phi_1}G(\phi_1,\phi_2)&=0
+	,\quad
+	\partial_{\phi_1}\partial_{\phi_2}G(\phi_1,\phi_2)=0
+\end{align*}
+% 7
+\item $H(\phi_1,\phi_2)=(\phi_1^2+\phi_2^2)^2$
+\begin{align*}
+	\partial_{\phi_1}H(\phi_1,\phi_2)&=4\phi_1(\phi_1^2+\phi_2^2)
+	\\
+	\partial_{\phi_2}H(\phi_1,\phi_2)&=4\phi_2(\phi_1^2+\phi_2^2)
+	\\
+	\partial_{\phi_1}^2H(\phi_1,\phi_2)&=12\phi_1^2+4\phi_2^2
+	,\quad
+	\partial_{\phi_2}^2H(\phi_1,\phi_2)=4\phi_1^2+12\phi_2^2
+	\\
+	\partial_{\phi_2}\partial_{\phi_1}H(\phi_1,\phi_2)&=8\phi_1\phi_2
+	,\quad
+	\partial_{\phi_1}\partial_{\phi_2}H(\phi_1,\phi_2)=8\phi_1\phi_2
+\end{align*}
+% 8
+\item $V(\phi_1,\phi_2)=\left(\phi_1^2+\phi_2^2-v^2\right)^2$
+\begin{align*}
+	\partial_{\phi_1}V(\phi_1,\phi_2)&=4\phi_1(\phi_1^2+\phi_2^2-v^2)
+	\\
+	\partial_{\phi_2}V(\phi_1,\phi_2)&=4\phi_2(\phi_1^2+\phi_2^2-v^2)
+	\\
+	\partial_{\phi_1}^2V(\phi_1,\phi_2)&=12\phi_1^2+4\phi_2^2-4v^2
+	,\quad
+	\partial_{\phi_2}^2V(\phi_1,\phi_2)=4\phi_1^2+12\phi_2^2-4v^2
+	\\
+	\partial_{\phi_2}\partial_{\phi_1}V(\phi_1,\phi_2)&=8\phi_1\phi_2
+	,\quad
+	\partial_{\phi_1}\partial_{\phi_2}V(\phi_1,\phi_2)=8\phi_1\phi_2
+\end{align*}
+% 9
+\item $S(\alpha,\omega)=\frac{\alpha\omega}{\alpha^2+\omega^2+1}$
+\begin{align*}
+	\partial_\alpha S(\alpha,\omega)&=\frac{\omega(-\alpha^2+\omega^2+1)}{(\alpha^2+\omega^2+1)^2}
+	\\
+	\partial_\omega S(\alpha,\omega)&=\frac{\alpha(\alpha^2-\omega^2+1)}{(\alpha^2+\omega^2+1)^2}
+	\\
+	\partial_\alpha^2S(\alpha,\omega)&=\frac{-2\alpha\omega(-\alpha^2+3\omega^2+3)}{(\alpha^2+\omega^2+1)^3}
+	,\quad
+	\partial_\omega^2S(\alpha,\omega)=\frac{-2\alpha\omega(3\alpha^2-\omega^2+3)}{(\alpha^2+\omega^2+1)^3}
+	\\
+	\partial_\omega\partial_\alpha S(\alpha,\omega)&=\frac{-\alpha^4+6\alpha^2\omega^2-\omega^4+1}{(\alpha^2+\omega^2+1)^3}
+	,\quad
+	\partial_\alpha\partial_\omega S(\alpha,\omega)=\frac{-\alpha^4+6\alpha^2\omega^2-\omega^4+1}{(\alpha^2+\omega^2+1)^3}
+\end{align*}
+% 10
+\item $P(r,s)=\rme^{-(r^2+s^2)}$
+\begin{align*}
+	\partial_rP(r,s)&=-2r\rme^{-(r^2+s^2)}
+	\\
+	\partial_sP(r,s)&=-2s\rme^{-(r^2+s^2)}
+	\\
+	\partial_r^2P(r,s)&=(4r^2-2)\rme^{-(r^2+s^2)}
+	,\quad
+	\partial_s^2P(r,s)=(4s^2-2)\rme^{-(r^2+s^2)}
+	\\
+	\partial_s\partial_rP(r,s)&=4rs\rme^{-(r^2+s^2)}
+	,\quad
+	\partial_r\partial_sP(r,s)=4rs\rme^{-(r^2+s^2)}
+\end{align*}
+% 11
+\item $p(x,y,z)=\rme^{-\alpha x^2-\beta y^2-\gamma z^2}$
+\begin{align*}
+	\partial_xp(x,y,z)&=-2\alpha x\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	\\
+	\partial_yp(x,y,z)&=-2\beta y\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	\\
+	\partial_zp(x,y,z)&=-2\gamma z\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	\\
+	\partial_x^2p(x,y,z)&=(4\alpha^2x^2-2\alpha)\rme^{-\alpha x^2-\beta y^2-\gamma z^2}, \quad \partial_y^2p(x,y,z)=(4\beta^2y^2-2\beta)\rme^{-\alpha x^2-\beta y^2-\gamma z^2},\\ \partial_z^2p(x,y,z)&=(4\gamma^2z^2-2\gamma)\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	\\
+	\partial_y\partial_xp(x,y,z)&=4\alpha\beta xy\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	,\quad
+	\partial_y\partial_zp(x,y,z)=4\beta\gamma yz\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	\\
+	\partial_x\partial_yp(x,y,z)&=4\alpha\beta xy\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	,\quad
+	\partial_x\partial_zp(x,y,z)=4\alpha\gamma xz\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	\\
+	\partial_z\partial_xp(x,y,z)&=4\alpha\gamma xz\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+	,\quad
+	\partial_z\partial_yp(x,y,z)=4\beta\gamma yz\rme^{-\alpha x^2-\beta y^2-\gamma z^2}
+\end{align*}
+% 12
+\item $f(x,y)=\sin(xy)\cos(x+y)$
+\begin{align*}
+\partial_xf(x,y)&=y \cos (x y) \cos (x+y)-\sin (x y) \sin (x+y)
+\\
+\partial_yf(x,y)&=x \cos (x y) \cos (x+y)-\sin (x y) \sin (x+y)
+\\
+\partial_x^2f(x,y)&=-\left(y^2+1\right) \sin (x y) \cos (x+y)-2 y \sin (x+y) \cos (x y)
+\\
+\partial_y^2f(x,y)&=-\left(x^2+1\right) \sin (x y) \cos (x+y)-2 x \sin (x+y) \cos (x y)
+\\
+\partial_y\partial_xf(x,y)&=\cos (x y) (\cos (x+y)-(x+y) \sin (x+y))-(x y+1) \sin (x y) \cos (x+y)
+\\
+\partial_x\partial_yf(x,y)&=\cos (x y) (\cos (x+y)-(x+y) \sin (x+y))-(x y+1) \sin (x y) \cos (x+y)
+\end{align*}
+% 13
+\item $\zeta({s_1},{s_2})=(s_1+s_2)\rme^{-s_1}\sin^2(s_2)$
+\begin{align*}
+	\partial_{s_1}\zeta(s_1,s_2)&=(1-s_1-s_2)\rme^{-s_1}\sin^2(s_2)
+	\\
+	\partial_{s_2}\zeta(s_1,s_2)&=2(s_1+s_2)\rme^{-s_1}\sin(s_2)\cos(s_2)+\rme^{-s_1}\sin^2(s_2)
+	\\
+	\partial_{s_1}^2\zeta(s_1,s_2)&=(s_1+s_2-2)\rme^{-s_1}\sin^2(s_2)
+	,\\
+	\partial_{s_2}^2\zeta(s_1,s_2)&=4\rme^{-s_1}\sin(s_2)\cos(s_2)+2(s_1+s_2)\rme^{-s_1}(\cos^2(s_2)-\sin^2(s_2))
+	\\
+	\partial_{s_2}\partial_{s_1}\zeta(s_1,s_2)&=2(1-s_1-s_2)\rme^{-s_1}\sin(s_2)\cos(s_2)-\rme^{-s_1}\sin^2(s_2)
+	,\\
+	\partial_{s_1}\partial_{s_2}\zeta(s_1,s_2)&=2(1-s_1-s_2)\rme^{-s_1}\sin(s_2)\cos(s_2)-\rme^{-s_1}\sin^2(s_2)
+\end{align*}
+% 14
+\item $a(\omega,\gamma,\phi,t)=\frac{A}{\omega^2-\gamma^2}\sin(\omega t+\phi)$
+\begin{align*}
+	\partial_\omega a(\omega,\gamma,\phi,t)&=\frac{-2\omega A}{(\omega^2-\gamma^2)^2}\sin(\omega t+\phi)+\frac{t A}{\omega^2-\gamma^2}\cos(\omega t+\phi)
+	\\
+	\partial_\gamma a(\omega,\gamma,\phi,t)&=\frac{2\gamma A}{(\omega^2-\gamma^2)^2}\sin(\omega t+\phi)
+	\\
+	\partial_\phi a(\omega,\gamma,\phi,t)&=\frac{A}{\omega^2-\gamma^2}\cos(\omega t+\phi)
+	\\
+	\partial_t a(\omega,\gamma,\phi,t)&=\frac{\omega A}{\omega^2-\gamma^2}\cos(\omega t+\phi)
+	\\
+	\partial_\omega^2a(\omega,\gamma,\phi,t)&=\left(\frac{(6\gamma^2-2\omega^2) A}{(\omega^2-\gamma^2)^3}-\frac{t^2 A}{\omega^2-\gamma^2}\right)\sin(\omega t+\phi)-\frac{4\omega t A}{(\omega^2-\gamma^2)^2}\cos(\omega t+\phi), \\ \partial_\gamma^2a(\omega,\gamma,\phi,t)&=\frac{(6\gamma^2-2\omega^2) A}{(\omega^2-\gamma^2)^3}\sin(\omega t+\phi),\\ \partial_\phi^2a(\omega,\gamma,\phi,t)&=\frac{-A}{\omega^2-\gamma^2}\sin(\omega t+\phi), \quad \partial_t^2a(\omega,\gamma,\phi,t)=\frac{-\omega^2A}{\omega^2-\gamma^2}\sin(\omega t+\phi)
+	\\
+	\partial_\gamma\partial_\omega a(\omega,\gamma,\phi,t)&=\frac{-8\gamma\omega A}{(\omega^2-\gamma^2)^3}\sin(\omega t+\phi)+\frac{2\gamma t A}{(\omega^2-\gamma^2)^2}\cos(\omega t+\phi)
+	,\\
+	\partial_\phi\partial_\omega a(\omega,\gamma,\phi,t)&=\frac{-2\omega A}{(\omega^2-\gamma^2)^2}\cos(\omega t+\phi)-\frac{t A}{\omega^2-\gamma^2}\sin(\omega t+\phi)
+	\\
+	\partial_t\partial_\omega a(\omega,\gamma,\phi,t)&=\frac{-(\omega^2+\gamma^2) A}{(\omega^2-\gamma^2)^2}\cos(\omega t+\phi)-\frac{\omega t A}{\omega^2-\gamma^2}\sin(\omega t+\phi)
+	,\\
+	\partial_\phi\partial_\gamma a(\omega,\gamma,\phi,t)&=\frac{2\gamma A}{(\omega^2-\gamma^2)^2}\cos(\omega t+\phi)
+	\\
+	\partial_t\partial_\gamma a(\omega,\gamma,\phi,t)&=\frac{2\gamma\omega A}{(\omega^2-\gamma^2)^2}\cos(\omega t+\phi)
+	,\quad
+	\partial_t\partial_\phi a(\omega,\gamma,\phi,t)=\frac{-\omega A}{\omega^2-\gamma^2}\sin(\omega t+\phi)
+\end{align*}
+% 15
+\item $A(s,\Gamma )=\frac{1}{(s^2-\Gamma^2)^2+4s^2\Gamma^2}=(s^2+\Gamma^2)^{-2}$
+\begin{align*}
+	\partial_sA(s,\Gamma)&=\frac{-4s}{(s^2+\Gamma^2)^3}
+	\\
+	\partial_\Gamma A(s,\Gamma)&=\frac{-4\Gamma}{(s^2+\Gamma^2)^3}
+	\\
+	\partial_s^2A(s,\Gamma)&=\frac{8s^2-4\Gamma^2}{(s^2+\Gamma^2)^4}
+	,\quad
+	\partial_\Gamma ^2A(s,\Gamma)=\frac{8\Gamma^2-4s^2}{(s^2+\Gamma^2)^4}
+	\\
+	\partial_\Gamma \partial_sA(s,\Gamma)&=\frac{12\Gamma s}{(s^2+\Gamma^2)^4}
+	,\quad
+	\partial_s\partial_\Gamma A(s,\Gamma)=\frac{12\Gamma s}{(s^2+\Gamma^2)^4}
+\end{align*}
+% 16
+\item $f({x_1},{x_2},{x_3})=\sum_{i=1}^3\sin\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)=\sin(x_3-x_2)+\sin(x_1-x_3)+\sin(x_2-x_1)$
+\begin{align*}
+	\partial_{x_1}f(x_1,x_2,x_3)&=\cos(x_1-x_3)-\cos(x_2-x_1)
+	\\
+	\partial_{x_2}f(x_1,x_2,x_3)&=-\cos(x_3-x_2)+\cos(x_2-x_1)
+	\\
+	\partial_{x_3}f(x_1,x_2,x_3)&=\cos(x_3-x_2)-\cos(x_1-x_3)
+	\\
+	\partial_{x_1}^2f(x_1,x_2,x_3)&=-\sin(x_1-x_3)-\sin(x_2-x_1), \\ \partial_{x_2}^2f(x_1,x_2,x_3)&=-\sin(x_3-x_2)-\sin(x_2-x_1),\\ \partial_{x_3}^2f(x_1,x_2,x_3)&=-\sin(x_3-x_2)-\sin(x_1-x_3)
+	\\
+	\partial_{x_2}\partial_{x_1}f(x_1,x_2,x_3)&=\sin(x_2-x_1)
+	,\quad
+	\partial_{x_2}\partial_{x_3}f(x_1,x_2,x_3)=\sin(x_3-x_2)
+	\\
+	\partial_{x_1}\partial_{x_2}f(x_1,x_2,x_3)&=\sin(x_2-x_1)
+	,\quad
+	\partial_{x_1}\partial_{x_3}f(x_1,x_2,x_3)=\sin(x_1-x_3)
+	\\
+	\partial_{x_3}\partial_{x_1}f(x_1,x_2,x_3)&=\sin(x_1-x_3)
+	,\quad
+	\partial_{x_3}\partial_{x_2}f(x_1,x_2,x_3)=\sin(x_3-x_2)
+\end{align*}
+
+\end{enumerate}
+\end{solution}
+
+% \pagebreak
+
+
+\question{{\it Jacobi-Matrix}}% und -Determinante}}
+
+Geben Sie für die folgenden vektorwertigen Funktionen $\Rset^n\to\Rset^m$ jeweils die Jacobi-Matrix an. %Wenn $n=m$, bestimmen Sie ferner die Jacobi-Determinante.
+\begin{enumerate}
+\item $f:\Rset^2\to\Rset^4,~\vec{f}(\vec{x})=(x_1,x_1,x_2,x_2)$
+\item $g:\Rset^3\to\Rset^2,~\vec{g}(\vec{y})=(y_2y_3,y_1/y_3)$
+\item $\Sigma:\Rset^2\to\Rset^3,~\vec{\Sigma}(\vec{\lambda})=(a\sin\lambda_1\sin\lambda_2,b\cos\lambda_1\sin\lambda_2,c\cos\lambda_2)$
+\item $Z:\Rset^3\to\Rset^3,~\vec{Z}(\vec{c})=(c_1\sin c_2,c_1\cos c_2,c_3)$
+\item $\Theta:\Rset^2\to\Rset^2,~\vec{\Theta}(\vec{x})=(x_1+\xi x_2,x_2)$
+\item $H:\Rset^2\to\Rset^2,~\vec{H}(\vec{x})=(x_1+\xi x_2^3,x_2)$
+\item $V:\Rset^3\to\Rset^4,~\vec{V}(\vec{z})=(\sqrt{z_1^2+\eta z_3^2},z_1,z_2,z_3+\eta z_1)$
+\item $K:\Rset^3\to\Rset^3,~K_i(\vec{x})=\cos\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)$
+\end{enumerate}
+\begin{solution} Die Jacobi-Matrix f"ur eine differenzierbare
+Funktion $f:U\to\mathbb{R}^m$, $U\subset\mathbb{R}^n$ ist gegeben durch
+\begin{align*}
+(Df)(x):=J_f(x):=\left(\frac{\partial f_i}{\partial x_j}\right)_{1\leq i\leq m, 1\leq j\leq m}
+=
+\begin{pmatrix}
+\frac{\partial f_1}{\partial x_1}(x) & \frac{\partial f_1}{\partial x_2}(x) & \dots
+\\
+\frac{\partial f_2}{\partial x_1}(x) & \frac{\partial f_2}{\partial x_2}(x) & \dots
+\\
+\vdots & \vdots & \ddots
+\end{pmatrix}
+\end{align*}
+Dabei ist $J_f(x)$ eine $(m\times n)$-Matrix.
+\begin{enumerate}
+\item $f:\Rset^2\to\Rset^4,~\vec{f}(\vec{x})=(x_1,x_1,x_2,x_2)$
+\begin{align*}
+J_f(x)&=\begin{pmatrix}
+1&0 \\
+1&0 \\
+0&1 \\
+0&1
+\end{pmatrix}
+\end{align*}
+\item $g:\Rset^3\to\Rset^2,~\vec{g}(\vec{y})=(y_2y_3,y_1/y_3)$
+\begin{align*}
+J_g(y)&=\begin{pmatrix}
+0 & y_3 & y_2 \\
+1/y_3 & 0 & -y_1/y_3^2
+\end{pmatrix}
+\end{align*}
+\item $\Sigma:\Rset^2\to\Rset^3,~\vec{\Sigma}(\vec{\lambda})=(a\sin\lambda_1\sin\lambda_2,b\cos\lambda_1\sin\lambda_2,c\cos\lambda_2)$
+\begin{align*}
+J_\Sigma(\lambda)&=\begin{pmatrix}
+a\cos\lambda_1\sin\lambda_2 & a\sin\lambda_1\cos\lambda_2\\
+-b\sin\lambda_1\sin\lambda_2 & b\cos\lambda_1\cos\lambda_2\\
+0 & -c\sin\lambda_2
+\end{pmatrix}
+\end{align*}
+\item $Z:\Rset^3\to\Rset^3,~\vec{Z}(\vec{c})=(c_1\sin c_2,c_1\cos c_2,c_3)$
+\begin{align*}
+J_Z(c)&=\begin{pmatrix}
+\sin c_2 & c_1\cos c_2 & 0\\
+\cos c_2 & -c_1\sin c_2 & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\end{align*}
+\item $\Theta:\Rset^2\to\Rset^2,~\vec{\Theta}(\vec{x})=(x_1+\xi x_2,x_2)$
+\begin{align*}
+J_\Theta(x)&=\begin{pmatrix}
+1 & \xi\\
+0 & 1
+\end{pmatrix}
+\end{align*}
+\item $H:\Rset^2\to\Rset^2,~\vec{H}(\vec{x})=(x_1+\xi x_2^3,x_2)$
+\begin{align*}
+J_H(x)&=\begin{pmatrix}
+1 & 3\xi x_2^2\\
+0 & 1
+\end{pmatrix}
+\end{align*}
+\item $V:\Rset^3\to\Rset^4,~\vec{V}(\vec{z})=(\sqrt{z_1^2+\eta z_3^2},z_1,z_2,z_3+\eta z_1)$
+\begin{align*}
+J_f(x)&=\begin{pmatrix}
+\frac{z_1}{\sqrt{z_1^2+\eta z_3^2}} & 0 & \frac{\eta z_3}{\sqrt{z_1^2+\eta z_3^2}} \\
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 1 & 0
+\end{pmatrix}
+\end{align*}
+\item $K:\Rset^3\to\Rset^3,~K_i(\vec{x})=\cos\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)$
+\begin{align*}
+J_f(x)&=\begin{pmatrix}
+0 & \sin(x_3-x_2) & -\sin(x_3-x_2)\\
+-\sin(x_1-x_3) & 0 & \sin(x_1-x_3)\\
+\sin(x_2-x_1) & -\sin(x_2-x_1) & 0
+\end{pmatrix}
+\end{align*}
+
+\end{enumerate}
+\end{solution}
+
+
+
+%\question{{\it Divergenz und Rotation}}
+%
+%Berechnen Sie jeweils die Divergenz und Rotation der folgenden Vektorfelder im $\Rset^3$. Verifizieren Sie jeweils explizit, dass die Divergenz der Rotation verschwindet. $\vec{a}$ und $\vec{b}$ seien jeweils konstante Vektoren.\\
+%\parbox{0.5\textwidth}{\begin{enumerate}
+%\item $\vec{f}(\vec{x})=\vec{a}$
+%\item $\vec{g}(\vec{x})=\vec{x}$
+%\item $\vec{h}(\vec{x})=(x_2,-x_1,x_3)$
+%\item $\vec{f}(\vec{x})=\nabla(\vec{x}\cdot\vec{x})$
+%\item $\vec{B}(\vec{x})=\vec{a}\times\vec{x}$
+%\item $\vec{f}(\vec{x})=\vec{a}\times(\vec{x}-\vec{b})+\vec{x}+\vec{b}$
+%\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{6}
+%\item $\vec{f}(\vec{x})=(\vec{a}\cdot\vec{x})^\alpha\vec{a}$
+%\item $\vec{f}(\vec{x})=(\vec{a}\cdot\vec{x})^\alpha\vec{x}$
+%\item $\vec{E}(\vec{x})=|\vec{x}|^\alpha\vec{a}$
+%\item $\vec{F}(\vec{x})=|\vec{x}|^\alpha\vec{x}$
+%\item $\vec{G}(\vec{x})=(\vec{a}\cdot\vec{x})\vec{b}-(\vec{b}\cdot\vec{x})\vec{a}$
+%\item $f_i(\vec{x})=\sin\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)$
+%\end{enumerate}}
+
+
+\question{{\it Kurvenintegrale}}
+
+Berechnen Sie jeweils die Kurvenintegrale der Vektorfelder
+%aus der vorstehenden Frage
+\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\vec{f}(\vec{x})=\vec{a}$
+\item $\vec{g}(\vec{x})=\vec{x}$
+\item $\vec{h}(\vec{x})=(x_2,-x_1,x_3)$
+\item $\vec{f}(\vec{x})=\nabla(\vec{x}\cdot\vec{x})$
+\item $\vec{B}(\vec{x})=\vec{a}\times\vec{x}$
+\item $\vec{f}(\vec{x})=\vec{a}\times(\vec{x}-\vec{b})+\vec{x}+\vec{b}$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{6}
+\item $\vec{f}(\vec{x})=(\vec{a}\cdot\vec{x})^\alpha\vec{a}$
+\item $\vec{f}(\vec{x})=(\vec{a}\cdot\vec{x})^\alpha\vec{x}$
+\item $\vec{E}(\vec{x})=|\vec{x}|^\alpha\vec{a}$
+\item $\vec{F}(\vec{x})=|\vec{x}|^\alpha\vec{x}$
+\item $\vec{G}(\vec{x})=(\vec{a}\cdot\vec{x})\vec{b}-(\vec{b}\cdot\vec{x})\vec{a}$
+\item $f_i(\vec{x})=\sin\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)$
+\end{enumerate}}
+längs der beiden Kurven
+\begin{align*}
+\mathcal{C}_1 &= \{(0,0,t)|t\in[0;1]\}, \\
+\mathcal{C}_2 &= \{(\cos (t),\sin(t),0)|t\in[0;2\pi]\}.
+\end{align*}
+\begin{solution}Wir verwenden die Darstellung des 
+Kurvenintegrals "uber eine passende Parametrisierung
+\begin{align*}
+\int_{\mathcal{C}}\vec{F}(\vec{x})\cdot\mathrm d\vec{x}
+=
+\int_{t_0}^{t_1}\vec{F}(\vec{x}(t))\cdot\frac{\mathrm d\vec{x}}{\mathrm dt}\,\mathrm dt
+,\quad
+\mathcal{C}:[t_0,t_1]\to\mathbb{R}^3,\quad t\mapsto\vec{x}(t)
+\end{align*}
+Dabei gilt f"ur die beiden Parametrisierungen
+\begin{align*}
+&\mathcal{C}_1:\, \frac{\mathrm d\vec{x}}{\mathrm dt}=(0,0,1)
+\\
+&\mathcal{C}_2:\, \frac{\mathrm d\vec{x}}{\mathrm dt}=(-\sin(t),\cos(t),0)
+\end{align*}
+
+\begin{enumerate}
+% 1
+\item $\vec{f}(\vec{x})=\vec{a}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1a_3\,\mathrm dt=a_3
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}(-a_1\sin t+a_2\cos t)\,\mathrm dt=0
+\end{align*}
+% 2
+\item $\vec{g}(\vec{x})=\vec{x}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{g}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1t\,\mathrm dt=\frac{1}{2}
+\\
+\int_{\mathcal{C}_2}\vec{g}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}(-\cos t\sin t+\sin t\cos t)\,\mathrm dt=0
+\end{align*}
+% 3
+\item $\vec{h}(\vec{x})=(x_2,-x_1,x_3)$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{h}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1t\,\mathrm dt=\frac{1}{2}
+\\
+\int_{\mathcal{C}_2}\vec{h}(\vec{x})\,\mathrm d\vec{x}
+&=
+-\int_0^{2\pi}\,\mathrm dt=-2\pi
+\end{align*}
+% 4
+\item $\vec{f}(\vec{x})=\nabla(\vec{x}\cdot\vec{x})$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^12\,\mathrm dt=2
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}(-\sin t\cos t+\sin t\cos t)\,\mathrm dt=0
+\end{align*}
+% 5
+\item $\vec{B}(\vec{x})=\vec{a}\times\vec{x}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1\begin{pmatrix}a_2t\\-a_1t\\0 \end{pmatrix}
+\cdot
+\begin{pmatrix} 0\\0\\1\end{pmatrix}
+\mathrm dt=0
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}a_3\,\mathrm dt=2\pi a_3
+\end{align*}
+% 6
+\item $\vec{f}(\vec{x})=\vec{a}\times(\vec{x}-\vec{b})+\vec{x}+\vec{b}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1(a_2b_1-a_1b_2+b_3+t)\,\mathrm dt=\frac{1}{2}+a_2b_1-a_1b_2+b_3
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=2\pi a_3
+\end{align*}
+% 7
+\item $\vec{f}(\vec{x})=(\vec{a}\cdot\vec{x})^\alpha\vec{a}$
+\begin{align*}
+	\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+	&=
+	\int_0^1a_3^{\alpha+1} t^{\alpha}\,\mathrm dt=\frac{a_3^{\alpha+1}}{1+\alpha}
+	\\
+	\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+	&=
+	\int_0^{2\pi}(a_1\cos t +a_2\sin t )^\alpha(-a_1\sin t + a_2\cos t)\,\mathrm dt=0
+\end{align*}
+% 8
+\item $\vec{f}(\vec{x})=(\vec{a}\cdot\vec{x})^\alpha\vec{x}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1a_3^\alpha t^{\alpha+1}\,\mathrm dt=\frac{a_3^\alpha}{2+\alpha}
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}(a_1\cos t +a_2\sin t )^\alpha(\cos t\sin t-\sin t\cos t)\,\mathrm dt=0
+\end{align*}
+% 9
+\item $\vec{E}(\vec{x})=|\vec{x}|^\alpha\vec{a}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1t^\alpha a_3\,\mathrm dt=\frac{a_3}{1+\alpha}
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}t^\alpha(-a_1\sin t+a_2\cos t)\,\mathrm dt
+\end{align*}
+% 10
+\item $\vec{F}(\vec{x})=|\vec{x}|^\alpha\vec{x}$
+\begin{align*}
+	\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+	&=
+	\int_0^1t^{\alpha+1}\,\mathrm dt=\frac{1}{2+\alpha}
+	\\
+	\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+	&=
+	\int_0^{2\pi}t^\alpha(-\cos t\sin t+\sin t\cos t)\,\mathrm dt=0
+\end{align*}
+% 11
+\item $\vec{G}(\vec{x})=(\vec{a}\cdot\vec{x})\vec{b}-(\vec{b}\cdot\vec{x})\vec{a}$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^1a_3tb_3-b_3ta_3\,\mathrm dt=0
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}(a_1\cos t+a_2\sin t)(-b_1\sin t+b_2\cos t)\\
+&-(b_1\cos t+b_2\sin t)(-a_1\sin t+a_2\cos t)\,\mathrm dt=2\pi(a_1b_2-a_2b_1)
+\end{align*}
+% 12
+\item $f_i(\vec{x})=\sin\left(\sum_{j,k=1}^3\epsilon_{ijk}x_k\right)$
+\begin{align*}
+\int_{\mathcal{C}_1}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^10\,\mathrm dt=0
+\\
+\int_{\mathcal{C}_2}\vec{f}(\vec{x})\,\mathrm d\vec{x}
+&=
+\int_0^{2\pi}(\sin(\sin t)\sin t+\sin(\cos t)\cos t)\,\mathrm dt
+\end{align*}
+\end{enumerate}
+\end{solution}
+
+
+%\question{{\it Volumenintegrale}}
+%
+%Integrieren Sie die folgenden Funktionen jeweils über das angegebene Volumen im $\Rset^3$. Falls sinnvoll, führen Sie hierzu jeweils eine Transformation in geeignete krummlinige Koordinaten durch.\\
+%\parbox{0.47\textwidth}{\begin{enumerate}
+%\item $f(\vec{x})=1$,~$\vec{x}\in[0;1]\times[1;3]\times[2;5]$
+%\item $s(\vec{\omega})=\sin(\omega_1)\sin(\omega_2)\sin(\omega_3)$,~$\vec{\omega}\in[0;\pi]^3$
+%\item $g(\vec{x})=|\vec{x}|$,~$r<|\vec{x}|<R$
+%\item $h(\vec{x})=1/|\vec{x}|$,~$r<|\vec{x}|<R$
+%\end{enumerate}}\parbox{0.53\textwidth}{\begin{enumerate}\setcounter{enumi}{4}
+%\item $f(\vec{x})=A(1-\vec{x}\cdot\vec{x}/R^2),~|\vec{x}|<R$
+%\item $f(\vec{x})=\rme^{-\alpha (\vec{x}\cdot\vec{x}-x_3^2)}$,~$x_3\in[-1;1]$
+%\item $g(\vec{y})=1/y_3^4,~y_3>1\wedge (y_1^2+y_2^2)\in [1;4]$
+%\item $\phi(\vec{x})=\arctan\left(\frac{x_2}{x_1}\right),~x_3>0\wedge x_2>0\wedge |\vec{x}|<R$
+%\end{enumerate}}
+
+
+
+\end{questions}
+
+\end{document}

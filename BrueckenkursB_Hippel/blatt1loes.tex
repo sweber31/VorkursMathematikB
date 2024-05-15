@@ -1,0 +1,363 @@
+\documentclass[12pt,answers]{exam}
+\usepackage[german]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{latexsym,ifthen,amssymb,amsfonts,amsmath}
+
+\begin{document}
+
+\include{definitions}
+
+\pagestyle{empty}
+
+\def\loesungen{1}
+\newcommand{\lansel}[2]{#1}
+
+\ifthenelse{\equal{\loesungen}{1}}{\printanswers}{\relax}
+\renewcommand{\solutiontitle}{\noindent\textbf{L\"osung:}\enspace}
+\newcommand{\loesungname}{\ifthenelse{\equal{\loesungen}{1}}{L\"osungen zu }{\relax}}
+
+\begin{center}
+\textbf{\LARGE \loesungname \lansel{\"Ubungsblatt}{Examples Sheet} 2} \\ \vspace{1ex}
+\textbf{\large \lansel{zum Mathematischen Brückenkurs \\ für Naturwissenschaftler:innen}{for the preparatory mathematics course for bio- and geoscientists}} \\ \vspace{1ex}
+\textbf{\large \lansel{im Wintersemester}{Winter} 2023/24} \\ \vspace{0.5cm}
+\textrm{\normalsize \hfill \lansel{Dozent}{Lecturer}: Apl.Prof. Dr. G. von Hippel\hfill${}$}
+\end{center}
+\normalsize\vspace{0.5cm}
+
+\ifthenelse{\equal{\loesungen}{1}}{
+\begin{center}
+\textbf{Die direkte Weitergabe der Musterl\"osungen an Studierende ist nicht gestattet!}
+\end{center}
+}{
+\vspace{3ex}
+}
+
+\begin{questions}
+\pointname{ P.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \input{Q_folgen_reihen.tex}
+\question{{\it Eigenschaften von Funktionen}}
+
+Bestimmen Sie für die folgenden Funktionen jeweils, ob diese injektiv, surjektiv und/oder bijektiv sind, und geben Sie gegebenenfalls die Umkehrfunktion an.\\
+\parbox{0.4\textwidth}{\begin{enumerate}
+\item $f:\Rset\to\Rset$, $x\mapsto x^4$
+\item $g:\Rset\to[0;\infty)$, $x\mapsto x^4$
+\item $h:\Rset\to\Rset$, $x\mapsto x^3$
+\item $q:\Rset\to\Rset$, $y\mapsto \rme^y$
+\item $r:\Rset\to(0;\infty)$, $t\mapsto \rme^t$
+\item $s:[0;\infty)\to[0;\infty)$, $s(\omega)=\sqrt{\omega}$
+\item $b:\Cset\backslash\{0\}\to\Rset^+$, $z\mapsto |z|$
+\end{enumerate}}\parbox{0.6\textwidth}{\begin{enumerate}\setcounter{enumi}{7}
+\item $U:\Nset\to\Nset\backslash\{0\}$, $U(n)=n+1$
+\item $H:\Nset\to\{x|\exists n\in\Nset~x=2n\}$, $H(m)=2m$
+\item $f:\Rset\to\Cset$, $x\mapsto\rme^{ix}$
+\item $f:[0;1]\to\Cset$, $x\mapsto\rme^{ix}$
+\item $M: {\textrm{Menge der JGU-Studierenden}}\to \Nset$,\\ $S\mapsto{\textrm{Matrikelnummer von }S}$
+\item $p: \Nset\to\Nset$, $n\mapsto n$te Nachkommastelle von $\pi$
+\end{enumerate}}
+\begin{solution}Wir wiederholen kurz die Begrifflichkeiten. Unter einer Abbildung zwischen den Mengen $M$ und $N$ versteht man eine Vorschrift, die jedem $x\in M$
+eindeutig ein $y=f(x)\in N$ zuordnet, $f:M\to N,\, x\mapsto f(x)$. Wir betrachten hierbei f"ur $M'\subset M$ und $N'\subset N$ das Bild
+\begin{align*}
+f(M'):=\{y\in N:\exists x\in M', y=f(x)\}\subset N
+\end{align*}
+und das Urbild
+\begin{align*}
+f^{-1}(N'):=\{x\in M:f(x)\in N'\}\subset M
+\end{align*}
+und die Abbildung $f:M\to N$ hei"st
+\begin{align*}
+&\,\text{injektiv}\quad &&:\Leftrightarrow \quad \text{aus $f(x)=f(x')$ folgt $x=x'$.}
+\\
+&\,\text{surjektiv}\quad &&:\Leftrightarrow \quad \text{zu jedem $y\in N$ gibt es mindestens ein $x\in M$, so dass $y=f(x)$}
+\\
+&\,\text{bijektiv}\quad &&:\Leftrightarrow \quad \text{$f$ ist injektiv und surjektiv.}
+\end{align*}
+\begin{enumerate}
+\item $f:\Rset\to\Rset$, $x\mapsto x^4$
+\\ Injektiv: nein, da $f(-2)=f(2)$, doch $-2\neq 2$
+\\ Surjektiv: nein, da es kein $y\in\mathbb{R}$ gibt, mit $f(y)=-1$
+\\ Bijektiv: nein
+\item $g:\Rset\to[0;\infty)$, $x\mapsto x^4$
+\\ Injektiv: nein, da $f(-2)=f(2)$, doch $-2\neq 2$
+\\ Surjektiv: ja
+\\ Bijektiv: nein
+\item $h:\Rset\to\Rset$, $x\mapsto x^3$
+\\ Injektiv: ja
+\\ Surjektiv: ja
+\\ Bijektiv: ja, $h^{-1}:\mathbb{R}\to\mathbb{R},\,x\mapsto\mathrm{sgn}\,x\,\sqrt[3]{|x|}$ (Wurzelzeichen war in der Vorlesung als positiv definiert worden)
+\item $q:\Rset\to\Rset$, $y\mapsto \rme^y$
+\\ Injektiv: ja
+\\ Surjektiv: nein, da es kein $y\in\mathbb{R}$ gibt, mit $f(y)=-1$
+\\ Bijektiv: nein
+\item $r:\Rset\to(0;\infty)$, $t\mapsto \rme^t$
+\\ Injektiv: ja
+\\ Surjektiv: ja
+\\ Bijektiv: ja, $r^{-1}:(0;\infty)\to\mathbb{R},\,t\mapsto\ln(t)$
+\item $s:[0;\infty)\to[0;\infty)$, $s(\omega)=\sqrt{\omega}$
+\\ Injektiv: ja
+\\ Surjektiv: ja
+\\ Bijektiv: ja, $s^{-1}:[0;\infty)\to[0;\infty),\,\omega\mapsto \omega^2$
+\item $b:\Cset\backslash\{0\}\to\Rset^+$, $z\mapsto |z|$
+\\ Injektiv: nein, da $b(1)=b(-1)$, doch $1\neq -1$
+\\ Surjektiv: ja
+\\ Bijektiv: nein
+\item $U:\Nset\to\Nset\backslash\{0\}$, $U(n)=n+1$
+\\ Injektiv: ja
+\\ Surjektiv: ja
+\\ Bijektiv: ja, $U^{-1}:\mathbb{N}\backslash\{0\}\to\mathbb{N},\,n\mapsto n-1$
+\item $H:\Nset\to\{x|\exists n\in\Nset~x=2n\}$, $H(m)=2m$
+\\ Injektiv: ja
+\\ Surjektiv: ja
+\\ Bijektiv: ja, $H^{-1}:\{x|\exists n\in\Nset~x=2n\}\to\Nset, m\mapsto\frac{m}{2}$
+\item $f:\Rset\to\Cset$, $x\mapsto\rme^{ix}$
+\\ Injektiv: nein, da $f(0)=f(2\pi)$, doch $0\neq 2\pi$
+\\ Surjektiv: nein, da es kein $x\in\mathbb{R}$ gibt mit $f(x)=5i$
+\\ Bijektiv: nein
+\item $f:[0;1]\to\Cset$, $x\mapsto\rme^{ix}$
+\\ Injektiv: ja
+\\ Surjektiv: nein, da es kein $x\in[0;1]$ gibt mit $f(x)=2i+3$
+\\ Bijektiv: nein
+\item $M: {\textrm{Menge der JGU-Studierenden}}\to \Nset$,\\ $S\mapsto{\textrm{Matrikelnummer von }S}$
+\\ Injektiv: ja (Matrikelnummer sollte eindeutig sein)
+\\ Surjektiv: nein (es gibt nur endlich viele Studierende)
+\\ Bijektiv: nein
+\item $p: \Nset\to\Nset$, $n\mapsto n$te Nachkommastelle von $\pi$
+\\ Injektiv: nein, da $p(1)=p(3)$, doch $1\neq 3$
+\\ Surjektiv: nein (eine Nachkommastelle ist eine einstellige Zahl)
+\\ Bijektiv: nein
+\end{enumerate}
+\end{solution}
+
+
+
+\question{{\it Eigenschaften von Zahlenfolgen}}
+
+Geben Sie jeweils wenigstens die ersten fünf Glieder der folgenden Zahlenfolgen an. Bestimmen Sie ferner jeweils, ob die Zahlenfolge nach oben beschränkt, nach unten beschränkt, beschränkt, monoton wachsend, monoton fallend, streng monoton wachsend, streng monoton fallend, alternierend und/oder konvergent ist.\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $c_i=2$
+\item $a_n=4\left(-\frac{1}{5}\right)^5$
+\item $a_m=\sqrt{m+1}$
+\item $b_k=\frac{2}{k+3}\sin\left(\frac{k\pi}{2}\right)$
+\item $a_n=\left(2-\frac{1}{n+1}\right)\cos(n\pi)$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{5}
+\item $r_n=\frac{3}{2}n+\cos\left(\frac{2 n \pi}{3}\right)$
+\item $a_n=2^{-n}-5^{-n}$
+\item $a_n=(n+4)^{-1}\rme^{\frac{\pi n}{2}i}$
+\item $b_n=\log_{n+2}(2n+3)$ 
+\item $a_n=\frac{n^2}{n!}$
+\end{enumerate}}
+\begin{solution} Wir geben die Eigenschaften in der Tabelle mit folgenden Abk"urzungen an: OB (nach oben beschr"ankt), UB (nach unten beschr"ankt), B (beschr"ankt), MW (monoton wachsend), MF (monoton fallend), sMW (streng monoton wachsend), sMF (streng monoton fallend), A (alternierend), K (konvergent)
+\begin{enumerate}
+\item $c_i=(2,2,2,2,2,\dots)$
+\item $a_n=(-\frac{4}{3125},-\frac{4}{3125},-\frac{4}{3125},-\frac{4}{3125},
+-\frac{4}{3125},\dots)$
+\item $a_m=(1,\sqrt{2},\sqrt{3},2,\sqrt{5},\dots)$
+\item $b_k=(0,\frac{1}{2},0,-\frac{1}{3},0,\dots)$
+\item $a_n=(1,-\frac{3}{2},\frac{5}{3},-\frac{7}{4},\frac{9}{5},\dots)$
+\item $r_n=(1,1,\frac{5}{2},\frac{11}{2},\frac{11}{2},\dots)$
+\item $a_n=(0,\frac{3}{10},\frac{21}{100},\frac{117}{1000},\frac{609}{10000},\dots)$
+\item $a_n=(\frac{1}{4},\frac{i}{5},-\frac{1}{6},-\frac{i}{7},\frac{1}{8},\dots)$
+\item $b_n=(1,585;1,465;1,4037;1,3652;1,3383,\dots)$
+\item $a_n=(0,1,2,\frac{3}{2},\frac{2}{3},\dots)$
+\end{enumerate}
+\begin{center}
+% \renewcommand{\arraystretch}{1.5}
+% \setlength{\tabcolsep}{5pt}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Nr & OB & UB & B & MW & MF & sMW & sMF & A & K\\
+\hline
+1 & j & j & j & j & j & n & n & n & j \\
+\hline
+2 & j & j & j & j & j & n & n & n & j \\
+\hline
+3 & n & j & n & j & n & j & n & n & n \\
+\hline
+4 & j & j & j & n & n & n & n & j & j \\
+\hline
+5 & j & j & j & n & n & n & n & j & n \\
+\hline
+6 & n & j & n & n & n & n & n & n & n \\
+\hline
+7 & j & j & j & n & n & n & n & n & j \\
+\hline
+8 & - & - & j & - & - & - & - & j & j \\
+\hline
+9 & j & j & j & n & j & n & j & n & j \\
+\hline
+10 & j & j & j & n & n & n & n & n & j \\
+\hline
+\end{tabular}
+\end{center}
+\end{solution}
+
+\pagebreak
+
+\question{{\it Grenzwerte von Folgen}}
+
+Bestimmen Sie jeweils, ob folgende Folgen konvergieren, bestimmt divergieren oder unbestimmt divergieren, und geben Sie gegebenenfalls den Grenzwert $\lim\limits_{n\to\infty} a_n$ an:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $a_n=\frac{n^3+3n}{n+1}$
+\item $a_n=\frac{36(n^2+1)^2}{4n^4+2n^3+3}$
+\item $a_n=\frac{4n^4+2n^2+1}{4n^4+2n^3+3}$
+\item $a_n=\frac{n(n+2)}{n+1}-\frac{n^3}{n^2+1}$
+\item $a_n=2-\left(-\frac{3}{5}\right)^n$
+\item $a_n=\rme^{\frac{1}{n!}}$
+\item $a_n=\sin(n\pi)$
+\item $a_n=\sin\left(\frac{n\pi}{2}\right)$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{9}
+\item $a_n=-2^n$
+\item $a_n=(-2)^n$
+\item $a_n=2^{-n}$
+\item $a_n=3^{-n}-3^{-(n+1)}$
+\item $a_n=\sqrt{n+1}-\sqrt{n}$
+\item $a_n=2^{n+1}-2^n$
+\item $a_n=\left(1+\frac{1}{n+1}\right)^{n+1}$
+\item $a_n=n^{-n}$
+\item $a_n=\frac{1+n}{3+n^n}$
+\end{enumerate}}
+\begin{solution}\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item Div. bestimmt ($a_n\stackrel{n\to\infty}{\longrightarrow}\infty$)
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}9$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}1$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}1$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}2$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}1$
+\item $a_n=0$, $a_n\stackrel{n\to\infty}{\longrightarrow}0$
+\item Div. unbestimmt
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{9}
+\item Div. bestimmt ($a_n\stackrel{n\to\infty}{\longrightarrow}-\infty$)
+\item Div. unbestimmt
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}0$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}0$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}0$
+\item Div. bestimmt ($a_n\stackrel{n\to\infty}{\longrightarrow}\infty$)
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}e$ (Def. Exp-Funktion)
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}0$
+\item $a_n\stackrel{n\to\infty}{\longrightarrow}0$
+\end{enumerate}}
+\end{solution}
+
+
+
+\question{{\it Rekursiv definierte Folgen -- I}}
+
+Bestimmen Sie für folgende rekursiv definierten Folgen jeweils die Fixpunkte, sowie ob die Iteration vom angegebenen Startwert gegen einen Fixpunkt konvergiert oder nicht:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $x_{n+1}=\sqrt{\alpha^2+x_n}$, $x_0=0$
+\item $x_{n+1}=x_n^2$, $x_0=\frac{1}{2}$
+\item $x_{n+1}=x_n^2$, $x_0=2$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{3}
+\item $x_{n+1}=x_n-\frac{x_n^2-2}{2x_n}$, $x_0=1$
+\item $x_{n+1}=x_n-\frac{x_n^3-8}{3x_n^2}$, $x_0=1$
+\item $x_{n+1}=\cos x_n$, $x_0=0$
+\end{enumerate}}
+\begin{solution}Der Fixpunkt ist definiert "uber die Eigenschaft, dass sich im Falle der Konvergenz der Grenzwert $a_n\to a$ nicht "andert, 
+also $\lim_{n\to\infty}x_{n+1}=\lim_{n\to\infty}x_{n}=a$. Im Folgenden werden nun die Fixpunkte bestimmt. F"ur die Konvergenz der Folge m"usste gezeigt werden, dass die Folge monoton wachsend (oder fallend) und beschr"ankt ist.
+\begin{enumerate}
+\item $a=\frac{1}{2}\left(1+\sqrt{1+4\alpha^2}\right)$. Iteration konvergiert. 
+\item $a\in\{0,1\}$. Iteration konvergiert $x_n\to 0$.
+\item $a\in\{0,1\}$. Iteration divergiert.
+\item $a\in\{-\sqrt{2},\sqrt{2}\}$. Iteration konvergiert $x_n\to\sqrt{2}$.
+\item $a=2$. Iteration konvergiert.
+\item $a\approx 0,7390$. Iteration konvergiert. (Die zugeh"orige Fixpunktgleichung kann nur numerisch gel"ost werden. F"ur Aussagen zur Existenz der L"osung wird auf den Bachach'schen Fixpunktsatz verwiesen.)
+\end{enumerate}
+\end{solution}
+
+
+
+
+\question{{\it Rekursiv definierte Folgen -- II}}
+
+Berechnen Sie für folgende rekursiv definierte Folgen jeweils die ersten zehn Glieder ausgehend von den angegebenen Startwerten. Bestimmen Sie ferner die allgemeine Form des $n$-ten Folgengliedes und benutzen Sie diese, um Ihre explizite Rechnung zu überprüfen:
+\begin{enumerate}
+\item $a_{n+2}=a_{n+1}+a_{n}$, $a_0=2$, $a_1=1$
+\item $a_{n+2}=a_{n+1}-a_{n}$, $a_0=1$, $a_1=0$
+\item $a_{n+2}=a_{n+1}+2a_{n}$, $a_0=0$, $a_1=1$
+\item $a_{n+2}=2a_{n+1}-2a_{n}$, $a_0=0$, $a_1=2$
+\end{enumerate}
+\begin{solution}
+\begin{enumerate}
+\item $a_n=(2,1,3,4,7,11,18,29,47,76,123,199,322\dots).$\\
+Die Folge besitzt ein exponentielles Wachstum, sodass ein Ansatz der Form $a_n=b^n$ oder $a_n=b^n+c^n$ verwendet wird. Letzterer f"uhrt zu den beiden Gleichungen
+\begin{align*}
+a_2&=3=b^2+c^2\\
+a_3&=4=b^3+c^3,
+\end{align*}
+welche (u.a.) die folgenden L"osungen besitzen: $b=(1-\sqrt{5})/2$, $c=(1+\sqrt{5})/2$, sodass
+\begin{align*}
+a_n=\left(\frac{1-\sqrt{5}}{2}\right)^n+\left(\frac{1+\sqrt{5}}{2}\right)^n.
+\end{align*}
+\textit{Hinweis:} Die Folge wird auch als Lucas-Folge bezeichnet und ist verwandt mit der Fibonacci-Folge. Zudem taucht hier auch der Goldene Schnitt $\Phi=(1+\sqrt{5})/2$ auf.
+\item $a_n=(1,0,-1,-1,0,1,1,0,-1,-1,0,1,\dots)$\\
+Auch hierbei wird ein Exponentialansatz verwendet, welche zu folgendem Ausdruck f"uhrt
+\begin{small}
+\begin{align*}
+a_n=\frac{1}{6}
+\left[
+3\left(\frac{1}{2}-\frac{i\sqrt{3}}{2}\right)^n
+-i\sqrt{3}\left(\frac{1}{2}-\frac{i\sqrt{3}}{2}\right)^n
++3\left(\frac{1}{2}+\frac{i\sqrt{3}}{2}\right)^n
++i\sqrt{3}\left(\frac{1}{2}+\frac{i\sqrt{3}}{2}\right)^n
+\right]
+\end{align*}
+\end{small}
+\item $a_n=(0,1,1,3,5,11,21,43,85,171,341,683,\dots)$\\
+Man kann sich zun"achst die Folgen $b_n=2^n$ sowie $c_n=b_n+(-1)^{n+1}$ betrachten
+\begin{align*}
+b_n&=(1,2,4,8,16,32,64,\dots),
+\\
+c_n&=(0,3,3,9,15,33,63,\dots).
+\end{align*}
+Nun kann man sehen, dass sich die Folge $a_n$ "uber $a_n=c_n/3$ beschreiben l"asst, also gilt
+\begin{align*}
+a_n=\frac{1}{3}\left(2^n+(-1)^{(n+1)}\right).
+\end{align*}
+\item $a_n=(0,2,4,4,0,-8,-16,-16,0,32,64,64,\dots)$\\
+Die explizite Vorschrift l"asst sich auch hier erneut "uber einen exponentiellen Ansatz bestimmen, sodass
+\begin{align*}
+a_n=i\left((1-i)^n-(1+i)^n\right)
+\end{align*}
+die passende Vorschrift darstellt.
+\end{enumerate}
+\end{solution}
+
+
+
+\question{{\it Unendliche Reihen}}
+
+Bestimmen Sie für folgende unendliche Reihen jeweils, ob diese konvergieren oder divergieren, und geben Sie gegebenenfalls den Wert der Reihe an:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\sum_{n=0}^\infty n$
+\item $\sum_{n=1}^\infty \frac{1}{n}$
+\item $\sum_{n=0}^\infty \frac{1}{2^n}$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{3}
+\item $\sum_{n=0}^\infty (-1)^n$
+\item $\sum_{n=0}^\infty (-1)^n 13^{-n}$
+\item $\sum_{n=0}^\infty \frac{1}{\sqrt{n+1}}$
+\end{enumerate}}
+\begin{solution} Zun"achst soll angemerkt werden, dass eine Reihe 
+$s=\sum_{k=0}^\infty a_k$ nur dann konvergieren kann, 
+wenn die Folge $a_k$ eine Nullfolge ist, d.h. $\lim_{k\to\infty}a_k=0$. 
+Dies ist notwendig, jedoch nicht hinreichend (siehe harmonische Reihe). 
+F"ur die Konvergenz muss die Folge der Partialsummen $s_n=\sum_{k=0}^n a_k$ eine Cauchyfolge sein.
+\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item Reihe divergiert
+\item Reihe divergiert, (harm. Reihe)
+\item $\sum_{n=0}^\infty \frac{1}{2^n}=2$, (geom. Reihe)
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{3}
+\item Reihe divergiert
+\item $\sum_{n=0}^\infty (-1)^n 13^{-n}=\frac{13}{14}$
+\item Reihe divergiert (harm. Reihe als Minorante)
+\end{enumerate}}
+\end{solution}
+
+
+\end{questions}
+
+\end{document}

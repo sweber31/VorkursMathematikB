@@ -1,0 +1,304 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{Zusammenfassung zum Thema \\ Differential- und Integralrechnung im $\Rset^n$}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+
+{\bf Vektorwertige Funktionen einer reellen Variablen}
+
+Wir verallgemeinern die Parameterform der Geraden, um allgemeine
+Bewegungen von Teilchen darstellen zu können: $x:\Rset\to\Rset^n$,
+$t\mapsto \vec{x}(t)$. Die Ableitung erfolgt komponentenweise.
+Physikalisch gesehen ist $\dot{\vec{x}}(t) =\frac{\rmd \vec{x}}{\rmd t}$
+die Geschwindigkeit, und $\ddot{\vec{x}}(t) =\frac{\rmd^2 \vec{x}}{\rmd t^2}$
+die Beschleunigung, wenn wir $t$ als Zeit interpretieren.
+Geometrisch gesehen ist $\dot{\vec{x}}(t)$ ein Tangentialvektor zur
+Kurve $\{\vec{x}(t)|t\in\Rset\}$ am Punkt $\vec{x}(t)$.\\
+
+
+{\bf Funktionen mehrerer reeller Variablen}
+
+In einem weiteren Verallgemeinerungschritt betrachten wir im Folgenden
+allgemeine Funktionen $f:\Rset^n\to\Rset^m$, z.B. 
+parametrisierte Flächen $x:\Rset^2\to\Rset^3$, oder
+das Vektorfeld $E:\Rset^3\to\Rset^3$, das jedem Punkt im Raum die
+an diesem Punkt herrschende elektrische Feldstärke zuweist.
+
+Für eine Funktion $f:\Rset^n\to\Rset$ ist die
+partielle Ableitung $\frac{\partial f}{\partial x_i}$ nach $x_i$
+dadurch definiert, dass nach $x_i$ differenziert wird, während alle
+anderen Komponenten von $x$ konstant gehalten werden, d.h. z.B.
+\[
+\frac{\partial f}{\partial x_1} = \lim\limits_{h\to 0} \frac{f(x_1+h,x_2,\ldots,x_n)-f(x_1,\ldots,x_n)}{h}\,.
+\]
+Höhere partielle Ableitungen können sowohl nach derselben als auch nach verschiedenen Variablen genommen werden, z.B.
+\[
+\frac{\partial^2 f}{\partial x_1^2} = \frac{\partial}{\partial x_1}\left(\frac{\partial f}{\partial x_1}\right)\,,~~~~~
+\frac{\partial^2 f}{\partial x_1\partial x_2} = \frac{\partial}{\partial x_1}\left(\frac{\partial f}{\partial x_2}\right)\,.
+\]
+Es gilt
+\[
+\frac{\partial^2 f}{\partial x_i\partial x_j} = \frac{\partial^2 f}{\partial x_j\partial x_i}\,,
+\]
+wenn beide gemischten Ableitungen existieren und stetig sind.
+
+Für die Verkettung $(f\circ x):\Rset\to\Rset$ von Funktionen
+$x:\Rset\to\Rset^n$, $f:\Rset^n\to\Rset$ gilt die verallgemeinerte
+Kettenregel
+\[
+\frac{\rmd f}{\rmd t}=\sum_{i=1}^n \frac{\partial f}{\partial x_i}\frac{\rmd x_i}{\rmd t}\,.
+\]
+%Das totale Differential
+%\[
+%\rmd f = \sum_{i=1}^n \frac{\partial f}{\partial x_i} \rmd x_i
+%\]
+%gibt an, wie sich $f$ verändert, wenn sich die $x_i$ jeweils um einen
+%infinitesimalen Betrag $\rmd x_i$ verändern; für endliche Änderungen
+%gilt die Näherung
+%\[
+%\Delta f \approx \sum_{i=1}^n \frac{\partial f}{\partial x_i} \Delta x_i\,.
+%\]
+
+%Für eine Funktion $f:\Rset^n\to\Rset^m$ gilt komponentenweise
+%\[
+%\rmd f_i = \sum_{j=1}^n \frac{\partial f_i}{\partial x_j} \rmd x_j
+%\]
+%oder
+%in Matrixschreibweise
+%\[
+%\frac{\rmd f}{\rmd t}=J_f\frac{\rmd x}{\rmd t}
+%\]
+%mit der Jacobi-Matrix
+%\[
+%J_f=\left(\begin{array}{ccc}\frac{\partial f_1}{\partial x_1}&\cdots&\frac{\partial f_1}{\partial x_n}\\\vdots&\ddots&\vdots\\\frac{\partial f_m}{\partial x_1}&\cdots&\frac{\partial f_m}{\partial x_n}\end{array}\right)\,.
+%\]
+%Für $m=n$ gibt die Determinante der Jacobi-Matrix
+%(die Jacobi-Determinante)
+%an, wie sich ein infinitesimales Volumen unter der Abbildung $f$ jeweils
+%lokal verändert.
+%\\
+
+%{\bf Gradient, Divergenz und Rotation}
+%
+%Für eine Funktion $f:\Rset^n\to\Rset$ definieren wir den Gradienten von $f$
+%als den Vektor
+%\[
+%{\mathrm{grad}}~f=\left(\begin{array}{c}\frac{\partial f}{\partial x_1}\\\vdots\\\frac{\partial f}{\partial x_n}\end{array}\right)
+%\]
+%der in die Richtung der maximalen Zunahme von $f$
+%unter Variation der $x_i$ zeigt.
+%
+%Der Gradient steht senkrecht auf den Flächen $f={\mathrm{const.}}$.
+%Damit eine differenzierbare Funktion $f$ an einem Punkt $x\in\Rset^n$
+%ein Extremum hat, ist
+%\[
+%{\mathrm{grad}}~f(x)=0
+%\]
+%eine notwendige (aber nicht hinreichende) Bedingung.
+%
+%Der Gradient lässt sich mit Hilfe des Nabla-Operators
+%\[
+%\nabla = \left(\begin{array}{c}\frac{\partial}{\partial x_1}\\\vdots\\\frac{\partial}{\partial x_n}\end{array}\right)
+%\]
+%als
+%\[
+%{\mathrm{grad}}~f=\nabla f
+%\]
+%schreiben.
+%Wir können den Nabla-Operator wie einen Vektor behandeln, wenn
+%wir folgende Rechenregeln beachten:
+%\begin{align*}
+%\nabla(f+g) &= \nabla f+\nabla g \\
+%\nabla(fg)  &= (\nabla f)g+f(\nabla g)
+%\end{align*}
+%Das totale Differential kann als
+%\[
+%\rmd f = \nabla f\cdot \rmd\vec{x}
+%\]
+%geschrieben werden.\\
+%
+%Für eine Funktion $\vec{f}:\Rset^3\to\Rset^3$ können wir mit Hilfe des
+%Nabla-Operators die Divergenz
+%\[
+%{\mathrm{div}}~\vec{f}=\nabla\cdot\vec{f}
+%\]
+%und die Rotation
+%\[
+%{\mathrm{rot}}~\vec{f}=\nabla\times\vec{f}
+%\]
+%definieren.
+%Physikalisch gesehen ist die Divergenz ein Skalarfeld, das die Quellstärke
+%des Vektorfeldes $\vec{f}$ misst, und die Rotation ein Vektorfeld, das die
+%Wirbelstärke des Vektorfeldes $\vec{f}$ misst.
+%
+%Es gelten die wichtigen Beziehungen
+%\begin{align*}
+%\nabla\cdot(\nabla\times\vec{f})&=0\\
+%\nabla\times(\nabla f)&=0
+%\end{align*}
+%d.h. ein Gradient ist wirbelfrei und ein Wirbelfeld ist quellenfrei.\\
+
+\pagebreak
+{\bf Höherdimensionale Integrale}
+
+%Wir definieren das Kurvenintegral eines Vektorfeldes
+%$\vec{f}:\Rset^n\to\Rset^n$ entlang der Kurve\\
+%$\mathcal{C}=\{\vec{x}(t)|t\in[a;b]\wedge \vec{x}(a)=\vec{x}_a\wedge \vec{x}(b)=\vec{x}_b\}$ durch
+%\[
+%\int_\mathcal{C} \vec{f}\cdot\rmd\vec{x}
+%= \lim\limits_{n\to\infty}\sum_{i=0}^{n-1} \vec{f}(\vec{x}_i)\cdot(\vec{x}_{i+1}-\vec{x}_i)
+%= \lim\limits_{h\to 0}\sum_{i=0}^{n-1} \vec{f}(\vec{x}(a+ih))\cdot\frac{\rmd\vec{x}}{\rmd t}h
+%= \int_a^b \vec{f}(\vec{x}(t))\cdot\dot{\vec{x}}(t)~\rmd t
+%\]
+%Das Kurvenintegral bei umgekehrtem Durchlaufen der Kurve hat den gleichen Betrag und das entgegengesetzte Vorzeichen.
+%Bei Aneinandersetzen zweier Kurven addieren sich die Kurvenintegrale.
+%
+%Wenn für ein Vektorfeld $\vec{f}:\Rset^n\to\Rset^n$ ein Skalarfeld
+%$\phi:\Rset^n\to\Rset$ existiert, so dass $\vec{f}=\nabla\phi$ gilt,
+%heißt $\vec{f}$ ein Gradientenfeld, und es gilt
+%\[
+%\int_\mathcal{C} \vec{f}\cdot\rmd\vec{x}
+%= \int_a^b \vec{f}(\vec{x}(t))\cdot\dot{\vec{x}}(t)\rmd t 
+%= \int_a^b \nabla\phi(\vec{x}(t))\cdot\dot{\vec{x}}(t)\rmd t
+%= \int_a^b \frac{\rmd}{\rmd t}\phi(\vec{x}(t)) \rmd t
+%= \phi(\vec{x}_b)-\phi(\vec{x}_a)
+%\]
+%so dass das Kurvenintegral nur von den Endpunkten von $\mathcal{C}$,
+%jedoch nicht vom gewählten Pfad abhängt.
+%Insbesondere verschwindet für ein Gradientenfeld das Kurvenintegral
+%über eine geschlossene Kurve mit $\vec{x}_a=\vec{x}_b$, da
+%\[
+%\oint_\mathcal{C} \vec{f}\cdot\rmd\vec{x} = \phi(\vec{x}_a)-\phi(\vec{x}_a)
+% = 0
+%\]
+%Im $\Rset^3$ gilt: $\vec{f}$ ist ein Gradientenfeld g.d.w.
+%$\nabla\times\vec{f}=0$.\\
+%
+Wir definieren das Integral einer Funktion $g:\Rset^2\to\Rset$ über die
+Fläche\\ $\mathcal{F}=\{(x,y)|x\in[a;b]\wedge y\in[y_1(x);y_2(x)]\}$ über
+\[
+\iint\limits_{\mathcal{F}} g~\rmd F = \int_a^b\int_{y_1(x)}^{y_2(x)}g(x,y)~\rmd y\rmd x
+= \int_a^b\left(G(x,y_2(x))-G(x,y_1(x))\right)~\rmd x
+\]
+mit $G$ einer beliebigen Stammfunktion von $g$ bezüglich $y$ für alle $x$,
+\[
+\frac{\partial G}{\partial y}(x,y)=g(x,y)\,.
+\]
+Entsprechend definieren wir das Volumenintegral einer Funktion
+$g:\Rset^3\to\Rset$ über das Volumen
+$\mathcal{V}=\{(x,y,z)|x\in[a;b]\wedge y\in[y_1(x);y_2(x)]\wedge z\in[z_1(x,y);z_2(x,y)]\}$ als
+\[
+\iiint\limits_{\mathcal{V}} g~\rmd V = \int_a^b\int_{y_1(x)}^{y_2(x)}\int_{z_1(y,x)}^{z_2(y,x)}g(x,y,z)~\rmd z\rmd y\rmd x\,.
+\]
+%${}$\\
+%Wir definieren das Oberflächen\-integral eines Vektorfeldes
+%$\vec{g}:\Rset^3\to\Rset^3$ über eine Oberfläche
+%$\mathcal{F}=\{\vec{x}(u,v)|u\in[a;b]\wedge v\in[\alpha;\beta]\}$
+%durch
+%\[
+%\iint\limits_\mathcal{F} \vec{g}\cdot\rmd\vec{F}
+%= \lim\limits_{m\to\infty}\lim\limits_{n\to\infty}\sum_{i=0}^m\sum_{j=0}^n\vec{g}\cdot\left(\frac{\partial \vec{x}}{\partial u}\times\frac{\partial \vec{x}}{\partial v}\right)_{u=\frac{i}{m}\atop v=\frac{j}{n}}\frac{(b-a)(\beta-\alpha)}{mn}
+%= \int_\alpha^\beta\int_a^b \vec{g}\cdot\left(\frac{\partial \vec{x}}{\partial u}\times\frac{\partial \vec{x}}{\partial v}\right)\rmd u\rmd v
+%\]
+%Das Flächenintegral über die entgegengesetzt orientierte Fläche hat den gleichen Betrag und das entgegengesetzte Vorzeichen.
+%Beim Aneinandersetzen von Flächen addieren sich die Flächenintegrale.
+%Bei Flächenintegralen über geschlossene Oberflächen ist es Konvention, die nach außen weisende Normale zu wählen.\\
+%
+%Es gilt der Satz von Gauss: Das Oberflächenintegral eines Vektorfeldes über die Oberfläche eines Volumens
+%ist gleich dem Volumenintegral der Divergenz,
+%\[
+%\iiint\limits_{\mathcal{V}}\nabla\cdot\vec{f}\rmd V = \iint\limits_{\partial\mathcal{V}}\vec{f}\cdot\rmd\vec{F}\,.
+%\]
+%Ferner gilt der Satz von Satz von Stokes:
+%Das Kurvenintegral eines Vektorfeldes über den Rand einer Fläche
+%ist gleich dem Oberflächenintegral der Rotation,
+%\[
+%\iint\limits_{\mathcal{F}}(\nabla\times\vec{f})\cdot\rmd\vec{F} = \oint_{\partial\mathcal{V}}\vec{f}\cdot\rmd\vec{x}\,.
+%\]
+%${}$\\
+%
+%{\bf Krummlinige Koordinaten}
+%
+%Wir führen krummlinige Koordinaten auf dem $\Rset^2$ ein, indem wir
+%ihn als die Ebene $\{(x,y,0)|(x,y)\in\Rset^2\}$ in den $\Rset^3$
+%einbetten und durch $(u,v)\mapsto (x,y)$ parametrisieren.
+%Dann ist das Flächenelement
+%\[
+%\rmd \vec{F} = \left(\frac{\partial\vec{x}}{\partial u}\times\frac{\partial\vec{x}}{\partial v}\right)\rmd u\rmd v = \vec{e}_z \det(J)~\rmd u\rmd v
+%\]
+%mit $J$ der Jacobi-Matrix der Funktion $(u,v)\mapsto(x,y)$,
+%und wir können allgemein
+%\[
+%\rmd F = \rmd x\rmd y = |\det(J)|\rmd u\rmd v
+%\]
+%identifizieren.
+%
+%Beispiel: Ebene Polarkoordinaten $(r,\varphi)$
+%\[
+%\begin{array}{rl}x &= r\cos\varphi\\y &= r\sin\varphi\end{array}~~~~~~~
+%J = \left(\begin{array}{cc}\cos\varphi&-r\sin\varphi\\\sin\varphi&r\cos\varphi\end{array}\right)~~~~~~~
+%\begin{array}{rl}
+%\det(J) &= r\cos^2\varphi+r\sin^2\varphi=r\\
+%        &\leadsto \rmd F = r\rmd r\rmd\varphi
+%\end{array}
+%\]
+%
+%In gleicher Weise können wir auf dem $\Rset^3$ krummlinige Koordinaten
+%einführen, indem wir ihn durch $(u,v,w)\mapsto (x,y,z)$ parametrisieren.
+%Wir erhalten das Volumenelement
+%\[
+%\rmd V = |\det(J)|\rmd u\rmd v\rmd w
+%\]
+%mit $J$ der Jacobi-Matrix der Funktion $(u,v,w)\mapsto (x,y,z)$.
+%
+%Beispiel:
+%Zylinderkoordinaten $(\varrho,\varphi,z)$
+%\[\begin{array}{rl}
+%x &= \varrho\cos\varphi\\
+%y &= \varrho\sin\varphi\\
+%z &= z
+%\end{array}~~~~~~~
+%J=\left(\begin{array}{ccc}
+%\cos\varphi&-\varrho\sin\varphi&0\\
+%\sin\varphi&\varrho\cos\varphi&0\\
+%0&0&1
+%\end{array}\right)~~~~~~~
+%\begin{array}{rl}
+%\det(J) &= \varrho\cos^2\varphi+\varrho\sin^2\varphi=\varrho\\
+%        &\leadsto \rmd V = \varrho\rmd \varrho\rmd\varphi\rmd z
+%\end{array}
+%\]
+%
+%Beispiel: Kugelkoordinaten $(r,\vartheta,\varphi)$
+%\[\begin{array}{rl}
+%x &= r\sin\vartheta\cos\varphi\\
+%y &= r\sin\vartheta\sin\varphi\\
+%z &= r\cos\vartheta
+%\end{array}~~~~~
+%J=\left(\begin{array}{ccc}
+%\sin\vartheta\cos\varphi&r\cos\vartheta\cos\varphi&-r\sin\vartheta\sin\varphi\\
+%%\sin\vartheta\sin\varphi&r\cos\vartheta\sin\varphi&r\sin\vartheta\cos\varphi\\
+%\cos\vartheta&-r\sin\vartheta&0
+%\end{array}\right)
+%\]\[
+%\begin{array}{rl}
+%\det(J) &= (\cos^2\varphi+\sin^2\varphi)(\cos^2\vartheta+\sin^2\vartheta)r^2\sin\vartheta=r^2\sin\vartheta\\
+%        &\leadsto \rmd V = r^2\sin\vartheta~\rmd r\rmd\vartheta\rmd\varphi
+%\end{array}
+%\]
+
+\end{document}
+

@@ -1,0 +1,144 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{Zusammenfassung zum Thema Folgen und Reihen}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+{\bf Der Begriff der Funktion}
+
+Eine Funktion $f:D\to W$ ist eine Vorschrift, die jedem Element $x$ der Definitionsmenge $D$ genau ein Element $f(x)$ der Zielmenge $W$ eindeutig zuordnet, $x\mapsto f(x)$.
+
+Diese Zuordnung kann, muss aber nicht, in Form einer Rechenvorschrift (wie z.B. $f(x)=x^2$) erfolgen; auch die Vorschrift, jeder/jedem Studierenden an der JGU ihre/seine Matrikelnummer zuzuordnen, stellt eine Funktion (von der Menge der Studierenden in die Menge der natürlichen Zahlen) dar. Entscheidend ist, dass der Funktionswert für jedes zulässige Argument eindeutig festgelegt ist.
+
+Für Funktionen $f:A\to B$ und $g:B\to C$ definieren wir die Verkettung
+$g\circ f:A\to C$ durch $(g\circ f)(x)=g(f(x))$.
+
+Die Bildmenge von $f$, $\textrm{Im}~f=\{f(x)|x\in D\}\subseteq W$, ist die Menge
+aller auftretenden Funktionswerte.
+
+Eine Funktion $f$ kann durch ihren Graphen,
+$\textrm{Graph}~f=\{(x,f(x))|x\in D\}\subset D\times W$,
+repräsentiert werden.
+
+Eine Funktion $f:D\to W$ heißt
+\begin{itemize}
+\item {injektiv}, wenn $x_1\not=x_2 \Rightarrow f(x_1)\not=f(x_2)$,
+\item {surjektiv}, wenn $\forall y\in W\exists x\in D~y=f(x)$,
+\item {bijektiv}, wenn sie injektiv und surjektiv ist.
+\end{itemize}
+Für bijektives $f:D\to W$ existiert eine Umkehrfunktion $f^{-1}:W\to D$,
+die $\forall x\in D~f^{-1}(f(x))=x$ und $\forall y\in W~f(f^{-1}(y))=y$ erfüllt. \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Zahlenfolgen und Grenzwerte}
+
+Unter einer Zahlenfolge verstehen wir eine Funktion $\Nset\to\Rset$, $n\mapsto a_n$ (oder $\Nset\to\Cset$, $n\mapsto a_n$). Die $a_n$ heißen Glieder der Folge.
+
+Eine reellwertige Zahlenfolge $a_n$ heißt
+\begin{itemize}\setlength\itemsep{0pt}\parskip0pt\setlength\parsep{0pt}
+\item {nach oben beschränkt}, wenn $\exists S\in\Rset~\forall n\in\Nset~a_n\le S$,
+\item {nach unten beschränkt}, wenn $\exists S\in\Rset~\forall n\in\Nset~a_n\ge S$,
+\item {beschränkt}, wenn $\exists S\in\Rset~\forall n\in\Nset~|a_n|\le S$,
+\item {monoton wachsend}, wenn $\forall n\in\Nset~a_{n+1}\ge a_n$,
+\item {monoton fallend}, wenn $\forall n\in\Nset~a_{n+1}\le a_n$,
+\item {streng monoton wachsend}, wenn $\forall n\in\Nset~a_{n+1}> a_n$,
+\item {streng monoton fallend}, wenn $\forall n\in\Nset~a_{n+1}< a_n$,
+\item {alternierend}, wenn $\forall n\in\Nset~a_{n+1}a_n<0$,
+\item {Nullfolge}, wenn $\forall \epsilon>0~\exists N\in\Nset~\forall n>N~|a_n|<\epsilon$.
+\end{itemize}
+Für eine komplexwertige Zahlenfolge machen hiervon nur die Begriffe ``beschränkt'' und ``Nullfolge'' (mit der jeweils gleichen Definition wie für reellwertige Folgen) Sinn.
+
+Eine Zahl $a$ heißt Grenzwert (Limes) der Folge $a_n$,
+$a=\lim\limits_{n\to\infty} a_n$, wenn $(a_n-a)$ Nullfolge ist.
+
+Insbesondere hat eine Nullfolge den Limes Null.
+
+Eine Folge heißt {konvergent}, wenn sie einen Grenzwert hat. Eine Folge, die keinen Grenzwert hat, heißt {divergent}.
+Von einer reellwertigen Folge, die keinen Grenzwert hat, sagen wir
+sie divergiere gegen $+\infty$, wenn $\forall S\in\Rset~\exists N\in\Nset~\forall n>N~a_n>S$, und
+sie divergiere gegen $-\infty$, wenn $\forall S\in\Rset~\exists N\in\Nset~\forall n>N~a_n<S$.
+Von sonstigen reellwertigen Folgen sagen wir auch, sie seien unbestimmt
+divergent.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Rekursiv definierte Folgen}
+
+Aufgrund des Prinzips der vollständigen Induktion kann eine Folge über
+eine Rekursionsrelation $a_{n+1}=f(a_n,\ldots,a_{n-k})$
+zusammen mit $k+1$ Startwerten $a_0,\ldots,a_k$ definiert werden.
+
+Ein wichtiger Spezialfall ist die Fixpunktiteration:
+Für Funktionen $f:D\to D$, $D\subseteq\Rset$, die für alle $a$, $b\in D$
+die Ungleichung
+$|f(a)-f(b)|\le q|a-b|$ mit
+einer Konstanten $q\in(0;1)$ erfüllen,
+konvergiert die Folge $a_{n+1}=f(a_n)$ gegen die (eindeutige) Lösung
+von $x=f(x)$.
+
+Ein weiterer wichtiger Spezialfall sind Rekursionen der Form
+$a_{n+1}=\alpha_0 a_n +\ldots+\alpha_k a_{n-k}$, die sich mit
+dem Ansatz $a_n=\lambda^n$ lösen lassen:
+Man löst $\lambda^{k+1} = \alpha_0 \lambda^k+\ldots+\alpha_{k-1}\lambda+\alpha_k$, um
+$k+1$ Lösungen $\lambda_i\in\Cset$ zu finden.
+Da mit den $\lambda_i^n$ auch jede Kombination der Form
+$a_n=C_1\lambda_1^n+\ldots+C_k\lambda_{k+1}^n$ (mit Konstanten $C_i\in\Cset$)
+die Rekursion löst, können die $k+1$ Konstanten $C_i$ aus den $k+1$
+Startwerten durch Lösen des linearen Gleichungssystems
+($a_n=C_1\lambda_1^n+\ldots+C_k\lambda_{k+1}^n$, $n=0,\ldots,k$)
+bestimmt werden.
+
+Ein bekanntes Beispiel sind die Fibonacci-Zahlen, die durch
+$a_0=1$, $a_1=1$, $a_{n+1}=a_n+a_{n-1}$ definiert sind,
+mit der Lösung
+$a_n=(\lambda_+^{n+1}-\lambda_-^{n+1})/(\lambda_+-\lambda_-)$, wobei
+$\lambda_\pm = \frac{1}{2}\pm\frac{1}{2}\sqrt{5}$.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Unendliche Reihen}
+
+Für eine Folge $a_n$ definieren wir die Folge der Partialsummen
+\[
+S_N=\sum_{n=0}^N a_n
+\]
+und die unendliche Reihe
+\[
+\sum_{n=0}^\infty a_n \equiv \lim_{N\to\infty} S_N \,,
+\]
+falls dieser Grenzwert existiert. Falls der Grenzwert nicht existiert,
+heißt die unendliche Reihe divergent.
+
+Die geometrische Reihe ist
+\[
+\sum_{n=0}^\infty q^n = \frac{1}{1-q}
+\]
+für $|q|<1$ (sonst divergent) wegen der ``Teleskopsumme''
+\[
+(1-q)\sum_{n=0}^N q^n = \sum_{n=0}^N \left(q^n-q^{n+1}\right) = 1-q^{N+1} \,,
+\]
+während die harmonische Reihe
+\[
+\sum_{n=1}^\infty \frac{1}{n}
+\]
+wegen
+\[
+\sum_{n=1}^{2^N} \frac{1}{n} \ge 1 + \frac{N}{2}
+\]
+divergiert.
+
+\end{document}
+

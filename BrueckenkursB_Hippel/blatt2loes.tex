@@ -1,0 +1,441 @@
+\documentclass[11pt,answers]{exam}
+\usepackage[german]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{latexsym,ifthen,amssymb,amsfonts,amsmath}
+
+\begin{document}
+
+\include{definitions}
+
+\pagestyle{empty}
+
+\def\loesungen{1}
+\newcommand{\lansel}[2]{#1}
+
+\ifthenelse{\equal{\loesungen}{1}}{\printanswers}{\relax}
+\renewcommand{\solutiontitle}{\noindent\textbf{L\"osung:}\enspace}
+\newcommand{\loesungname}{\ifthenelse{\equal{\loesungen}{1}}{L\"osungen zu }{\relax}}
+
+\begin{center}
+\textbf{\LARGE \loesungname \lansel{\"Ubungsblatt}{Examples Sheet} 3} \\ \vspace{1ex}
+\textbf{\large \lansel{zum Mathematischen Brückenkurs \\ für Naturwissenschaftler:innen}{for the preparatory mathematics course for bio- and geoscientists}} \\ \vspace{1ex}
+\textbf{\large \lansel{im Wintersemester}{Winter} 2023/24} \\ \vspace{0.5cm}
+\textrm{\normalsize \hfill \lansel{Dozent}{Lecturer}: PD Dr. G. von Hippel\hfill${}$}
+\end{center}
+\normalsize\vspace{0.5cm}
+
+\ifthenelse{\equal{\loesungen}{1}}{
+\begin{center}
+\textbf{Die direkte Weitergabe der Musterl\"osungen an Studierende ist nicht gestattet!}
+\end{center}
+}{
+\vspace{3ex}
+}
+
+\begin{questions}
+\pointname{ P.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \input{Q_differenzial.tex}
+\question{{\it Eigenschaften von reellen Funktionen}}
+
+Bestimmen Sie für die folgenden Funktionen $f:\Rset\to\Rset$ jeweils, ob diese nach oben bzw. nach unten beschränkt, beschränkt, monoton wachsend bzw. fallend, streng monoton wachsend bzw. fallend, und gerade bzw. ungerade sind.\\
+\parbox{0.4\textwidth}{\begin{enumerate}
+\item $f(x)=x^2$
+\item $f(x)=\rme^x$
+\item $f(x)=\rme^{-x^2}$
+\item $f(x)=\sin x$
+\item $f(x)=\sin (x^2)$
+\end{enumerate}}\parbox{0.6\textwidth}{\begin{enumerate}\setcounter{enumi}{5}
+\item $f(x)=x^5+x^3-x$
+\item $f(x)=(x^2-1)^2$
+\item $f(x)=\rme^x+\rme^{-x}$
+\item $f(x)=\rme^x-\rme^{-x}$
+\item $f(x)=x\log(x^2+1)$
+\end{enumerate}}
+\begin{solution} Wir verwenden die folgenden Abk"urzungen: OB (nach oben beschr"ankt), UB (nach unten beschr"ankt), B (beschr"ankt), MW (monoton wachsend), MF (monoton fallend), sMW (streng monoton wachsend), sMF (streng monoton fallend), G (gerade), U (ungerade).
+\begin{center}
+% \renewcommand{\arraystretch}{1.5}
+% \setlength{\tabcolsep}{5pt}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Nr & OB & UB & B & MW & MF & sMW & sMF & G & U\\
+\hline
+1 & n & j & n & n & n & n & n & j & n \\
+\hline
+2 & n & j & n & j & n & j & n & n & n \\
+\hline
+3 & j & j & j & n & n & n & n & j & n \\
+\hline
+4 & j & j & j & n & n & n & n & n & j \\
+\hline
+5 & j & j & j & n & n & n & n & j & n \\
+\hline
+6 & n & n & n & n & n & n & n & n & j \\
+\hline
+7 & n & j & n & n & n & n & n & j & n \\
+\hline
+8 & n & j & n & n & n & n & n & j & n \\
+\hline
+9 & n & n & n & j & n & j & n & n & j \\
+\hline
+10 & n & n & n & j & n & j & n & n & j \\
+\hline
+\end{tabular}
+\end{center}
+\end{solution}
+
+
+
+\question{{\it Grenzwerte von Funktionen}}
+
+Bestimmen Sie jeweils die folgenden Grenzwerte:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $\lim\limits_{x\to 0} x^2$
+\item $\lim\limits_{x\to 0} \rme^{-x^2}$
+\item $\lim\limits_{x\to 0} \rme^{-\frac{1}{x^2}}$
+\item $\lim\limits_{x\to 2} \frac{x-2}{x^2+1}$
+\item $\lim\limits_{x\to 1^+} \left(x+\sqrt{x-1}\right)$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{5}
+\item $\lim\limits_{x\to 0} \frac{\rme^x-1}{2x}$
+\item $\lim\limits_{x\to 1} \frac{(x^2-1)^2}{1-x}$
+\item $\lim\limits_{x\to 0} x\cot x$
+\item $\lim\limits_{x\to 0} \frac{x^3}{\sinh^3 x}$
+\item $\lim\limits_{x\to 0^+} x\sin\left(\frac{1}{x}\right)$
+\end{enumerate}}
+\begin{solution}
+\begin{enumerate}
+\item $\lim\limits_{x\to 0} x^2=0$
+\item $\lim\limits_{x\to 0} \rme^{-x^2}=1$
+\item $\lim\limits_{x\to 0} \rme^{-\frac{1}{x^2}}=0$
+\item $\lim\limits_{x\to 2} \frac{x-2}{x^2+1}=0$
+\item $\lim\limits_{x\to 1^+} \left(x+\sqrt{x-1}\right)=1$
+\item $\lim\limits_{x\to 0} \frac{\rme^x-1}{2x}=\frac{1}{2}$
+\item $\lim\limits_{x\to 1} \frac{(x^2-1)^2}{1-x}=0$
+\item $\lim\limits_{x\to 0} x\cot x=1$
+\item $\lim\limits_{x\to 0} \frac{x^3}{\sinh^3 x}=1$
+\item $\lim\limits_{x\to 0^+} x\sin\left(\frac{1}{x}\right)=0$
+\end{enumerate}
+\end{solution}
+
+
+
+\question{{\it Ableitung von Funktionen -- I}}
+
+Bestimmen Sie jeweils die Ableitung folgender Funktionen ausgehend von der Definition der Ableitung:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $f(x)=x^2$
+\item $f(x)=x^3$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{2}
+\item $f(y)=\sin y$
+\item $f(y)=\cos x$
+\end{enumerate}}
+\begin{solution} Die Definition der Ableitung erfolgt mittels des Differentialquotienten
+\begin{align*}
+f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}.
+\end{align*}
+1. $f(x)=x^2$
+\begin{align*}
+f'(x)
+&=\lim_{h\to 0}\frac{(x+h)^2-x^2}{h}
+=\lim_{h\to 0}\frac{x^2+2xh+h^2-x^2}{h}
+=\lim_{h\to 0}\frac{2xh+h^2}{h}
+\\
+&
+=\lim_{h\to 0}(2x+h)=2x
+\end{align*}
+2. $f(x)=x^3$
+\begin{align*}
+f'(x)
+&=\lim_{h\to 0}\frac{(x+h)^3-x^3}{h}
+=\lim_{h\to 0}\frac{x^3+3x^2h+3xh^2+h^3-x^3}{h}
+\\
+&
+=\lim_{h\to 0}\frac{3x^2h+3xh^2+h^3}{h}
+=\lim_{h\to 0}(3x^2+3xh+h^2)=3x^2
+\end{align*}
+3. $f(y)=\sin(y)$
+\begin{align*}
+f'(y)
+&=\lim_{h\to 0}\frac{\sin(y+h)-\sin(y)}{h}
+=\lim_{h\to 0}\frac{2\cos\left(y+\frac{h}{2}\right)\sin\left(\frac{h}{2}\right)}{h}
+\\
+&
+=
+\underbrace{\left(\lim_{h\to 0}\cos\left(y+\frac{h}{2}\right)\right)}_{\to\cos(y)}
+\underbrace{\left(\lim_{h\to 0}\frac{\sin\left(\frac{h}{2}\right)}{\frac{h}{2}}\right)}_{\to 1}
+\\
+&=
+\cos(y)
+\end{align*}
+4. $f(y)=\cos(x)$
+\begin{align*}
+f'(y)
+&=\lim_{h\to 0}\frac{\cos(x)-\cos(x)}{h}
+=\lim_{h\to 0}0 =0
+\end{align*}
+\end{solution}
+
+
+%\pagebreak
+
+\question{{\it Ableitung von Funktionen -- II}}
+
+Bestimmen Sie jeweils die Ableitung folgender Funktionen nach dem angegebenen Argument, und geben Sie die zugehörigen Definitionsbereiche an:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $f(x)=x^2$
+\item $f(x)=x^n+x^p-c$, $n\in\Nset$, $p>0$
+\item $g(\omega)=\sin(\omega t+\varphi)$
+\item $h(t)=\sin(\omega t+\varphi)$
+\item $f(s)=\sqrt{s^2+1}$
+\item $p(q)=-(q^2-a^2)^2$
+\item $S(h)=\rme^{\alpha h^2+\beta h-\gamma}+\rme^{\omega h}$
+\item $\lambda(x)=x\sin x+x^2\cos x$
+\item $\rho(\sigma)=\sigma\log\sigma-\sigma$
+\item $\theta(z)=\sum_{k=1}^8 k z^k$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{10}
+\item $f(y)=\frac{y^2-2y-1}{y^2+4}$
+\item $f(y)=\frac{y^2-2y-1}{y^2-4}$
+\item $f(x)=\frac{\rme^x+\rme^{-2x}}{1+\rme^{x^2}}$
+\item $s(x)=x\sqrt{1+x^2}$
+\item $w(t)=\sqrt{\left(1-x^2\right)^2}$
+\item $\sigma(t)=|t+1|$
+\item $r(t)=\sin^2(\omega t)+\cos^2(\omega t+\phi)$
+\item $z(x)=\frac{\sin x-\cos x}{x^2+2}$
+\item $k(x)=\log\sqrt{x^4+1}$
+\item $f(x)=\sqrt{\log(x^4+1)}$
+\end{enumerate}}
+\begin{solution}
+\begin{enumerate}
+\item $f'(x)=2x$\\ $D_{f'}=\mathbb{R}$
+\item $f'(x)=n x^{n-1}+p x^{p-1}$\\ $D_{f'}=\mathbb{R}$
+\item $g'(\omega)=t \cos (t \omega +\varphi )$\\ $D_{g'}=\mathbb{R}$
+\item $h'(t)=\omega  \cos (t \omega +\varphi )$\\ $D_{h'}=\mathbb{R}$
+\item $f'(s)=\frac{s}{\sqrt{s^2+1}}$\\ $D_{s'}=\mathbb{R}$
+\item $p'(q)=-4 q \left(a^2+q^2\right)$\\ $D_{p'}=\mathbb{R}$
+\item $S'(h)=(\beta +2 \alpha  h) e^{-\gamma +\alpha  h^2+\beta  h}+\omega  e^{h \omega }$\\ $D_{h'}=\mathbb{R}$
+\item $\lambda'(x)=-x^2\sin (x)+\sin (x)+3 x \cos (x)$\\ $D_{\lambda'}=\mathbb{R}$
+\item $\rho'(\sigma)=\log (\sigma )$\\ $D_{\rho'}=\mathbb{R}^+$
+\item $\theta'(z)=64 z^7+49 z^6+36 z^5+25 z^4+16 z^3+9 z^2+4 z+1$
+\\ $D_{\theta'}=\mathbb{R}$
+\item $f'(y)=\frac{2 y (y+5)-8}{\left(y^2+4\right)^2}$\\ $D_{f'}=\mathbb{R}$
+\item $f'(y)=\frac{2 (y-3) y+8}{\left(y^2-4\right)^2}$\\ 
+$D_{f'}=\mathbb{R}\backslash\{-2,2\}$
+\item $f'(x)=\frac{e^{-2 x} \left(-2 e^{x^2} (x+1)+e^{x (x+3)} (1-2 x)+e^{3
+   x}-2\right)}{\left(e^{x^2}+1\right)^2}$\\ $D_{f'}=\mathbb{R}$
+\item $s'(x)=\frac{2 x^2+1}{\sqrt{x^2+1}}$\\ $D_{s'}=\mathbb{R}$
+\item $w'(t)=\frac{2 t \left(t^2-1\right)}{\sqrt{\left(t^2-1\right)^2}}$\\ 
+$D_{w'}=\mathbb{R}\backslash\{-1,1\}$
+\item $\sigma'(t)=\text{sgn}(t+1)$\\ $D_{\sigma'}=\mathbb{R}$
+\item $r'(t)=2 \omega  \sin (t \omega ) \cos (t \omega )-2 \omega  
+\sin (t \omega +\phi ) \cos (t \omega+\phi )$\\ $D_{r'}=\mathbb{R}$
+\item $z'(x)=\frac{((x-2) x+2) \sin (x)+(x (x+2)+2) \cos (x)}{\left(x^2+2\right)^2}$\\ $D_{z'}=\mathbb{R}$
+
+\item $k'(x)=\frac{2 x^3}{x^4+1}$\\ $D_{k'}=\mathbb{R}$
+
+\item $f'(x)=\frac{2 x^3}{\left(x^4+1\right) \sqrt{\log \left(x^4+1\right)}}$\\ $D_{f'}=\mathbb{R}\backslash\{0\}$
+\end{enumerate}
+\end{solution}
+
+
+
+\question{{\it Höhere Ableitungen}}
+
+Bestimmen Sie jeweils die ersten, zweiten und dritten Ableitungen folgender Funktionen nach dem angegebenen Argument:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $f(x)=x^2-2x+1$
+\item $f(x)=\rme^{-\frac{x^2}{2}}$
+\item $g(y)=y\log y$
+\item $h(r)=\frac{1}{1+r^2}$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{4}
+\item $u(\tau)=\sin^2(\tau^3) $
+\item $g(x)=\rme^{\sin x}$
+\item $f(x)=\sin(\alpha x)+\alpha\cos x$
+\item $t(\alpha)=\tan\alpha$
+\end{enumerate}}
+\begin{solution}\\
+1.
+\begin{align*}
+f'(x)&=-2+2x
+\\
+f''(x)&=2
+\\
+f'''(x)&=0
+\end{align*}
+2.
+\begin{align*}
+f'(x)&=-e^{-\frac{x^2}{2}} x
+\\
+f''(x)&=e^{-\frac{x^2}{2}} x^2-e^{-\frac{x^2}{2}}
+\\
+f'''(x)&=3 e^{-\frac{x^2}{2}} x-e^{-\frac{x^2}{2}} x^3
+\end{align*}
+3.
+\begin{align*}
+g'(y)&=\log (y)+1
+\\
+g''(y)&=\frac{1}{y}
+\\
+g'''(y)&=-\frac{1}{y^2}
+\end{align*}
+4.
+\begin{align*}
+h'(r)&=-\frac{2 r}{\left(r^2+1\right)^2}
+\\
+h''(r)&=\frac{6 r^2-2}{\left(r^2+1\right)^3}
+\\
+h'''(r)&=-\frac{24 r \left(r^2-1\right)}{\left(r^2+1\right)^4}
+\end{align*}
+5.
+\begin{align*}
+u'(\tau)&=3 \tau ^2 \sin \left(2 \tau ^3\right)
+\\
+u''(\tau)&=6 \tau  \left(\sin \left(2 \tau ^3\right)+3 \tau ^3 \cos \left(2 \tau ^3\right)\right)
+\\
+u'''(\tau)&=6 \left(18 \tau ^3 \cos \left(2 \tau ^3\right)+\left(1-18 \tau ^6\right) \sin \left(2 \tau
+   ^3\right)\right)
+\end{align*}
+6.
+\begin{align*}
+g'(x)&=e^{\sin (x)} \cos (x)
+\\
+g''(x)&=e^{\sin (x)} \left(\cos ^2(x)-\sin (x)\right)
+\\
+g'''(x)&=e^{\sin (x)} \cos (x) \left(-3 \sin (x)+\cos ^2(x)-1\right)
+\end{align*}
+7.
+\begin{align*}
+f'(x)&=\alpha  (\cos (\alpha  x)-\sin (x))
+\\
+f''(x)&=-\alpha  (\alpha  \sin (\alpha  x)+\cos (x))
+\\
+f'''(x)&=\alpha  \left(\sin (x)-\alpha ^2 \cos (\alpha  x)\right)
+\end{align*}
+8.
+\begin{align*}
+t'(\alpha)&=\sec ^2(\alpha )
+\\
+t''(\alpha)&=2 \tan (\alpha ) \sec ^2(\alpha )
+\\
+t'''(\alpha)&=-2 (\cos (2 \alpha )-2) \sec ^4(\alpha )
+\end{align*}
+\end{solution}
+
+
+
+\question{{\it Taylor-Reihen}}
+
+Entwickeln Sie folgende Funktionen jeweils in eine Taylor-Reihe um den angegebenen Punkt:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $P(x)=x^2+px+q$, $x=p$
+\item $f(x)=\rme^{-x}$, $x=0$
+\item $f(x)=\sin x$, $x=\pi$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{3}
+\item $f(y)=\log y$, $y=1$
+\item $f(x)=\log(x+1)$, $x=0$
+\item $g(\rho)=\frac{1}{1-\rho}$, $\rho=0$
+\end{enumerate}}
+\begin{solution} Zur Definition der Taylor-Reihe betrachtet man eine beliebig oft differenzierbare Funktion $f:I\to\mathbb{R}$ sowie $a\in I$. Dann hei"st
+\begin{align*}
+T[f,a](x):=\sum_{k=0}^\infty\frac{f^{(k)}(a)}{k!}(x-a)^k
+\end{align*}
+die Taylor-Reihe von $f$ mit Entwicklungspunkt $a$.
+\\
+1.
+\begin{align*}
+T[P,p](x)=(2p^2+q)+3p(x-p)+(x-p)^2
+\end{align*}
+2.
+\begin{align*}
+T[f,0](x)=\sum_{n=0}^\infty(-1)^n\frac{x^n}{n!}
+\end{align*}
+3.
+\begin{align*}
+T[f,\pi](x)=\sum_{n=0}^\infty(-1)^{n+1}\frac{(x-\pi)^{2n+1}}{(2n+1)!}
+\end{align*}
+4.
+\begin{align*}
+T[f,1](x)=\sum_{n=0}^\infty(-1)^{n}\frac{(x-1)^{n+1}}{n+1}
+\end{align*}
+5.
+\begin{align*}
+T[f,0](x)=\sum_{n=0}^\infty(-1)^{n}\frac{x^{n+1}}{n+1}
+\end{align*}
+6.
+\begin{align*}
+T[f,0](x)=\sum_{n=0}^\infty x^n
+\end{align*}
+\end{solution}
+
+
+
+\question{{\it Extrema von Funktionen}}
+
+Bestimmen Sie jeweils alle lokalen sowie die globalen Extrema der folgenden Funktionen auf dem angegebenen Definitionsbereich:\\
+\parbox{0.5\textwidth}{\begin{enumerate}
+\item $f(x)=\lambda(x^2-v^2)^2$, $x\in\Rset$
+\item $f(x)=\rme^{-x}$, $x\in[0;1]$
+\item $f(x)=\sin x$, $x\in [-\pi/2;\pi]$
+\end{enumerate}}\parbox{0.5\textwidth}{\begin{enumerate}\setcounter{enumi}{3}
+\item $f(x)=|x^2-1|$, $x\in[-2;5]$
+\item $f(x)=x^2\rme^{-x^2}$, $x\in[0;\infty)$
+\item $g(t)=\frac{t+1}{t^2-4}$, $t\in\Rset\backslash\{\pm 2\}$
+\end{enumerate}}
+\begin{solution} Die notwendige Bedingung f"ur ein lokales Extremum $x_0\in D$ einer differenzierbaren Funktion $f:D\to\mathbb{R}$ ist $f'(x_0)=0$. Des Weiteren nimmt jede in einem kompakten Intervall stetig Funktion $f:[a,b]\to\mathbb{R}$ ihr absolutes Maximum (Minimum) an, wof"ur am Rand nicht notwendigerweise $f'(x)=0$ gelten muss.
+\\
+Im Folgenden soll $\mathbb{L}$ die Menge der Extremstellen bezeichnen.
+\\ \\
+1.
+\begin{align*}
+f'(x)=4 \lambda  x \left(x^2-v^2\right)=0
+\quad\rightsquigarrow\quad
+\mathbb{L}=\{0,-v,v\}.
+\end{align*}
+2.
+\begin{align*}
+f'(x)=-e^{-x}=0
+\quad\rightsquigarrow\quad
+\mathbb{L}=\emptyset.
+\end{align*}
+Jedoch nimmt $f$ ($f$ ist stetig) auf den R"andern von $D=[0;1]$ ($D$ ist kompakt) bei $x=0$ das absolute Maximum und bei $x=1$ das absolute Minimum an. Hier gilt f"ur die Extrema beispielsweise nicht $f'(x)=0$.
+\\ \\
+3.
+\begin{align*}
+f'(x)=\cos(x)=0
+\quad\rightsquigarrow\quad
+\mathbb{L}=\left\{\frac{\pi}{2}+\pi k:k\in\mathbb{Z}\right\}.
+\end{align*}
+Hierbei nimmt $f$ ($f$ ist stetig) auf $D=[-\pi/2,\pi]$ ($D$ ist kompakt) bei $x=-\pi/2$ das absolute Minimum und bei $x=\pi/2$ das absolute Maximum an.
+\\ \\
+4.
+\begin{align*}
+f'(x)=2x\,\text{sgn}(x^2-1)=0
+\quad\rightsquigarrow\quad
+\mathbb{L}=\{-1,0,1\}
+\end{align*}
+Die Funktion $f$ ($f$ ist stetig, jedoch bei $x=\pm 1$ nicht differenzierbar) nimmt bei $x=\pm 1$ ihre Minima an, sowie auf dem Rand von $D=[-2,5]$ bei $x=5$ ihre absolutes Maximum. 
+\\ \\
+5.
+\begin{align*}
+f'(x)=2xe^{-x^2}-2 x^3e^{-x^2}=-2 e^{-x^2} x \left(x^2-1\right)=0
+\quad\rightsquigarrow\quad
+\mathbb{L}=\{-1,0,1\}
+\end{align*}
+Die Funktion $f$ ($f$ ist stetig) nimmt auf $D=[0,\infty)$ (jedoch $D$ ist nicht kompakt) ihr absolutes Maximum bei $x=1$ und ihr Minimum bei $x=0$ an
+\\ \\
+6.
+\begin{align*}
+f'(x)=-\frac{x (x+2)+4}{\left(x^2-4\right)^2}=0
+\quad\rightsquigarrow\quad
+\mathbb{L}=\emptyset
+\end{align*}
+Die Funktion $f$ besitzt auf $D$ ($D$ ist nicht kompakt) keine Extrema.
+\end{solution}
+
+
+
+\end{questions}
+
+\end{document}

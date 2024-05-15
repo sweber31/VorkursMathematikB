@@ -1,0 +1,279 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{Zusammenfassung zum Thema \\ Differential- und Integralrechnung}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+{\bf Funktionen einer reellen Variablen}
+
+Wir betrachten im folgenden Funktionen $f:D\to\Rset$ mit $D\subseteq\Rset$.
+Eine solche Funktion heißt
+\begin{itemize}\setlength\itemsep{0pt}\parskip0pt\setlength\parsep{0pt}
+\item {nach oben beschränkt}, wenn $\exists S\in\Rset~\forall x\in D~f(x)\le S$,
+\item {nach unten beschränkt}, wenn $\exists S\in\Rset~\forall x\in D~f(x)\ge S$,
+\item {beschränkt}, wenn $\exists S\in\Rset~\forall x\in D~|f(x)|\le S$,
+\item {monoton wachsend}, wenn $x>y\Rightarrow f(x)\ge f(y)$,
+\item {monoton fallend}, wenn $x>y\Rightarrow f(x)\le f(y)$,
+\item {streng monoton wachsend}, wenn $x>y\Rightarrow f(x)>f(y)$, 
+\item {streng monoton fallend}, wenn $x>y\Rightarrow f(x)<f(y)$.
+\end{itemize}
+Falls ferner $x\in D\Rightarrow -x\in D$ gilt, heißt eine Funktion
+\begin{itemize}\setlength\itemsep{0pt}\parskip0pt\setlength\parsep{0pt}
+\item {gerade}, wenn $f(-x)=f(x)$,
+\item {ungerade}, wenn $f(-x)=-f(x)$.
+\end{itemize}
+Falls $x\in D\Rightarrow (x+p)\in D$ und $f(x+p)=f(x)$ gilt, heißt die
+Funktion periodisch mit Periode $p$.
+
+Einige besonders wichtige Funktionen sind die sog.~elementaren Funktionen:
+\begin{center}
+\begin{tabular}{cccccc}
+$f(x)\equiv y$ & $D$ & $W$ & $f^{-1}(y)\equiv x$ & $f'(x)$ & $\int f(x)~\rmd x$ \\\hline
+$x^\alpha$,~$\alpha>0$ & $[0;\infty)$ & $[0;\infty)$ & $y^{1/\alpha}$ & $\alpha x^{\alpha-1}$ & $\frac{1}{\alpha+1}x^{\alpha+1} $\\
+$x^\alpha$,~$\alpha<0$ & $(0;\infty)$ & $(0;\infty)$ & $y^{1/\alpha}$ & $\alpha x^{\alpha-1}$ & $\left\{{\frac{1}{\alpha+1}x^{\alpha+1},~\alpha\not=-1 \atop \log|x|,~\alpha=-1}\right. $\\
+$\rme^x$ & $\Rset$ & $(0;\infty)$ & $\log y$ & $\rme^x$ & $\rme^x$\\
+$\sin x$ & $[-\frac{\pi}{2};\frac{\pi}{2}]$ & $[-1;1]$ & $\arcsin y$ & $\cos x$ & $-\cos x$\\
+$\cos x$ & $[0;\pi]$ & $[-1;1]$ & $\arccos y$ & $-\sin x$ & $\sin x$\\
+$\tan x$ & $(-\frac{\pi}{2};\frac{\pi}{2})$ & $\Rset$ & $\arctan y$ & $1/\cos^2 x$ & $-\log\cos x$\\
+$\cot x$ & $(0;\pi)$ & $\Rset$ & $\mathrm{arccot}~y$ & $-1/\sin^2 x$ & $\log\sin x$\\
+$\sinh x$ & $\Rset$ & $\Rset$ & $\mathrm{arsinh}~y$ & $\cosh x$ & $\cosh x$\\
+$\cosh x$ & $[0;\infty)$ & $[1;\infty)$ & $\mathrm{arcosh}~y$ & $\sinh x$ & $\sinh x$
+\end{tabular}
+\end{center}
+Hierbei ist jeweils der maximale Definitionsbereich angegeben, auf dem
+eine Umkehrfunktion existiert. Natürlich lassen sich die trigonometrischen
+Funktionen auf ganz $\Rset$ ausdehnen und sind dann periodisch,
+$\sin(x+2\pi)=\sin x$ etc. Ebenso lassen sich ganzzahlige Potenzen und
+der cosinus hyperbolicus auf negative Argumente ausdehnen.\\
+
+{\bf Stetigkeit und Grenzwerte von Funktionen}
+
+Eine Funktion $f:D\to\Rset$ heißt stetig an der Stelle $a\in D$,
+wenn für {\bf alle} Folgen $a_n$ mit $a_n\in D$ und $\lim\limits_{n\to\infty} a_n=a$
+gilt, dass $\lim\limits_{n\to\infty} f(a_n)=f(a)$.
+Eine Funktion, die an allen $a\in D$ stetig ist, nennen wir auch stetig auf $D$.
+Für stetige Funktionen $f,g:D\to\Rset$, $h:\textrm{Im}~f\to\Rset$, sind auch
+$f+g:x\mapsto f(x)+g(x)$, $f\cdot g:x\mapsto f(x)g(x)$, $h\circ f:x\mapsto h(f(x))$, sowie für $g(x)\not= 0$ auch $f/g:x\mapsto f(x)/g(x)$ stetig.
+
+Die elementaren Funktionen sind auf ihrem jeweiligen Definitionsbereich
+stetig.
+Ein Beispiel für eine nicht-stetige Funktion ist die Vorzeichenfunktion
+\[
+\textrm{sgn}~x=\left\{\begin{array}{l}+1,~x>0,\\0,~x=0,\\-1,~x<0,\end{array}\right.
+\]
+die bei Null unstetig ist.
+
+Wenn für eine Funktion die Grenzwerte $\lim\limits_{n\to\infty} f(a_n)$
+für {\bf alle} Folgen $a_n$ mit $a_n\in D$ und $\lim\limits_{n\to\infty} a_n=a$
+übereinstimmen, definieren wir den Grenzwert der Funktion als
+\[
+\lim\limits_{x\to a} f(x)\equiv \lim\limits_{n\to\infty} f(a_n).
+\]
+Für stetiges $f$ gilt $\lim\limits_{x\to a} f(x)=f(a)$.
+
+Ein rechtsseitiger Grenzwert $\lim\limits_{x\to a^+} f(x)$
+lässt sich definieren, falls
+die Grenzwerte $\lim\limits_{n\to\infty} f(a_n)$ für alle Folgen $a_n$
+mit $a_n\in D$, $a_n>a$ und $\lim\limits_{n\to\infty} a_n=a$ übereinstimmen.
+Entsprechend kann man einen linksseitigen Grenzwert
+$\lim\limits_{x\to a^-} f(x)$ definieren.\\
+
+{\bf Differenzierbarkeit}
+
+Eine Funktion $f:D\to\Rset$ heißt differenzierbar an der Stelle $a\in D$,
+wenn der Grenzwert $\lim\limits_{x\to a}\frac{f(x)-f(a)}{x-a}\equiv f'(a)$
+existiert.
+Dieser heißt die Ableitung von $f$ an der Stelle $a$.
+
+Oft schreibt man auch $f'(x)=\frac{\rmd f}{\rmd x}$, wobei der
+Differentialquotient den Grenzwert des Differenzenquotienten symbolisiert.
+Eine differenzierbare Funktion ist auch stetig.
+
+Die Ableitung von $f$ definiert wieder eine Funktion $f':D'\to \Rset$,
+$x\mapsto f'(x)$ mit $D'\subseteq D$.
+Die Ableitung $f''$ von $f'$ heißt die zweite Ableitung von $f$.
+      Für die dritte und höhere Ableitungen schreiben wir auch
+      $f^{(n)} = \frac{\rmd^nf}{\rmd x^n} = \frac{\rmd}{\rmd x}f^{(n-1)}$.
+
+Die elementaren Funktionen
+sind auf ihrem jeweiligen Definitionsbereich (z.T. mit Ausnahme der Randpunkte)
+auch differenzierbar.
+Ein Beispiel für eine stetige, nicht-differenzierbare Funktion ist
+die Betragsfunktion $|x|$, die bei $x=0$ nicht differenzierbar ist.
+
+Wenn $f,g:D\to\Rset$ an der Stelle $x$ differenzierbar sind, so gelten
+die Summenregel
+\[
+\frac{\rmd}{\rmd x}(f+g)=f'(x)+g'(x)
+\]
+sowie die Produktregel
+\[
+\frac{\rmd}{\rmd x}(fg)=f'(x)g(x)+f(x)g'(x)\,.
+\]
+Wenn $f:D\to\Rset$ an der Stelle $x$ differenzierbar ist, und
+$g:\textrm{Im}~f\to\Rset$ an der Stelle $f(x)$ differenzierbar ist,
+so gilt die Kettenregel
+\[
+\frac{\rmd}{\rmd x}(g\circ f)=g'(f(x))f'(x)\,.
+\]
+Wenn $f:D\to W$, $W\subseteq\Rset$ bijektiv und an der Stelle $x$
+differenzierbar mit $f'(x)\not=0$ ist, so ist die Umkehrfunktion
+$f^{-1}:W\to D$ an der Stelle $y=f(x)$ differenzierbar, und es gilt
+die Umkehrfunktionsregel
+\[
+\frac{\rmd}{\rmd y}f^{-1}(y) = \frac{1}{f'(f^{-1}(y))}\,.
+\]
+Aus der Produkt- und der Kettenregel folgt, wenn $f,g:D\to\Rset$
+an der Stelle $x$ mit $g(x)\not=0$ differenzierbar sind, die Quotientenregel
+\[
+\frac{\rmd}{\rmd x}\frac{f}{g}=\frac{f'(x)g(x)-f(x)g'(x)}{g(x)^2}
+\]
+\pagebreak
+
+{\bf Taylor-Entwicklung und Regel von de l'H\^opital}
+
+Für eine differenzierbare Funktion $f$ ist die beste lineare Näherung
+nahe $x=x_0$ durch die Tangente gegeben $f(x)= f(x_0)+f'(x_0)(x-x_0) +R(x)$,
+wobei der Rest $R(x)$ für $x\to x_0$ schneller als $(x-x_0)$ verschwinden
+muss.
+Für Quotienten $f(x)/g(x)$ mit $f(x)=g(x)=0$ gilt daher die
+Regel von de l'H\^opital,
+\[
+\lim\limits_{y\to x}\frac{f(y)}{g(y)} = \lim\limits_{y\to x}\frac{f'(y)}{g'(y)}\,.
+\]
+Eine bessere als die lineare Näherung an $f$ kann (für hinreichend oft
+differenzierbares $f$) durch Polynome höheren Grades erzielt
+werden, wenn wir verlangen, dass die ersten $n$ Ableitungen an der Stelle $x_0$
+mit denen von $f$ übereinstimmen sollen:
+\[
+f(x) =\sum_{k=0}^n \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k + \underbrace{R_n(x)}_{\to 0,~x\to x_0}
+\]
+wobei der Rest für $x\to x_0$ schneller als $(x-x_0)^n$ verschwinden muss.
+Wenn $\lim\limits_{n\to\infty}R_n(x)=0$, spricht man von einer reell
+analytischen Funktion, die durch ihre Taylor-Reihe dargestellt wird:
+\[
+f(x)=\sum_{k=0}^\infty \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k
+\]
+Beispiele sind
+\[
+\rme^x = \sum\limits_{n=0}^\infty \frac{x^n}{n!}~~~~~~~\sin x = \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1}~~~~~~~\cos x = \sum\limits_{n=0}^\infty \frac{(-1)^n}{(2n)!}x^{2n}
+\]
+
+{\bf Extrema}
+
+Die Funktion $f:D\to\Rset$ hat ein lokales
+$\left\{{\textrm{Maximum} \atop \textrm{Minimum}}\right\}$ bei $x_0$, wenn
+\[\exists \epsilon>0~\forall x\in D\cap(x_0-\epsilon;x_0+\epsilon)~
+f(x)\left\{{\le \atop \ge}\right\}f(x_0)\] Gilt sogar
+$\forall x\in D~f(x)\left\{{\le \atop \ge}\right\}f(x_0)$, heißt $x_0$
+globales $\left\{{\textrm{Maximum} \atop \textrm{Minimum}}\right\}$.
+Der Überbegriff für Maximum und Minimum ist Extremum.
+
+Es gilt: Ein Extremum $x_0$ liegt entweder auf dem Rand von $D$, oder
+$f$ ist an der Stelle $x_0$ nicht differenzierbar, oder $f'(x_0)=0$.
+
+Wenn $f'(x_0)=0$, so ist $x_0$ für $f''(x_0)>0$ ein Minimum,
+für $f''(x_0)<0$ ein Maximum, und für $f''(x_0)=0$ entweder ein Sattelpunkt,
+$f^{(3)}(x_0)\not=0$, oder es müssen höhere Ableitungen betrachtet werden,
+um das Verhalten von $f$ nahe $x_0$ zu entscheiden.\\
+
+{\bf Asymptotisches Verhalten}
+
+Wenn für alle Folgen $a_n$, die nach $+\infty$ bzw. nach $-\infty$ divergieren,
+jeweils derselbe Grenzwert $\lim\limits_{n\to\infty} f(a_n)$ existiert,
+definieren wir
+\[
+\lim\limits_{x\to\pm\infty} f(x)\equiv \lim\limits_{n\to\infty} f(a_n)
+\]
+als den Grenzwert von $f$ für $x\to\pm\infty$.
+
+%Im Übrigen sind folgende Notationen zur Beschreibung des Verhaltens
+%einer Funktion in der Umgebung einer Stelle $a$ üblich:
+%\begin{align*}
+%f(x)\sim g(x) & ~~~(x\to a)&&\Leftrightarrow~~~~\lim\limits_{x\to a}\frac{f(x)}{g(x)}=1\\
+%f(x)=o(g(x)) & ~~~(x\to a)&&\Leftrightarrow~~~~\lim\limits_{x\to a}\frac{f(x)}{g(x)}=0\\
+%f(x)=O(g(x)) & ~~~(x\to a)&&\Leftrightarrow~~~~\exists C>0~|f(x)|\le C|g(x)|
+%\end{align*}
+\pagebreak
+
+{\bf Integration}
+
+Eine Funktion $F:D\to\Rset$ heißt Stammfunktion von $f:D\to\Rset$, wenn
+$F$ auf $D$ differenzierbar mit $F'(x)=f(x)$ ist.
+Wenn $F$ Stammfunktion von $f$ ist, so auch $F+c$, $c\in\Rset$.
+Man schreibt
+\[
+F(x) = \int f(x)~\rmd x
+\]
+für die Stammfunktion von $f$ (unbestimmtes Integral).
+
+Wir definieren das bestimmte (Riemann-)Integral als Fläche unter dem
+Graphen einer Funktion $f:[a;b]\to\Rset$ mit Hilfe von Stufensummen,
+\[
+\int_a^b f(x)~\rmd x = \lim\limits_{n\to\infty}\sum_{i=0}^{n-1}f\left(x_i\right)(x_{i+1}-x_i)
+\]
+wenn dieser Limes unabhängig von der gewählten Zerlegung
+$x_i$ ($a=x_0<\ldots<x_n=b$) ist.
+
+
+Für $f:[a;b]\to\Rset$, $F=\int f(x)~\rmd x$, gilt der Hauptsatz der
+Differential- und Integralrechnung:
+\[
+\int_a^b f(x)~\rmd x = F(b)-F(a)\,.
+\]
+Intuitiv ist $f(x)=\frac{\rmd}{\rmd x}\int_a^x f(t)~\rmd t$ verständlich,
+da $f(x)$ angibt, wie schnell die Fläche unter dem Graphen wächst
+(welche für $x=a$ natürlich Null beträgt).
+Algebraisch nutzt man $f(t)=F'(t)$ und nähert $F'(t)h=F(t+h)-F(h)$,
+um die Stufensumme ($x_k=a+kh$, $h=\frac{b-a}{n}$)
+in eine Teleskopsumme zu verwandeln, wobei die Näherung
+im Limes $h\to 0$ exakt wird.
+
+Für integrierbare Funktionen $f,g$ und Konstanten $c\in\Rset$ gilt
+\begin{align*}
+\int (f(x)+g(x))~\rmd x &= \int f(x)~\rmd x+\int g(x)~\rmd x \\
+\int (c\cdot f(x))~\rmd x &= c \int f(x)~\rmd x
+\end{align*}
+Aus der Produktregel für die Ableitung folgt für differenzierbare
+Funktionen $f,g$ die Regel zur partiellen Integration,
+\[
+\int f'(x)g(x)~\rmd x=f(x)g(x)-\int f(x)g'(x)~\rmd x \,.
+\]
+Aus der Kettenregel für die Ableitung folgt, dass für differenzierbare
+Funktionen $f,g$ mit $f$ injektiv die Identität
+\[
+\int g(z)~\rmd z = \int g(f(x))f'(x)~\rmd x
+\]
+mit $z=f(x)$ und $\rmd z=f'(x)~\rmd x$ gilt.
+Für bestimmte Integrale müssen auch die Grenzen transformiert werden:
+\[
+\int_a^b g(z)~\rmd z = \int_{f^{-1}(a)}^{f^{-1}(b)} g(f(x))f'(x)~\rmd x
+~~~~~~bzw.~~~~~~
+\int_a^b g(f(x))f'(x)~\rmd x = \int_{f(a)}^{f(b)} g(z)~\rmd z
+\]
+Rationale Funktionen lassen sich durch Partialbruchzerlegung
+integrieren:
+\[
+\int \frac{P(x)}{Q(x)}~\rmd x = \sum_{i=1}^s\sum_{j=1}^{e_i}\int \frac{A_{ij}}{(x-y_i)^j}~\rmd x + \sum_{i=1}^t\sum_{j=1}^{d_i}\int \frac{B_{ij}x+C_{ij}}{(x^2+a_i x+b_i)^j}~\rmd x
+\]
+wobei Paare komplex konjugierter Wurzeln von $Q$ in der Form von (über $\Rset$
+irreduziblen) quadratischen Polynomen zusammengefasst werden. Die Partialbrüche lassen sich alle elementar integrieren:
+\[
+\int \frac{\rmd x}{(x-y)^k} = \left\{\begin{array}{l}\log|x-y|,~k=1,\\-\frac{1}{(k-1)(x-y)^{k-1}},~k\not=1,\end{array}\right.
+\]
+und entsprechende Formeln für quadratische Nenner.
+
+\end{document}
+

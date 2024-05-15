@@ -1,0 +1,229 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{Zusammenfassung zum Thema \\ Gewöhnliche Differentialgleichungen}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+
+{\bf Gewöhnliche Differentialgleichungen}
+
+Physikalische Gesetze bestimmen zukünftige Zustände durch die momentane
+Veränderung physikalischer Größen in Abhängigkeit vom momentanen Zustand.
+Mathematisch lässt sich eine solche Beziehung durch eine gewöhnliche
+Differentialgleichung
+\[
+f(t,x(t),\dot{x}(t),\ddot{x}(t),\ldots,x^{(n)}(t))=0
+\]
+ausdrücken.
+Physikalische Gesetze sind in der Regel Differentialgleichungen
+2.~Ordnung ($n=2$), gelegentlich auch 1.~Ordnung ($n=1$).
+
+Um eine eindeutige Lösung zu erhalten, müssen wir die
+Differentialgleichung durch $n$ Anfangswertbedingungen
+$x(0)=x_{0}$, $\ldots$, $x^{(n-1)}(0)=x^{(n-1)}_{0}$ ergänzen,
+die den Ausgangszustand beschreiben.
+
+%Zum Beispiel benötigt die Newtonsche Bewegungsgleichung
+%$m\ddot{\vec{x}}=\vec{F}(t,\vec{x}(t),\dot{\vec{x}}(t))$
+%die Angabe von Ausgangsort $\vec{x}(0)=\vec{x}_0$ und
+%Ausgangsgeschwindigkeit $\dot{\vec{x}}(0)=\vec{v}_0$
+%als Anfangswerten, um ein wohlgestelltes mechanisches Problem zu erhalten.
+
+%Für Differentialgleichungen der Form
+%\[
+%\dot{x}(t)=f(x(t),t)
+%\]
+%definieren wir das Richtungsfeld $(1,\dot{x}(t))$ in der $(t,x(t))$-Ebene.
+%Dieses Vektorfeld ist überall tangential
+%zur Kurvenschar der Graphen der Lösungen.
+
+Wir unterscheiden homogene lineare Differentialgleichungen
+\[
+\sum_{k=0}^n c_k\frac{\rmd^kx}{\rmd t^k}=0
+\]
+von inhomogenen linearen Differentialgleichungen
+\[
+\sum_{k=0}^n c_k\frac{\rmd^kx}{\rmd t^k}=f(t)
+\]
+Wenn $x_p(t)$ irgendeine Lösung einer inhomogenen linearen
+Differentialgleichung (sog. partikuläre Lösung) ist
+und $x_h(t)$ die zugehörige homogene Differentialgleichung löst, so
+ist auch $x(t)=x_p(t)+ x_h(t)$ eine Lösung der inhomogenen Gleichung.\\
+
+%\pagebreak
+{\bf Einige lösbare Differentialgleichungen erster Ordnung}
+
+Eine Differentialgleichung der trivialen Form
+\[
+\dot{x}(t)=f(t)
+\]
+hat die Lösung
+\[
+x(t)=\int f(t)\rmd t + c
+\]
+wobei die Integrationskonstante $c$ durch die Anfangswertbedingung
+$x(0)=x_0$ bestimmt wird.
+Entsprechend können Differentialgleichungen beliebiger Ordnung der Form
+\[
+x^{(n)}(t)=f(t)
+\]
+durch $n$-faches Integrieren gelöst werden. Die $n$ Integrationskonstanten
+sind durch die $n$ Anfangswertbedingungen $x^{(k)}(0)=x_0^{(k)}$
+eindeutig bestimmt.
+
+Die einfachste nicht-triviale Differentialgleichung
+\[
+\dot{x}(t)=\lambda x(t)
+\]
+beschreibt einen Prozess, in dem die Veränderung einer Größe proportional
+zu dieser Größe selbst ist.
+Für $\lambda>0$ ist dies ein Wachstumsprozess (z.B. Bakterienkolonie), für $\lambda<0$ ein Zerfallsprozess (z.B. radioaktiver Zerfall). Die Lösung der Wachstums- oder Zerfallsgleichung lautet $x(t)=x_0 \rme^{\lambda t}$.
+
+%Unbegrenztes Wachstum ist unrealistisch -- endliche Ressourcen
+%beschränken Wachstumsprozesse.
+Die logistische Differentialgleichung (frz. {\em logis} = Lebensraum)
+\[
+\dot{x}(t)=\lambda x(t) \left[ \kappa - x(t)\right]
+\]
+beschreibt einen durch eine endliche Kapazität $\kappa$ beschränkten
+Wachstumsprozess.
+%Das Richtungsfeld zeigt, dass die Lösungskurven für $t\to\infty$ gegen
+%$x(t)=\kappa$ streben; d
+Die Lösung lautet:
+$x(t)=\frac{\kappa}{1-(1-\kappa/x_0)\rme^{-\kappa\lambda t}}$.\\%
+
+%Eine Differentialgleichung der Form
+%\[
+%f(x(t))\frac{\rmd x}{\rmd t}=g(t)
+%\]
+%heißt separabel und kann durch Integration auf die Form
+%\[
+%F(x(t)) = G(t) + c
+%\]
+%mit $F$, $G$ Stammfunktionen von $f$, $g$ gebracht werden.
+%Die Integrationskonstante $c$ wird durch die Anfangswertbedingung bestimmt.
+%Die Wachstumsgleichung und die logistische Gleichung sind Beispiele
+%für separable Differentialgleichungen.
+%
+%Eine weitere Klasse lösbarer Differentialgleichungen erster Ordnung sind
+%Differentialgleichungen der Form
+%\[
+%u(x,t)\frac{\rmd x}{\rmd t}+v(x,t)=0
+%~~~~~\textsf{mit}~~
+%\frac{\partial u}{\partial t}=\frac{\partial v}{\partial x}
+%\]
+%(sog. exakte Differentialgleichungen), die sich aufgrund der Beziehungen
+%\[
+%\frac{\rmd f}{\rmd s} = \frac{\partial f}{\partial x}\frac{\rmd x}{\rmd s}
+%+\frac{\partial f}{\partial t}\frac{\rmd t}{\rmd s}
+%~~~~~~~~
+%\frac{\partial^2 f}{\partial x\partial t} = \frac{\partial^2 f}{\partial t\partial x}
+%\]
+%in die Form
+%\[
+%\frac{\rmd f}{\rmd t}=0
+%\]
+%mit $u=\frac{\partial f}{\partial x}$ und $v=\frac{\partial f}{\partial t}$
+%überführen und durch
+%\[
+%f(x(t),t)=c
+%\]
+%lösen lassen, wobei die Integrationskonstante $c$ durch die Anfangswertbedingung
+%festgelegt wird.
+%
+%Wenn in einer Differentialgleichung der Form
+%\[
+%u(x,t)\frac{\rmd x}{\rmd t}+v(x,t)=0
+%\]
+%die Beziehung
+%\[
+%\frac{\partial u}{\partial t}=\frac{\partial v}{\partial x}
+%\]
+%nicht gilt, so kann dennoch eine Funktion $m(x,t)\not=0$ existieren,
+%so dass
+%\[
+%\frac{\partial (mu)}{\partial t}=\frac{\partial (mv)}{\partial x}
+%\]
+%gilt. Da
+%\[
+%m(x,t)u(x,t)\frac{\rmd x}{\rmd t}+m(x,t)v(x,t)=0
+%\]
+%damit sowohl exakt als auch der ursprünglichen Gleichung äquivalent ist,
+%können wir letztere mit Hilfe des sog. integrierenden Faktors $m$ lösen.\\
+
+
+%\pagebreak
+{\bf Die Schwingungsgleichung}
+
+Wegen $\frac{\rmd^2}{\rmd t^2}\sin t=-\sin t$ und
+$\frac{\rmd^2}{\rmd t^2}\cos t=-\cos t$ hat die lineare
+Differentialgleichung 2. Ordnung
+\[
+\frac{\rmd^2 x}{\rmd t^2} = -\omega^2 x
+\]
+Lösungen der Form
+\[
+x(t) = C_1 \sin(\omega t) + C_2 \cos(\omega t)
+\]
+wobei $C_1$, $C_2$ durch die Anfangsbedingungen
+$x(0)=x_0$, $\dot{x}(0)=v_0$ festgelegt werden.
+
+Wenn wir der Schwingungsgleichung noch einen Reibungsterm hinzufügen,
+erhalten wir die lineare
+Differentialgleichung 2. Ordnung ($\gamma>0$)
+\[
+\frac{\rmd^2 x}{\rmd t^2} = -2\gamma \frac{\rmd x}{\rmd t}-\omega^2 x
+\]
+Wenn wir für die Lösung den Ansatz $x(t)=\rme^{\lambda t}$ machen,
+so erhalten wir für $\lambda$ die Gleichung
+\[
+\lambda^2+2\gamma\lambda+\omega^2=0
+\]
+mit Lösungen
+\[
+\lambda_\pm = \left\{\begin{array}{ll}
+                     -\gamma\pm\sqrt{\gamma^2-\omega^2},&~~\gamma\ge\omega\\
+                     -\gamma\pm i\sqrt{\omega^2-\gamma^2}&~~\gamma<\omega
+                     \end{array}\right.
+\]
+Wir unterscheiden drei Fälle:
+\begin{enumerate}
+\item $\gamma>\omega$: Kriechfall, $x(t)=C_1\rme^{-(\gamma+\sqrt{\gamma^2-\omega^2})t}+C_2\rme^{-(\gamma-\sqrt{\gamma^2-\omega^2})t}$
+\item $\gamma=\omega$: aperiodischer Grenzfall, $x(t)=C_1\rme^{-\gamma t}+C_2 t\rme^{-\gamma t}$
+\item $\gamma<\omega$: Schwingfall, $x(t)=\rme^{-\gamma t}\left(C_1\cos(\sqrt{\omega^2-\gamma^2}t)+C_2\sin(\sqrt{\omega^2-\gamma^2}t)\right)$
+\end{enumerate}
+
+Wir betrachten nun erzwungene Schwingungen:
+\[
+\frac{\rmd^2 x}{\rmd t^2} + 2\gamma \frac{\rmd x}{\rmd t}+\omega^2 x= A\rme^{i\omega_f t}
+\]
+wobei wir unsere Gleichung nun komplexifiziert haben: Real- und Imaginärteil
+stellen jeweils eine Differentialgleichung dar.
+
+Der Ansatz $x_p(t)=B\rme^{i\omega_f t}$ liefert
+\[
+(-\omega_f^2+2i\gamma\omega_f+\omega^2)B=A
+\]
+und für $\gamma>0$ erhalten wir
+\[
+B=\frac{A}{(\omega^2-\omega_f^2)+2i\gamma\omega_f}
+\]
+Die allgemeine Lösung lautet somit $x(t) = \frac{A}{(\omega^2-\omega_f^2)+2i\gamma\omega_f}\rme^{i\omega_f t} + x_h(t)$, wobei $x_h(t)$ für großes $t$ mit $\rme^{-\gamma t}$ abstirbt.
+%
+Wir folgern, dass für kleines $\gamma$ und $\omega_f=\omega$
+die Amplitude der erzwungenen Schwingung groß wird -- es tritt Resonanz auf.
+
+\end{document}
+

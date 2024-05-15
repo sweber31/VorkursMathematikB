@@ -1,0 +1,232 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\input{definitions}
+
+\title{\vskip-5ex Zusammenfassung zum Thema Mengen und Zahlen}
+\author{Mathematischer Brückenkurs (B)\\für Naturwissenschaftler:innen}
+\date{WS 2023/2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\parindent0pt
+\maketitle
+
+{\bf Etwas elementare Logik}
+
+Aussagen sind sprachliche Ausdrücke, denen ein eindeutiger Wahrheitswert zugeordnet werden kann. Jede Aussage ist entweder wahr (W) oder falsch (F).
+
+Logische Verknüpfungen verbinden Aussagen zu einer neuen Aussage. Neben der Negation ($\neg$, ``nicht'') kennen wir die Verknüpfungen $\wedge$ (Konjunktion, ``und''), $\vee$ (Disjunktion, ``oder''), $\Rightarrow$ (Implikation, ``wenn...dann...'') und $\Leftrightarrow$ (Äquivalenz). Wahrheitswerte zusammengesetzter Aussagen können in Wahrheitstafeln dargestellt werden:
+
+\begin{center}
+{\begin{tabular}{c|c}$p$&$\neg p$\\\hline W&F\\F&W\end{tabular}}\hfil
+{\begin{tabular}{cc|c}$p$&$q$&$p\wedge q$\\\hline W&W&W\\W&F&F\\F&W&F\\F&F&F\end{tabular}}\hfil
+{\begin{tabular}{cc|c}$p$&$q$&$p\vee q$\\\hline W&W&W\\W&F&W\\F&W&W\\F&F&F\end{tabular}}\hfil
+{\begin{tabular}{cc|c}$p$&$q$&$p\Rightarrow q$\\\hline W&W&W\\W&F&F\\F&W&W\\F&F&W\end{tabular}}{\relax}\hfil
+{\begin{tabular}{cc|c}$p$&$q$&$p\Leftrightarrow q$\\\hline W&W&W\\W&F&F\\F&W&F\\F&F&W\end{tabular}}{\relax}
+\end{center}
+
+Eine Aussageform (Prädikat) ist ein Ausdruck, der mindestens eine Variable enthält, und zu einer Aussage wird, wenn man für jede auftauchende Variable einen Ausdruck aus dem in Frage kommenden Diskursbereich einsetzt.
+Quantoren erlauben die Bildung logischer Aussagen aus Aussageformen:
+\begin{itemize}
+\item Universalität (``für alle'', $\forall$): $\forall x~ P(x)$ ist wahr, wenn $P(x)$ für alle $x$ wahr ist.
+\item Existenz (``es gibt'', $\exists$): $\exists x~P(x)$ ist wahr, wenn es ein $x_0$ gibt, für das $P(x_0)$ wahr ist.
+\end{itemize}
+Bei Aussagen mit Quantoren spielt deren Reihenfolge eine wesentliche Rolle.
+
+Es gelten unter anderem die Schlussregeln des
+direkten Schlusses ({\em modus ponens}), 
+$
+((p\Rightarrow q)\wedge p)\Rightarrow q,
+$
+und des Schlusses durch Widerspruch ({\em modus tollens}),
+$
+((p\Rightarrow q)\wedge \neg q)\Rightarrow \neg p.
+$\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Grundbegriffe der Mengenlehre}
+
+Eine Menge ist die Zusammenfassung von bestimmten unterscheidbaren Gegen\-ständen unseres Denkens zu einem neuen Gegenstand. Fundamentale Beziehung: Gegenstand $x$ ist Element von Menge $A$, $x\in A$. Für $\neg(x\in A)$ schreiben wir kurz $x\not\in A$.
+Die Menge aller $x$, für die $P(x)$ wahr ist, wird als $\{x|P(x)\}$ geschrieben. Es gilt: $x\in \{x|P(x)\}\Leftrightarrow P(x)$.
+Endliche Mengen können auch einfach aufgezählt werden.
+
+Es gilt das Extensionalitätsprinzip: Eine Menge ist durch ihre Elemente eindeutig bestimmt.
+
+Eine Menge $A$ ist Teilmenge einer anderen Menge $B$, $A\subseteq B$, wenn alle Elemente von $A$ auch Elemente von $B$ sind: $A\subseteq B\Leftrightarrow(\forall x~x\in A\Rightarrow x\in B)$.
+Wegen des Extensionalitätsprinzips gilt: $(A\subseteq B \wedge B\subseteq A)\Leftrightarrow A=B$.
+
+Mengenoperationen erlauben, aus bekannten Mengen neue Mengen zu bilden.
+{Die Vereinigungsmenge $A \cup B$ von $A$ und $B$ enthält alle Elemente von $A$ und alle Elemente von $B$: $x\in (A\cup B)\Leftrightarrow(x\in A \vee x\in B)$.}{\relax}
+{Die Schnittmenge $A \cap B$ von $A$ und $B$ enthält alle Elemente von $A$, die auch Elemente von $B$ sind: $x\in (A\cap B)\Leftrightarrow(x\in A \wedge x\in B)$.}{\relax}
+{Die Differenzmenge $A \backslash B$ von $A$ und $B$ enthält alle Elemente von $A$, die nicht Elemente von $B$ sind: $x\in (A\backslash B)\Leftrightarrow(x\in A \wedge x\not\in B)$.}{\relax}
+Das kartesische Produkt $A\times B$ von $A$ und $B$ enthält alle geordneten Paare, deren erstes Element aus $A$ und deren zweites Element aus $B$ stammt: $A\times B=\{(a,b)|a\in A\wedge b\in B\}$.
+
+Nützlicherweise definiert man die leere Menge $\emptyset$, die keine Elemente hat.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Die natürlichen Zahlen}
+
+$\Nset = \{ 0,~1,~2,~3,~\ldots\}$ entsteht durch die fundamentale Operation des Zählen, d.h. der Bildung der nächsthöheren Zahl (Nachfolger) $a\mapsto a+1$.
+Fundamentale Eigenschaft: Prinzip der vollständigen Induktion -- jede natürliche Zahl wird von Null aus durch wiederholte Nachfolgerbildung erreicht.
+
+Auf $\Nset$ sind Addition und Multiplikation sowie eine Ordnung definiert.
+Die Addition ist assoziativ, $(a+b)+c=a+(b+c)$, und kommutativ, $a+b=b+a$, und hat $0$ als neutrales Element, $a+0=a$. Die Multiplikation
+ist assoziativ, $(a\cdot b)\cdot c=a\cdot (b\cdot c)$, und kommutativ, $a\cdot b=b\cdot a$, und hat $1$ als neutrales Element, $a\cdot 1=a$.
+Addition und Multiplikation sind distributiv, $(a+b)\cdot c=a\cdot c+b\cdot c$.
+Die Ordnung
+ist transitiv, $(a\le b \wedge b\le c)\Rightarrow a\le c$,
+vollständig, $a\le b \vee b\le a$, sowie $(a\le b\wedge b\le a)\Leftrightarrow a=b$, und mit der Addition verträglich, $a\le b\Rightarrow a+c\le b+c$.
+
+Für $a,b\in\Nset$ existieren eindeutig bestimmte Zahlen $s,r\in\Nset$
+mit $r<b$, so dass $a=sb+r$. $r$ heißt der Rest bei Division von $a$ durch $b$. Man schreibt auch $a\mod b=r$ und sagt, $a$ sei kongruent zu $r$ modulo $b$. Wenn $r=0$, so heißt $b$ ein Teiler von $a$, und $a$ durch $b$ (ohne Rest)
+teilbar. Jede natürliche Zahl ist durch $1$ und durch sich selbst teilbar. Eine natürliche Zahl mit genau zwei Teilern heißt Primzahl. ($1$ ist also keine Primzahl!) Jede natürliche Zahl $n>1$ kann in eindeutiger Weise als Produkt von
+      Primzahlen dargestellt werden.
+
+Aufgrund des Prinzips der vollständigen Induktion können wir
+$\forall n\in\Nset~P(n)$ beweisen, indem wir $P(0)$ und
+$\forall n\in\Nset~P(n)\Rightarrow P(n+1)$ zeigen (Beweis durch vollständige Induktion).\\
+
+{\bf Die ganzen, rationalen und reellen Zahlen}
+
+$x+a=b$ hat für $a,b\in\Nset$ nur dann eine Lösung $x=(b-a)\in\Nset$, wenn $a\le b$. Um auch für $a>b$ eine Lösung angeben zu können, erweitern wir den Zahlenbereich auf die ganzen Zahlen $\Zset=\Nset\cup \{-1,-2,-3,\ldots\}$. Die Addition, Multiplikation und Ordnung von $\Nset$ setzen sich auf natürliche Weise auf $\Zset$ fort. Es gilt: $(-1)\cdot a=(-a)$ und $(-1)\cdot(-1)=1$, für $a\le b$ gilt $(-b)\le (-a)$.
+
+
+$a\cdot x=b$ hat für $a,b\in\Zset$ nur dann eine Lösung $x=b/a\in\Zset$, wenn $a$ ein Teiler von $b$ ist. Um für alle $a\not=0$ eine Lösung angeben zu können, erweitern wir den Zahlbereich auf die rationalen Zahlen
+\[
+\Qset = \Big\{\frac{p}{q}\Big|p,q\in\Zset\wedge q\ge 1\Big\}.
+\]
+Für $\frac{p_1}{q_1},\frac{p_2}{q_2}\in\Qset$ gilt $\frac{p_1}{q_1}=\frac{p_2}{q_2}\Leftrightarrow p_1q_2=p_2q_1$. Die Addition, Multiplikation und Ordnung von $\Zset$ setzen sich auf natürliche Weise auf $\Qset$ fort, wenn wir
+\[
+\frac{p_1}{q_1}+\frac{p_2}{q_2}=\frac{p_1q_2+p_2q_1}{q_1q_2} ~~~\textrm{und}~~~ \frac{p_1}{q_1}\cdot\frac{p_2}{q_2}=\frac{p_1p_2}{q_1q_2}
+\]
+definieren. Es gilt: $\frac{ap}{aq}=\frac{p}{q}$, $\left(\frac{p}{q}\right)^{-1}=\frac{q}{p}$.
+
+Zwischen zwei rationalen Zahlen liegen stets unendlich viele weitere rationale Zahlen. Die Menge der rationalen Zahlen hat trotzem ``Lücken'': beispielsweise hat $x^2=2$ keine Lösung $x\in\Qset$.
+Die Lösungen $\pm\sqrt{2}$ von $x^2=2$ sind Beispiele für irrationale Zahlen, die sich jedoch beliebig genau durch rationale Zahlen annähern lassen, z.B. als Dezimalbrüche. Durch Erweiterung des Zahlbereichs auf alle unendlichen Dezimalbrüche (wobei z.B. $0,2999\ldots=0.3$) können wir auch irrationale Zahlen darstellen und erhalten so die reellen Zahlen $\Rset$. Addition und Multiplikation mitsamt ihren Inversen, sowie die Ordnung
+setzen sich von $\Qset$ auf $\Rset$ fort.
+
+Als wichtige Teilmengen von $\Rset$ definieren wir die Intervalle
+\begin{align*}
+[a;b] &= \{x\in\Rset|a\le x\le b\},~~~&
+(a;b) &= \{x\in\Rset|a< x< b\},\\
+(a;b] &= \{x\in\Rset|a< x\le b\},~~~&
+[a;b) &= \{x\in\Rset|a\le x< b\},
+\end{align*}
+sowie die positiven reellen Zahlen $\Rset^+=(0;\infty)$ und 
+die multiplikative Gruppe $\Rset^*=\Rset\backslash\{0\}$.
+
+Der Betrag, definiert durch
+\[
+|x| = \left\{\begin{array}{rl}x&,~x\ge 0\\-x&,x<0\end{array}\right.
+\]
+erfüllt $|ax|=|a||x|$ und $|x^{-1}|=|x|^{-1}$ (für $x\not=0$)
+sowie die Dreiecksungleichung $|a+b|\le |a|+|b|$.
+
+\pagebreak Wir erweitern den Potenzbegriff wie folgt:
+
+\begin{itemize}
+
+\item Für $b\in\Zset\backslash\Nset$ ist $(-b)\in\Nset$ und wir setzen $a^b=(a^{-b})^{-1}$ für $a\in\Rset^*$.
+
+\item Für $b\in\Qset\backslash\Zset$ ist $b=\frac{p}{q}$ mit $p,q\in\Zset$ teilerfremd, $q\ge 2$, und wir setzen $a^b=(\sqrt[q]{a})^p$ mit $\sqrt[q]{a}\in\Rset^+$ der eindeutigen positiven Lösung von $x^q=a$ für $a\in\Rset^+$.
+
+\item Für $b\in\Rset\backslash\Qset$, $a\in\Rset^+$ definieren wir $a^b$ als den (eindeutigen) Grenzwert von $a^{b_k}$ mit $b_k\in\Qset$, $b_k\to b$.
+
+\end{itemize}
+Mit diesen Definitionen gelten die bekannten Potenzgesetze:
+\[
+(ab)^c=a^cb^c~~~~~~
+(a^b)^c=a^{bc}~~~~~~
+a^ba^c=a^{b+c}~~~~~~
+\sqrt{a^2}=|a|
+\]
+
+Der Logarithmus zur Basis $b$ ist definiert durch
+\[
+x = \log_b a \Leftrightarrow b^x=a
+\]
+Es gelten die Logarithmengesetze:
+\[
+\log_b(ac)=\log_b a + \log_b c~~~~~~
+\log_b(a^c)=c\log_b a ~~~~~~
+\log_c a = \frac{1}{\log_b c}\log_b a
+\]
+Häufig wird $\log x=\mathrm{ln~}x=\log_{\rme} x$, $\mathrm{lg~}x=\log_{10}x$
+und $\mathrm{ld~}x=\log_2 x$ abgekürzt.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Die komplexen Zahlen}
+
+Indem wir $\Rset$ um eine Lösung $x=i$ von $x^2=-1$ ergänzen, erhalten wir die komplexen Zahlen
+\[
+\Cset =\{a+bi~|~a,b\in\Rset\}\,.
+\]
+Diese lassen sich als Gauss'sche Zahlenebene anschaulich machen.
+
+Wir bezeichnen $i$ als imaginäre Einheit und nennen
+      für $z=a+bi$
+die reelle Zahl Re~$z=a$ den Realteil,
+die reelle Zahl Im~$z=b$ den Imaginärteil,
+$|z|=\sqrt{a^2+b^2}$ den Betrag,
+$\arg(z)=\arctan\frac{b}{a} +\varkappa$ das Argument (für $z\not=0$, wobei der Korrekturwinkel $\varkappa$ davon abhängt, in welchem Quadranten der Zahlenebene $z$ liegt),
+und $z^*=a-bi$ die komplex konjugierte Zahl
+von $z$. Damit gilt $|z^*|=|z|$ und $\arg(z^*)=-\arg(z)$, sowie $z+z^*=2$~Re~$z$ und $z-z^*=2i$~Im~$z$.
+
+Addition und Subtraktion wirken auf Real- und Imaginärteil separat:
+\begin{align*}
+(a+bi)+(c+di) &= (a+c)+(b+d)i\\
+(a+bi)-(c+di) &= (a-c)+(b-d)i
+\end{align*}
+Die Multiplikation mischt Real- und Imaginärteil:
+\[
+(a+bi)(c+di) = (ac-bd)+(ad+bc)i
+\]
+Die Division ist wegen $zz^*=|z|^2$ durch
+\[
+z^{-1} = z^*/|z|^2
+\]
+definiert. Diese Operationen genügen den Assoziativ-, Kommutativ- und Distributivgesetzen.
+
+Im Gegensatz zu $\Rset$ lässt sich $\Cset$ nicht mehr in einer mit
+den algebraischen Operationen verträglichen Weise ordnen.
+\pagebreak
+
+Ferner gilt die Eulersche Formel:
+\[
+\rme^{i\phi} = \cos\phi+i\sin\phi
+\]
+für $\phi\in\Rset$. Es gilt $\left|\rme^{i\phi}\right|=1$, $\rme^{2\pi ni}=1$,~$n\in\Zset$. 
+
+In der Polardarstellung komplexer Zahlen als $z=|z|\rme^{i\arg(z)}$ stellt sich
+die Multiplikation als
+\[
+\left(r\rme^{i\phi}\right)\left(s\rme^{i\psi}\right) = (rs)\rme^{i(\phi+\psi)}
+\]
+dar.
+
+Wurzeln und Logarithmen sind aufgrund der Euler-Formel in $\Cset$ mehrdeutig.
+
+Trigonometrische Identitäten lassen sich wegen
+\begin{align*}
+\rme^{i\phi}&=\cos\phi+i\sin\phi&\Rightarrow~~
+\cos\phi&=\frac{1}{2}\left(\rme^{i\phi}+\rme^{-i\phi}\right)~~\wedge~~
+\sin\phi=\frac{1}{2i}\left(\rme^{i\phi}-\rme^{-i\phi}\right)
+\end{align*}
+mit Hilfe der Euler-Formel leicht herleiten.
+
+Der Fundamentalsatz der Algebra besagt, dass jede algebraische Gleichung vom Grad $>0$ eine Lösung in $\Cset$ hat.
+
+Wir haben die folgenden Beziehungen zwischen den Zahlenbereichen:
+\[
+\Nset\subset\Zset\subset\Qset\subset\Rset\subset\Cset
+\]
+
+\end{document}

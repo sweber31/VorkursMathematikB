@@ -1,0 +1,103 @@
+\question{{\it Rechnen mit Vektoren im $\Rset^n$}}
+
+\begin{enumerate}
+\item Bestimmen Sie für Paare $\vec{x}_i$, $\vec{x}_j$ von Vektoren gleicher Dimension jeweils $\vec{x}_i+\vec{x}_j$, $\vec{x}_i-\vec{x}_j$, $\vec{x}_i\cdot\vec{x}_j$, sowie den Kosinus des Winkels zwischen $\vec{x}_i$ und $\vec{x}_j$. Welche Vektoren sind jeweils parallel bzw. orthogonal zueinander?
+\item Bestimmen Sie für Mengen von $k$ Vektoren $\{\vec{x}_i\}$ im $\Rset^n$ jeweils, ob diese linear unabhängig sind. Was gilt für $k>n$?
+\end{enumerate}
+\begin{align*}
+\vec{x}_1&=\left(\begin{array}{c}1\\0\end{array}\right)
+&\vec{x}_2&=\left(\begin{array}{c}0\\3\end{array}\right)
+&\vec{x}_3&=\left(\begin{array}{c}1\\2\end{array}\right)
+&\vec{x}_4&=\left(\begin{array}{c}2\\4\end{array}\right)
+&\vec{x}_5&=\left(\begin{array}{c}\sin\beta\\\cos\beta\end{array}\right)\\
+\vec{x}_6&=\left(\begin{array}{c}1\\0\\1\end{array}\right)
+&\vec{x}_7&=\left(\begin{array}{c}2\\1\\0\end{array}\right)
+&\vec{x}_8&=\left(\begin{array}{c}0\\2\\3\end{array}\right)
+&\vec{x}_9&=\left(\begin{array}{c}1\\{}-2\\0\end{array}\right)
+&\vec{x}_{10}&=\left(\begin{array}{c}1\\-\sin\alpha\\{}\cos\alpha\end{array}\right)\\
+\vec{x}_{11}&=\left(\begin{array}{c}1\\1\\1\\1\end{array}\right)
+&\vec{x}_{12}&=\left(\begin{array}{c}0\\0\\2\\2\end{array}\right)
+&\vec{x}_{13}&=\left(\begin{array}{c}\xi\\0\\0\\{}-\xi\end{array}\right)
+&\vec{x}_{14}&=\left(\begin{array}{c}0\\0\\0\\0\\0\end{array}\right)
+&\vec{x}_{15}&=\left(\begin{array}{c}-5\\{}-3\\1\\1\\1\end{array}\right)
+\end{align*}
+
+
+
+\question{{\it Vektorprodukt im $\Rset^3$}}
+
+\begin{enumerate}
+\item Bestimmen Sie für Paare $\vec{x}_i$, $\vec{x}_j$ von dreidimensionalen Vektoren jeweils das Vektorprodukt $\vec{x}_i\times\vec{x}_j$.
+\item Bestimmen Sie für Tripel $\vec{x}_i$, $\vec{x}_j$, $\vec{x}_k$ von dreidimensionalen Vektoren jeweils $\vec{x}_i\cdot(\vec{x_j}\times\vec{x}_k)$. Wann ist dieses Produkt gleich Null, und warum?
+\end{enumerate}
+\begin{align*}
+\vec{x}_1&=\left(\begin{array}{c}1\\0\\1\end{array}\right)
+&\vec{x}_2&=\left(\begin{array}{c}2\\1\\0\end{array}\right)
+&\vec{x}_3&=\left(\begin{array}{c}0\\2\\3\end{array}\right)
+&\vec{x}_4&=\left(\begin{array}{c}1\\{}-2\\0\end{array}\right)\\
+\vec{x}_5&=\left(\begin{array}{c}1\\0\\0\end{array}\right)
+&\vec{x}_6&=\left(\begin{array}{c}0\\-1\\0\end{array}\right)
+&\vec{x}_7&=\left(\begin{array}{c}1\\2\\2\end{array}\right)
+&\vec{x}_8&=\left(\begin{array}{c}2\\2\\3\end{array}\right)\\
+\end{align*}
+
+
+\pagebreak
+
+
+\question{{\it Rechnen mit Matrizen}}
+
+Bestimmen Sie für alle Paare $X$, $Y$ von Matrizen, welche der Operationen $X+Y$, $XY$, und $YX$ jeweils definiert sind, und werten Sie diese gegebenenfalls aus:
+\\
+\begin{align*}
+A &= \left(\begin{array}{cc}0&1\\1&0\end{array}\right)
+&B &= \left(\begin{array}{cc}1&2\\0&3\end{array}\right)
+&C &= \left(\begin{array}{cc}\cos\phi&\sin\phi\\-\sin\phi&\cos\phi\end{array}\right)\\
+D &= \left(\begin{array}{cc}1&0\\0&1\\2&3\end{array}\right)
+&E &= \left(\begin{array}{ccc}1&1&1\\0&1&\xi\end{array}\right)
+&F &= \left(\begin{array}{ccc}1&0&-1\\0&1&0\\1&0&1\end{array}\right)\\
+G &= \left(\begin{array}{ccc}1&1&1\\0&1&2\\0&0&3\end{array}\right)
+&H &= \left(\begin{array}{cccc}0&2&0&1\\1&0&2&0\end{array}\right)
+&K &= \left(\begin{array}{cccc}1&0&0&0\\0&-1&0&0\\0&0&-1&0\\0&0&0&-1\end{array}\right)\\
+L &= \left(\begin{array}{c}t\\x\\y\\z\end{array}\right)
+&M &= \left(\begin{array}{cccc}\tau&\xi&\eta&0\end{array}\right)
+&N &= \left(\begin{array}{ccc}1&0&1\\0&1&\cos\gamma\\0&0&\sin\gamma\\1&0&0\end{array}\right)
+\end{align*}
+
+
+
+\question{{\it Drehungen in der Ebene und im Raum}}
+
+\begin{parts}
+\part Überzeugen Sie sich davon, dass die zu der Matrix
+\[
+R(\alpha)=\left(\begin{array}{cc}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{array}\right)
+\]
+gehörige lineare Abbildung $\Rset^2\to\Rset^2$ eine Drehung um den Winkel $\alpha$ um den Ursprung darstellt. Überprüfen Sie, dass tatsächlich $R(\alpha+\beta)=R(\alpha)R(\beta)$ gilt.
+
+\part Bestimmen Sie die drei Matrizen $R_1(\alpha)$, $R_2(\beta)$, $R_3(\gamma)$, die jeweils einer Drehung des $\Rset^3$ um die $x_1$-, $x_2$- bzw. $x_3$-Achse mit einem Drehwinkel von $\alpha$, $\beta$ bzw. $\gamma$ entsprechen.
+
+\part Berechnen Sie jeweils $R_i(\varphi)R_j(\vartheta)$ und $R_j(\vartheta)R_i(\varphi)$ für $i\not=j$. Was beobachten Sie? Interpretieren Sie dieses Ergebnis geometrisch.
+
+\end{parts}
+
+
+
+\question{{\it Lineare Gleichungssysteme und Matrizen}}
+
+%\begin{parts}
+%\part Berechnen Sie jeweils die Determinanten der folgenden Matrizen. Für Matrizen mit Determinante Null finden Sie jeweils einen Vektor $x$ mit $Ax=0$. Für Matrizen mit von Null verschiedener Determinante finden Sie jeweils die Lösungen der Gleichungen $Ax=e_i$.
+%\begin{align*}
+%\left(\begin{array}{cc}1&1\\0&1\end{array}\right) &&
+%\left(\begin{array}{cc}0&1\\1&0\end{array}\right) &&
+%\left(\begin{array}{cc}0&1\\-1&0\end{array}\right) &&
+%\left(\begin{array}{cc}1&1\\2&2\end{array}\right)\\
+%\left(\begin{array}{ccc}1&1&0\\0&1&1\\1&1&0\end{array}\right) &&
+%\left(\begin{array}{ccc}0&1&1\\1&0&1\\1&1&2\end{array}\right) &&
+%\left(\begin{array}{ccc}0&1&0\\-1&0&0\\0&0&1\end{array}\right) &&
+%\left(\begin{array}{ccc}1&1&0\\2&2&1\\1&0&0\end{array}\right)
+%\end{align*}
+
+%\part
+Bestimmen Sie, für welche Paare $A$, $b$ von Matrizen $A$ aus Aufgabe 3 und Vektoren $b$ aus Aufgabe 1 das Gleichungssystem $Ax=b$ definiert ist und finden Sie (falls es definiert ist) seine jeweilige Lösungsmenge.
+%\end{parts}
