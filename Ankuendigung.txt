@@ -1,0 +1,34 @@
+HARZ
+
+Voraussetzungen / Organisatorisches:
+Dreiwöchiger ganztägiger Kurs vor Beginn der Vorlesungszeit. Es ist keine Anmeldung erforderlich.
+Am Vormittag (jeweils 9.15-12.45 Uhr) findet die Vorlesung statt. Das Tutorium inkl. Übungsbesprechung findet am Nachmittag (jeweils 14.00-18.00 Uhr) statt.
+
+Inhalt:
+
+Der Brückenkurs dient vornehmlich der Auffrischung des Schulstoffes der Mathematik und der Einübung von entsprechenden Rechenfertigkeiten in begleitenden Übungen zur Vorbereitung auf die Vorlesung "Physik für Chemiker, Biologen und Geowissenschaftler". Die Teilnahme ist freiwillig, wird aber sehr empfohlen.
+
+0. Grundlegendes und Schreibweisen 
+1. Mengen und Zahlen
+2. Folgen und Reihen
+3. Funktionen und ihre Ableitungen
+4. Integration und Integrale
+5. Vektoren und Matrizen
+6. Funktionen mehrerer Veränderlicher
+7. Statistik und Messfehler
+8. Differentialgleichungen
+
+Empfohlene Literatur:
+
+    K. Hefft Mathematischer Vorkurs zum Studium der Physik (online unter http://www.thphys.uni-heidelberg.de/~hefft/vk1/ )
+    E. Cramer, J. Neslehova Vorkurs Mathematik, Arbeitsbuch zum Studienbeginn in Bachelorstudiengängen
+    M. Klinger Vorkurs Mathematik für Nebenfach-Studierende
+    
+    H. J. Korsch, Mathematik-Vorkurs, Binomi Verlag
+    H. J. Korsch, Mathematische Ergänzungen zur Einführung in die Physik
+    G. Walz, F. Zeilfelder, G. Rießinger, Brückenkurs Mathematik
+    J. Erven, M. Erven, J. Hörwick, Vorkurs Mathematik
+
+
+Zusätzliche Informationen:
+Dieser Brückenkurs richtet sich in erster Linie an Studienanfänger:innen in den Fächern Biologie, Chemie, Biomedizinische Chemie, Geowissenschaften und Umweltwissenschaften. Für das Fach Physik (auch im B.Ed. in Kombination mit einem der oben genannten Fächer) wird ein anderer Brückenkurs (Kurs A) angeboten. Mathematisch besonders interessierten Biolog:innen, Chemiker:innen, Geowissenschaftler:innen und Umweltwissenschaftler:innen ist die Teilnahme am Kurs A selbstverständlich freigestellt. 
